@@ -13,12 +13,12 @@ html.no-js
     meta(name="description", content="")
     meta(name="viewport", content="width=device-width")
     // Place favicon.ico and apple-touch-icon.png in the root directory
-    
+
     <!-- build:css({.tmp,app}) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+    link(rel="stylesheet" href="styles/main.css")
     <!-- endbuild -->
     //- build:head
-  body(ng-app="sigmaApp")
+  body(ng-app="bitcampApp")
     //[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
       <![endif]
@@ -40,31 +40,31 @@ html.no-js
     script(src="bower_components/jquery/jquery.js")
     script(src="bower_components/angular/angular.js")
 
-    
+
     <!-- build:js(app) scripts/plugins.js -->
-    <script src="bower_components/sass-bootstrap/js/affix.js"></script>
-    <script src="bower_components/sass-bootstrap/js/alert.js"></script>
-    <script src="bower_components/sass-bootstrap/js/button.js"></script>
-    <script src="bower_components/sass-bootstrap/js/carousel.js"></script>
-    <script src="bower_components/sass-bootstrap/js/transition.js"></script>
-    <script src="bower_components/sass-bootstrap/js/collapse.js"></script>
-    <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
-    <script src="bower_components/sass-bootstrap/js/modal.js"></script>
-    <script src="bower_components/sass-bootstrap/js/scrollspy.js"></script>
-    <script src="bower_components/sass-bootstrap/js/tab.js"></script>
-    <script src="bower_components/sass-bootstrap/js/tooltip.js"></script>
-    <script src="bower_components/sass-bootstrap/js/popover.js"></script>
+    script(src="bower_components/sass-bootstrap/js/affix.js")
+    script(src="bower_components/sass-bootstrap/js/alert.js")
+    script(src="bower_components/sass-bootstrap/js/button.js")
+    script(src="bower_components/sass-bootstrap/js/carousel.js")
+    script(src="bower_components/sass-bootstrap/js/transition.js")
+    script(src="bower_components/sass-bootstrap/js/collapse.js")
+    script(src="bower_components/sass-bootstrap/js/dropdown.js")
+    script(src="bower_components/sass-bootstrap/js/modal.js")
+    script(src="bower_components/sass-bootstrap/js/scrollspy.js")
+    script(src="bower_components/sass-bootstrap/js/tab.js")
+    script(src="bower_components/sass-bootstrap/js/tooltip.js")
+    script(src="bower_components/sass-bootstrap/js/popover.js")
     <!-- endbuild -->
-    
+
     <!-- build:js(app) scripts/modules.js -->
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
+    script(src="bower_components/angular-resource/angular-resource.js")
+    script(src="bower_components/angular-cookies/angular-cookies.js")
+    script(src="bower_components/angular-sanitize/angular-sanitize.js")
+    script(src="bower_components/angular-route/angular-route.js")
     <!-- endbuild -->
-    
+
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
+    script(src="scripts/app.js")
+    script(src="scripts/controllers/main.js")
     <!-- endbuild -->
     //- build:body

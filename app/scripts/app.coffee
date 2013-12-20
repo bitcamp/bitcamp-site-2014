@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('sigmaApp', [
+angular.module('bitcampApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
