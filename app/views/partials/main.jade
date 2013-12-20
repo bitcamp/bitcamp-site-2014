@@ -1,23 +1,72 @@
-.header
-  ul.nav.nav-pills.pull-right
-    li.active
-      a(ng-href='#') Home
-    li
-      a(ng-href='#') About
-    li
-      a(ng-href='#') Contact
-  h3.text-muted Bitcamp
-.jumbotron
-  h1 'Allo, 'Allo!
-  p.lead
-    <img src="images/yeoman.png" alt="I'm Yeoman">
-    br
-    | Always a pleasure scaffolding your apps.
+header#header
+  #title
+    b bitcamp
+
+  #subtitle
+    h1 you + tech
+    h2
+      | Hackathon @ University of Maryland
+      | April 4-6, 2014
+
+  #call-to-action
+    h3
+      a.btn.btn-lg.btn-warning(ng-href='#btc-permission')
+        | register now
+
+
+#main
+  .row.btc-row#btc-description
+    h3 36 hours ♥ 1000+ hackers ♥ $10M in prizes
+
+    h4 Take what you love, fuse it with tech, build something the world has never seen.
+
+    p
+      | Camp is a place for creation, exploration, and imagination. Flannel Echo
+      | Park salvia, biodiesel banjo cred scenester beard Shoreditch typewriter.
+      | Cliche squid art party, 90's plaid lomo literally selvage pickled Etsy synth
+      | gluten-free. Tofu Truffaut fap, kogi narwhal Tonx try-hard Blue Bottle
+      | iPhone keytar High Life mumblecore single-origin coffee plaid.
+    h3
+      a.btn.btn-md.btn-warning(ng-href='#btc-details')
+        | more details
+
+  .row.btc-row#btc-isfor
+    .lead
+      b bitcamp
+      |  is for
+    h1 artists
+
+  .row.btc-row#btc-permission
+    h3 Permission Slip
+    input(type='text',  placeholder='name')
+    input(type='email', placeholder='email')
+    input(type='text',  placeholder='university')
+    h3
+      a.btn.btn-md.btn-warning(ng-href='#btc-submit')
+        | submit
+
+  .row.btc-row#btc-sponsors
+    h4 Sponsors
+    h3
+      .sponsor
+        | YOU?
+        .small contact our team for more details
+    h4 Partners
+
+  .row.btc-row#btc-twitter
+    h1
+      | Hit up <a href="https://twitter.com/bitcmp">@bitcmp</a> on Twitter and
+      | join the <a href="https://twitter.com/search?q=%23plustech">#plustech</a> conversation.
+
+  .row.btc-row#btc-map
+    h1
+      b Cole Field House
+      br
+      | College Park, MD
+
+
+footer#footer
   p
-    a.btn.btn-lg.btn-success(ng-href='#') Splendid!
-.row.marketing
-  div(ng-repeat='thing in awesomeThings')
-    h4 {{thing.name}}
-    p {{thing.info}}
-.footer
-  p ♥ from the Yeoman team
+    | Bitcamp 2014
+    | Twitter ♥ Facebook
+  // ♥

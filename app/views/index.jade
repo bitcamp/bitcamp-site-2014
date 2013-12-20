@@ -9,7 +9,7 @@ html.no-js
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
     base(href="/")
-    title
+    title bitcamp
     meta(name="description", content="")
     meta(name="viewport", content="width=device-width")
     // Place favicon.ico and apple-touch-icon.png in the root directory
@@ -18,6 +18,7 @@ html.no-js
     link(rel="stylesheet" href="styles/main.css")
     <!-- endbuild -->
     //- build:head
+
   body(ng-app="bitcampApp")
     //[if lt IE 7]>
       <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
@@ -27,33 +28,32 @@ html.no-js
       <script src="bower_components/json3/lib/json3.min.js"></script>
       <![endif]
 
-    // Add your site or application content here
-    div(class="container", ng-view)
+    div.container.ng-view
 
-    // Google Analytics: change UA-XXXXX-X to be your site's ID.
     script.
       var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
       (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
       g.src='//www.google-analytics.com/ga.js';
       s.parentNode.insertBefore(g,s)}(document,'script'));
 
-    script(src="bower_components/jquery/jquery.js")
-    script(src="bower_components/angular/angular.js")
-
 
     <!-- build:js(app) scripts/plugins.js -->
-    script(src="bower_components/sass-bootstrap/js/affix.js")
-    script(src="bower_components/sass-bootstrap/js/alert.js")
+    script(src="bower_components/jquery/jquery.js")
+
+    script(src="bower_components/angular/angular.js")
+
+    //-script(src="bower_components/sass-bootstrap/js/affix.js")
+    //-script(src="bower_components/sass-bootstrap/js/alert.js")
     script(src="bower_components/sass-bootstrap/js/button.js")
-    script(src="bower_components/sass-bootstrap/js/carousel.js")
-    script(src="bower_components/sass-bootstrap/js/transition.js")
-    script(src="bower_components/sass-bootstrap/js/collapse.js")
-    script(src="bower_components/sass-bootstrap/js/dropdown.js")
-    script(src="bower_components/sass-bootstrap/js/modal.js")
+    //-script(src="bower_components/sass-bootstrap/js/carousel.js")
+    //-script(src="bower_components/sass-bootstrap/js/transition.js")
+    //-script(src="bower_components/sass-bootstrap/js/collapse.js")
+    //-script(src="bower_components/sass-bootstrap/js/dropdown.js")
+    //-script(src="bower_components/sass-bootstrap/js/modal.js")
     script(src="bower_components/sass-bootstrap/js/scrollspy.js")
-    script(src="bower_components/sass-bootstrap/js/tab.js")
+    //-script(src="bower_components/sass-bootstrap/js/tab.js")
     script(src="bower_components/sass-bootstrap/js/tooltip.js")
-    script(src="bower_components/sass-bootstrap/js/popover.js")
+    //-script(src="bower_components/sass-bootstrap/js/popover.js")
     <!-- endbuild -->
 
     <!-- build:js(app) scripts/modules.js -->
