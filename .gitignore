@@ -1,10 +1,10 @@
-/node_modules
-/public
-/.tmp
-/.sass-cache
-/app/bower_components
-/heroku
-/app/images
-/views
+node_modules
+public
+.tmp
+.sass-cache
+app/bower_components
+heroku
+app/images
+views
 
-/sass-bootstrap
+sass-bootstrap
