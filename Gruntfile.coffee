@@ -366,7 +366,7 @@ module.exports = (grunt) ->
         "coffee"
         "compass:dist"
         "copy:styles"
-        "imagemin"
+        #"imagemin"
         "svgmin"
         "htmlmin"
       ]

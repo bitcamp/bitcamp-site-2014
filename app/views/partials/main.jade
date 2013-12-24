@@ -1,21 +1,22 @@
-header#header
-  #title
+header#header.row.btc-row
+  #logo.col-xs-12
+    img(src='http://placekitten.com/200/100', width='200', height='100')
+  #title.col-xs-12
     b bitcamp
 
-  #subtitle
-    h1 you + tech
-    h2
-      | Hackathon @ University of Maryland
-      | April 4-6, 2014
+  h1#subtitle.col-xs-12 you + tech
+  h2#time-and-place.col-xs-12
+    | Hackathon @ University of Maryland
+    | April 4-6, 2014
 
-  #call-to-action
+  #call-to-action.col-xs-12
     h3
-      a.btn.btn-lg.btn-warning(ng-href='#btc-permission')
-        | register now
+      a(ng-href='#btc-permission')
+        button#register register now
 
 
 #main
-  .row.btc-row#btc-description
+  #btc-description.row.btc-row
     h3 36 hours ♥ 1000+ hackers ♥ $10M in prizes
 
     h4 Take what you love, fuse it with tech, build something the world has never seen.
@@ -27,16 +28,16 @@ header#header
       | gluten-free. Tofu Truffaut fap, kogi narwhal Tonx try-hard Blue Bottle
       | iPhone keytar High Life mumblecore single-origin coffee plaid.
     h3
-      a.btn.btn-md.btn-warning(ng-href='#btc-details')
-        | more details
+      a(ng-href='#btc-details')
+        button#more-details more details
 
-  .row.btc-row#btc-isfor
+  #btc-isfor.row.btc-row
     .lead
       b bitcamp
       |  is for
     h1 artists
 
-  .row.btc-row#btc-permission
+  #btc-permission.row.btc-row
     h3 Permission Slip
     input(type='text',  placeholder='name')
     input(type='email', placeholder='email')
@@ -45,7 +46,7 @@ header#header
       a.btn.btn-md.btn-warning(ng-href='#btc-submit')
         | submit
 
-  .row.btc-row#btc-sponsors
+  #btc-sponsors.row.btc-row
     h4 Sponsors
     h3
       .sponsor
@@ -53,20 +54,20 @@ header#header
         .small contact our team for more details
     h4 Partners
 
-  .row.btc-row#btc-twitter
+  #btc-twitter.row.btc-row
     h1
       | Hit up <a href="https://twitter.com/bitcmp">@bitcmp</a> on Twitter and
       | join the <a href="https://twitter.com/search?q=%23plustech">#plustech</a> conversation.
 
-  .row.btc-row#btc-map
+  #btc-map.row.btc-row
     h1
       b Cole Field House
       br
       | College Park, MD
 
 
-footer#footer
+footer#footer.row.btc-row
   p
-    | Bitcamp 2014
-    | Twitter ♥ Facebook
-  // ♥
+    .col-xs-12 Bitcamp 2014
+    .col-xs-12 Twitter ♥ Facebook
+  .clearfix

@@ -1,18 +1,21 @@
-!!!
-// [if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]
-// [if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]
-// [if IE 8]>         <html class="no-js lt-ie9"> <![endif]
-// [if gt IE 8]><!
-html.no-js
-  //<![endif]
+doctype html
+html
   head
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
     base(href="/")
     title bitcamp
-    meta(name="description", content="")
-    meta(name="viewport", content="width=device-width")
-    // Place favicon.ico and apple-touch-icon.png in the root directory
+    meta(name="description", content="36-hour hackathon at the University of Maryland. April 4-6, 2014.")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+    meta(property="og:site_name",   content="Bitcamp")
+    meta(property="og:title",       content="Bitcamp")
+    meta(property="og:url",         content="http://bitca.mp")
+    meta(property="og:type",        content="website")
+    meta(property="og:description", content="36-hour hackathon at the University of Maryland. April 4-6, 2014.")
+    meta(property="og:image",       content="http://bitca.mp/images/bitcamp-fb-opengraph.png")
+
+    link(rel="shortcut icon", href="/images/favicon.ico", type="image/x-icon")
 
     <!-- build:css({.tmp,app}) styles/main.css -->
     link(rel="stylesheet" href="styles/main.css")
@@ -20,16 +23,7 @@ html.no-js
     //- build:head
 
   body(ng-app="bitcampApp")
-    //[if lt IE 7]>
-      <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
-      <![endif]
-    //[if lt IE 9]>
-      <script src="bower_components/es5-shim/es5-shim.js"></script>
-      <script src="bower_components/json3/lib/json3.min.js"></script>
-      <![endif]
-
-    div.container.ng-view
-
+    div.wrapper.ng-view
     //-script.
     //-  var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
     //-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
@@ -42,18 +36,9 @@ html.no-js
 
     script(src="bower_components/angular/angular.js")
 
-    //-script(src="bower_components/sass-bootstrap/js/affix.js")
-    //-script(src="bower_components/sass-bootstrap/js/alert.js")
     script(src="bower_components/sass-bootstrap/js/button.js")
-    //-script(src="bower_components/sass-bootstrap/js/carousel.js")
-    //-script(src="bower_components/sass-bootstrap/js/transition.js")
-    //-script(src="bower_components/sass-bootstrap/js/collapse.js")
-    //-script(src="bower_components/sass-bootstrap/js/dropdown.js")
-    //-script(src="bower_components/sass-bootstrap/js/modal.js")
     script(src="bower_components/sass-bootstrap/js/scrollspy.js")
-    //-script(src="bower_components/sass-bootstrap/js/tab.js")
     script(src="bower_components/sass-bootstrap/js/tooltip.js")
-    //-script(src="bower_components/sass-bootstrap/js/popover.js")
     <!-- endbuild -->
 
     <!-- build:js(app) scripts/modules.js -->

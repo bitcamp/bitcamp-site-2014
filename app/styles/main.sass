@@ -3,39 +3,105 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/"
 @import 'sass-bootstrap/lib/bootstrap'
 
 
+$sm-l: 768px
+$md-l: 992px
+$lg-l: 1200px
+
+$xs-u: 768px  - 1
+$sm-u: 992px  - 1
+$md-u: 1200px - 1
+
+
+$color_white:        #ffffff
+$color_grey-light:   #e6d8cf
+$color_grey-dark:    #806d60
+$color_orange:       #ff7040
+$color_yellow:       #ffaf40
+$color_red:          #ff4046
+$color_blue-light:   #ccf2ff
+$color_blue-dark:    #538da6
+
+
+@mixin dark-on-light($bg)
+  background-color: $bg
+  color: $color_grey-dark
+  button
+    background-color: $color_orange
+
+@mixin light-on-dark($bg)
+  background-color: $bg
+  color: $color_white
+  button
+    background-color: $color_yellow
+
+
+button
+  color: $color_white
+  font-weight: bold
+  padding: 32px 60px
+  border: none
+
+
 body
-  padding-top: 20px
-  padding-bottom: 20px
+  header
+    @include dark-on-light($color_blue-light)
+  #main
+    #btc-description
+      @include light-on-dark($color_grey-dark)
+    #btc-isfor
+      @include dark-on-light($color_white)
+    #btc-permission
+      @include light-on-dark($color_orange)
+    #btc-sponsors
+      @include dark-on-light($color_white)
+    #btc-twitter
+      @include dark-on-light($color_blue-light)
+    #btc-map
+      @include light-on-dark($color_blue-dark)
+  footer
+    @include light-on-dark($color_grey-dark)
 
-  #header
-    white-space: pre
+p
+  font-size: 1.4em
+h1
+  color: $color_orange
+  font-size: 2.4em
+h2
+  font-size: 2.4em
+  line-height: 1.5em
+h3
+  font-size: 3.2em
+  margin-bottom: 1em
+
+body
+  header
+    white-space: pre-line
     text-align: center
-    h3
-      margin-top: 0
-      margin-bottom: 0
-      line-height: 40px
-      padding-bottom: 19px
-    .btn
-      font-size: 21px
-      padding: 14px 24px
-
+    #logo
+      padding: 15px 0
+    #title
+      font-size: 2em
+      color: $color_orange
+    #subtitle
+      margin-top: 70px
+      font-size: 6em
+      text-transform: uppercase
+    #call-to-action
+      margin-top: 30px
+      margin-bottom: 20px
 
   #main
     text-align: center
 
-    .btc-row
-      padding: 15px 0
-      h1, h2, h3, h4, h5, p
-        white-space: pre
+  .btc-row
+    padding: 50px 0
+    h1, h2, h3, h4, h5, p
+      white-space: pre-line
 
-  #footer
+  footer
     text-align: center
-    padding-top: 19px
 
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px)
-  /* Space out the masthead */
-  #header
-    margin-bottom: 30px
+.row
+  margin-left: 0px
+  margin-right: 0px
 
