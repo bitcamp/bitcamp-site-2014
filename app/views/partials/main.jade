@@ -1,8 +1,7 @@
 header#header.row.btc-row
   #logo.col-xs-12
     img(src='http://placekitten.com/200/100', width='200', height='100')
-  #title.col-xs-12
-    b bitcamp
+  #title.col-xs-12 bitcamp
 
   h1#subtitle.col-xs-12 you + tech
   h2#time-and-place.col-xs-12
@@ -17,9 +16,11 @@ header#header.row.btc-row
 
 #main
   #btc-description.row.btc-row
-    h3 36 hours ♥ 1000+ hackers ♥ $10M in prizes
+    h3 36 hours • 1000+ hackers • $10M in prizes
 
-    h4 Take what you love, fuse it with tech, build something the world has never seen.
+    h4
+      | Take what you love, fuse it with tech,
+      | build something the world has never seen.
 
     p
       | Camp is a place for creation, exploration, and imagination. Flannel Echo
@@ -27,40 +28,43 @@ header#header.row.btc-row
       | Cliche squid art party, 90's plaid lomo literally selvage pickled Etsy synth
       | gluten-free. Tofu Truffaut fap, kogi narwhal Tonx try-hard Blue Bottle
       | iPhone keytar High Life mumblecore single-origin coffee plaid.
-    h3
+    h4
       a(ng-href='#btc-details')
         button#more-details more details
 
   #btc-isfor.row.btc-row
-    .lead
+    img(src='http://placekitten.com/200/100', width='200', height='200')
+    h4
       b bitcamp
       |  is for
-    h1 artists
+    h5.capslock artists
 
   #btc-permission.row.btc-row
-    h3 Permission Slip
+    h3.b Permission Slip
     input(type='text',  placeholder='name')
     input(type='email', placeholder='email')
     input(type='text',  placeholder='university')
-    h3
-      a.btn.btn-md.btn-warning(ng-href='#btc-submit')
-        | submit
+    h4
+      a(ng-href='#btc-submit')
+        button submit
 
   #btc-sponsors.row.btc-row
     h4 Sponsors
-    h3
-      .sponsor
-        | YOU?
-        .small contact our team for more details
+    .col-xs-12
+      a(href='mailto:sponsorship@bitca.mp')
+        .sponsor1
+          strong YOU?
+          br
+          small contact our team for more details
     h4 Partners
 
   #btc-twitter.row.btc-row
-    h1
+    h2
       | Hit up <a href="https://twitter.com/bitcmp">@bitcmp</a> on Twitter and
       | join the <a href="https://twitter.com/search?q=%23plustech">#plustech</a> conversation.
 
   #btc-map.row.btc-row
-    h1
+    h2
       b Cole Field House
       br
       | College Park, MD
@@ -69,5 +73,5 @@ header#header.row.btc-row
 footer#footer.row.btc-row
   p
     .col-xs-12 Bitcamp 2014
-    .col-xs-12 Twitter ♥ Facebook
+    .col-xs-12 Twitter • Facebook
   .clearfix

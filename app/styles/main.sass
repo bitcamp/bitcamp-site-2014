@@ -2,6 +2,8 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/"
 
 @import 'sass-bootstrap/lib/bootstrap'
 
+@import 'colors'
+
 
 $sm-l: 768px
 $md-l: 992px
@@ -12,66 +14,61 @@ $sm-u: 992px  - 1
 $md-u: 1200px - 1
 
 
-$color_white:        #ffffff
-$color_grey-light:   #e6d8cf
-$color_grey-dark:    #806d60
-$color_orange:       #ff7040
-$color_yellow:       #ffaf40
-$color_red:          #ff4046
-$color_blue-light:   #ccf2ff
-$color_blue-dark:    #538da6
-
-
-@mixin dark-on-light($bg)
-  background-color: $bg
-  color: $color_grey-dark
-  button
-    background-color: $color_orange
-
-@mixin light-on-dark($bg)
-  background-color: $bg
-  color: $color_white
-  button
-    background-color: $color_yellow
-
-
-button
-  color: $color_white
-  font-weight: bold
-  padding: 32px 60px
-  border: none
-
-
-body
-  header
-    @include dark-on-light($color_blue-light)
-  #main
-    #btc-description
-      @include light-on-dark($color_grey-dark)
-    #btc-isfor
-      @include dark-on-light($color_white)
-    #btc-permission
-      @include light-on-dark($color_orange)
-    #btc-sponsors
-      @include dark-on-light($color_white)
-    #btc-twitter
-      @include dark-on-light($color_blue-light)
-    #btc-map
-      @include light-on-dark($color_blue-dark)
-  footer
-    @include light-on-dark($color_grey-dark)
-
-p
-  font-size: 1.4em
-h1
+body, p, .p
+  font-family: 'aleo-regular', sans-serif
+  font-size: 1.6em
+h1, .h1
+  font-family: 'aleo-light', sans-serif
   color: $color_orange
-  font-size: 2.4em
-h2
+  font-size: 6em
+h2, .h2
+  font-family: 'aleo-regular', sans-serif
   font-size: 2.4em
   line-height: 1.5em
-h3
+h3, .h3
+  font-family: 'aleo-regular', sans-serif
   font-size: 3.2em
-  margin-bottom: 1em
+  margin-bottom: 0.7em
+h4, .h4
+  font-family: 'aleo-regular', sans-serif
+  font-size: 2.2em
+  margin-bottom: 0.7em
+h5, .h5
+  font-family: 'aleo-light', sans-serif
+  color: $color_red
+  font-size: 4.5em
+
+a
+  color: $color_red
+  &:visited
+    color: $color_blue-dark
+  &:hover
+    color: $color_yellow
+    text-decoration: none
+
+button, .button
+  font-family: 'aleo-bold', sans-serif
+  color: $color_white
+  padding: 32px 60px
+  margin: 0.8em 0
+  border: none
+  letter-spacing: 1px
+
+b, strong, .b
+  font-weight: normal
+  font-family: 'aleo-bold', sans-serif
+
+small, .small
+  font-size: 1em
+
+.capslock
+  text-transform: uppercase
+
+::-webkit-input-placeholder
+  color: $color_white
+*:focus
+  outline: none
+
 
 body
   header
@@ -80,18 +77,42 @@ body
     #logo
       padding: 15px 0
     #title
+      font-family: 'aleo-bold', sans-serif
       font-size: 2em
       color: $color_orange
     #subtitle
       margin-top: 70px
-      font-size: 6em
       text-transform: uppercase
-    #call-to-action
-      margin-top: 30px
-      margin-bottom: 20px
 
   #main
     text-align: center
+
+    #btc-isfor
+      margin: 3em 0
+      img
+        margin-bottom: 3em
+      h4
+        margin-bottom: 0.4em
+      h5
+        margin-top: 0
+
+    #btc-permission
+      button
+        background-color: $color_white
+        color: $color_orange
+        width: 360px
+      input
+        font-family: 'aleo-light', sans-serif
+        font-size: 1.8em
+        display: block
+        width: 100%
+        max-width: 500px
+        background-color: transparent
+        border: none
+        border-bottom: solid 1px $color_white
+        margin: 1em auto
+        text-align: center
+        color: $color_white
 
   .btc-row
     padding: 50px 0
@@ -99,9 +120,17 @@ body
       white-space: pre-line
 
   footer
+    font-size: 1.2em
     text-align: center
 
 .row
   margin-left: 0px
   margin-right: 0px
+
+.sponsor1
+  width: 500px
+  color: $color_white
+  background-color: $color_orange
+  margin: 20px auto
+  padding: 15px 0
 

@@ -408,6 +408,7 @@ module.exports = (grunt) ->
     "autoprefixer"
     "karma"
   ]
+
   grunt.registerTask "build", [
     "clean:dist"
     "useminPrepare"
@@ -416,7 +417,6 @@ module.exports = (grunt) ->
     "concat"
     "ngmin"
     "copy:dist"
-
     #'cdnify',
     "cssmin"
     "uglify"
@@ -430,6 +430,6 @@ module.exports = (grunt) ->
   ]
   grunt.registerTask "default", [
     "newer:jshint"
-    "test"
+    #"test"
     "build"
   ]

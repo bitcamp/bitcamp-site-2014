@@ -5,6 +5,7 @@ public
 app/bower_components
 heroku
 app/images
+app/fonts
 views
 
 sass-bootstrap
