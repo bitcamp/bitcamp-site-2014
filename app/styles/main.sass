@@ -27,7 +27,7 @@ h2, .h2
   line-height: 1.5em
 h3, .h3
   font-family: 'aleo-regular', sans-serif
-  font-size: 3.2em
+  font-size: 2.8em
   margin-bottom: 0.7em
 h4, .h4
   font-family: 'aleo-regular', sans-serif
@@ -64,10 +64,14 @@ small, .small
 .capslock
   text-transform: uppercase
 
-::-webkit-input-placeholder
-  color: $color_white
-*:focus
-  outline: none
+input
+  @include placeholder($color_white)
+  &:focus
+    outline: none
+
+.wrapper
+  max-width: 1020px
+  margin: 0 auto
 
 
 body
@@ -88,7 +92,7 @@ body
     text-align: center
 
     #btc-isfor
-      margin: 3em 0
+      padding: 5em 0
       img
         margin-bottom: 3em
       h4
@@ -113,6 +117,13 @@ body
         margin: 1em auto
         text-align: center
         color: $color_white
+        &:focus
+          @include placeholder(transparent)
+    #btc-sponsors, #btc-partners
+      color: $color_grey-dark
+      h4
+        font-family: 'aleo-light', sans-serif
+        text-transform: uppercase
 
   .btc-row
     padding: 50px 0
@@ -127,10 +138,21 @@ body
   margin-left: 0px
   margin-right: 0px
 
-.sponsor1
-  width: 500px
-  color: $color_white
-  background-color: $color_orange
-  margin: 20px auto
-  padding: 15px 0
+#btc-sponsors
+  #sponsor-you
+    padding: 2.4em 0
+    background-color: $color_yellow
+  .sponsor
+    margin: 1.4em auto
+    color: $color_white
+    background-color: $color_grey-light
+  .sponsor1
+    width: 30em
+    height: 11em
+    strong
+      display: block
+      font-size: 4.7em
+      line-height: 1em
+    small
+      font-size: 1.1em
 

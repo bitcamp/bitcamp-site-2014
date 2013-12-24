@@ -17,6 +17,7 @@ header#header.row.btc-row
 #main
   #btc-description.row.btc-row
     h3 36 hours • 1000+ hackers • $10M in prizes
+    br
 
     h4
       | Take what you love, fuse it with tech,
@@ -42,7 +43,7 @@ header#header.row.btc-row
   #btc-permission.row.btc-row
     h3.b Permission Slip
     input(type='text',  placeholder='name')
-    input(type='email', placeholder='email')
+    input(type='email', placeholder='email', class='input-email')
     input(type='text',  placeholder='university')
     h4
       a(ng-href='#btc-submit')
@@ -52,10 +53,12 @@ header#header.row.btc-row
     h4 Sponsors
     .col-xs-12
       a(href='mailto:sponsorship@bitca.mp')
-        .sponsor1
+        #sponsor-you.sponsor.sponsor1
           strong YOU?
-          br
           small contact our team for more details
+        .sponsor.sponsor1
+
+  #btc-partners.row.btc-row
     h4 Partners
 
   #btc-twitter.row.btc-row

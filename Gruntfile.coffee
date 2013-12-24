@@ -63,10 +63,15 @@ module.exports = (grunt) ->
           "autoprefixer"
         ]
 
-      livereload:
+      livereload_css:
+        files: [
+          "{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css"
+        ]
+        options:
+          livereload: true
+      livereload_else:
         files: [
           "<%= yeoman.app %>/<%= yeoman.views %>/{,*//*}*.{html,jade}"
-          "{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css"
           "{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js"
           "<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
         ]

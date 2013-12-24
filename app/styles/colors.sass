@@ -1,4 +1,5 @@
 $color_white:      #ffffff
+$color_black:      #000000
 
 $color_grey-light: #e6d8cf
 $color_grey-dark:  #806d60
@@ -27,6 +28,7 @@ $color_blue-dark:  #538da6
 
 
 body
+  background-color: $color_black
   header
     @include dark-on-light($color_blue-light)
   #main
@@ -36,7 +38,7 @@ body
       @include dark-on-light($color_white)
     #btc-permission
       @include light-on-dark($color_orange)
-    #btc-sponsors
+    #btc-sponsors, #btc-partners
       @include dark-on-light($color_white)
     #btc-twitter
       @include dark-on-light($color_blue-light)
