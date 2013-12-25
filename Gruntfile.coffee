@@ -115,7 +115,6 @@ module.exports = (grunt) ->
           dot: true
           src: [
             ".tmp"
-            "<%= yeoman.views %>/*"
             "<%= yeoman.dist %>/*"
             "!<%= yeoman.dist %>/.git*"
           ]
@@ -224,8 +223,8 @@ module.exports = (grunt) ->
     # Performs rewrites based on rev and the useminPrepare configuration
     usemin:
       html: [
-        "<%= yeoman.views %>/{,*/}*.html"
-        "<%= yeoman.views %>/{,*/}*.jade"
+        "<%= yeoman.dist %>/<%= yeoman.views %>/{,*/}*.html"
+        "<%= yeoman.dist %>/<%= yeoman.views %>/{,*/}*.jade"
       ]
       css: ["<%= yeoman.dist %>/styles/{,*/}*.css"]
       options:
@@ -270,7 +269,7 @@ module.exports = (grunt) ->
             "*.html"
             "partials/*.html"
           ]
-          dest: "<%= yeoman.views %>"
+          dest: "<%= yeoman.dist %>/<%= yeoman.views %>"
         ]
 
 
@@ -314,7 +313,7 @@ module.exports = (grunt) ->
             expand: true
             dot: true
             cwd: "<%= yeoman.app %>/<%= yeoman.views %>"
-            dest: "<%= yeoman.views %>"
+            dest: "<%= yeoman.dist %>/<%= yeoman.views %>"
             src: "**/*.jade"
           }
           {
@@ -333,7 +332,6 @@ module.exports = (grunt) ->
             dest: "heroku"
             src: [
               "<%= yeoman.dist %>/**"
-              "<%= yeoman.views %>/**"
             ]
           }
           {
