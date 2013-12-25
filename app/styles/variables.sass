@@ -1,0 +1,36 @@
+$sm-l: 768px
+$md-l: 992px
+$lg-l: 1200px
+
+$xs-u: 768px  - 1
+$sm-u: 992px  - 1
+$md-u: 1200px - 1
+
+
+$color_white:      #ffffff
+$color_black:      #000000
+
+$color_grey-light: #e6d8cf
+$color_grey-dark:  #806d60
+
+$color_orange:     #ff7040
+
+$color_yellow:     #ffaf40
+
+$color_red:        #ff4046
+
+$color_blue-light: #ccf2ff
+$color_blue-dark:  #538da6
+
+
+@mixin dark-on-light($bg)
+  background-color: $bg
+  color: $color_grey-dark
+  button
+    background-color: $color_orange
+
+@mixin light-on-dark($bg)
+  background-color: $bg
+  color: $color_white
+  button
+    background-color: $color_yellow

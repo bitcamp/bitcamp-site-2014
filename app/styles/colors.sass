@@ -1,49 +1,41 @@
-$color_white:      #ffffff
-$color_black:      #000000
+@import 'sass-bootstrap/lib/mixins'
 
-$color_grey-light: #e6d8cf
-$color_grey-dark:  #806d60
-
-$color_orange:     #ff7040
-
-$color_yellow:     #ffaf40
-
-$color_red:        #ff4046
-
-$color_blue-light: #ccf2ff
-$color_blue-dark:  #538da6
-
-
-@mixin dark-on-light($bg)
-  background-color: $bg
-  color: $color_grey-dark
-  button
-    background-color: $color_orange
-
-@mixin light-on-dark($bg)
-  background-color: $bg
-  color: $color_white
-  button
-    background-color: $color_yellow
+@import 'variables'
 
 
 body
   background-color: $color_black
-  header
-    @include dark-on-light($color_blue-light)
-  #main
-    #btc-description
-      @include light-on-dark($color_grey-dark)
-    #btc-isfor
-      @include dark-on-light($color_white)
-    #btc-permission
-      @include light-on-dark($color_orange)
-    #btc-sponsors, #btc-partners
-      @include dark-on-light($color_white)
-    #btc-twitter
-      @include dark-on-light($color_blue-light)
-    #btc-map
-      @include light-on-dark($color_blue-dark)
-  footer
-    @include light-on-dark($color_grey-dark)
 
+header
+  @include dark-on-light($color_blue-light)
+
+#btc-description
+  @include light-on-dark($color_grey-dark)
+
+#btc-isfor
+  @include dark-on-light($color_white)
+
+#btc-permission
+  @include light-on-dark($color_orange)
+
+#btc-sponsors, #btc-partners
+  @include dark-on-light($color_white)
+
+#btc-twitter
+  @include dark-on-light($color_blue-light)
+
+#btc-map
+  @include light-on-dark($color_blue-dark)
+
+footer
+  @include light-on-dark($color_grey-dark)
+
+
+a
+  @include transition(color 0.2s ease-in)
+  color: $color_red
+  &:visited
+    color: $color_blue-dark
+  &:hover
+    color: $color_yellow
+    text-decoration: none

@@ -1,68 +1,25 @@
 $icon-font-path: "/bower_components/sass-bootstrap/fonts/"
+$icon-font-name: "glyphicons-halflings-regular"
 
-@import 'sass-bootstrap/lib/bootstrap'
+@import 'sass-bootstrap/lib/variables'
+@import 'sass-bootstrap/lib/mixins'
 
+@import 'sass-bootstrap/lib/normalize'
+
+@import 'sass-bootstrap/lib/type'
+@import 'sass-bootstrap/lib/glyphicons'
+@import 'sass-bootstrap/lib/scaffolding'
+@import 'sass-bootstrap/lib/grid'
+
+@import 'variables'
 @import 'colors'
+@import 'typo'
 
-
-$sm-l: 768px
-$md-l: 992px
-$lg-l: 1200px
-
-$xs-u: 768px  - 1
-$sm-u: 992px  - 1
-$md-u: 1200px - 1
-
-
-body, p, .p
-  font-family: 'aleo-regular', sans-serif
-  font-size: 1.6em
-h1, .h1
-  font-family: 'aleo-light', sans-serif
-  color: $color_orange
-  font-size: 6em
-h2, .h2
-  font-family: 'aleo-regular', sans-serif
-  font-size: 2.4em
-  line-height: 1.5em
-h3, .h3
-  font-family: 'aleo-regular', sans-serif
-  font-size: 2.8em
-  margin-bottom: 0.7em
-h4, .h4
-  font-family: 'aleo-regular', sans-serif
-  font-size: 2.2em
-  margin-bottom: 0.7em
-h5, .h5
-  font-family: 'aleo-light', sans-serif
-  color: $color_red
-  font-size: 4.5em
-
-a
-  color: $color_red
-  &:visited
-    color: $color_blue-dark
-  &:hover
-    color: $color_yellow
-    text-decoration: none
 
 button, .button
-  font-family: 'aleo-bold', sans-serif
-  color: $color_white
-  padding: 32px 60px
+  padding: 24px 50px
   margin: 0.8em 0
   border: none
-  letter-spacing: 1px
-
-b, strong, .b
-  font-weight: normal
-  font-family: 'aleo-bold', sans-serif
-
-small, .small
-  font-size: 1em
-
-.capslock
-  text-transform: uppercase
 
 input
   @include placeholder($color_white)
@@ -70,89 +27,142 @@ input
     outline: none
 
 .wrapper
-  max-width: 1020px
+  min-width: 320px
+  //max-width: 1020px
   margin: 0 auto
 
-
-body
-  header
+.btc-row
+  padding: 50px 0
+  h1, h2, h3, h4, h5, p
     white-space: pre-line
-    text-align: center
-    #logo
-      padding: 15px 0
-    #title
-      font-family: 'aleo-bold', sans-serif
-      font-size: 2em
-      color: $color_orange
-    #subtitle
-      margin-top: 70px
-      text-transform: uppercase
-
-  #main
-    text-align: center
-
-    #btc-isfor
-      padding: 5em 0
-      img
-        margin-bottom: 3em
-      h4
-        margin-bottom: 0.4em
-      h5
-        margin-top: 0
-
-    #btc-permission
-      button
-        background-color: $color_white
-        color: $color_orange
-        width: 360px
-      input
-        font-family: 'aleo-light', sans-serif
-        font-size: 1.8em
-        display: block
-        width: 100%
-        max-width: 500px
-        background-color: transparent
-        border: none
-        border-bottom: solid 1px $color_white
-        margin: 1em auto
-        text-align: center
-        color: $color_white
-        &:focus
-          @include placeholder(transparent)
-    #btc-sponsors, #btc-partners
-      color: $color_grey-dark
-      h4
-        font-family: 'aleo-light', sans-serif
-        text-transform: uppercase
-
-  .btc-row
-    padding: 50px 0
-    h1, h2, h3, h4, h5, p
-      white-space: pre-line
-
-  footer
-    font-size: 1.2em
-    text-align: center
 
 .row
   margin-left: 0px
   margin-right: 0px
 
-#btc-sponsors
-  #sponsor-you
-    padding: 2.4em 0
-    background-color: $color_yellow
-  .sponsor
-    margin: 1.4em auto
-    color: $color_white
-    background-color: $color_grey-light
-  .sponsor1
-    width: 30em
-    height: 11em
-    strong
-      display: block
-      font-size: 4.7em
-      line-height: 1em
-    small
-      font-size: 1.1em
+.clearfix
+  @include clearfix()
 
+
+header
+  white-space: pre-line
+  #logo
+    padding: 15px 0
+  #title
+    font-family: 'aleo-bold', serif
+    font-size: 2em
+    color: $color_orange
+  #subtitle
+    margin-top: 70px
+    text-transform: uppercase
+  #call-to-action
+    button
+      padding: 0.8em 2.0em
+
+footer
+  font-size: 1.2em
+
+
+#btc-isfor
+  padding: 7em 0
+  img
+    margin-bottom: 3em
+  h4
+    margin-bottom: 0.4em
+  h5
+    margin-top: 0
+
+#btc-permission
+  button
+    background-color: $color_white
+    color: $color_orange
+    width: 360px
+  input
+    font-family: 'aleo-light', serif
+    font-size: 1.8em
+    display: block
+    width: 100%
+    max-width: 500px
+    background-color: transparent
+    border: none
+    border-bottom: solid 1px $color_white
+    margin: 1em auto
+    text-align: center
+    color: $color_white
+    &:focus
+      @include placeholder(transparent)
+
+@mixin block($w, $h)
+  @include size($w, $h)
+  display: inline-block
+  margin: 0.6em
+  color: $color_white
+  background-color: $color_grey-light
+  text-align: center
+  .block-inner
+    @include size(100%, $h)
+    display: table
+    span
+      display: table-cell
+      vertical-align: middle
+      strong
+        line-height: 1em
+        font-size: 4.7em
+      small
+        margin-top: 0.2em
+        font-size: 1.1em
+
+#btc-sponsors, #btc-partners
+  color: $color_grey-dark
+  h4
+    @include font-light
+    text-transform: uppercase
+  .block-xs
+    @include block(8.95em, 8.95em)
+  .block-sm
+    @include block(14em, 11em)
+  .block-md
+    @include block(19em, 14em)
+  .block-lg
+    @include block(30em, 11em)
+  #sponsor-you
+    background-color: $color_yellow
+
+#btc-twitter
+  padding: 4em 0
+  font-size: 1.3em
+  h2
+    line-height: 1.3em
+  a
+    @include font-bold()
+
+#btc-map
+  padding: 0
+  font-size: 1.4em
+
+  #btc-map-inner
+    padding: 5em 0
+    @include size(100%, 100%)
+    display: table
+    #btc-map-text
+      vertical-align: middle
+      display: table-cell
+      .glyphicon-map-marker
+        font-size: 2.2em
+
+  position: relative
+  background-color: transparent
+  overflow: hidden
+  #background, #foreground
+    min-width: 1150px
+    position: absolute
+    @include square(100%)
+  #background
+    z-index: -1
+    background: url('/images/map.png') no-repeat
+    background-size: 100% auto
+    filter: grayscale(1)
+    opacity: 0.3
+  #foreground
+    z-index: -2
+    background-color: darken(saturate($color_blue-dark, 30%), 20%)
