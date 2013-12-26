@@ -388,7 +388,7 @@ module.exports = (grunt) ->
       return grunt.task.run([
         "build"
         "express:prod"
-        "open"
+        #"open"
         "express-keepalive"
       ])
     grunt.task.run [
@@ -396,7 +396,7 @@ module.exports = (grunt) ->
       "concurrent:server"
       "autoprefixer"
       "express:dev"
-      "open"
+      #"open"
       "watch"
     ]
 
