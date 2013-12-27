@@ -40,10 +40,6 @@ module.exports = (grunt) ->
           script: "server.coffee"
           node_env: "production"
 
-    open:
-      server:
-        url: "http://localhost:<%= express.options.port %>"
-
     watch:
       coffee:
         files: ["<%= yeoman.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}"]
@@ -53,7 +49,6 @@ module.exports = (grunt) ->
         files: ["test/spec/{,*/}*.{coffee,litcoffee,coffee.md}"]
         tasks: [
           "newer:coffee:test"
-          "karma"
         ]
 
       compass:
@@ -374,12 +369,6 @@ module.exports = (grunt) ->
       ]
 
 
-    # Test settings
-    karma:
-      unit:
-        configFile: "karma.conf.js"
-        singleRun: true
-
   grunt.registerTask "express-keepalive", "Keep grunt running", ->
     @async()
 
@@ -388,7 +377,6 @@ module.exports = (grunt) ->
       return grunt.task.run([
         "build"
         "express:prod"
-        #"open"
         "express-keepalive"
       ])
     grunt.task.run [
@@ -396,7 +384,6 @@ module.exports = (grunt) ->
       "concurrent:server"
       "autoprefixer"
       "express:dev"
-      #"open"
       "watch"
     ]
 
@@ -408,7 +395,6 @@ module.exports = (grunt) ->
     "clean:server"
     "concurrent:test"
     "autoprefixer"
-    "karma"
   ]
 
   grunt.registerTask "build", [
