@@ -11,51 +11,51 @@
 
 
 body
-  font-family: 'aleo-regular', serif
+  @include font-regular()
   font-size: 1.6em
   text-align: center
 
 p, .p
-  font-family: 'aleo-regular', serif
+  @include font-regular()
   font-size: 1.6em
 
 h1, .h1
-  font-family: 'aleo-light', serif
+  @include font-light()
   font-size: 5.8em
   font-weight: normal
   color: $color_orange
 
 h2, .h2
-  font-family: 'aleo-regular', serif
+  @include font-regular()
   font-size: 2.2em
   font-weight: normal
 
 h3, .h3
-  font-family: 'aleo-regular', serif
+  @include font-regular()
   font-size: 3.0em
   font-weight: normal
   margin-bottom: 1.0em
 
 h4, .h4
-  font-family: 'aleo-regular', serif
+  @include font-regular()
   font-size: 2.2em
   font-weight: normal
   margin-bottom: 0.9em
 
 h5, .h5
-  font-family: 'aleo-light', serif
+  @include font-light()
   font-size: 4.5em
   font-weight: normal
   color: $color_red
 
 button, .button
-  font-family: 'aleo-bold', sans-serif
+  @include font-bold()
   font-weight: normal
   color: $color_white
   letter-spacing: 1px
 
 b, strong, .b
-  font-family: 'aleo-bold', sans-serif
+  @include font-bold()
   font-weight: normal
 
 .smaller

@@ -33,12 +33,11 @@ input
 
 .btc-row
   padding: 50px 0
-  h1, h2, h3, h4, h5, p
-    white-space: pre-line
+  white-space: pre-line
 
 .row
-  margin-left: 0px
-  margin-right: 0px
+  margin-left: 0
+  margin-right: 0
 
 .clearfix
   @include clearfix()
@@ -49,7 +48,7 @@ header
   #logo
     padding: 15px 0
   #title
-    font-family: 'aleo-bold', serif
+    @include font-bold()
     font-size: 2em
     color: $color_orange
   #subtitle
@@ -76,13 +75,14 @@ footer
   button
     background-color: $color_white
     color: $color_orange
-    width: 360px
+    width: 100%
+    max-width: 10.0em
   input
-    font-family: 'aleo-light', serif
+    @include font-light()
     font-size: 1.8em
     display: block
     width: 100%
-    max-width: 500px
+    max-width: 18em
     background-color: transparent
     border: none
     border-bottom: solid 1px $color_white
