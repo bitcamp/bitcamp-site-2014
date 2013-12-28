@@ -3,9 +3,9 @@
 @import 'variables'
 
 
-@mixin dark-on-light($bg)
+@mixin dark-on-light($bg, $color: $color_grey-dark)
   background-color: $bg
-  color: $color_grey-dark
+  color: $color
   button
     background-color: $color_orange
 
@@ -19,22 +19,22 @@
 header
   @include dark-on-light($color_blue-light)
 
-#btc-description
+#description
   @include light-on-dark($color_grey-dark)
 
-#btc-isfor
+#isfor
   @include dark-on-light($color_white)
 
-#btc-permission
+#permission
   @include light-on-dark($color_orange)
 
-#btc-sponsors, #btc-partners
+#sponsors, #partners
   @include dark-on-light($color_white)
 
-#btc-twitter
-  @include dark-on-light($color_blue-light)
+#twitter
+  @include dark-on-light($color_blue-light, $color_grey)
 
-#btc-map
+#map
   @include light-on-dark($color_blue-dark)
 
 footer

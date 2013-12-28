@@ -11,12 +11,12 @@ header#header.row.btc-row
 
   #call-to-action.col-xs-12
     h3
-      a(ng-href='/#btc-permission')
+      a(href='#permission', target='_self')
         button#register register now
 
 
 #main
-  #btc-description.row.btc-row
+  #description.row.btc-row
     h3 36 hours • 1000+ hackers • $10M in prizes
     br
 
@@ -31,26 +31,26 @@ header#header.row.btc-row
       | gluten-free. Tofu Truffaut fap, kogi narwhal Tonx try-hard Blue Bottle
       | iPhone keytar High Life mumblecore single-origin coffee plaid.
     h4
-      a(ng-href='#btc-details')
+      a(href='/#details')
         button#more-details more details
 
-  #btc-isfor.row.btc-row
+  #isfor.row.btc-row
     img(src='http://placekitten.com/200/200', width='200', height='200')
     h4
       b bitcamp
       |  is for
     h5 artists
 
-  #btc-permission.row.btc-row
+  #permission.row.btc-row
     h3.b Permission Slip
     input(type='text',  placeholder='name')
     input(type='email', placeholder='email', class='input-email')
     input(type='text',  placeholder='university')
     h4
-      a(ng-href='#btc-submit')
+      a(ng-href='/#submit')
         button submit
 
-  #btc-sponsors.row.btc-row
+  #sponsors.row.btc-row
     h4 Sponsors
     .col-xs-12
       a(href='mailto:sponsorship@bitca.mp')
@@ -77,22 +77,22 @@ header#header.row.btc-row
         each j in [1, 2, 3, 4, 5, 6]
           .block-xs
 
-  #btc-partners.row.btc-row
+  #partners.row.btc-row
     h4 Partners
     .col-xs-12
       each i in [1, 2, 3, 4]
         .block-sm
 
-  #btc-twitter.row.btc-row
+  #twitter.row.btc-row
     h2
       | Hit up <a href="https://twitter.com/bitcmp">@bitcmp</a> on Twitter and
       | join the <a href="https://twitter.com/search?q=%23plustech">#plustech</a> conversation.
 
-  #btc-map.row.btc-row
+  #map.row.btc-row
     #background
     #foreground
-    #btc-map-inner
-      #btc-map-text
+    #map-inner
+      #map-text
         span.glyphicon.glyphicon-map-marker
         h2
           b Cole Field House
