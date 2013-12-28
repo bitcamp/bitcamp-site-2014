@@ -45,12 +45,6 @@ module.exports = (grunt) ->
         files: ["<%= yeoman.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}"]
         tasks: ["newer:coffee:dist"]
 
-      coffeeTest:
-        files: ["test/spec/{,*/}*.{coffee,litcoffee,coffee.md}"]
-        tasks: [
-          "newer:coffee:test"
-        ]
-
       compass:
         files: ["<%= yeoman.app %>/styles/{,*/}*.{scss,sass}"]
         tasks: [
@@ -154,15 +148,6 @@ module.exports = (grunt) ->
           cwd: "<%= yeoman.app %>/scripts"
           src: "{,*/}*.coffee"
           dest: ".tmp/scripts"
-          ext: ".js"
-        ]
-
-      test:
-        files: [
-          expand: true
-          cwd: "test/spec"
-          src: "{,*/}*.coffee"
-          dest: ".tmp/spec"
           ext: ".js"
         ]
 
@@ -354,11 +339,6 @@ module.exports = (grunt) ->
         "compass:server"
         "copy:styles"
       ]
-      test: [
-        "coffee"
-        "compass"
-        "copy:styles"
-      ]
       dist: [
         "coffee"
         "compass:dist"
@@ -391,12 +371,6 @@ module.exports = (grunt) ->
     grunt.log.warn "The `server` task has been deprecated. Use `grunt serve` to start a server."
     grunt.task.run ["serve"]
 
-  grunt.registerTask "test", [
-    "clean:server"
-    "concurrent:test"
-    "autoprefixer"
-  ]
-
   grunt.registerTask "build", [
     "clean:dist"
     "useminPrepare"
@@ -418,6 +392,5 @@ module.exports = (grunt) ->
   ]
   grunt.registerTask "default", [
     "newer:jshint"
-    #"test"
     "build"
   ]
