@@ -1,67 +1,14 @@
 @import 'variables'
 
-@mixin font-regular()
-  font-family: 'aleo-regular', serif
 
-@mixin font-light()
-  font-family: 'aleo-light', serif
-
-@mixin font-bold()
-  font-family: 'aleo-bold', serif
-
-
-body
-  @include font-regular()
-  font-size: 1.6em
-  text-align: center
-
-p, .p
-  @include font-regular()
-  font-size: 1.6em
-
-h1, .h1
-  @include font-light()
-  font-size: 5.8em
-  font-weight: normal
+h1, .h1, h5, .h5
   color: $color_orange
-
-h2, .h2
-  @include font-regular()
-  font-size: 2.2em
-  font-weight: normal
-
-h3, .h3
-  @include font-regular()
-  font-size: 3.0em
-  font-weight: normal
-  margin-bottom: 1.0em
-
-h4, .h4
-  @include font-regular()
-  font-size: 2.2em
-  font-weight: normal
-  margin-bottom: 0.9em
-
-h5, .h5
-  @include font-light()
-  font-size: 4.5em
-  font-weight: normal
-  color: $color_red
+  font-weight: 300
 
 button, .button
-  @include font-bold()
-  font-weight: normal
   color: $color_white
   letter-spacing: 1px
 
 b, strong, .b
-  @include font-bold()
-  font-weight: normal
+  font-weight: bold
 
-.smaller
-  font-size: 0.8em
-.bigger
-  font-size: 1.2em
-
-.capslock
-  text-transform: uppercase

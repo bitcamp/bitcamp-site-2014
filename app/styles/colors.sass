@@ -3,8 +3,18 @@
 @import 'variables'
 
 
-body
-  background-color: $color_black
+@mixin dark-on-light($bg)
+  background-color: $bg
+  color: $color_grey-dark
+  button
+    background-color: $color_orange
+
+@mixin light-on-dark($bg)
+  background-color: $bg
+  color: $color_white
+  button
+    background-color: $color_orangeyellow
+
 
 header
   @include dark-on-light($color_blue-light)
@@ -33,9 +43,3 @@ footer
 
 a
   @include transition(color 0.2s ease-in)
-  color: $color_red
-  &:visited
-    color: $color_blue-dark
-  &:hover
-    color: $color_yellow
-    text-decoration: none

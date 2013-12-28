@@ -1,7 +1,7 @@
-$icon-font-path: "/bower_components/sass-bootstrap/fonts/"
-$icon-font-name: "glyphicons-halflings-regular"
-
 @import 'sass-bootstrap/lib/variables'
+@import 'variables'
+// ^ overwrite bootstrap variables
+
 @import 'sass-bootstrap/lib/mixins'
 
 @import 'sass-bootstrap/lib/normalize'
@@ -11,7 +11,6 @@ $icon-font-name: "glyphicons-halflings-regular"
 @import 'sass-bootstrap/lib/scaffolding'
 @import 'sass-bootstrap/lib/grid'
 
-@import 'variables'
 @import 'colors'
 @import 'typo'
 
@@ -34,6 +33,7 @@ input
 .btc-row
   padding: 50px 0
   white-space: pre-line
+  text-align: center
 
 .row
   margin-left: 0
@@ -44,12 +44,11 @@ input
 
 
 header
-  white-space: pre-line
   #logo
     padding: 15px 0
   #title
-    @include font-bold()
     font-size: 2em
+    font-weight: bold
     color: $color_orange
   #subtitle
     margin-top: 70px
@@ -62,6 +61,12 @@ footer
   font-size: 1.2em
 
 
+#btc-description
+  p, h3, h4
+    margin: 0.75em 0
+  p
+    font-size: 1.5em
+
 #btc-isfor
   padding: 7em 0
   img
@@ -69,6 +74,7 @@ footer
   h4
     margin-bottom: 0.4em
   h5
+    text-transform: uppercase
     margin-top: 0
 
 #btc-permission
@@ -78,7 +84,7 @@ footer
     width: 100%
     max-width: 10.0em
   input
-    @include font-light()
+    font-weight: 300
     font-size: 1.8em
     display: block
     width: 100%
@@ -115,7 +121,7 @@ footer
 #btc-sponsors, #btc-partners
   color: $color_grey-dark
   h4
-    @include font-light
+    font-weight: lighter
     text-transform: uppercase
   .block-xs
     @include block(8.95em, 8.95em)
@@ -126,7 +132,7 @@ footer
   .block-lg
     @include block(30em, 11em)
   #sponsor-you
-    background-color: $color_yellow
+    background-color: $color_orangeyellow
 
 #btc-twitter
   padding: 4em 0
@@ -134,7 +140,7 @@ footer
   h2
     line-height: 1.3em
   a
-    @include font-bold()
+    font-weight: bold
 
 #btc-map
   padding: 0
