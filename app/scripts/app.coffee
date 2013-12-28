@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module('bitcampApp', [
+bitcamp = angular.module('bitcampApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
@@ -14,3 +14,17 @@ angular.module('bitcampApp', [
       .otherwise
         redirectTo: '/'
     $locationProvider.html5Mode(true)
+
+  .directive "scrollOnClick", ->
+    restrict: "A"
+    link: (scope, $elm, attrs) ->
+      idToScroll = attrs.href
+      $elm.on "click", ->
+        $target = undefined
+        if idToScroll
+          $target = $(idToScroll)
+        else
+          $target = $elm
+        $("body").animate
+          scrollTop: $target.offset().top
+        , "slow"
