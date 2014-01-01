@@ -31,6 +31,7 @@ input
   margin: 0 auto
 
 .btc-row
+  min-width: 320px
   padding: 50px 0
   white-space: pre-line
   text-align: center
@@ -108,7 +109,9 @@ footer
       @include placeholder(transparent)
 
 @mixin block($w, $h)
-  @include size($w, $h)
+  width: 100%
+  max-width: $w
+  height: $h
   display: inline-block
   margin: 0.6em
   color: $color_white
