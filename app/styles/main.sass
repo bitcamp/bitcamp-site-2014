@@ -44,6 +44,9 @@ input
 
 
 header
+  background-image: url('/images/treetent.svg')
+  background-repeat: no-repeat
+  background-position: 17% bottom
   #logo
     padding: 15px 0
   #title
@@ -66,14 +69,20 @@ footer
     font-size: 1.5em
 
 #isfor
+  position: relative
+  border-bottom: 3px dashed $color_grey-dark
   padding: 7em 0
-  img
+  .isfor-img
     margin-bottom: 3em
   h4
     margin-bottom: 0.4em
   h5
     text-transform: uppercase
     margin-top: 0
+  #scissors
+    position: absolute
+    bottom: -5px
+    left: 20%
 
 #permission
   button
