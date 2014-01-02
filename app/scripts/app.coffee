@@ -33,7 +33,7 @@ bitcamp = angular.module('bitcampApp', [
 $('body').flowtype
   minimum   : 320,
   maximum   : 960,
-  minFont   : 8,
+  minFont   : 10,
   maxFont   : 20,
   fontRatio : 60,
   lineRatio : 1.45
