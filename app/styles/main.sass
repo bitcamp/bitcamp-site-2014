@@ -6,7 +6,7 @@
 
 @import 'sass-bootstrap/lib/normalize'
 
-@import 'sass-bootstrap/lib/type'
+//@import 'sass-bootstrap/lib/type'
 @import 'sass-bootstrap/lib/glyphicons'
 @import 'sass-bootstrap/lib/scaffolding'
 @import 'sass-bootstrap/lib/grid'
@@ -14,6 +14,9 @@
 @import 'colors'
 @import 'typo'
 
+
+body
+  min-width: 320px
 
 button, .button
   padding: 24px 50px
@@ -26,14 +29,12 @@ input
     outline: none
 
 .wrapper
-  min-width: 320px
-  //max-width: 1020px
   margin: 0 auto
 
 .btc-row
-  min-width: 320px
-  padding: 50px 0
-  white-space: pre-line
+  padding: 50px 15px
+  @media (min-width: 500px)
+    white-space: pre-line
   text-align: center
 
 .row
@@ -66,10 +67,8 @@ footer
   a
     color: $color_white
 
-
 #description
-  p
-    font-size: 1.5em
+  line-height: 1.5em
 
 #isfor
   position: relative
