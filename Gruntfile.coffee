@@ -70,7 +70,7 @@ module.exports = (grunt) ->
       express:
         files: [
           "server.coffee"
-          "lib/{,*//*}*.{js,json}"
+          "lib/{,*//*}*.{coffee,js,json}"
         ]
         tasks: ["express:dev"]
         options:

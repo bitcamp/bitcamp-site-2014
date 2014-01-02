@@ -91,12 +91,13 @@ header
     left: 20%
 
 #permission
-  button
+  .button
+    @include transition(background-color 0.5s ease-in)
     background-color: $color_white
     color: $color_orange
     width: 100%
     max-width: 10.0em
-  input
+  input[type=text], input[type=email]
     font-weight: 300
     font-size: 1.8em
     display: block

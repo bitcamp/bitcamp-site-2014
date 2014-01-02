@@ -53,12 +53,12 @@ header#header.row.btc-row
 
   #permission.row.btc-row
     h3.b Permission Slip
-    input(type='text',  placeholder='name')
-    input(type='email', placeholder='email', class='input-email')
-    input(type='text',  placeholder='university')
-    h4
-      a(ng-href='/#submit')
-        button submit
+    form(ng-controller='SignupCtrl' ng-submit='signup()')
+      input(type='text'  placeholder='name'       ng-model='name')
+      input(type='email' placeholder='email'      ng-model='email' class='input-email')
+      input(type='text'  placeholder='university' ng-model='university')
+      h4
+        input.button#signup(type='submit' value='submit')
 
   #sponsors.row.btc-row
     h4 Sponsors
