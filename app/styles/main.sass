@@ -34,7 +34,9 @@ body
   @include clearfix()
 
 button, .button
-  padding: 24px 50px
+  max-width: 10em
+  width: 100%
+  padding: 24px 0
   margin: 0.8em 0
   border: none
   @include transition(background-color 0.2s ease-in, color 0.2s ease-in)
@@ -44,6 +46,9 @@ input
 
 *:focus, *:active, *:hover
   outline: none
+
+.noselect
+  @include user-select(none)
 
 
 header
@@ -62,14 +67,17 @@ header
     text-transform: uppercase
     @media (max-width: 420px)
       font-size: 4.4em
-  #time-and-place #time
-    @media (max-width: 500px)
-      white-space: pre-line
+  #time-and-place
+    line-height: 1.3em
+    #time
+      @media (max-width: 500px)
+        white-space: pre-line
   #call-to-action
     margin-bottom: 3em
     button
       white-space: pre
-      padding: 0.8em 2.0em
+      padding-left: 0
+      padding-right: 0
 
 #description
   line-height: 1.5em
@@ -96,8 +104,6 @@ header
   .button
     background-color: $color_white
     color: $color_orange
-    width: 100%
-    max-width: 10.0em
   input[type=text], input[type=email]
     font-weight: 300
     font-size: 1.8em
@@ -130,12 +136,14 @@ header
       vertical-align: middle
       strong
         line-height: 1em
-        font-size: 4.7em
+        font-size: 4.9em
       small
         margin-top: 0.2em
-        font-size: 1.1em
+        font-size: 1.4em
 
 #sponsors, #partners
+  .btc-header
+    font-size: 1.4em
   color: $color_grey-dark
   h4
     font-weight: lighter
@@ -193,6 +201,7 @@ header
     background-color: darken(saturate($color_blue-dark, 30%), 20%)
 
 footer
-  font-size: 1.2em
+  font-size: 1.4em
+  white-space: pre-line
   a
     color: $color_white

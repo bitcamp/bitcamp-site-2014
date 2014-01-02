@@ -1,5 +1,5 @@
 header#header.row.btc-row
-  #logo.col-xs-12
+  #logo.col-xs-12.noselect
     <img src='/images/logo.svg' width='140'  height='150'>
   //-#title.col-xs-12 bitcamp
 
@@ -9,21 +9,20 @@ header#header.row.btc-row
       +
       tech
     h2#time-and-place
-      span#time
-        | Hackathon
-        | @
-        | University of Maryland
+      span#time.
+        Hackathon
+        @
+        University of Maryland
       #place April 4-6, 2014
 
   #call-to-action.col-xs-12
-    h3
-      a(href='' scroll-to='#permission')
-        button#register register now
+    a(href='' scroll-to='#permission')
+      button#register.h3 register now
 
 
 #main
   #description.row.btc-row
-    h3 36 hours · 1000+ hackers · $10M in prizes
+    h3 36 hours · 1000+ hackers · $10K in prizes
     br
 
     h4.
@@ -61,7 +60,8 @@ header#header.row.btc-row
         input.button#signup(type='submit' value='submit')
 
   #sponsors.row.btc-row
-    h4 Sponsors
+    .btc-header
+      h4 Sponsors
     .col-xs-12
       a(href='mailto:sponsorship@bitca.mp' target="_blank")
         .block-lg#sponsor-you
@@ -111,9 +111,11 @@ header#header.row.btc-row
 
 footer#footer.row.btc-row
   .col-xs-12
-    b Bitcamp 2014
-  .col-xs-12
-    a(href="https://twitter.com/bitcmp" target="_blank") Twitter
-    |  · 
-    a(href="https://www.facebook.com/bitcmp" target="_blank") Facebook
+    p
+      b Bitcamp 2014
+      | 
+      | 
+      a(href="https://twitter.com/bitcmp" target="_blank") Twitter
+      |  · 
+      a(href="https://www.facebook.com/bitcmp" target="_blank") Facebook
   .clearfix
