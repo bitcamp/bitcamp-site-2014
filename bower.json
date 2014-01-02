@@ -11,7 +11,8 @@
     "angular-cookies": "~1.2.0",
     "angular-sanitize": "~1.2.0",
     "angular-route": "~1.2.0",
-    "flowtype": "*"
+    "flowtype": "*",
+    "jquery.scrollTo": "~1.4.7"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",

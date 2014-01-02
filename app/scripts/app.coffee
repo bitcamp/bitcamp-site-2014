@@ -15,19 +15,13 @@ bitcamp = angular.module('bitcampApp', [
         redirectTo: '/'
     $locationProvider.html5Mode(true)
 
-  .directive "scrollOnClick", ->
-    restrict: "A"
-    link: (scope, $elm, attrs) ->
-      idToScroll = attrs.href
-      $elm.on "click", ->
-        $target = undefined
-        if idToScroll
-          $target = $(idToScroll)
-        else
-          $target = $elm
-        $("body").animate
-          scrollTop: $target.offset().top
-        , "slow"
+  .directive "scrollTo", ->
+    (scope, element, attrs) ->
+      element.bind "click", (event) ->
+        event.stopPropagation()
+        scope.$on "$locationChangeStart", (e) -> e.preventDefault()
+        location = attrs.scrollTo
+        $.scrollTo location, 500
 
 
 $('body').flowtype
