@@ -37,11 +37,13 @@ button, .button
   padding: 24px 50px
   margin: 0.8em 0
   border: none
+  @include transition(background-color 0.2s ease-in, color 0.2s ease-in)
 
 input
   @include placeholder($color_white)
-  &:focus
-    outline: none
+
+*:focus, *:active, *:hover
+  outline: none
 
 
 header
@@ -92,7 +94,6 @@ header
 
 #permission
   .button
-    @include transition(background-color 0.2s ease-in)
     background-color: $color_white
     color: $color_orange
     width: 100%
