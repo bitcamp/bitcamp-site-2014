@@ -2,7 +2,7 @@
 
 
 exports.bitcamp = (req, res) ->
-  res.json
+  res.json [
       name: "HTML5 Boilerplate"
       info: "HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites."
       awesomeness: 10
@@ -18,4 +18,5 @@ exports.bitcamp = (req, res) ->
       name: "Express"
       info: "Flexible and minimalist web application framework for node.js."
       awesomeness: 10
+  ]
 
