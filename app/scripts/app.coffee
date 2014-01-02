@@ -21,7 +21,7 @@ bitcamp = angular.module('bitcampApp', [
         event.stopPropagation()
         scope.$on "$locationChangeStart", (e) -> e.preventDefault()
         location = attrs.scrollTo
-        $.scrollTo location, 500
+        $.scrollTo location, 800
 
 
 $('body').flowtype

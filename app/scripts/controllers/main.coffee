@@ -26,7 +26,7 @@ angular.module('bitcampApp')
         setTimeout ->
           $("#permission input").not(':button, :submit, :reset, :hidden').val ''
           $("#permission #signup").css 'background-color': ''
-        , 500
+        , 200
       .error (data) ->
         $("#permission #signup").css 'background-color': 'red'
         setTimeout ->
