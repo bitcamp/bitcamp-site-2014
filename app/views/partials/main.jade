@@ -4,10 +4,16 @@ header#header.row.btc-row
   //-#title.col-xs-12 bitcamp
 
   .col-xs-12
-    h1#subtitle you + tech
+    h1#subtitle.
+      you
+      +
+      tech
     h2#time-and-place
-      | Hackathon @ University of Maryland
-      | April 4-6, 2014
+      span#time
+        | Hackathon
+        | @
+        | University of Maryland
+      #place April 4-6, 2014
 
   #call-to-action.col-xs-12
     h3
@@ -35,12 +41,13 @@ header#header.row.btc-row
         button#more-details more details
 
   #isfor.row.btc-row
-    img.isfor-img(src='http://placekitten.com/200/200', width='200', height='200')
-    h4
-      b bitcamp
-      |  is for
-    h5 artists
-    img#scissors(src="/images/scissors.svg")
+    .col-xs-12
+      img.isfor-img(src='http://placekitten.com/200/200', width='200', height='200')
+      h4
+        b bitcamp
+        |  is for
+      h5 artists
+      img#scissors(src="/images/scissors.svg")
 
   #permission.row.btc-row
     h3.b Permission Slip

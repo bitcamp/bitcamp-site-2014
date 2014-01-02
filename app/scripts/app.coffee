@@ -28,3 +28,12 @@ bitcamp = angular.module('bitcampApp', [
         $("body").animate
           scrollTop: $target.offset().top
         , "slow"
+
+
+$('body').flowtype
+  minimum   : 320,
+  maximum   : 960,
+  minFont   : 8,
+  maxFont   : 20,
+  fontRatio : 60,
+  lineRatio : 1.45

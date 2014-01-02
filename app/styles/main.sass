@@ -6,7 +6,7 @@
 
 @import 'sass-bootstrap/lib/normalize'
 
-@import 'sass-bootstrap/lib/type'
+//@import 'sass-bootstrap/lib/type'
 @import 'sass-bootstrap/lib/glyphicons'
 @import 'sass-bootstrap/lib/scaffolding'
 @import 'sass-bootstrap/lib/grid'
@@ -14,6 +14,24 @@
 @import 'colors'
 @import 'typo'
 
+
+body
+  min-width: 320px
+
+.wrapper
+  white-space: pre-line
+  margin: 0 auto
+
+.btc-row
+  padding: 50px 15px
+  text-align: center
+
+.row
+  margin-left: 0
+  margin-right: 0
+
+.clearfix
+  @include clearfix()
 
 button, .button
   padding: 24px 50px
@@ -25,29 +43,12 @@ input
   &:focus
     outline: none
 
-.wrapper
-  min-width: 320px
-  //max-width: 1020px
-  margin: 0 auto
-
-.btc-row
-  min-width: 320px
-  padding: 50px 0
-  white-space: pre-line
-  text-align: center
-
-.row
-  margin-left: 0
-  margin-right: 0
-
-.clearfix
-  @include clearfix()
-
 
 header
   background-image: url('/images/treetent.svg')
   background-repeat: no-repeat
   background-position: 17% bottom
+  white-space: normal
   #logo
     padding: 15px 0
   #title
@@ -57,19 +58,17 @@ header
   #subtitle
     margin-top: 70px
     text-transform: uppercase
+  #time-and-place #time
+    @media (max-width: 500px)
+      white-space: pre-line
   #call-to-action
     button
       padding: 0.8em 2.0em
 
-footer
-  font-size: 1.2em
-  a
-    color: $color_white
-
-
 #description
-  p
-    font-size: 1.5em
+  line-height: 1.5em
+  @media (max-width: 520px)
+    white-space: normal
 
 #isfor
   position: relative
@@ -147,10 +146,12 @@ footer
     background-color: $color_orangeyellow
 
 #twitter
-  padding: 4em 0
+  padding: 4em 2em
   font-size: 1.3em
   h2
     line-height: 1.3em
+    @media (max-width: 520px)
+      white-space: normal
   a
     font-weight: bold
 
@@ -184,3 +185,8 @@ footer
   #foreground
     z-index: -2
     background-color: darken(saturate($color_blue-dark, 30%), 20%)
+
+footer
+  font-size: 1.2em
+  a
+    color: $color_white
