@@ -32,12 +32,12 @@ module.exports = (grunt) ->
 
       dev:
         options:
-          script: "server.coffee"
+          script: "bitcamp.coffee"
           node_env: "development"
 
       prod:
         options:
-          script: "server.coffee"
+          script: "bitcamp.coffee"
           node_env: "production"
 
     watch:
@@ -69,7 +69,7 @@ module.exports = (grunt) ->
 
       express:
         files: [
-          "server.coffee"
+          "bitcamp.coffee"
           "lib/{,*//*}*.{coffee,js,json}"
         ]
         tasks: ["express:dev"]
