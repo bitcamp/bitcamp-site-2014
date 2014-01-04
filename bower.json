@@ -12,7 +12,8 @@
     "angular-sanitize": "~1.2.0",
     "angular-route": "~1.2.0",
     "flowtype": "*",
-    "jquery.scrollTo": "~1.4.7"
+    "jquery.scrollTo": "~1.4.7",
+    "angular-ui-autocomplete": "*"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",
