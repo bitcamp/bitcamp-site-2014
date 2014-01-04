@@ -23,8 +23,18 @@ body
   margin: 0 auto
 
 .btc-row
-  padding: 50px 15px
+  padding: 80px 15px 40px
   text-align: center
+  position: relative
+
+.btc-background-wrapper
+  position: absolute
+  top: 0
+  left: 0
+  @include square(100%)
+  .btc-background
+    margin: 0 auto
+    @include square(100%)
 
 .row
   margin-left: 0
@@ -37,9 +47,8 @@ button, .button
   max-width: 10em
   width: 100%
   padding: 24px 0
-  margin: 0.8em 0
   border: none
-  @include transition(background-color 0.2s ease-in, color 0.2s ease-in)
+  font-weight: bold
 
 input
   @include placeholder($color_white)
@@ -50,23 +59,24 @@ input
 .noselect
   @include user-select(none)
 
+fieldset
+  border: none
+  margin-bottom: 20px
+
 
 header
-  background-image: url('/images/treetent.svg')
-  background-repeat: no-repeat
-  background-position: 17% bottom
   white-space: normal
+  .btc-background
+    max-width: 960px
+    background: left bottom no-repeat url('/images/treetent.svg')
   #logo
     padding: 15px 0
   #title
     font-size: 2em
     font-weight: bold
     color: $color_orange
-  #subtitle
-    margin-top: 70px
-    text-transform: uppercase
-    @media (max-width: 420px)
-      font-size: 4.4em
+  //#subtitle
+  //  margin-top: 70px
   #time-and-place
     line-height: 1.3em
     #time
@@ -120,21 +130,21 @@ header
       @include placeholder(transparent)
 
 @mixin block($w, $h)
+  @extend .button
   width: 100%
   max-width: $w
   height: $h
   display: inline-block
-  margin: 0.6em
-  color: $color_white
   background-color: $color_grey-light
   text-align: center
+  margin: 0.6em
   .block-inner
     @include size(100%, $h)
     display: table
     span
       display: table-cell
       vertical-align: middle
-      strong
+      b
         line-height: 1em
         font-size: 4.9em
       small
@@ -142,8 +152,6 @@ header
         font-size: 1.4em
 
 #sponsors, #partners
-  .btc-header
-    font-size: 1.4em
   color: $color_grey-dark
   h4
     font-weight: lighter
@@ -159,49 +167,34 @@ header
   #sponsor-you
     background-color: $color_orangeyellow
 
-#twitter
-  padding: 4em 2em
-  font-size: 1.3em
-  h2
-    line-height: 1.3em
-    @media (max-width: 520px)
-      white-space: normal
-  a
-    font-weight: bold
+//#twitter
 
 #map
-  padding: 0
-  font-size: 1.4em
-
-  #map-inner
-    padding: 5em 0
-    @include size(100%, 100%)
-    display: table
-    #map-text
-      vertical-align: middle
-      display: table-cell
-      .glyphicon-map-marker
-        font-size: 2.2em
-
+  h2
+    margin: 20px 0
   position: relative
   background-color: transparent
   overflow: hidden
-  #background, #foreground
+  .glyphicon-map-marker
+    font-size: 2.2em
+  .btc-background-wrapper, .btc-foreground-wrapper
     min-width: 1150px
     position: absolute
     @include square(100%)
-  #background
-    z-index: -1
-    background: url('/images/map.png') no-repeat
-    background-size: 100% auto
     filter: grayscale(1)
-    opacity: 0.3
-  #foreground
-    z-index: -2
-    background-color: darken(saturate($color_blue-dark, 30%), 20%)
+    .btc-background, .btc-foreground
+      background-size: 100% auto
+    .btc-background
+      z-index: -1
+      background: url('/images/map.png') no-repeat
+      opacity: 0.3
+    .btc-foreground
+      z-index: -2
+      background-color: darken(saturate($color_blue-dark, 30%), 20%)
 
-footer
-  font-size: 1.4em
+#footer
+  padding: 40px 0 0 0
+  font-size: 0.8em
   white-space: pre-line
   a
     color: $color_white
