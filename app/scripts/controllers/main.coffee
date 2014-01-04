@@ -12,6 +12,8 @@ angular.module('bitcampApp')
     $scope.email      = ''
     $scope.university = ''
 
+    submitDelay = 2000 # milliseconds
+
     $scope.signup = ->
       $http
         method: 'POST'
@@ -22,13 +24,22 @@ angular.module('bitcampApp')
           university: $scope.university
         headers: 'Content-Type': 'application/json'
       .success (data) ->
-        $("#permission #signup").css 'background-color': 'green'
+        $("#permission #signup").val 'good to go'
+        $("#permission #signup").css 'background-color': 'white'
+        $("#permission #signup").css 'color': '#53a559'
         setTimeout ->
+          $("#permission #signup").val 'submit'
+          $("#permission #signup").css 'background-color': ''
+          $("#permission #signup").css 'color': ''
           $("#permission input").not(':button, :submit, :reset, :hidden').val ''
-          $("#permission #signup").css 'background-color': ''
-        , 200
+        , submitDelay
       .error (data) ->
-        $("#permission #signup").css 'background-color': 'red'
+        $("#permission #signup").val 'error :('
+        $("#permission #signup").css 'background-color': '#ff404a'
+        $("#permission #signup").css 'color': 'white'
         setTimeout ->
+          $("#permission #signup").val 'submit'
           $("#permission #signup").css 'background-color': ''
-        , 500
+          $("#permission #signup").css 'color': ''
+        , submitDelay
+
