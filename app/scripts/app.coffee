@@ -1,10 +1,11 @@
 'use strict'
 
 bitcamp = angular.module('bitcampApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
+  'ngCookies'
+  'ngResource'
+  'ngSanitize'
   'ngRoute'
+  'ui.autocomplete'
 ])
   .config ($routeProvider, $locationProvider) ->
     $routeProvider

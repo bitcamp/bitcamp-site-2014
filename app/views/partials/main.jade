@@ -56,7 +56,7 @@ header#header.row.btc-row
       fieldset
         input(type='text'  placeholder='name'       ng-model='name')
         input(type='email' placeholder='email'      ng-model='email' class='input-email')
-        input(type='text'  placeholder='university' ng-model='university')
+        input(type='text'  placeholder='university' ng-model='university' ui-autocomplete="autocompleteOptions")
       h3
         input.button#signup(type='submit' value='submit')
     <img id="scissors" src="/images/scissors.svg" alt="scissors">

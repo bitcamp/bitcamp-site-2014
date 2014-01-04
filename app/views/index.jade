@@ -18,6 +18,8 @@ html(ng-app="bitcampApp")
     link(rel="shortcut icon", href="/images/favicon.ico", type="image/x-icon")
 
     <!-- build:css({.tmp,app}) styles/main.css -->
+    link(rel="stylesheet" href="/bower_components/jquery-ui/themes/base/jquery-ui.css")
+
     link(rel="stylesheet" href="styles/fonts.css")
     link(rel="stylesheet" href="styles/main.css")
     <!-- endbuild -->
@@ -35,6 +37,8 @@ html(ng-app="bitcampApp")
     <!-- build:js(app) scripts/plugins.js -->
     script(src="bower_components/jquery/jquery.js")
 
+    script(src="bower_components/jquery-ui/ui/jquery-ui.js")
+
     script(src="bower_components/angular/angular.js")
 
     script(src="bower_components/sass-bootstrap/js/button.js")
@@ -51,6 +55,7 @@ html(ng-app="bitcampApp")
     script(src="bower_components/angular-cookies/angular-cookies.js")
     script(src="bower_components/angular-sanitize/angular-sanitize.js")
     script(src="bower_components/angular-route/angular-route.js")
+    script(src="bower_components/angular-ui-autocomplete/src/autocomplete.js")
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->

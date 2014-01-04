@@ -38,6 +38,8 @@ controllers = require("./lib/controllers")
 app.get  "/api/bitcamp", api.bitcamp
 app.post "/api/signup",  api.signup
 
+app.get  "/api/schools", api.schools
+
 # Angular Routes
 app.get "/partials/*", controllers.partials
 app.get "/*",          controllers.index

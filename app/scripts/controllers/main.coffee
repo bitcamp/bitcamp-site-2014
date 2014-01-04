@@ -12,7 +12,33 @@ angular.module('bitcampApp')
     $scope.email      = ''
     $scope.university = ''
 
+    $scope.schools = []
+
     submitDelay = 2000 # milliseconds
+
+    $scope.autocompleteOptions =
+      options:
+        html:       true
+        focusOpen:  false
+        onlySelect: false
+        minLength:  3
+        methods:    {}
+        outHeight:  200
+        source:     (req, res) ->
+          process = ->
+            schools = $scope.schools.slice()
+            schools = $scope.autocompleteOptions.methods.filter schools, req.term
+            res schools
+
+          if $scope.schools.length is 0
+            $http.get('/api/schools')
+              .success (schools) ->
+                $scope.schools = schools
+                do process
+              .error (schools) ->
+                console.log "Error :(!"
+          else
+            do process
 
     $scope.signup = ->
       $http

@@ -28,6 +28,10 @@ exports.signup = (req, res) ->
     else null
   .fail (err) ->
     console.log err.message
-    res.json 504, msg: "504"
+    res.json 500, msg: "500"
   .done ->
     res.json 200, msg: "200"
+
+
+exports.schools = (req, res) ->
+  res.json require('../util/schools')
