@@ -41,8 +41,12 @@ app.post "/api/signup",  api.signup
 app.get  "/api/schools", api.schools
 
 # Angular Routes
+app.get "/",           controllers.index
 app.get "/partials/*", controllers.partials
-app.get "/*",          controllers.index
+
+
+app.get "/*", (req, res) ->
+  res.send 404, "NOT FOUND"
 
 
 # Start server
