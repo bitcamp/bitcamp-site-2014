@@ -10,7 +10,11 @@
     "angular-resource": "~1.2.0",
     "angular-cookies": "~1.2.0",
     "angular-sanitize": "~1.2.0",
-    "angular-route": "~1.2.0"
+    "angular-route": "~1.2.0",
+    "flowtype": "*",
+    "jquery.scrollTo": "~1.4.7",
+    "angular-ui-autocomplete": "*",
+    "jquery-ui": "~1.10.3"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",

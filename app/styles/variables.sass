@@ -16,6 +16,8 @@ $color_red:           #ff404a
 $color_blue-light:    #ccf3ff
 $color_blue-dark:     #538ca5
 
+$color_green:         #53a559
+
 
 $gray-darker:           #222
 $gray-dark:             #333
@@ -35,8 +37,8 @@ $body-bg:               $color_black
 $text-color:            $color_white
 
 
-$link-color:            $brand-primary
-$link-hover-color:      darken($link-color, 15%)
+$link-color:            $color_red
+$link-hover-color:      $color_red
 
 
 $font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif
@@ -44,16 +46,16 @@ $font-family-serif:       Aleo, Georgia, "Times New Roman", Times, serif
 $font-family-monospace:   Monaco, Menlo, Consolas, "Courier New", monospace
 $font-family-base:        $font-family-serif
 
-$font-size-base:          16px
-$font-size-large:         ceil( $font-size-base * 1.25)
-$font-size-small:         ceil( $font-size-base * 0.85)
+$font-size-base:          1em
+$font-size-large:         $font-size-base * 1.25
+$font-size-small:         $font-size-base * 0.85
 
-$font-size-h1:            floor($font-size-base * 5.75)
-$font-size-h2:            floor($font-size-base * 2.25)
-$font-size-h3:            ceil( $font-size-base * 3.00)
-$font-size-h4:            ceil( $font-size-base * 2.25)
-$font-size-h5:            ceil( $font-size-base * 4.75)
-$font-size-h6:            ceil( $font-size-base * 0.85)
+$font-size-h1:            $font-size-base * 5.55
+$font-size-h2:            $font-size-base * 3.00
+$font-size-h3:            $font-size-base * 2.25
+$font-size-h4:            $font-size-base * 2.25
+$font-size-h5:            $font-size-base * 4.75
+$font-size-h6:            $font-size-base * 0.85
 
 // 20/14
 $line-height-base:        1.428571429

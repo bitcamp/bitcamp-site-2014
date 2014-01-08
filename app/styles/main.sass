@@ -6,7 +6,7 @@
 
 @import 'sass-bootstrap/lib/normalize'
 
-@import 'sass-bootstrap/lib/type'
+//@import 'sass-bootstrap/lib/type'
 @import 'sass-bootstrap/lib/glyphicons'
 @import 'sass-bootstrap/lib/scaffolding'
 @import 'sass-bootstrap/lib/grid'
@@ -15,25 +15,26 @@
 @import 'typo'
 
 
-button, .button
-  padding: 24px 50px
-  margin: 0.8em 0
-  border: none
-
-input
-  @include placeholder($color_white)
-  &:focus
-    outline: none
+body
+  min-width: 320px
 
 .wrapper
-  min-width: 320px
-  //max-width: 1020px
+  white-space: pre-line
   margin: 0 auto
 
 .btc-row
-  padding: 50px 0
-  white-space: pre-line
+  padding: 5em 0.938em 2.5em
   text-align: center
+  position: relative
+
+.btc-background-wrapper
+  position: absolute
+  top: 0
+  left: 0
+  @include square(100%)
+  .btc-background
+    margin: 0 auto
+    @include square(100%)
 
 .row
   margin-left: 0
@@ -42,48 +43,83 @@ input
 .clearfix
   @include clearfix()
 
+button, .button
+  max-width: 10em
+  width: 100%
+  padding: 0.5em 0
+  border: none
+  font-weight: bold
+
+input
+  @include placeholder($color_white)
+
+*:focus, *:active, *:hover
+  outline: none
+
+.noselect
+  @include user-select(none)
+
+fieldset
+  border: none
+  margin-bottom: 1.25em
+
 
 header
+  white-space: normal
+  .btc-background
+    max-width: 60.0em
+    background: left bottom no-repeat url('/images/treetent.svg')
   #logo
-    padding: 15px 0
+    padding: 0.938em 0
   #title
     font-size: 2em
     font-weight: bold
     color: $color_orange
-  #subtitle
-    margin-top: 70px
-    text-transform: uppercase
+  //#subtitle
+  //  margin-top: 70px
+  #time-and-place
+    line-height: 1.3em
+    #time
+      @media (max-width: 500px)
+        white-space: pre-line
   #call-to-action
+    margin-bottom: 3em
     button
-      padding: 0.8em 2.0em
+      white-space: pre
+      padding-left: 0
+      padding-right: 0
 
-footer
-  font-size: 1.2em
+#description
+  line-height: 1.5em
+  @media (max-width: 700px)
+    white-space: normal
 
-
-#btc-description
-  p, h3, h4
-    margin: 0.75em 0
-  p
-    font-size: 1.5em
-
-#btc-isfor
+#isfor
+  border-bottom: 3px dashed $color_grey-dark
   padding: 7em 0
-  img
+  .isfor-img
     margin-bottom: 3em
   h4
     margin-bottom: 0.4em
   h5
     text-transform: uppercase
     margin-top: 0
+  #scissors
+    position: absolute
+    bottom: -5px
+    left: 20%
 
-#btc-permission
-  button
+#permission
+  border-top: dashed 2px $color_white
+  #scissors
+    position: absolute
+    z-index: 2
+    top: -28px
+    left: 20%
+  .button
     background-color: $color_white
     color: $color_orange
-    width: 100%
-    max-width: 10.0em
-  input
+  input[type=text], input[type=email]
     font-weight: 300
     font-size: 1.8em
     display: block
@@ -99,26 +135,28 @@ footer
       @include placeholder(transparent)
 
 @mixin block($w, $h)
-  @include size($w, $h)
+  @extend .button
+  width: 100%
+  max-width: $w
+  height: $h
   display: inline-block
-  margin: 0.6em
-  color: $color_white
   background-color: $color_grey-light
   text-align: center
+  margin: 0.6em
   .block-inner
     @include size(100%, $h)
     display: table
     span
       display: table-cell
       vertical-align: middle
-      strong
+      b
         line-height: 1em
-        font-size: 4.7em
+        font-size: 4.9em
       small
         margin-top: 0.2em
-        font-size: 1.1em
+        font-size: 1.4em
 
-#btc-sponsors, #btc-partners
+#sponsors, #partners
   color: $color_grey-dark
   h4
     font-weight: lighter
@@ -134,41 +172,38 @@ footer
   #sponsor-you
     background-color: $color_orangeyellow
 
-#btc-twitter
-  padding: 4em 0
-  font-size: 1.3em
+//#twitter
+
+#map
   h2
-    line-height: 1.3em
-  a
-    font-weight: bold
-
-#btc-map
-  padding: 0
-  font-size: 1.4em
-
-  #btc-map-inner
-    padding: 5em 0
-    @include size(100%, 100%)
-    display: table
-    #btc-map-text
-      vertical-align: middle
-      display: table-cell
-      .glyphicon-map-marker
-        font-size: 2.2em
-
+    margin: 0.625em 0 0 0
   position: relative
   background-color: transparent
   overflow: hidden
-  #background, #foreground
+  .glyphicon-map-marker
+    font-size: 2.2em
+  .btc-background-wrapper
     min-width: 1150px
     position: absolute
-    @include square(100%)
-  #background
     z-index: -1
-    background: url('/images/map.png') no-repeat
-    background-size: 100% auto
-    filter: grayscale(1)
-    opacity: 0.3
-  #foreground
-    z-index: -2
-    background-color: darken(saturate($color_blue-dark, 30%), 20%)
+    .btc-background
+      background: url('/images/map.png') no-repeat
+      background-size: 100% auto
+
+#footer
+  padding: 2.5em 0 0 0
+  font-size: 0.9em
+  white-space: pre-line
+  a
+    font-weight: normal
+    color: $color_white
+
+
+.ui-autocomplete
+  max-height: 18.75em
+  min-height: 3.125em
+  max-width: 21.875em
+  overflow-y: auto
+  overflow-x: hidden
+  padding-right: 0
+  z-index: 9999

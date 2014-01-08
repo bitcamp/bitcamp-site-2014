@@ -1,10 +1,11 @@
 'use strict'
 
-angular.module('bitcampApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
+bitcamp = angular.module('bitcampApp', [
+  'ngCookies'
+  'ngResource'
+  'ngSanitize'
   'ngRoute'
+  'ui.autocomplete'
 ])
   .config ($routeProvider, $locationProvider) ->
     $routeProvider
@@ -14,3 +15,20 @@ angular.module('bitcampApp', [
       .otherwise
         redirectTo: '/'
     $locationProvider.html5Mode(true)
+
+  .directive "scrollTo", ->
+    (scope, element, attrs) ->
+      element.bind "click", (event) ->
+        event.stopPropagation()
+        scope.$on "$locationChangeStart", (e) -> e.preventDefault()
+        location = attrs.scrollTo
+        $.scrollTo location, 800
+
+
+$('body').flowtype
+  minimum   : 320,
+  maximum   : 960,
+  minFont   : 12,
+  maxFont   : 20,
+  fontRatio : 60,
+  lineRatio : 1.45

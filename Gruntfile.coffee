@@ -32,12 +32,12 @@ module.exports = (grunt) ->
 
       dev:
         options:
-          script: "server.coffee"
+          script: "bitcamp.coffee"
           node_env: "development"
 
       prod:
         options:
-          script: "server.coffee"
+          script: "bitcamp.coffee"
           node_env: "production"
 
     watch:
@@ -69,8 +69,8 @@ module.exports = (grunt) ->
 
       express:
         files: [
-          "server.coffee"
-          "lib/{,*//*}*.{js,json}"
+          "bitcamp.coffee"
+          "lib/{,*//*}*.{coffee,js,json}"
         ]
         tasks: ["express:dev"]
         options:
@@ -193,8 +193,7 @@ module.exports = (grunt) ->
     # additional tasks can operate on them
     useminPrepare:
       html: [
-        "<%= yeoman.app %>/<%= yeoman.views %>/index.html"
-        "<%= yeoman.app %>/<%= yeoman.views %>/index.jade"
+        "<%= yeoman.app %>/<%= yeoman.views %>/**/*.jade"
       ]
       options:
         dest: "<%= yeoman.dist %>"

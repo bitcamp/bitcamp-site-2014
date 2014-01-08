@@ -1,105 +1,124 @@
 header#header.row.btc-row
-  #logo.col-xs-12
-    img(src='http://placekitten.com/200/100', width='200', height='100')
-  #title.col-xs-12 bitcamp
+  .btc-background-wrapper
+    .btc-background
+  #logo.col-xs-12.noselect
+    <img src='/images/logo.svg' width='140'  height='150'>
+  //-#title.col-xs-12 bitcamp
 
   .col-xs-12
-    h1#subtitle you + tech
-    h2#time-and-place
-      | Hackathon @ University of Maryland
-      | April 4-6, 2014
+    h1#subtitle.
+      you
+      +
+      tech
+    h3#time-and-place
+      span#time.
+        Hackathon @
+        University of Maryland
+      #place April 4-6, 2014
 
   #call-to-action.col-xs-12
-    h3
-      a(ng-href='/#btc-permission')
-        button#register register now
+    a(href='' scroll-to='#permission')
+      button#register.h2 register now
 
 
 #main
-  #btc-description.row.btc-row
-    h3 36 hours • 1000+ hackers • $10M in prizes
-    br
+  #description.row.btc-row
+    h2 36 hours&ensp;·&ensp;1000+ hackers&ensp;·&ensp;$10K in prizes
 
-    h4
-      | Take what you love, fuse it with tech,
-      | build something the world has never seen.
+    h3.
+      Take what you love, fuse it with tech,
+      build something the world has never seen.
 
-    p
-      | Camp is a place for creation, exploration, and imagination. Flannel Echo
-      | Park salvia, biodiesel banjo cred scenester beard Shoreditch typewriter.
-      | Cliche squid art party, 90's plaid lomo literally selvage pickled Etsy synth
-      | gluten-free. Tofu Truffaut fap, kogi narwhal Tonx try-hard Blue Bottle
-      | iPhone keytar High Life mumblecore single-origin coffee plaid.
-    h4
-      a(ng-href='#btc-details')
-        button#more-details more details
+    p.
+      Your curiosities, hobbies, and wild ideas; plus code and cool gadgets
+      like the Pebble Smartwatch and the Oculus Rift; under the guidance of world
+      class mentors and your amazing peers? We're willing to bet you'll make something
+      mind blowing, no matter what your background; and so we'll pay for everything,
+      including travel! When taking a break from your project, you'll get to spend
+      time with other Bitcampers munching on s'mores around a massive bonfire.
+      But don't slack too much - your team could win the $5k grand prize!
+    //-h4
+    //-  a(href='#details')
+    //-    button#more-details more details
 
-  #btc-isfor.row.btc-row
-    img(src='http://placekitten.com/200/200', width='200', height='200')
-    h4
-      b bitcamp
-      |  is for
-    h5 artists
+  //-#isfor.row.btc-row
+  //-  .col-xs-12
+  //-    img.isfor-img(src='http://placekitten.com/200/200', width='200', height='200')
+  //-    h4
+  //-      b bitcamp
+  //-      |  is for
+  //-    h5 artists
+  //-  <img id="scissors" src="/images/scissors.svg" alt="scissors">
 
-  #btc-permission.row.btc-row
-    h3.b Permission Slip
-    input(type='text',  placeholder='name')
-    input(type='email', placeholder='email', class='input-email')
-    input(type='text',  placeholder='university')
-    h4
-      a(ng-href='#btc-submit')
-        button submit
+  #permission.row.btc-row
+    h2 Permission Slip
+    form(ng-controller='SignupCtrl' ng-submit='signup()')
+      fieldset
+        input(type='text'  placeholder='name'       ng-model='name')
+        input(type='email' placeholder='email'      ng-model='email' class='input-email')
+        input(type='text'  placeholder='university' ng-model='university' ui-autocomplete="autocompleteOptions")
+      h3
+        input.button#signup(type='submit' value='submit')
+    <img id="scissors" src="/images/scissors.svg" alt="scissors">
 
-  #btc-sponsors.row.btc-row
-    h4 Sponsors
+  #sponsors.row.btc-row
+    h2 Sponsors
     .col-xs-12
-      a(href='mailto:sponsorship@bitca.mp')
+      a(href='mailto:sponsorship@bitca.mp' target="_blank")
         .block-lg#sponsor-you
           .block-inner
             span
-              strong YOU?
+              b YOU?
               br
-              small contact our team for more details
+              p contact our team for details
     .col-xs-12
-      .block-lg
-    .col-xs-12
-      each i in [1, 2, 3]
-        .block-md
-      .clearfix
-      each i in [4, 5]
-        .block-md
-    .col-xs-12
-      each i in [1, 2]
-        each j in [1, 2, 3, 4]
-          .block-sm
-    .col-xs-12
-      each i in [1, 2, 3, 4]
-        each j in [1, 2, 3, 4, 5, 6]
-          .block-xs
+      p Full sponsor and partner lineup will be released soon.
+    //-.col-xs-12
+    //-  .block-lg
+    //-.col-xs-12
+    //-  each i in [1, 2, 3]
+    //-    .block-md
+    //-  .clearfix
+    //-  each i in [4, 5]
+    //-    .block-md
+    //-.col-xs-12
+    //-  each i in [1, 2]
+    //-    each j in [1, 2, 3, 4]
+    //-      .block-sm
+    //-.col-xs-12
+    //-  each i in [1, 2, 3, 4]
+    //-    each j in [1, 2, 3, 4, 5, 6]
+    //-      .block-xs
 
-  #btc-partners.row.btc-row
-    h4 Partners
-    .col-xs-12
-      each i in [1, 2, 3, 4]
-        .block-sm
+  //-#partners.row.btc-row
+    //-h2 Partners
+    //-.col-xs-12
+    //-  each i in [1, 2, 3, 4]
+    //-    .block-sm
 
-  #btc-twitter.row.btc-row
-    h2
-      | Hit up <a href="https://twitter.com/bitcmp">@bitcmp</a> on Twitter and
-      | join the <a href="https://twitter.com/search?q=%23plustech">#plustech</a> conversation.
+  #twitter.row.btc-row
+    h3
+      | Hit up <a href="https://twitter.com/bitcmp" target="_blank">@bitcmp</a> on Twitter and
+      | join the <a href="https://twitter.com/search?q=%23plustech" target="_blank">#plustech</a> conversation.
 
-  #btc-map.row.btc-row
-    #background
-    #foreground
-    #btc-map-inner
-      #btc-map-text
-        span.glyphicon.glyphicon-map-marker
-        h2
-          b Cole Field House
-          .smaller College Park, MD
+  a(href="http://goo.gl/maps/qS5Tf" target="_blank")
+    #map.row.btc-row
+      .btc-background-wrapper
+        .btc-background
+      #map-inner
+        #map-text
+          span.glyphicon.glyphicon-map-marker
+          h2 Cole Field House
+          h3 College Park, MD
 
 
 footer#footer.row.btc-row
-  .col-xs-12 Bitcamp 2014
-  .col-xs-12 Twitter • Facebook
+  .col-xs-12
+    p
+      Bitcamp 2014
+      | 
+      | 
+      a(href="https://twitter.com/bitcmp" target="_blank") Twitter
+      | &ensp;·&ensp;
+      a(href="https://www.facebook.com/bitcmp" target="_blank") Facebook
   .clearfix

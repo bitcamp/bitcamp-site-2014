@@ -4,7 +4,7 @@ html(ng-app="bitcampApp")
     meta(charset="utf-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
     base(href="/")
-    title bitcamp
+    title Bitcamp
     meta(name="description", content="36-hour hackathon at the University of Maryland. April 4-6, 2014.")
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
 
@@ -18,35 +18,44 @@ html(ng-app="bitcampApp")
     link(rel="shortcut icon", href="/images/favicon.ico", type="image/x-icon")
 
     <!-- build:css({.tmp,app}) styles/main.css -->
+    link(rel="stylesheet" href="/bower_components/jquery-ui/themes/base/jquery-ui.css")
+
     link(rel="stylesheet" href="styles/fonts.css")
     link(rel="stylesheet" href="styles/main.css")
     <!-- endbuild -->
     //- build:head
 
-  body(ng-controller="MainCtrl as main")
-    div.wrapper.ng-view
-    //-script.
-    //-  var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-    //-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-    //-  g.src='//www.google-analytics.com/ga.js';
-    //-  s.parentNode.insertBefore(g,s)}(document,'script'));
+  body
+    div.wrapper(ng-view)
+    script.
+      var _gaq=[['_setAccount','UA-45889454-1'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src='//www.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
 
 
     <!-- build:js(app) scripts/plugins.js -->
     script(src="bower_components/jquery/jquery.js")
+
+    script(src="bower_components/jquery-ui/ui/jquery-ui.js")
 
     script(src="bower_components/angular/angular.js")
 
     script(src="bower_components/sass-bootstrap/js/button.js")
     script(src="bower_components/sass-bootstrap/js/scrollspy.js")
     script(src="bower_components/sass-bootstrap/js/tooltip.js")
+
+    script(src="bower_components/flowtype/flowtype.js")
     <!-- endbuild -->
 
     <!-- build:js(app) scripts/modules.js -->
+    script(src="bower_components/jquery.scrollTo/jquery.scrollTo.js")
+
     script(src="bower_components/angular-resource/angular-resource.js")
     script(src="bower_components/angular-cookies/angular-cookies.js")
     script(src="bower_components/angular-sanitize/angular-sanitize.js")
     script(src="bower_components/angular-route/angular-route.js")
+    script(src="bower_components/angular-ui-autocomplete/src/autocomplete.js")
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->

@@ -1,27 +1,37 @@
 "use strict"
 
+db      = require "mysql-promise"
+{check} = require "validator"
+q       = require "q"
 
-exports.awesomeThings = (req, res) ->
-  res.json [
-    {
-      name: "HTML5 Boilerplate"
-      info: "HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites."
-      awesomeness: 10
-    }
-    {
-      name: "AngularJS"
-      info: "AngularJS is a toolset for building the framework most suited to your application development."
-      awesomeness: 10
-    }
-    {
-      name: "Karma"
-      info: "Spectacular Test Runner for JavaScript."
-      awesomeness: 10
-    }
-    {
-      name: "Express"
-      info: "Flexible and minimalist web application framework for node.js."
-      awesomeness: 10
-    }
-  ]
 
+db.configure
+  host:     'localhost'
+  user:     'bitcamp'
+  password: process.env.DB_PASSWORD
+  database: 'bitcamp'
+
+
+exports.bitcamp = (req, res) ->
+  res.json
+    bitcamp: true
+
+
+exports.signup = (req, res) ->
+  q(req.body).then ({email}) ->
+    email if check(email).isEmail()
+  .then (email) ->
+    db.query('SELECT email FROM signup WHERE email="?"', email)
+  .spread (rows) ->
+    if rows.length is 0
+      db.query('INSERT INTO signup SET ?', req.body)
+    else null
+  .fail (err) ->
+    console.log err.message
+    res.json 500, msg: "500"
+  .done ->
+    res.json 200, msg: "200"
+
+
+exports.schools = (req, res) ->
+  res.json require('../util/schools')
