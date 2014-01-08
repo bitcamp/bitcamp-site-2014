@@ -5,7 +5,7 @@ bitcamp = angular.module('bitcampApp', [
   'ngResource'
   'ngSanitize'
   'ngRoute'
-  'ui.autocomplete'
+  #'ui.autocomplete'
 ])
   .config ($routeProvider, $locationProvider) ->
     $routeProvider
