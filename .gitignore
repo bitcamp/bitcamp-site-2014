@@ -1,12 +1,12 @@
-app/bower_components
-app/static
-app/images
-app/fonts
+/app/bower_components/
+/app/static/
+/app/images/
+/app/fonts/
 
-public
-heroku
-.tmp
+/public/
+/heroku/
+/.tmp/
 
-node_modules
-sass-bootstrap
-.sass-cache
+/node_modules/
+/.sass-cache/
+/sass-bootstrap
