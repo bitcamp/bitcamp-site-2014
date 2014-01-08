@@ -286,6 +286,7 @@ module.exports = (grunt) ->
               "bower_components/**/*"
               "images/*"
               "fonts/*"
+              "static/*"
             ]
           }
           {

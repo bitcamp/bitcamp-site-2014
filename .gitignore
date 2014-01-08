@@ -1,11 +1,12 @@
-node_modules
-public
-.tmp
-.sass-cache
 app/bower_components
-heroku
+app/static
 app/images
 app/fonts
-views
 
+public
+heroku
+.tmp
+
+node_modules
 sass-bootstrap
+.sass-cache
