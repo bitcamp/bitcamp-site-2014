@@ -21,11 +21,11 @@ exports.signup = (req, res) ->
   q(req.body).then ({email}) ->
     email if check(email).isEmail()
   .then (email) ->
-    db.query('SELECT email FROM signup WHERE email="?"', email)
+    db.query("SELECT email FROM signup WHERE email=?", email)
   .spread (rows) ->
     if rows.length is 0
       db.query('INSERT INTO signup SET ?', req.body)
-    else null
+    else true
   .fail (err) ->
     console.log err.message
     res.json 500, msg: "500"
