@@ -3,5 +3,5 @@
 angular.module('bitcampApp')
 
   .controller 'LayoverHacksCtrl', ($scope, $http) ->
-    null
+    console.log "Awe yea."
 

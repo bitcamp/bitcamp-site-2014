@@ -42,15 +42,17 @@ app.post "/api/signup",  api.signup
 app.get  "/api/schools", api.schools
 
 # Angular Routes
-app.get "/",           controllers.index
-app.get "/partials/*", controllers.partials
+app.get "/",             controllers.index
+app.get "/partials/*",   controllers.partials
+
+app.get "/layoverhacks", controllers.index
 
 # 404
-app.configure "development", ->
-  app.get "/*", controllers.index
-app.configure "production", ->
-  app.get "/*", (req, res) ->
-    res.send 404, "NOT FOUND"
+app.get "/*", [(req, res, next) ->
+  res.status 404
+  next()
+  # Let angular figure out the 404 view.
+, controllers.index]
 
 
 # Start server
