@@ -12,6 +12,9 @@ bitcamp = angular.module('bitcampApp', [
       .when '/',
         templateUrl: 'partials/main'
         controller: 'MainCtrl'
+      .when '/layoverhacks',
+        templateUrl: 'partials/layoverhacks'
+        controller: 'LayoverHacksCtrl'
       .otherwise
         redirectTo: '/'
     $locationProvider.html5Mode(true)

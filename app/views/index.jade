@@ -17,22 +17,18 @@ html(ng-app="bitcampApp")
 
     link(rel="shortcut icon", href="/images/favicon.ico", type="image/x-icon")
 
-    <!-- build:css({.tmp,app}) styles/main.css -->
-    link(rel="stylesheet" href="/bower_components/jquery-ui/themes/base/jquery-ui.css")
+    <!-- build:css(app) styles/vendor.css -->
+    link(rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css")
+    <!-- endbuild -->
 
+    <!-- build:css({.tmp,app}) styles/main.css -->
     link(rel="stylesheet" href="styles/fonts.css")
     link(rel="stylesheet" href="styles/main.css")
+    link(rel="stylesheet" href="styles/layoverhacks.css")
     <!-- endbuild -->
-    //- build:head
 
   body
-    div.wrapper(ng-view)
-    script.
-      var _gaq=[['_setAccount','UA-45889454-1'],['_trackPageview']];
-      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src='//www.google-analytics.com/ga.js';
-      s.parentNode.insertBefore(g,s)}(document,'script'));
-
+    div.wrapper#wrapper(ng-view)
 
     <!-- build:js(app) scripts/plugins.js -->
     script(src="bower_components/jquery/jquery.js")
@@ -62,4 +58,10 @@ html(ng-app="bitcampApp")
     script(src="scripts/app.js")
     script(src="scripts/controllers/main.js")
     <!-- endbuild -->
-    //- build:body
+
+    script(async).
+      var _gaq=[['_setAccount','UA-45889454-1'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src='//www.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+

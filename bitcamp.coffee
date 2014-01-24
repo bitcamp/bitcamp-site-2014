@@ -18,6 +18,7 @@ app.configure "development", ->
   app.set "views", __dirname + "/app/views"
 
 app.configure "production", ->
+  app.use(express.compress())
   app.use express.favicon(path.join(__dirname, "public", "favicon.ico"))
   app.use express.static(path.join(__dirname, "public"))
   app.set "views", __dirname + "/public/views"
@@ -44,9 +45,12 @@ app.get  "/api/schools", api.schools
 app.get "/",           controllers.index
 app.get "/partials/*", controllers.partials
 
-
-app.get "/*", (req, res) ->
-  res.send 404, "NOT FOUND"
+# 404
+app.configure "development", ->
+  app.get "/*", controllers.index
+app.configure "production", ->
+  app.get "/*", (req, res) ->
+    res.send 404, "NOT FOUND"
 
 
 # Start server
