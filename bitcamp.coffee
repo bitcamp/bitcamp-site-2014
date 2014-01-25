@@ -41,11 +41,13 @@ app.post "/api/signup",  api.signup
 
 app.get  "/api/schools", api.schools
 
+app.get "/api/fireside/blocks", api.fireside.blocks
+
 # Angular Routes
 app.get "/",             controllers.index
 app.get "/partials/*",   controllers.partials
 
-app.get "/layoverhacks", controllers.index
+app.get "/fireside", controllers.index
 
 # 404
 app.get "/*", [(req, res, next) ->
@@ -58,5 +60,6 @@ app.get "/*", [(req, res, next) ->
 # Start server
 port = process.env.PORT or 8000
 app.listen port, ->
-  console.log "Express server listening on port %d in %s mode", port, app.get("env")
+  console.log "Express server listening on port %d in %s mode",
+    port, app.get("env")
 

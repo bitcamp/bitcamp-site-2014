@@ -7,7 +7,7 @@
       h1#subtitle Fireside
       h3#time-and-place Because layovers suck.
 
-  - var sixteen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+  - var sixteen = [1, 2, 3, 4, 5, 6, 7, 8]
   mixin empty_block()
     .fireside-block.empty-block
   mixin fireside_block(color)
@@ -15,7 +15,10 @@
       each n in sixteen
         .inner-row
           each n in sixteen
-            .inner-block(class=color+'-block')
+            - var _class = color+'-block'
+            .inner-block(class='dim-'+_class,
+              data-colorclass=_class,
+              data-dimclass='dim-'+_class)
 
   .container
     section#fireside-blocks

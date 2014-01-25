@@ -24,7 +24,7 @@ html(ng-app="bitcampApp")
     <!-- build:css({.tmp,app}) styles/main.css -->
     link(rel="stylesheet" href="styles/fonts.css")
     link(rel="stylesheet" href="styles/main.css")
-    link(rel="stylesheet" href="styles/layoverhacks.css")
+    link(rel="stylesheet" href="styles/fireside.css")
     <!-- endbuild -->
 
   body
@@ -42,6 +42,8 @@ html(ng-app="bitcampApp")
     script(src="bower_components/sass-bootstrap/js/tooltip.js")
 
     script(src="bower_components/flowtype/flowtype.js")
+
+    script(src="bower_components/socket.io-client/dist/socket.io.js")
     <!-- endbuild -->
 
     <!-- build:js(app) scripts/modules.js -->
@@ -58,7 +60,7 @@ html(ng-app="bitcampApp")
     script(src="scripts/app.js")
     script(src="scripts/controllers/main.js")
     script(src="scripts/controllers/404.js")
-    script(src="scripts/controllers/layoverhacks.js")
+    script(src="scripts/controllers/fireside.js")
     <!-- endbuild -->
 
     //script(async).

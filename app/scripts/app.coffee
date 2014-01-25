@@ -12,9 +12,9 @@ bitcamp = angular.module('bitcampApp', [
       .when '/',
         templateUrl: 'partials/main'
         controller: 'MainCtrl'
-      .when '/layoverhacks',
-        templateUrl: 'partials/layoverhacks'
-        controller: 'LayoverHacksCtrl'
+      .when '/fireside',
+        templateUrl: 'partials/fireside'
+        controller: 'FiresideCtrl'
       .when '/404',
         templateUrl: 'partials/404'
         controller: '404Ctrl'
