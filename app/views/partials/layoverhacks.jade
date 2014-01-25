@@ -5,4 +5,126 @@
         <img src='/images/logo.svg' width='140' height='150'>
     .col-xs-12
       h1#subtitle Fireside
-      h3#time-and-place Layovers really suck.
+      h3#time-and-place Because layovers suck.
+
+  - var sixteen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+  mixin empty_block()
+    .fireside-block.empty-block
+  mixin fireside_block(color)
+    .fireside-block
+      each n in sixteen
+        .inner-row
+          each n in sixteen
+            .inner-block(class=color+'-block')
+
+  .container
+    section#fireside-blocks
+      .fireside-row
+        mixin empty_block()
+        mixin empty_block()
+        mixin empty_block()
+        mixin fireside_block('red')
+        mixin empty_block()
+        mixin empty_block()
+        mixin empty_block()
+        mixin empty_block()
+
+      .fireside-row
+        mixin empty_block()
+        mixin empty_block()
+        mixin fireside_block('red')
+        mixin empty_block()
+        mixin empty_block()
+        mixin empty_block()
+        mixin empty_block()
+        mixin empty_block()
+
+      .fireside-row
+        mixin empty_block()
+        mixin fireside_block('red')
+        mixin fireside_block('red')
+        mixin empty_block()
+        mixin empty_block()
+        mixin fireside_block('red')
+        mixin empty_block()
+        mixin empty_block()
+
+      .fireside-row
+        mixin fireside_block('red')
+        mixin fireside_block('red')
+        mixin fireside_block('orange')
+        mixin empty_block()
+        mixin empty_block()
+        mixin empty_block()
+        mixin fireside_block('red')
+        mixin empty_block()
+
+      .fireside-row
+        mixin fireside_block('orange')
+        mixin fireside_block('orange')
+        mixin fireside_block('orange')
+        mixin fireside_block('orange')
+        mixin empty_block()
+        mixin fireside_block('orange')
+        mixin fireside_block('orange')
+        mixin empty_block()
+
+      .fireside-row
+        mixin fireside_block('orange')
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('orange')
+        mixin fireside_block('orange')
+
+      .fireside-row
+        mixin fireside_block('orange')
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('yellow')
+        mixin fireside_block('yellow')
+        mixin fireside_block('yellow')
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('orange')
+
+      .fireside-row
+        mixin fireside_block('orange')
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('yellow')
+        mixin fireside_block('white')
+        mixin fireside_block('yellow')
+        mixin fireside_block('yellow')
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('orange')
+
+      .fireside-row
+        mixin empty_block()
+        mixin fireside_block('orangeyellow')
+        mixin fireside_block('yellow')
+        mixin fireside_block('white')
+        mixin fireside_block('white')
+        mixin fireside_block('yellow')
+        mixin fireside_block('orangeyellow')
+        mixin empty_block()
+
+      .fireside-row
+        mixin empty_block()
+        mixin empty_block()
+        mixin fireside_block('yellow')
+        mixin fireside_block('yellow')
+        mixin fireside_block('yellow')
+        mixin fireside_block('yellow')
+        mixin empty_block()
+        mixin empty_block()
+
+  footer#footer.row.btc-row
+    .col-xs-12
+      p
+        | Bitcamp 2014
+        | 
+        a(href="https://twitter.com/bitcmp" target="_blank") Twitter
+        | &ensp;·&ensp;
+        a(href="https://www.facebook.com/bitcmp" target="_blank") Facebook
+    .clearfix
