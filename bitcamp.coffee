@@ -18,6 +18,7 @@ app.configure "development", ->
   app.set "views", __dirname + "/app/views"
 
 app.configure "production", ->
+  app.use(express.compress())
   app.use express.favicon(path.join(__dirname, "public", "favicon.ico"))
   app.use express.static(path.join(__dirname, "public"))
   app.set "views", __dirname + "/public/views"
@@ -40,17 +41,25 @@ app.post "/api/signup",  api.signup
 
 app.get  "/api/schools", api.schools
 
+app.get "/api/fireside/blocks", api.fireside.blocks
+
 # Angular Routes
-app.get "/",           controllers.index
-app.get "/partials/*", controllers.partials
+app.get "/",             controllers.index
+app.get "/partials/*",   controllers.partials
 
+app.get "/fireside", controllers.index
 
-app.get "/*", (req, res) ->
-  res.send 404, "NOT FOUND"
+# 404
+app.get "/*", [(req, res, next) ->
+  res.status 404
+  next()
+  # Let angular figure out the 404 view.
+, controllers.index]
 
 
 # Start server
 port = process.env.PORT or 8000
 app.listen port, ->
-  console.log "Express server listening on port %d in %s mode", port, app.get("env")
+  console.log "Express server listening on port %d in %s mode",
+    port, app.get("env")
 

@@ -1,0 +1,54 @@
+@import 'variables'
+
+@import 'sass-bootstrap/lib/mixins'
+
+
+#layoverhacks
+  min-height: 100%
+  height: 100%
+  background-color: $color_blue-light
+
+$block-size: 80px
+$blocks-per-row: 8
+$inner-blocks: 8
+
+#fireside-blocks
+  width: $block-size*$blocks-per-row
+  margin: 0 auto
+
+.fireside-row
+  height: $block-size
+  width: $block-size*$blocks-per-row
+  .fireside-block
+    float: left
+    @include square($block-size)
+
+    .inner-row
+      height: ($block-size/$inner-blocks)
+      width: $block-size
+      .inner-block
+        transition: background-color 1s ease-in
+        float: left
+        @include square($block-size/$inner-blocks)
+
+.yellow-block
+  background-color: $color_yellow
+.orangeyellow-block
+  background-color: $color_orangeyellow
+.orange-block
+  background-color: $color_orange
+.red-block
+  background-color: $color_red
+.white-block
+  background-color: $color_white
+
+.dim-yellow-block
+  background-color: desaturate($color_yellow,       80%)
+.dim-orangeyellow-block
+  background-color: desaturate($color_orangeyellow, 80%)
+.dim-orange-block
+  background-color: desaturate($color_orange,       80%)
+.dim-red-block
+  background-color: desaturate($color_red,          80%)
+.dim-white-block
+  background-color: desaturate($color_white,        80%)
