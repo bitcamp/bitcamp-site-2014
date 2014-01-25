@@ -8,27 +8,27 @@
   height: 100%
   background-color: $color_blue-light
 
-$row-height: 80px
-$row-n: 8
-$squares-n: 16
+$block-size: 80px
+$blocks-per-row: 8
+$inner-blocks: 16
 
 #fireside-blocks
-  width: $row-height*$row-n
+  width: $block-size*$blocks-per-row
   margin: 0 auto
 
 .fireside-row
-  height: $row-height
-  width: $row-height*$row-n
+  height: $block-size
+  width: $block-size*$blocks-per-row
   .fireside-block
     float: left
-    @include square($row-height)
+    @include square($block-size)
 
     .inner-row
-      height: ($row-height/$squares-n)
-      width: $row-height
+      height: ($block-size/$inner-blocks)
+      width: $block-size
       .inner-block
         float: left
-        @include square($row-height/$squares-n)
+        @include square($block-size/$inner-blocks)
 
 .yellow-block
   background-color: $color_yellow
