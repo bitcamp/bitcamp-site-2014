@@ -54,9 +54,9 @@ header#header.row.btc-row
     div(class="block-"+size)
       .block-inner
         span
-          img(src=imgSrc)
+          <img src=imgSrc>
 
-  #sponsors.row.btc-row
+  #sponsors.row.btc-row.noselect
     h2 Sponsors
     .col-xs-12
       a(href='mailto:sponsorship@bitca.mp' target="_blank")
@@ -68,20 +68,9 @@ header#header.row.btc-row
               p contact our team for details
     .col-xs-12
       mixin sponsor("lg", "/images/sponsor_booz-allen-hamilton.png")
-      .clearfix
     .col-xs-12
       mixin sponsor("md", "/images/sponsor_appian.png")
       mixin sponsor("md", "/images/sponsor_sparkfun.png")
-      .clearfix
-    //-.col-xs-12
-      //-each i in [1, 2]
-        //-each j in [1, 2, 3, 4]
-          //-.block-sm
-    //-.col-xs-12
-      //-each i in [1, 2, 3, 4]
-        //-each j in [1, 2, 3, 4, 5, 6]
-          //-.block-xs
-
   #partners.row.btc-row.noselect
     h2 Partners
     .col-xs-12
