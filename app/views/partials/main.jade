@@ -50,11 +50,12 @@ header#header.row.btc-row
         input.button#signup(type='submit' value='submit')
     <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
 
-  mixin sponsor(size, imgSrc)
+  mixin sponsor(size, imgSrc, aHref)
     div(class="block-"+size)
-      .block-inner
-        span
-          <img src="#{imgSrc}">
+      a(href=aHref)
+        .block-inner
+          span
+            <img src="#{imgSrc}">
 
   #sponsors.row.btc-row.noselect
     h2 Sponsors
@@ -67,16 +68,16 @@ header#header.row.btc-row
               br
               p contact our team for details
     .col-xs-12
-      mixin sponsor("lg", "/images/sponsor_booz-allen-hamilton.png")
+      mixin sponsor("lg", "/images/sponsor_booz-allen-hamilton.png", "http://www.boozallen.com/")
     .col-xs-12
-      mixin sponsor("md", "/images/sponsor_appian.png")
-      mixin sponsor("md", "/images/sponsor_sparkfun.png")
+      mixin sponsor("md", "/images/sponsor_appian.png",   "http://www.appian.com/")
+      mixin sponsor("md", "/images/sponsor_sparkfun.png", "https://www.sparkfun.com/")
   #partners.row.btc-row.noselect
     h2 Partners
     .col-xs-12
-      mixin sponsor("md", "/images/sponsor_terrapin-hackers.png")
-      mixin sponsor("md", "/images/sponsor_startup-shell.png")
-      mixin sponsor("md", "/images/sponsor_mlh.png")
+      mixin sponsor("md", "/images/sponsor_terrapin-hackers.png", "http://terrapinhackers.com/")
+      mixin sponsor("md", "/images/sponsor_startup-shell.png",    "http://startupshell.org/")
+      mixin sponsor("md", "/images/sponsor_mlh.png",              "http://mlh.io/")
 
   #twitter.row.btc-row
     h3

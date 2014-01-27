@@ -147,7 +147,7 @@ header
       @include placeholder(transparent)
 
 @mixin block($w, $h)
-  @extend .button
+  color: $color_white
   padding: 0
   width: 100%
   max-width: $w
@@ -155,13 +155,12 @@ header
   display: inline-block
   background-color: inherit
   text-align: center
-  margin: 0.6em
   .block-inner
     img
-      transition: opacity 0.4s ease-in
+      transition: opacity 0.2s ease-out
       &:hover
         opacity: 1
-      opacity: 0.4
+      opacity: 0.6
     @include size(100%, $h)
     display: table
     span
