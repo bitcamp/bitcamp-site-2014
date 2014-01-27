@@ -50,6 +50,12 @@ header#header.row.btc-row
         input.button#signup(type='submit' value='submit')
     <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
 
+  mixin sponsor(size, imgSrc)
+    div(class="block-"+size)
+      .block-inner
+        span
+          img(src=imgSrc)
+
   #sponsors.row.btc-row
     h2 Sponsors
     .col-xs-12
@@ -61,29 +67,27 @@ header#header.row.btc-row
               br
               p contact our team for details
     .col-xs-12
-      p Full sponsor and partner lineup to be released soon.
+      mixin sponsor("lg", "/images/sponsor_booz-allen-hamilton.png")
+      .clearfix
+    .col-xs-12
+      mixin sponsor("md", "/images/sponsor_appian.png")
+      mixin sponsor("md", "/images/sponsor_sparkfun.png")
+      .clearfix
     //-.col-xs-12
-    //-  .block-lg
+      //-each i in [1, 2]
+        //-each j in [1, 2, 3, 4]
+          //-.block-sm
     //-.col-xs-12
-    //-  each i in [1, 2, 3]
-    //-    .block-md
-    //-  .clearfix
-    //-  each i in [4, 5]
-    //-    .block-md
-    //-.col-xs-12
-    //-  each i in [1, 2]
-    //-    each j in [1, 2, 3, 4]
-    //-      .block-sm
-    //-.col-xs-12
-    //-  each i in [1, 2, 3, 4]
-    //-    each j in [1, 2, 3, 4, 5, 6]
-    //-      .block-xs
+      //-each i in [1, 2, 3, 4]
+        //-each j in [1, 2, 3, 4, 5, 6]
+          //-.block-xs
 
-  //-#partners.row.btc-row
-    //-h2 Partners
-    //-.col-xs-12
-    //-  each i in [1, 2, 3, 4]
-    //-    .block-sm
+  #partners.row.btc-row.noselect
+    h2 Partners
+    .col-xs-12
+      mixin sponsor("md", "/images/sponsor_terrapin-hackers.png")
+      mixin sponsor("md", "/images/sponsor_startup-shell.png")
+      mixin sponsor("md", "/images/sponsor_mlh.png")
 
   #twitter.row.btc-row
     h3

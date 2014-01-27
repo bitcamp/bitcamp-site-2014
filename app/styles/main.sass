@@ -47,6 +47,14 @@ body
 .clearfix
   @include clearfix()
 
+.noselect
+  -webkit-touch-callout: none
+  -webkit-user-select:   none
+  -khtml-user-select:    none
+  -moz-user-select:      none
+  -ms-user-select:       none
+  user-select:           none
+
 button, .button
   max-width: 10em
   width: 100%
@@ -140,11 +148,12 @@ header
 
 @mixin block($w, $h)
   @extend .button
+  padding: 0
   width: 100%
   max-width: $w
   height: $h
   display: inline-block
-  background-color: $color_grey-light
+  background-color: inherit
   text-align: center
   margin: 0.6em
   .block-inner
@@ -195,7 +204,6 @@ header
       background-size: 100% auto
 
 #footer
-  margin-top: 2.5em
   padding: 2.5em 0 0 0
   font-size: 0.9em
   white-space: pre-line
