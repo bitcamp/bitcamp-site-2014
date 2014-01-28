@@ -150,13 +150,15 @@ header
   color: $color_white
   padding: 0
   width: 100%
-  max-width: $w
   height: $h
+  max-width: 320px
   display: inline-block
   background-color: inherit
   text-align: center
   .block-inner
     img
+      max-width: 290px
+      margin: 0 auto
       transition: opacity 0.2s ease-out
       &:hover
         opacity: 1
@@ -164,6 +166,7 @@ header
     @include size(100%, $h)
     display: table
     span
+      overflow: hidden
       display: table-cell
       vertical-align: middle
       b
