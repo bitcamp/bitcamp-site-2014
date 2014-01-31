@@ -2,6 +2,8 @@ db      = require "mysql-promise"
 {check} = require "validator"
 q       = require "q"
 
+sendgrid = require("sendgrid")(process.env.SENDGRID_USER, process.env.SENDGRID_KEY)
+
 
 io = require("socket.io").listen 8001, {
   log: false
@@ -58,6 +60,7 @@ exports.bitcamp = (req, res) ->
     bitcamp: true
 
 exports.signup = (req, res) ->
+  {email} = req.body
   q(req.body).then ({email}) ->
     email if check(email).isEmail()
   .then (email) ->
@@ -66,6 +69,15 @@ exports.signup = (req, res) ->
     if rows.length is 0
       db.query('INSERT INTO signup SET ?', req.body)
     else true
+  .then ->
+    sendgrid.send
+      to: email
+      from: "hello@bica.mp"
+      subject: "Hello World"
+      text: "My first email through SendGrid."
+    , (err, json) ->
+      return console.error(err)  if err
+      console.log json
   .fail (err) ->
     console.log err.message
     res.json 500, msg: "500"

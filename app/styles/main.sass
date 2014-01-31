@@ -6,7 +6,6 @@
 
 @import 'sass-bootstrap/lib/normalize'
 
-//@import 'sass-bootstrap/lib/type'
 @import 'sass-bootstrap/lib/glyphicons'
 @import 'sass-bootstrap/lib/scaffolding'
 @import 'sass-bootstrap/lib/grid'
@@ -149,23 +148,19 @@ header
 @mixin block($w, $h)
   color: $color_white
   padding: 0
-  width: 100%
-  max-width: $w
-  min-width: 280px
-  margin: 0 auto
+  width: $w
   height: $h
+  margin: 0 auto
   display: inline-block
-  background-color: inherit
   text-align: center
   .block-inner
     img
-      max-width: 290px
       margin: 0 auto
       transition: opacity 0.2s ease-out
       &:hover
         opacity: 1
       opacity: 0.8
-    @include size(100%, $h)
+    @include size(100%, 225px)
     display: table
     span
       overflow: hidden
@@ -186,13 +181,14 @@ header
   .block-xs
     @include block(8.95em, 8.95em)
   .block-sm
-    @include block(12em, 11em)
+    @include block(290px, 200px)
   .block-md
-    @include block(17em, 14em)
+    @include block(290px, 210px)
   .block-lg
-    @include block(28em, 11em)
+    @include block(290px, 220px)
   #sponsor-you
-    background-color: $color_orangeyellow
+    .block-inner
+      background-color: $color_orangeyellow
 
 //#twitter
 

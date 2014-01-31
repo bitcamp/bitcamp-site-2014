@@ -50,34 +50,34 @@ header#header.row.btc-row
         input.button#signup(type='submit' value='submit')
     <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
 
-  mixin sponsor(size, imgSrc, aHref)
+  mixin sponsor(size, sponsor, aHref)
     div(class="block-"+size)
       a(href=aHref)
         .block-inner
           span
-            <img src="#{imgSrc}">
+            <img src="/images/sponsor/#{sponsor}.png">
 
   #sponsors.row.btc-row.noselect
     h2 Sponsors
     .col-xs-12
-      a(href='mailto:sponsorship@bitca.mp' target="_blank")
-        .block-lg#sponsor-you
-          .block-inner
-            span
-              b YOU?
-              br
-              p contact our team for details
+      mixin sponsor("lg", "appian", "http://www.appian.com/")
     .col-xs-12
-      mixin sponsor("lg", "/images/sponsor_booz-allen-hamilton.png", "http://www.boozallen.com/")
+      mixin sponsor("md", "att", "http://www.att.com/")
+      mixin sponsor("md", "booz-allen-hamilton", "http://www.boozallen.com/")
+      mixin sponsor("md", "cipher", "http://www.ciphertechsolutions.com/")
     .col-xs-12
-      mixin sponsor("md", "/images/sponsor_sparkfun.png", "https://www.sparkfun.com/")
-      mixin sponsor("md", "/images/sponsor_appian.png",   "http://www.appian.com/")
+      mixin sponsor("sm", "clarabridge", "http://www.clarabridge.com/")
+      mixin sponsor("sm", "opis", "http://www.opisnet.com/")
+      mixin sponsor("sm", "parsons", "http://www.parsons.com/")
+      mixin sponsor("sm", "socialradar", "http://socialradar.com/")
+      mixin sponsor("sm", "sparkfun", "https://www.sparkfun.com/")
+
   #partners.row.btc-row.noselect
     h2 Partners
     .col-xs-12
-      mixin sponsor("md", "/images/sponsor_terrapin-hackers.png", "http://terrapinhackers.com/")
-      mixin sponsor("md", "/images/sponsor_startup-shell.png",    "http://startupshell.org/")
-      mixin sponsor("md", "/images/sponsor_mlh.png",              "http://mlh.io/")
+      mixin sponsor("md", "terrapin-hackers", "http://terrapinhackers.com/")
+      mixin sponsor("md", "startup-shell",    "http://startupshell.org/")
+      mixin sponsor("md", "mlh",              "http://mlh.io/")
 
   #twitter.row.btc-row
     h3
