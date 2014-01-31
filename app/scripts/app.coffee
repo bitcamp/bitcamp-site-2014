@@ -12,8 +12,14 @@ bitcamp = angular.module('bitcampApp', [
       .when '/',
         templateUrl: 'partials/main'
         controller: 'MainCtrl'
+      .when '/fireside',
+        templateUrl: 'partials/fireside'
+        controller: 'FiresideCtrl'
+      .when '/404',
+        templateUrl: 'partials/404'
+        controller: '404Ctrl'
       .otherwise
-        redirectTo: '/'
+        redirectTo: '/404'
     $locationProvider.html5Mode(true)
 
   .directive "scrollTo", ->

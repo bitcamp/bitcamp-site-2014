@@ -2,7 +2,8 @@ header#header.row.btc-row
   .btc-background-wrapper
     .btc-background
   #logo.col-xs-12.noselect
-    <img src='/images/logo.svg' width='140'  height='150'>
+    a(href="/")
+      <img src='/images/logo.svg' width='140'  height='150'>
   //-#title.col-xs-12 bitcamp
 
   .col-xs-12
@@ -37,18 +38,6 @@ header#header.row.btc-row
       no matter what your background - so we're reimbursing travel!
       With enough prizes to fill a tent, attendance is open
       to all college students. See you by the bonfire!
-    //-h4
-    //-  a(href='#details')
-    //-    button#more-details more details
-
-  //-#isfor.row.btc-row
-  //-  .col-xs-12
-  //-    img.isfor-img(src='http://placekitten.com/200/200', width='200', height='200')
-  //-    h4
-  //-      b bitcamp
-  //-      |  is for
-  //-    h5 artists
-  //-  <img id="scissors" src="/images/scissors.svg" alt="scissors">
 
   #permission.row.btc-row
     h2 Permission Slip
@@ -59,42 +48,35 @@ header#header.row.btc-row
         input(type='text'  placeholder='university' ng-model='university' ui-autocomplete="autocompleteOptions")
       h3
         input.button#signup(type='submit' value='submit')
-    <img id="scissors" src="/images/scissors.svg" alt="scissors">
+    <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
 
-  #sponsors.row.btc-row
+  mixin sponsor(size, sponsor, aHref)
+    div(class="block-"+size)
+      a(href=aHref)
+        .block-inner
+          span
+            <img src="/images/sponsor/#{sponsor}.png">
+
+  #sponsors.row.btc-row.noselect
     h2 Sponsors
     .col-xs-12
-      a(href='mailto:sponsorship@bitca.mp' target="_blank")
-        .block-lg#sponsor-you
-          .block-inner
-            span
-              b YOU?
-              br
-              p contact our team for details
+      mixin sponsor("md", "booz-allen-hamilton", "http://www.boozallen.com/")
     .col-xs-12
-      p Full sponsor and partner lineup to be released soon.
-    //-.col-xs-12
-    //-  .block-lg
-    //-.col-xs-12
-    //-  each i in [1, 2, 3]
-    //-    .block-md
-    //-  .clearfix
-    //-  each i in [4, 5]
-    //-    .block-md
-    //-.col-xs-12
-    //-  each i in [1, 2]
-    //-    each j in [1, 2, 3, 4]
-    //-      .block-sm
-    //-.col-xs-12
-    //-  each i in [1, 2, 3, 4]
-    //-    each j in [1, 2, 3, 4, 5, 6]
-    //-      .block-xs
+      mixin sponsor("md", "att",                 "http://www.att.com/")
+      mixin sponsor("lg", "appian",              "http://www.appian.com/")
+      mixin sponsor("md", "cipher",              "http://www.ciphertechsolutions.com/")
+    .col-xs-12
+      mixin sponsor("sm", "clarabridge",         "http://www.clarabridge.com/")
+      mixin sponsor("sm", "opis",                "http://www.opisnet.com/")
+      mixin sponsor("sm", "socialradar",         "http://socialradar.com/")
+      mixin sponsor("sm", "sparkfun",            "https://www.sparkfun.com/")
 
-  //-#partners.row.btc-row
-    //-h2 Partners
-    //-.col-xs-12
-    //-  each i in [1, 2, 3, 4]
-    //-    .block-sm
+  #partners.row.btc-row.noselect
+    h2 Partners
+    .col-xs-12
+      mixin sponsor("md", "terrapin-hackers",    "http://terrapinhackers.com/")
+      mixin sponsor("md", "startup-shell",       "http://startupshell.org/")
+      mixin sponsor("md", "mlh",                 "http://mlh.io/")
 
   #twitter.row.btc-row
     h3

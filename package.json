@@ -6,7 +6,10 @@
     "jade": "latest",
     "mysql-promise": "~0.1.0",
     "validator": "~2.0.0",
-    "q": "~0.9.7"
+    "q": "~0.9.7",
+    "socket.io": "~0.9.16",
+    "socket.io-client": "~0.9.16",
+    "sendgrid": "~1.0.0-rc.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

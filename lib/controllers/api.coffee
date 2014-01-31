@@ -1,23 +1,15 @@
-"use strict"
-
-db      = require "mysql-promise"
 {check} = require "validator"
 q       = require "q"
 
-
-db.configure
-  host:     'localhost'
-  user:     'bitcamp'
-  password: process.env.DB_PASSWORD
-  database: 'bitcamp'
+{db}    = require "../server"
 
 
 exports.bitcamp = (req, res) ->
   res.json
     bitcamp: true
 
-
 exports.signup = (req, res) ->
+  {email} = req.body
   q(req.body).then ({email}) ->
     email if check(email).isEmail()
   .then (email) ->
@@ -35,3 +27,4 @@ exports.signup = (req, res) ->
 
 exports.schools = (req, res) ->
   res.json require('../util/schools')
+
