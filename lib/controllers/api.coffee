@@ -2,51 +2,6 @@ db      = require "mysql-promise"
 {check} = require "validator"
 q       = require "q"
 
-sendgrid = require("sendgrid")(process.env.SENDGRID_USER, process.env.SENDGRID_KEY)
-
-
-io = require("socket.io").listen 8001, {
-  log: false
-}
-
-io.sockets.on "connection", (socket) ->
-
-  blocksInterval = setInterval ->
-    refreshBlocks()
-    socket.emit 'fireside/blocks', blocks
-  , 3000
-
-  socket.on 'disconnect', ->
-    clearInterval blocksInterval
-
-
-randomN = (min, max) ->
-  Math.random * (max - min) + min
-
-randomInt = (min, max) ->
-  Math.floor(Math.random() * (max - min + 1)) + min
-
-blocks = []
-
-randomizedBlocks = (max, n) ->
-  fireside_blocks = ({on: false, i: i} for i in [1..max])
-  ns = []
-  for i in [0...n] when i not in ns
-    ns.push randomInt 0, fireside_blocks.length-1
-  ns.map (n) -> fireside_blocks[n].on = true
-  fireside_blocks
-
-refreshBlocks = ->
-  db.query('SELECT count(1) as count FROM signup')
-    .spread (rows) ->
-      rows[0].count
-    .then (count) ->
-      randomizedBlocks 3136, count
-    .fail (err) ->
-      console.log err.message
-    .done (bs) ->
-      blocks = bs
-
 
 db.configure
   host:     'localhost'
@@ -69,15 +24,6 @@ exports.signup = (req, res) ->
     if rows.length is 0
       db.query('INSERT INTO signup SET ?', req.body)
     else true
-  .then ->
-    sendgrid.send
-      to: email
-      from: "hello@bica.mp"
-      subject: "Hello World"
-      text: "My first email through SendGrid."
-    , (err, json) ->
-      return console.error(err)  if err
-      console.log json
   .fail (err) ->
     console.log err.message
     res.json 500, msg: "500"
