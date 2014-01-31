@@ -344,7 +344,7 @@ module.exports = (grunt) ->
         "copy:styles"
         #"imagemin"
         "svgmin"
-        "htmlmin"
+        #"htmlmin"
       ]
 
 
