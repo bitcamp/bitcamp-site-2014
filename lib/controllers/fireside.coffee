@@ -1,6 +1,8 @@
-io = require("socket.io").listen 8001, {
+io = require("socket.io").listen 13891, {
   log: false
 }
+
+{db} = require './api'
 
 
 blocks = []
@@ -18,7 +20,7 @@ io.sockets.on "connection", (socket) ->
   blocksInterval = setInterval ->
     refreshBlocks()
     socket.emit 'fireside/blocks', blocks
-  , 3000
+  , 10000
 
   socket.on 'disconnect', ->
     clearInterval blocksInterval
@@ -39,7 +41,12 @@ refreshBlocks = ->
       rows[0].count
     .then (count) ->
       randomizedBlocks 3136, count
-    .fail (err) ->
-      console.log err.message
-    .done (bs) ->
+    .then (bs) ->
       blocks = bs
+
+exports.blocks = (req, res) ->
+  refreshBlocks()
+    .fail (err) ->
+      res.json 200, blocks
+    .done ->
+      res.json 200, blocks

@@ -35,13 +35,15 @@ app.configure ->
 api         = require("./lib/controllers/api")
 controllers = require("./lib/controllers")
 
+fireside    = require("./lib/controllers/fireside")
+
 # Server Routes
 app.get  "/api/bitcamp", api.bitcamp
 app.post "/api/signup",  api.signup
 
 app.get  "/api/schools", api.schools
 
-app.get "/api/fireside/blocks", api.fireside.blocks
+app.get "/api/fireside/blocks", fireside.blocks
 
 # Angular Routes
 app.get "/",             controllers.index

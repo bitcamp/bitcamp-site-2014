@@ -1,4 +1,4 @@
-socket = io.connect("http://localhost:8001")
+socket = io.connect("http://localhost:13891")
 
 angular.module('bitcampApp')
 

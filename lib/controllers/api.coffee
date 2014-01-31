@@ -9,6 +9,8 @@ db.configure
   password: process.env.DB_PASSWORD
   database: 'bitcamp'
 
+exports.db = db
+
 
 exports.bitcamp = (req, res) ->
   res.json
@@ -34,8 +36,3 @@ exports.signup = (req, res) ->
 exports.schools = (req, res) ->
   res.json require('../util/schools')
 
-exports.fireside =
-  blocks: (req, res) ->
-    if not blocks.length
-      do refreshBlocks
-    res.json 200, blocks
