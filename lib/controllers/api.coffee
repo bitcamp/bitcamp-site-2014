@@ -1,15 +1,7 @@
-db      = require "mysql-promise"
 {check} = require "validator"
 q       = require "q"
 
-
-db.configure
-  host:     'localhost'
-  user:     'bitcamp'
-  password: process.env.DB_PASSWORD
-  database: 'bitcamp'
-
-exports.db = db
+{db}    = require "../server"
 
 
 exports.bitcamp = (req, res) ->

@@ -1,8 +1,4 @@
-io = require("socket.io").listen 13891, {
-  log: false
-}
-
-{db} = require './api'
+{db, io, ready} = require '../server'
 
 
 blocks = []
@@ -15,15 +11,15 @@ randomInt = (min, max) ->
   Math.floor(Math.random() * (max - min + 1)) + min
 
 
-io.sockets.on "connection", (socket) ->
+ready.then ->
+  io.sockets.on "connection", (socket) ->
+    blocksInterval = setInterval ->
+      refreshBlocks()
+      socket.emit 'api/fireside/blocks', blocks
+    , 10000
 
-  blocksInterval = setInterval ->
-    refreshBlocks()
-    socket.emit 'fireside/blocks', blocks
-  , 10000
-
-  socket.on 'disconnect', ->
-    clearInterval blocksInterval
+    socket.on 'disconnect', ->
+      clearInterval blocksInterval
 
 
 randomizedBlocks = (max, n) ->
