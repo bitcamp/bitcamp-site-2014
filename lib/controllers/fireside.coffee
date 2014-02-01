@@ -10,15 +10,25 @@ randomN = (min, max) ->
 randomInt = (min, max) ->
   Math.floor(Math.random() * (max - min + 1)) + min
 
+# Decreasing values; safe in 0 < x < 200.
+delta_t = (x) ->
+  Math.floor(100000 / Math.log(16*(x + 1)))
+
 
 ready.then ->
+
   io.sockets.on "connection", (socket) ->
-    blocksInterval = setInterval ->
-      refreshBlocks()
-      socket.emit 'api/fireside/blocks', blocks
-    , 10000
+    t = delta_t io.sockets.clients().length
+    socket.broadcast.emit '/fireside/delta_t', t
+    socket          .emit '/fireside/delta_t', t
+
+    blocksInterval = setInterval refreshBlocks, t
 
     socket.on 'disconnect', ->
+      t = delta_t(io.sockets.clients().length - 1)
+      socket.broadcast.emit '/fireside/delta_t', t
+      socket          .emit '/fireside/delta_t', t
+
       clearInterval blocksInterval
 
 
@@ -43,6 +53,7 @@ refreshBlocks = ->
 exports.blocks = (req, res) ->
   refreshBlocks()
     .fail (err) ->
-      res.json 200, blocks
+      console.log err
+      res.json 500, []
     .done ->
       res.json 200, blocks

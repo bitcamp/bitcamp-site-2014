@@ -1,35 +1,40 @@
-socket = io.connect()
-
 angular.module('bitcampApp')
-  .controller 'FiresideCtrl', ($scope, $http) ->
+  .controller 'FiresideCtrl', ($scope, $http, $resource) ->
 
-    onBlocks = []
+    socket = io.connect()
 
-    processBlocks = (blocks) ->
-      $bs = $ '.inner-block'
+    $scope.blocksI = 0
+    $scope.delta_t = 4000
+    $scope.blocks_on = []
 
-      onBlocks.map (i) ->
-        $b = $bs.eq i
-        $b.removeClass $b.data 'colorclass'
-        $b.addClass    $b.data 'dimclass'
+    socket.on 'connect', ->
+      socket.on '/fireside/delta_t', (delta_t) ->
+        clearInterval $scope.blocksI
+        $scope. blocksI = setInterval blocksF, delta_t
+        $scope.delta_t = delta_t
 
-      onBlocks = []
+    Blocks = $resource '/fireside/blocks', {},
+      get:
+        method: 'GET'
+        isArray: true
 
-      blocks.map (b, i) ->
-        $b = $bs.eq i
-        if b.on is true
-          $b.removeClass $b.data 'dimclass'
-          $b.addClass    $b.data 'colorclass'
-          onBlocks.push i
+    do blocksF = ->
+      $scope.blocks = Blocks.get ->
+        $bs = $ '.inner-block'
 
-    socket.on 'api/fireside/blocks', (blocks) ->
-      processBlocks blocks
+        $scope.blocks_on.map (i) ->
+          $b = $bs.eq i
+          $b.removeClass $b.data 'colorclass'
+          $b.addClass    $b.data 'dimclass'
 
-    blocksI = setInterval ->
-      $http.get('/api/fireside/blocks')
-        .success (blocks) ->
-          processBlocks blocks
-        .error (err) ->
-          console.log err
-    , 10000
+        $scope.blocks_on = []
+
+        $scope.blocks.map (b, i) ->
+          $b = $bs.eq i
+          if b.on is true
+            $b.removeClass $b.data 'dimclass'
+            $b.addClass    $b.data 'colorclass'
+            $scope.blocks_on.push i
+
+    $scope. blocksI = setInterval blocksF, 4000
 

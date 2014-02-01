@@ -11,7 +11,7 @@ ready.then ->
 
   app.get  "/api/schools", api.schools
 
-  app.get "/api/fireside/blocks", fireside.blocks
+  app.get "/fireside/blocks", fireside.blocks
 
 
   # Angular Routes
