@@ -22,7 +22,7 @@ exports.signup = (req, res) ->
     res.json 200, msg: "200"
   .fail (err) ->
     console.log err.message
-    res.json 500, msg: "500"
+    res.json 400, msg: "400"
   .done ->
     console.log "done!"
 
