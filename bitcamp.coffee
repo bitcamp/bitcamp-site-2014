@@ -1,5 +1,6 @@
 {app, ready} = require "./lib/server"
 
+
 # Server Routes
 ready.then ->
   controllers  = require "./lib/controllers"

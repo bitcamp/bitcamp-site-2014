@@ -5,8 +5,8 @@ q       = require "q"
 
 
 exports.bitcamp = (req, res) ->
-  res.json
-    bitcamp: true
+  res.json bitcamp: true
+
 
 exports.signup = (req, res) ->
   {email} = req.body
@@ -18,13 +18,15 @@ exports.signup = (req, res) ->
     if rows.length is 0
       db.query('INSERT INTO signup SET ?', req.body)
     else true
+  .then ->
+    res.json 200, msg: "200"
   .fail (err) ->
     console.log err.message
     res.json 500, msg: "500"
   .done ->
-    res.json 200, msg: "200"
+    console.log "done!"
 
 
 exports.schools = (req, res) ->
-  res.json require('../util/schools')
+  res.json require '../util/schools'
 

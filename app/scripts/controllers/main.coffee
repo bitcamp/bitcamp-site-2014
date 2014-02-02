@@ -6,6 +6,7 @@ angular.module('bitcampApp')
       .success (data) ->
         null
       .error (data) ->
+        null
 
   .controller 'SignupCtrl', ($scope, $http) ->
     $scope.name       = ''
@@ -13,6 +14,14 @@ angular.module('bitcampApp')
     $scope.university = ''
 
     $scope.schools = []
+
+    $scope.submitText   = 'submit'
+    submitDefault       = $scope.submitText
+    submitSuccess       = 'good to go!'
+    submitError         = 'error :('
+    submitWait          = '. . .'
+    submitWaiting       = false
+    $scope.submitStyles = {}
 
     submitDelay = 2000 # milliseconds
 
@@ -41,6 +50,13 @@ angular.module('bitcampApp')
             do process
 
     $scope.signup = ->
+      return if submitWaiting
+      submitWaiting = true
+
+      $scope.submitText = submitWait
+      $scope.submitStyles["color"]            = "#e5d8cf" #grey-light
+      $scope.submitStyles["background-color"] = "#7f6c60" #grey-dark
+
       $http
         method: 'POST'
         url: '/api/signup'
@@ -49,23 +65,32 @@ angular.module('bitcampApp')
           email:      $scope.email
           university: $scope.university
         headers: 'Content-Type': 'application/json'
+
       .success (data) ->
-        $("#permission #signup").val 'good to go'
-        $("#permission #signup").css 'background-color': 'white'
-        $("#permission #signup").css 'color': '#53a559'
+        $scope.submitText                       = submitSuccess
+        $scope.submitStyles["background-color"] = "white"
+        $scope.submitStyles["color"]            = "#53a559"
+
         setTimeout ->
-          $("#permission #signup").val 'submit'
-          $("#permission #signup").css 'background-color': ''
-          $("#permission #signup").css 'color': ''
-          $("#permission input").not(':button, :submit, :reset, :hidden').val ''
+          $scope.$apply ->
+            $scope.submitText   = submitDefault
+            $scope.submitStyles = {}
+            $scope.name         = ''
+            $scope.email        = ''
+            $scope.university   = ''
         , submitDelay
+
       .error (data) ->
-        $("#permission #signup").val 'error :('
-        $("#permission #signup").css 'background-color': '#ff404a'
-        $("#permission #signup").css 'color': 'white'
+        $scope.submitText                       = submitError
+        $scope.submitStyles["background-color"] = "#ff404a"
+        $scope.submitStyles["color"]            = "white"
+
         setTimeout ->
-          $("#permission #signup").val 'submit'
-          $("#permission #signup").css 'background-color': ''
-          $("#permission #signup").css 'color': ''
+          $scope.$apply ->
+            $scope.submitText   = submitDefault
+            $scope.submitStyles = {}
         , submitDelay
+
+      .finally ->
+        submitWaiting = false
 

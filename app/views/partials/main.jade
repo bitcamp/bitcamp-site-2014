@@ -4,13 +4,10 @@ header#header.row.btc-row
   #logo.col-xs-12.noselect
     a(href="/")
       <img src='/images/logo.svg' width='140'  height='150'>
-  //-#title.col-xs-12 bitcamp
 
   .col-xs-12
     h1#subtitle.
-      you
-      +
-      tech
+      you + tech
     h3#time-and-place
       span#time.
         Hackathon @
@@ -47,7 +44,7 @@ header#header.row.btc-row
         input(type='email' placeholder='email'      ng-model='email' class='input-email')
         input(type='text'  placeholder='university' ng-model='university' ui-autocomplete="autocompleteOptions")
       h3
-        input.button#signup(type='submit' value='submit')
+        input.button#signup(type='submit' value='{{submitText}}' ng-style="submitStyles")
     <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
 
   mixin sponsor(size, sponsor, aHref)
