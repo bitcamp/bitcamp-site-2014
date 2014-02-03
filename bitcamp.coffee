@@ -3,9 +3,9 @@
 
 # Server Routes
 ready.then ->
-  controllers  = require "./lib/controllers"
-  api          = require "./lib/controllers/api"
-  fireside     = require "./lib/controllers/fireside"
+  controllers = require "./lib/controllers"
+  api         = require "./lib/controllers/api"
+  fireside    = require "./lib/controllers/fireside"
 
   app.get  "/api/bitcamp", api.bitcamp
   app.post "/api/signup",  api.signup

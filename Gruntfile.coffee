@@ -46,10 +46,10 @@ module.exports = (grunt) ->
         tasks: ["newer:coffee:dist"]
 
       compass:
-        files: ["<%= yeoman.app %>/styles/{,*/}*.{scss,sass}"]
+        files: ["<%= yeoman.app %>/styles/**/*.{scss,sass}"]
         tasks: [
           "compass:server"
-          "autoprefixer"
+          "autoprefixer:dist"
         ]
 
       livereload_css:
@@ -153,18 +153,18 @@ module.exports = (grunt) ->
     # Compiles Sass to CSS and generates necessary files if requested
     compass:
       options:
-        sassDir: "<%= yeoman.app %>/styles"
-        cssDir: ".tmp/styles"
-        generatedImagesDir: ".tmp/images/generated"
-        imagesDir: "<%= yeoman.app %>/images"
-        javascriptsDir: "<%= yeoman.app %>/scripts"
-        fontsDir: "<%= yeoman.app %>/styles/fonts"
-        importPath: "<%= yeoman.app %>/bower_components"
-        httpImagesPath: "/images"
+        sassDir:                 "<%= yeoman.app %>/styles"
+        cssDir:                  ".tmp/styles"
+        generatedImagesDir:      ".tmp/images/generated"
+        imagesDir:               "<%= yeoman.app %>/images"
+        javascriptsDir:          "<%= yeoman.app %>/scripts"
+        fontsDir:                "<%= yeoman.app %>/styles/fonts"
+        importPath:              "<%= yeoman.app %>/bower_components"
+        httpImagesPath:          "/images"
         httpGeneratedImagesPath: "/images/generated"
-        httpFontsPath: "/styles/fonts"
-        relativeAssets: false
-        assetCacheBuster: false
+        httpFontsPath:           "/styles/fonts"
+        relativeAssets:          false
+        assetCacheBuster:        false
 
       dist:
         options:
@@ -273,33 +273,29 @@ module.exports = (grunt) ->
     copy:
       dist:
         files: [
-          {
-            expand: true
-            dot: true
-            cwd: "<%= yeoman.app %>"
-            dest: "<%= yeoman.dist %>"
-            src: [
-              "*.{ico,png,txt}"
-              ".htaccess"
-              "bower_components/**/*"
-              "images/*"
-              "fonts/*"
-              "static/*"
-            ]
-          }
-          {
-            expand: true
-            dot: true
-            cwd: "<%= yeoman.app %>/<%= yeoman.views %>"
-            dest: "<%= yeoman.dist %>/<%= yeoman.views %>"
-            src: "**/*.jade"
-          }
-          {
-            expand: true
-            cwd: ".tmp/images"
-            dest: "<%= yeoman.dist %>/images"
-            src: ["generated/*"]
-          }
+          expand: true
+          dot: true
+          cwd: "<%= yeoman.app %>"
+          dest: "<%= yeoman.dist %>"
+          src: [
+            "*.{ico,png,txt}"
+            ".htaccess"
+            "bower_components/**/*"
+            "images/*"
+            "fonts/*"
+            "static/*"
+          ]
+        ,
+          expand: true
+          dot: true
+          cwd: "<%= yeoman.app %>/<%= yeoman.views %>"
+          dest: "<%= yeoman.dist %>/<%= yeoman.views %>"
+          src: "**/*.jade"
+        ,
+          expand: true
+          cwd: ".tmp/images"
+          dest: "<%= yeoman.dist %>/images"
+          src: ["generated/*"]
         ]
 
       heroku:
