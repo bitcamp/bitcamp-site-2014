@@ -53,29 +53,27 @@ module.exports = (grunt) ->
         ]
 
       livereload_css:
-        files: [
-          "{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css"
-        ]
         options:
           livereload: true
+          nospawn: true
+        files: [
+          ".tmp/**/*.css"
+        ]
       livereload_else:
+        options: livereload: true
         files: [
-          "<%= yeoman.app %>/<%= yeoman.views %>/{,*//*}*.{html,jade}"
-          "{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js"
-          "<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
+          "<%= yeoman.app %>/**/*.jade"
         ]
-        options:
-          livereload: true
 
       express:
+        options:
+          livereload: true
+          nospawn: true
         files: [
           "bitcamp.coffee"
           "lib/{,*//*}*.{coffee,js,json}"
         ]
         tasks: ["express:dev"]
-        options:
-          livereload: true
-          nospawn: true #Without this option specified express won't be reloaded
 
       styles:
         files: ["<%= yeoman.app %>/styles/{,*/}*.css"]
