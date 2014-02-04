@@ -4,11 +4,10 @@ express = require "express"
 
 q       = require "q"
 
-io_address = process.env.IO_ADDRESS or server
 
 exports.app    = app    = express()
 exports.server = server = require("http").createServer app
-exports.io     = io     = require("socket.io").listen io_address,
+exports.io     = io     = require("socket.io").listen server,
   log: false
 
 exports.db     = db     = require "mysql-promise"
