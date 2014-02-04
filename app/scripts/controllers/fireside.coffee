@@ -1,4 +1,4 @@
-socket = io.connect()
+socket = io.connect "50.22.11.232"
 
 angular.module('bitcampApp')
   .controller 'FiresideCtrl', ($scope, $http) ->
