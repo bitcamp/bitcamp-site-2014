@@ -1,30 +1,58 @@
-{check} = require "validator"
-q       = require "q"
+{check}   = require "validator"
+q         = require "q"
 
-{db}    = require "../server"
+{db}      = require "../server"
+
+emailjs = require "emailjs"
+email_server = emailjs.server.connect
+  user     : "bitcamp_bitcamp"
+  password : "b1tcamp"
+  host     : "smtp.webfaction.com"
+  #port     :      # an integer
+  ssl      : true # boolean or object {key, ca, cert}
+  timeout  : 5000 # milliseconds
+  domain   : "bitca.mp"
 
 
 exports.bitcamp = (req, res) ->
-  res.json bitcamp: true
+    res.json bitcamp: true
 
 
 exports.signup = (req, res) ->
-  {email} = req.body
+
+  {email, name} = req.body
+
   q(req.body).then ({email}) ->
     email if check(email).isEmail()
+
   .then (email) ->
     db.query "SELECT email FROM signup WHERE email=?", email
+
   .spread (rows) ->
     if rows.length is 0
       db.query "INSERT INTO signup SET ?", req.body
     else true
+
+  .then ->
+    d = q.defer()
+    email_server.send
+      from:           "Bitcamp <bitcamp@bitca.mp>"
+      to:             email
+      subject:        "Permission Slip Received!"
+      text:           require("../emails/permission_slip")(name)
+      "Content-Type": "text/html; charset=utf-8"
+    , (err, data) ->
+      if err then d.reject err else d.resolve()
+    return d
+
   .then ->
     res.json 200, msg: "200"
+
   .fail (err) ->
     console.log err.message
     res.json 400, msg: "400"
-  .done ->
-    console.log "Signup success!"
+
+  .done()
 
 
 exports.schools = (req, res) ->
