@@ -23,7 +23,7 @@ The website hosted at http://bitca.mp/.
 
 ## Code with us
 
-1. Make a new branch:
+1. Make a new branch:  
     > git checkout -b $USER
 2. Write some code, commit, then push.
 3. Do #2 for a while.
