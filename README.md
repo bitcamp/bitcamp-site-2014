@@ -11,12 +11,12 @@ The website hosted at http://bitca.mp/.
 1. Fork this repo.
 2. Clone it to your machine  
     > git clone git@github.com:$USER/bitca.mp.git
-3. Make sure you have Node.js installed and a MySQL server running.
+3. Make sure you have Node.js installed and a MySQL server running.  
   * FIXME: make a database bootstrap script 
-4. Install dependencies:
-    > cd bitca.mp && npm i
+4. Install dependencies:  
+    > cd bitca.mp && npm i  
     > npm install -g grunt-cli
-5. Start her up:
+5. Start her up:  
     > grunt serve
 6. Head to http://localhost:8000/
 
