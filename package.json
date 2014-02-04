@@ -10,7 +10,8 @@
     "socket.io": "~0.9.16",
     "socket.io-client": "~0.9.16",
     "emailjs": "~0.3.6",
-    "sprintf": "~0.1.3"
+    "sprintf": "~0.1.3",
+    "grunt-contrib-jade": "~0.9.1"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

@@ -66,6 +66,9 @@ module.exports = (grunt) ->
         ]
 
       express:
+        options:
+          livereload: true
+          nospawn: true
         files: [
           "bitcamp.coffee"
           "lib/{,*//*}*.{coffee,js,json}"
@@ -182,29 +185,41 @@ module.exports = (grunt) ->
             "<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
           ]
 
+
+    # Reads HTML for usemin blocks to enable smart builds that automatically
+    # concat, minify and revision files. Creates configurations in memory so
+    # additional tasks can operate on them
     useminPrepare:
       html: [
-        "<%= yeoman.app %>/**/*.jade"
+        "<%= yeoman.app %>/views/**/*.jade"
       ]
       options:
         dest: "<%= yeoman.dist %>"
 
 
+    # Performs rewrites based on rev and the useminPrepare configuration
     usemin:
       html: [
-        "<%= yeoman.dist %>/**/*.html"
+        "<%= yeoman.dist %>/views/**/*.html"
+        "<%= yeoman.dist %>/views/**/*.jade"
       ]
       css: ["<%= yeoman.dist %>/styles/{,*/}*.css"]
       options:
         assetsDirs: ["<%= yeoman.dist %>"]
 
 
+    # The following *-min tasks produce minified files in the dist folder
     imagemin:
       dist:
         files: [
           expand: true
           cwd: "<%= yeoman.app %>/images"
-          src: "{,*/}*.{png,jpg,jpeg,gif}"
+          src: [
+            "**/*.gif"
+            "**/*.jpeg"
+            "**/*.jpg"
+            "**/*.png"
+          ]
           dest: "<%= yeoman.dist %>/images"
         ]
 
