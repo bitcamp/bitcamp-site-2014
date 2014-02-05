@@ -1,29 +1,29 @@
-{app, ready} = require "./lib/server"
+{ready, app, indexRoute, viewsRoute} = require "./server"
 
-# Server Routes
+
 ready.then ->
-  controllers  = require "./lib/controllers"
-  api          = require "./lib/controllers/api"
-  fireside     = require "./lib/controllers/fireside"
+  main     = require "./server/main"
+  fireside = require "./server/fireside"
 
-  app.get  "/api/bitcamp", api.bitcamp
-  app.post "/api/signup",  api.signup
+  # API Routes
+  app.get  "/api/bitcamp", main.bitcamp
+  app.post "/api/signup",  main.signup
+  app.get  "/api/schools", main.schools
 
-  app.get  "/api/schools", api.schools
-
-  app.get "/api/fireside/blocks", fireside.blocks
-
+  app.get  "/api/fireside/blocks", fireside.blocks
 
   # Angular Routes
-  app.get "/",           controllers.index
-  app.get "/partials/*", controllers.partials
+  app.get "/",         indexRoute
+  app.get "/fireside", indexRoute
 
-  app.get "/fireside", controllers.index
+  app.get /^\/views\/(.*)$/, viewsRoute
+
 
   # 404
   app.get "/*", [(req, res, next) ->
     res.status 404
-    next()
-    # Let angular figure out the 404 view.
+    next() # Let angular figure out the 404 view.
   , controllers.index]
 
+
+ready.done()

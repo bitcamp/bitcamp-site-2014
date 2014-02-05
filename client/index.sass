@@ -1,5 +1,5 @@
 @import 'sass-bootstrap/lib/variables'
-@import 'variables'
+@import 'layout/styles/variables'
 // ^ overwrite bootstrap variables
 
 @import 'sass-bootstrap/lib/mixins'
@@ -10,8 +10,8 @@
 @import 'sass-bootstrap/lib/scaffolding'
 @import 'sass-bootstrap/lib/grid'
 
-@import 'colors'
-@import 'typo'
+@import 'layout/styles/colors'
+@import 'layout/styles/typo'
 
 
 html, body, #wrapper
@@ -47,12 +47,7 @@ body
   @include clearfix()
 
 .noselect
-  -webkit-touch-callout: none
-  -webkit-user-select:   none
-  -khtml-user-select:    none
-  -moz-user-select:      none
-  -ms-user-select:       none
-  user-select:           none
+  user-select: none
 
 button, .button
   max-width: 10em
@@ -151,11 +146,7 @@ header
   padding: 0
   width: $w
   height: $h
-
   margin: 0 auto
-  margin-left: -15px
-  // Fix Jeff's stupid 320px whitespace padding
-
   display: inline-block
   text-align: center
   .block-inner
