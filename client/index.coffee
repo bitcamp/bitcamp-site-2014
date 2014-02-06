@@ -1,22 +1,19 @@
-'use strict'
-
 bitcamp = angular.module('bitcampApp', [
   'ngCookies'
   'ngResource'
   'ngSanitize'
   'ngRoute'
-  #'ui.autocomplete'
 ])
   .config ($routeProvider, $locationProvider) ->
     $routeProvider
       .when '/',
-        templateUrl: 'partials/main'
+        templateUrl: 'views/main'
         controller: 'MainCtrl'
       .when '/fireside',
-        templateUrl: 'partials/fireside'
+        templateUrl: 'views/fireside'
         controller: 'FiresideCtrl'
       .when '/404',
-        templateUrl: 'partials/404'
+        templateUrl: 'layout/views/404'
         controller: '404Ctrl'
       .otherwise
         redirectTo: '/404'
@@ -36,5 +33,5 @@ $('body').flowtype
   maximum   : 960,
   minFont   : 12,
   maxFont   : 20,
-  fontRatio : 60,
+  fontRatio : 55,
   lineRatio : 1.45

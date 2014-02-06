@@ -3,11 +3,9 @@ header#header.row.btc-row
     .btc-background
   #logo.col-xs-12.noselect
     a(href="/")
-      <img src='/images/logo.svg' width='140'  height='150'>
+      <img src='/images/logo.svg' width='187'  height='200'>
 
   .col-xs-12
-    h1#subtitle.
-      you + tech
     h3#time-and-place
       span#time.
         Hackathon @
@@ -21,7 +19,7 @@ header#header.row.btc-row
 
 #main
   #description.row.btc-row
-    h2 1000+ campers&ensp;·&ensp;36 hours&ensp;·&ensp;s'mores and swag
+    h2 36 hours&ensp;·&ensp;1000+ campers&ensp;·&ensp;s'mores
 
     h3.
       Take what you love, fuse it with tech,
@@ -42,38 +40,44 @@ header#header.row.btc-row
       fieldset
         input(type='text'  placeholder='name'       ng-model='name')
         input(type='email' placeholder='email'      ng-model='email' class='input-email')
-        input(type='text'  placeholder='university' ng-model='university' ui-autocomplete="autocompleteOptions")
+        input(type='text'  placeholder='university' ng-model='university')
       h3
         input.button#signup(type='submit' value='{{submitText}}' ng-style="submitStyles")
     <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
 
-  mixin sponsor(size, sponsor, aHref)
-    div(class="block-"+size)
+  mixin sponsor(sponsor, aHref)
+    div.sponsor
       a(href=aHref)
-        .block-inner
-          span
-            <img src="/images/sponsor/#{sponsor}.png">
+        <img src="/images/sponsor/#{sponsor}.png" width="220" height="165">
 
   #sponsors.row.btc-row.noselect
     h2 Sponsors
     .col-xs-12
+<<<<<<< HEAD:app/views/partials/main.jade
       mixin sponsor("lg", "booz-allen-hamilton", "http://www.boozallen.com/")
     .col-xs-12
       mixin sponsor("md", "att",                 "http://www.att.com/")
       mixin sponsor("md", "appian",              "http://www.appian.com/")
       mixin sponsor("md", "cipher",              "http://www.ciphertechsolutions.com/")
+=======
+      mixin sponsor("booz-allen-hamilton", "http://www.boozallen.com/")
     .col-xs-12
-      mixin sponsor("sm", "clarabridge",         "http://www.clarabridge.com/")
-      mixin sponsor("sm", "opis",                "http://www.opisnet.com/")
-      mixin sponsor("sm", "socialradar",         "http://socialradar.com/")
-      mixin sponsor("sm", "sparkfun",            "https://www.sparkfun.com/")
+      mixin sponsor("att",                 "http://www.att.com/")
+      mixin sponsor("appian",              "http://www.appian.com/")
+      mixin sponsor("cipher",              "http://www.ciphertechsolutions.com/")
+>>>>>>> release/3.0.0:client/main/index.jade
+    .col-xs-12
+      mixin sponsor("clarabridge",         "http://www.clarabridge.com/")
+      mixin sponsor("opis",                "http://www.opisnet.com/")
+      mixin sponsor("socialradar",         "http://socialradar.com/")
+      mixin sponsor("sparkfun",            "https://www.sparkfun.com/")
 
   #partners.row.btc-row.noselect
     h2 Partners
     .col-xs-12
-      mixin sponsor("md", "terrapin-hackers",    "http://terrapinhackers.com/")
-      mixin sponsor("md", "startup-shell",       "http://startupshell.org/")
-      mixin sponsor("md", "mlh",                 "http://mlh.io/")
+      mixin sponsor("terrapin-hackers",    "http://terrapinhackers.com/")
+      mixin sponsor("startup-shell",       "http://startupshell.org/")
+      mixin sponsor("mlh",                 "http://mlh.io/")
 
   #twitter.row.btc-row
     h3

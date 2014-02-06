@@ -1,5 +1,3 @@
-'use strict'
-
 angular.module('bitcampApp')
   .controller 'MainCtrl', ($scope, $http) ->
     $http.get('/api/bitcamp')
@@ -13,8 +11,6 @@ angular.module('bitcampApp')
     $scope.email      = ''
     $scope.university = ''
 
-    $scope.schools = []
-
     $scope.submitText   = 'submit'
     submitDefault       = $scope.submitText
     submitSuccess       = 'good to go!'
@@ -24,30 +20,6 @@ angular.module('bitcampApp')
     $scope.submitStyles = {}
 
     submitDelay = 2000 # milliseconds
-
-    $scope.autocompleteOptions =
-      options:
-        html:       true
-        focusOpen:  false
-        onlySelect: false
-        minLength:  3
-        methods:    {}
-        outHeight:  200
-        source:     (req, res) ->
-          process = ->
-            schools = $scope.schools.slice()
-            schools = $scope.autocompleteOptions.methods.filter schools, req.term
-            res schools
-
-          if $scope.schools.length is 0
-            $http.get('/api/schools')
-              .success (schools) ->
-                $scope.schools = schools
-                do process
-              .error (schools) ->
-                console.log "Error :(!"
-          else
-            do process
 
     $scope.signup = ->
       return if submitWaiting

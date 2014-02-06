@@ -1,4 +1,4 @@
-{db, io, ready} = require '../server'
+{db, io, ready} = require '../'
 
 
 blocks = []

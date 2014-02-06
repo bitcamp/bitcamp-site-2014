@@ -1,4 +1,5 @@
 doctype html
+
 html(ng-app="bitcampApp")
   head
     meta(charset="utf-8")
@@ -15,22 +16,22 @@ html(ng-app="bitcampApp")
     meta(property="og:description", content="36-hour hackathon at the University of Maryland. April 4-6, 2014.")
     meta(property="og:image",       content="http://bitca.mp/static/bitcamp-fb-opengraph.png")
 
-    link(rel="shortcut icon", href="/images/favicon.ico", type="image/x-icon")
+    link(rel="shortcut icon", href="favicon.ico", type="image/x-icon")
 
-    <!-- build:css(app) styles/vendor.css -->
+    <!-- build:css(./) vendor.css -->
     link(rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css")
     <!-- endbuild -->
 
-    <!-- build:css({.tmp,app}) styles/main.css -->
-    link(rel="stylesheet" href="styles/fonts.css")
-    link(rel="stylesheet" href="styles/main.css")
-    link(rel="stylesheet" href="styles/fireside.css")
+    <!-- build:css({.tmp,client}) main.css -->
+    link(rel="stylesheet" href="layout/styles/fonts.css")
+    link(rel="stylesheet" href="fireside/index.css")
+    link(rel="stylesheet" href="index.css")
     <!-- endbuild -->
 
   body
     div.wrapper#wrapper(ng-view)
 
-    <!-- build:js(app) scripts/plugins.js -->
+    <!-- build:js(./) plugins.js -->
     script(src="bower_components/jquery/jquery.js")
 
     script(src="bower_components/jquery-ui/ui/jquery-ui.js")
@@ -42,12 +43,11 @@ html(ng-app="bitcampApp")
     script(src="bower_components/sass-bootstrap/js/tooltip.js")
 
     script(src="bower_components/flowtype/flowtype.js")
-
     <!-- endbuild -->
 
     script(src="socket.io/socket.io.js")
 
-    <!-- build:js(app) scripts/modules.js -->
+    <!-- build:js(./) modules.js -->
     script(src="bower_components/jquery.scrollTo/jquery.scrollTo.js")
 
     script(src="bower_components/angular-resource/angular-resource.js")
@@ -57,11 +57,13 @@ html(ng-app="bitcampApp")
     script(src="bower_components/angular-ui-autocomplete/autocomplete.js")
     <!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    script(src="scripts/app.js")
-    script(src="scripts/controllers/main.js")
-    script(src="scripts/controllers/404.js")
-    script(src="scripts/controllers/fireside.js")
+    <!-- build:js({.tmp,client}) main.js -->
+    script(src="index.js")
+    script(src="layout/scripts/404.js")
+
+    script(src="main/index.js")
+
+    script(src="fireside/index.js")
     <!-- endbuild -->
 
     script(async).

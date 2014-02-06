@@ -1,6 +1,5 @@
 @import 'sass-bootstrap/lib/variables'
-@import 'variables'
-// ^ overwrite bootstrap variables
+@import 'layout/styles/variables'
 
 @import 'sass-bootstrap/lib/mixins'
 
@@ -10,8 +9,8 @@
 @import 'sass-bootstrap/lib/scaffolding'
 @import 'sass-bootstrap/lib/grid'
 
-@import 'colors'
-@import 'typo'
+@import 'layout/styles/colors'
+@import 'layout/styles/typo'
 
 
 html, body, #wrapper
@@ -47,12 +46,7 @@ body
   @include clearfix()
 
 .noselect
-  -webkit-touch-callout: none
-  -webkit-user-select:   none
-  -khtml-user-select:    none
-  -moz-user-select:      none
-  -ms-user-select:       none
-  user-select:           none
+  user-select: none
 
 button, .button
   max-width: 10em
@@ -60,7 +54,7 @@ button, .button
   padding: 0.5em 0
   border: none
   font-weight: bold
-  border-radius: 3px
+  border-radius: 4px
 
 input
   @include placeholder($color_white)
@@ -83,12 +77,11 @@ header
     background: left bottom no-repeat url('/images/treetent.svg')
   #logo
     padding: 0.938em 0
+    margin-bottom: 40px
   #title
     font-size: 2em
     font-weight: bold
     color: $color_orange
-  //#subtitle
-  //  margin-top: 70px
   #time-and-place
     line-height: 1.3em
     #time
@@ -146,56 +139,15 @@ header
     &:focus
       @include placeholder(transparent)
 
-@mixin block($w, $h)
-  color: $color_white
-  padding: 0
-  width: $w
-  height: $h
-
-  margin: 0 auto
-  margin-left: -15px
-  // Fix Jeff's stupid 320px whitespace padding
-
-  display: inline-block
-  text-align: center
-  .block-inner
+#sponsors, #partners
+  .sponsor
+    display: inline
+    height: 100%
     img
-      margin: 0 auto
       transition: opacity 0.2s ease-out
       &:hover
         opacity: 1
       opacity: 0.8
-    @include size(100%, 225px)
-    display: table
-    span
-      overflow: hidden
-      display: table-cell
-      vertical-align: middle
-      b
-        line-height: 1em
-        font-size: 4.9em
-      small
-        margin-top: 0.2em
-        font-size: 1.4em
-
-#sponsors, #partners
-  color: $color_grey-dark
-  h4
-    font-weight: lighter
-    text-transform: uppercase
-  .block-xs
-    @include block(8.95em, 8.95em)
-  .block-sm
-    @include block(290px, 200px)
-  .block-md
-    @include block(290px, 210px)
-  .block-lg
-    @include block(290px, 220px)
-  #sponsor-you
-    .block-inner
-      background-color: $color_orangeyellow
-
-//#twitter
 
 #map
   h2

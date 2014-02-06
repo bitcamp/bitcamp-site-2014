@@ -1,28 +1,24 @@
-{check}   = require "validator"
-q         = require "q"
+path               = require "path"
 
-{db}      = require "../server"
+{check}            = require "validator"
+q                  = require "q"
 
-emailjs = require "emailjs"
-email_server = emailjs.server.connect
-  user     : "bitcamp_bitcamp"
-  password : "b1tcamp"
-  host     : "smtp.webfaction.com"
-  #port     :      # an integer
-  ssl      : true # boolean or object {key, ca, cert}
-  timeout  : 5000 # milliseconds
-  domain   : "bitca.mp"
+{db, email_server} = require "../"
+
+{permissionSlip}   = require "../util/emails"
+
 
 
 exports.bitcamp = (req, res) ->
-    res.json bitcamp: true
+  res.json
+    bitcamp: true
 
 
 exports.signup = (req, res) ->
-
   {email, name} = req.body
 
-  q(req.body).then ({email}) ->
+  q()
+  .then ->
     email if check(email).isEmail()
 
   .then (email) ->
@@ -39,7 +35,7 @@ exports.signup = (req, res) ->
       from:           "Bitcamp <bitcamp@bitca.mp>"
       to:             email
       subject:        "Permission Slip Received!"
-      text:           require("../emails/permission_slip")(name)
+      text:           permissionSlip(name)
       "Content-Type": "text/html; charset=utf-8"
     , (err, data) ->
       if err then d.reject err else d.resolve()
@@ -56,5 +52,5 @@ exports.signup = (req, res) ->
 
 
 exports.schools = (req, res) ->
-  res.json require '../util/schools'
+  res.json require "../util/schools"
 
