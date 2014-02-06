@@ -18,7 +18,8 @@ exports.signup = (req, res) ->
 
   {email, name} = req.body
 
-  q(req.body).then ({email}) ->
+  q()
+  .then ->
     email if check(email).isEmail()
 
   .then (email) ->
@@ -52,5 +53,5 @@ exports.signup = (req, res) ->
 
 
 exports.schools = (req, res) ->
-  res.json require('../util/schools')
+  res.json require "../util/schools"
 
