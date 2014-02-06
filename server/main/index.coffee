@@ -1,30 +1,54 @@
-path    = require "path"
+path               = require "path"
 
-{check} = require "validator"
-q       = require "q"
+{check}            = require "validator"
+q                  = require "q"
 
-{db}    = require "../"
+{db, email_server} = require "../"
+
+{permissionSlip}   = require "../util/emails"
+
 
 
 exports.bitcamp = (req, res) ->
   res.json
     bitcamp: true
 
+
 exports.signup = (req, res) ->
-  {email} = req.body
+
+  {email, name} = req.body
+
   q(req.body).then ({email}) ->
     email if check(email).isEmail()
+
   .then (email) ->
-    db.query("SELECT email FROM signup WHERE email=?", email)
+    db.query "SELECT email FROM signup WHERE email=?", email
+
   .spread (rows) ->
     if rows.length is 0
-      db.query('INSERT INTO signup SET ?', req.body)
+      db.query "INSERT INTO signup SET ?", req.body
     else true
+
+  .then ->
+    d = q.defer()
+    email_server.send
+      from:           "Bitcamp <bitcamp@bitca.mp>"
+      to:             email
+      subject:        "Permission Slip Received!"
+      text:           permissionSlip(name)
+      "Content-Type": "text/html; charset=utf-8"
+    , (err, data) ->
+      if err then d.reject err else d.resolve()
+    return d
+
+  .then ->
+    res.json 200, msg: "200"
+
   .fail (err) ->
     console.log err.message
-    res.json 500, msg: "500"
-  .done ->
-    res.json 200, msg: "200"
+    res.json 400, msg: "400"
+
+  .done()
 
 
 exports.schools = (req, res) ->

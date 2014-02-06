@@ -11,6 +11,15 @@ exports.io     = io     = require("socket.io").listen server, log: false
 
 exports.db     = db     = require "mysql-promise"
 
+exports.email_server    = require("emailjs").server.connect
+  user     : "bitcamp_bitcamp"
+  password : "b1tcamp"
+  host     : "smtp.webfaction.com"
+  #port     :      # an integer
+  ssl      : true # boolean or object {key, ca, cert}
+  timeout  : 5000 # milliseconds
+  domain   : "bitca.mp"
+
 
 app.configure "development", ->
   app.use require("connect-livereload")()
@@ -40,6 +49,7 @@ app.configure ->
     password: process.env.DB_PASSWORD
     database: 'bitcamp'
 
+
 # Start server
 ready = q.defer()
 
@@ -53,6 +63,7 @@ exports.ready = ready.promise
 
 
 exports.indexRoute = (req, res) ->
+  console.log "stuff"
   res.render "index"
 
 
