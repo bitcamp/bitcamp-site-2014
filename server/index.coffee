@@ -62,7 +62,6 @@ exports.ready = ready.promise
 
 
 exports.indexRoute = (req, res) ->
-  console.log "stuff"
   res.render "index"
 
 

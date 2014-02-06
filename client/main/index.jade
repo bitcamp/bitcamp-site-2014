@@ -3,7 +3,7 @@ header#header.row.btc-row
     .btc-background
   #logo.col-xs-12.noselect
     a(href="/")
-      <img src='/images/logo.svg' width='187'  height='200'>
+      <img src='/images/logo.svg' width='187' height='200'>
 
   .col-xs-12
     h3#time-and-place
@@ -14,7 +14,7 @@ header#header.row.btc-row
 
   #call-to-action.col-xs-12
     a(href='' scroll-to='#permission')
-      button#register.h2 register now
+      button#register.h3 register now
 
 
 #main
@@ -48,33 +48,35 @@ header#header.row.btc-row
   mixin sponsor(sponsor, aHref)
     div.sponsor
       a(href=aHref)
-        <img src="/images/sponsor/#{sponsor}.png" width="220" height="165">
+        <img src="/images/sponsor/#{sponsor}.png">
 
   #sponsors.row.btc-row.noselect
-    h2 Sponsors
     .col-xs-12
-<<<<<<< HEAD:app/views/partials/main.jade
-      mixin sponsor("lg", "booz-allen-hamilton", "http://www.boozallen.com/")
+      h2 Sponsors
     .col-xs-12
-      mixin sponsor("md", "att",                 "http://www.att.com/")
-      mixin sponsor("md", "appian",              "http://www.appian.com/")
-      mixin sponsor("md", "cipher",              "http://www.ciphertechsolutions.com/")
-=======
+      mixin sponsor("lts", "http://www.boozallen.com/")
+    .col-xs-12
       mixin sponsor("booz-allen-hamilton", "http://www.boozallen.com/")
     .col-xs-12
-      mixin sponsor("att",                 "http://www.att.com/")
       mixin sponsor("appian",              "http://www.appian.com/")
+      mixin sponsor("att",                 "http://www.att.com/")
       mixin sponsor("cipher",              "http://www.ciphertechsolutions.com/")
->>>>>>> release/3.0.0:client/main/index.jade
-    .col-xs-12
       mixin sponsor("clarabridge",         "http://www.clarabridge.com/")
-      mixin sponsor("opis",                "http://www.opisnet.com/")
-      mixin sponsor("socialradar",         "http://socialradar.com/")
-      mixin sponsor("sparkfun",            "https://www.sparkfun.com/")
-
-  #partners.row.btc-row.noselect
-    h2 Partners
     .col-xs-12
+      mixin sponsor("daocloud",                 "http://www.att.com/")
+      mixin sponsor("opis",                "http://www.opisnet.com/")
+      mixin sponsor("sparkfun",            "https://www.sparkfun.com/")
+      mixin sponsor("socialradar",         "http://socialradar.com/")
+    .col-xs-12
+      mixin sponsor("mashery",         "http://www.clarabridge.com/")
+      mixin sponsor("mongodb",                "http://www.opisnet.com/")
+      mixin sponsor("namecheap",         "http://socialradar.com/")
+      mixin sponsor("rdio",            "https://www.sparkfun.com/")
+      mixin sponsor("sendgrid",            "https://www.sparkfun.com/")
+
+
+    #partners.col-xs-12
+      h2 Partners
       mixin sponsor("terrapin-hackers",    "http://terrapinhackers.com/")
       mixin sponsor("startup-shell",       "http://startupshell.org/")
       mixin sponsor("mlh",                 "http://mlh.io/")
