@@ -54,7 +54,7 @@ button, .button
   padding: 0.5em 0
   border: none
   font-weight: bold
-  border-radius: 4px
+  border-radius: 6px
 
 input
   @include placeholder($color_white)
@@ -74,7 +74,7 @@ header
   white-space: normal
   .btc-background
     max-width: 60.0em
-    background: left bottom no-repeat url('/images/treetent.svg')
+    background: 10% bottom no-repeat url('/images/treetent.svg')
   #logo
     padding: 0.938em 0
     margin-bottom: 40px
@@ -88,7 +88,7 @@ header
       @media (max-width: 500px)
         white-space: pre-line
   #call-to-action
-    margin-bottom: 3em
+    margin-bottom: 1.7em
     button
       white-space: pre
       padding-left: 0
@@ -139,9 +139,12 @@ header
     &:focus
       @include placeholder(transparent)
 
-#sponsors, #partners
+#sponsors
+  #partners
+    margin-top: 40px
   .sponsor
-    display: inline
+    padding: 10px
+    display: inline-block
     height: 100%
     img
       transition: opacity 0.2s ease-out
