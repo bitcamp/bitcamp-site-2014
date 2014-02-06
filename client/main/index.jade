@@ -47,14 +47,14 @@ header#header.row.btc-row
 
   mixin sponsor(sponsor, aHref)
     div.sponsor
-      a(href=aHref)
+      a(href=aHref target="_blank")
         <img src="/images/sponsor/#{sponsor}.png">
 
   #sponsors.row.btc-row.noselect
     .col-xs-12
       h2 Sponsors
     .col-xs-12
-      mixin sponsor("lts", "http://www.boozallen.com/")
+      mixin sponsor("lts",                 "http://www.ltsnet.net/")
     .col-xs-12
       mixin sponsor("booz-allen-hamilton", "http://www.boozallen.com/")
     .col-xs-12
@@ -63,20 +63,20 @@ header#header.row.btc-row
       mixin sponsor("cipher",              "http://www.ciphertechsolutions.com/")
       mixin sponsor("clarabridge",         "http://www.clarabridge.com/")
     .col-xs-12
-      mixin sponsor("daocloud",                 "http://www.att.com/")
+      mixin sponsor("daocloud",            "http://daocloud.com/")
       mixin sponsor("opis",                "http://www.opisnet.com/")
       mixin sponsor("sparkfun",            "https://www.sparkfun.com/")
       mixin sponsor("socialradar",         "http://socialradar.com/")
     .col-xs-12
-      mixin sponsor("mashery",         "http://www.clarabridge.com/")
-      mixin sponsor("mongodb",                "http://www.opisnet.com/")
-      mixin sponsor("namecheap",         "http://socialradar.com/")
-      mixin sponsor("rdio",            "https://www.sparkfun.com/")
-      mixin sponsor("sendgrid",            "https://www.sparkfun.com/")
+      mixin sponsor("mashery",             "http://www.mashery.com/")
+      mixin sponsor("mongodb",             "http://www.mongodb.com/")
+      mixin sponsor("namecheap",           "https://www.namecheap.com/")
+      mixin sponsor("rdio",                "http://www.rdio.com/")
+      mixin sponsor("sendgrid",            "http://sendgrid.com/")
 
 
     #partners.col-xs-12
-      h2 Partners
+      h2    Partners
       mixin sponsor("terrapin-hackers",    "http://terrapinhackers.com/")
       mixin sponsor("startup-shell",       "http://startupshell.org/")
       mixin sponsor("mlh",                 "http://mlh.io/")
