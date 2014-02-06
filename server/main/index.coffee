@@ -15,7 +15,6 @@ exports.bitcamp = (req, res) ->
 
 
 exports.signup = (req, res) ->
-
   {email, name} = req.body
 
   q()

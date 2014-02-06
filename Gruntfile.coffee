@@ -36,7 +36,7 @@ module.exports = (grunt) ->
         tasks: ["newer:coffee:dist"]
 
       compass:
-        files: ["<%= yeoman.app %>/{,*//*}*.{scss,sass}"]
+        files: ["<%= yeoman.app %>/**/*.sass"]
         tasks: [
           "compass:server"
           "autoprefixer"
