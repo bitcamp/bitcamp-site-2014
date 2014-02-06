@@ -1,7 +1,7 @@
-/app/bower_components/
-/app/static/
-/app/images/
-/app/fonts/
+/client/bower_components/
+/client/static/
+/client/images/
+/client/fonts/
 
 /public/
 /heroku/

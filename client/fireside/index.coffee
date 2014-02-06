@@ -1,4 +1,4 @@
-socket = io.connect()
+socket = io.connect "50.22.11.232:13891"
 
 angular.module('bitcampApp')
   .controller 'FiresideCtrl', ($scope, $http) ->
@@ -22,14 +22,17 @@ angular.module('bitcampApp')
           $b.addClass    $b.data 'colorclass'
           onBlocks.push i
 
-    socket.on 'api/fireside/blocks', (blocks) ->
+    socket.on '/api/fireside/blocks', (blocks) ->
       processBlocks blocks
 
-    blocksI = setInterval ->
+    syncBlocks = ->
       $http.get('/api/fireside/blocks')
         .success (blocks) ->
           processBlocks blocks
         .error (err) ->
           console.log err
-    , 10000
+
+    blocksI = setInterval syncBlocks, 10000
+
+    syncBlocks()
 

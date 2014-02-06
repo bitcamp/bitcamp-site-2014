@@ -1,29 +1,18 @@
-# Generated on 2013-12-20 using generator-angular-fullstack 1.0.1
-"use strict"
-
-# # Globbing
-# for performance reasons we're only matching one level down:
-# 'test/spec/{,*/}*.js'
-# use this if you want to recursively match all subfolders:
-# 'test/spec/**/*.js'
 module.exports = (grunt) ->
 
-  # Load grunt tasks automatically
   require("load-grunt-tasks") grunt
 
-  # Time how long tasks take. Can help when optimizing build times
   require("time-grunt") grunt
 
-  # Define the configuration for all the tasks
   grunt.initConfig
 
-    # Project settings
     yeoman:
 
-      # configurable paths
-      app: require("./bower.json").appPath or "app"
-      dist: "public"
-      views: "views"
+      app:   "client"
+      srv:   "server"
+      dist:  "public"
+      tmp:   ".tmp"
+
 
     express:
       options:
@@ -40,45 +29,41 @@ module.exports = (grunt) ->
           script: "bitcamp.coffee"
           node_env: "production"
 
+
     watch:
       coffee:
-        files: ["<%= yeoman.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}"]
+        files: ["<%= yeoman.app %>/**/*.coffee"]
         tasks: ["newer:coffee:dist"]
 
       compass:
-        files: ["<%= yeoman.app %>/styles/{,*/}*.{scss,sass}"]
+        files: ["<%= yeoman.app %>/{,*//*}*.{scss,sass}"]
         tasks: [
           "compass:server"
           "autoprefixer"
         ]
 
       livereload_css:
-        files: [
-          "{.tmp,<%= yeoman.app %>}/styles/{,*//*}*.css"
-        ]
+        files: [ "<%= yeoman.tmp %>/**/*.css" ]
         options:
           livereload: true
       livereload_else:
         files: [
-          "<%= yeoman.app %>/<%= yeoman.views %>/{,*//*}*.{html,jade}"
-          "{.tmp,<%= yeoman.app %>}/scripts/{,*//*}*.js"
-          "<%= yeoman.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
+          "<%= yeoman.app %>/{,*//*}*.{html,jade}"
+          "<%= yeoman.tmp %>/**/*.js"
+          "<%= yeoman.app %>/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
         ]
         options:
           livereload: true
 
       express:
-        files: [
-          "bitcamp.coffee"
-          "lib/{,*//*}*.{coffee,js,json}"
-        ]
+        files: [ "<%= yeoman.srv %>/**/*.coffee" ]
         tasks: ["express:dev"]
         options:
           livereload: true
           nospawn: true #Without this option specified express won't be reloaded
 
       styles:
-        files: ["<%= yeoman.app %>/styles/{,*/}*.css"]
+        files: ["<%= yeoman.app %>/**/*.css"]
         tasks: [
           "newer:copy:styles"
           "autoprefixer"
@@ -88,16 +73,6 @@ module.exports = (grunt) ->
         files: ["Gruntfile.js"]
 
 
-    # Make sure code styles are up to par and there are no obvious mistakes
-    jshint:
-      options:
-        jshintrc: ".jshintrc"
-        reporter: require("jshint-stylish")
-
-      all: []
-
-
-    # Empties folders to start fresh
     clean:
       dist:
         files: [
@@ -109,20 +84,7 @@ module.exports = (grunt) ->
           ]
         ]
 
-      heroku:
-        files: [
-          dot: true
-          src: [
-            "heroku/*"
-            "!heroku/.git*"
-            "!heroku/Procfile"
-          ]
-        ]
 
-      server: ".tmp"
-
-
-    # Add vendor prefixed styles
     autoprefixer:
       options:
         browsers: ["last 1 version"]
@@ -130,13 +92,12 @@ module.exports = (grunt) ->
       dist:
         files: [
           expand: true
-          cwd: ".tmp/styles/"
-          src: "{,*/}*.css"
-          dest: ".tmp/styles/"
+          cwd:    "<%= yeoman.tmp %>/styles/"
+          src:    "**/*.css"
+          dest:   "<%= yeoman.tmp %>/styles/"
         ]
 
 
-    # Compiles CoffeeScript to JavaScript
     coffee:
       options:
         sourceMap: true
@@ -145,28 +106,27 @@ module.exports = (grunt) ->
       dist:
         files: [
           expand: true
-          cwd: "<%= yeoman.app %>/scripts"
-          src: "{,*/}*.coffee"
-          dest: ".tmp/scripts"
+          cwd:  "<%= yeoman.app %>"
+          src:  "**/*.coffee"
+          dest: "<%= yeoman.tmp %>"
           ext: ".js"
         ]
 
 
-    # Compiles Sass to CSS and generates necessary files if requested
     compass:
       options:
-        sassDir: "<%= yeoman.app %>/styles"
-        cssDir: ".tmp/styles"
-        generatedImagesDir: ".tmp/images/generated"
-        imagesDir: "<%= yeoman.app %>/images"
-        javascriptsDir: "<%= yeoman.app %>/scripts"
-        fontsDir: "<%= yeoman.app %>/styles/fonts"
-        importPath: "<%= yeoman.app %>/bower_components"
-        httpImagesPath: "/images"
+        sassDir:                 "<%= yeoman.app %>"
+        cssDir:                  "<%= yeoman.tmp %>"
+        generatedImagesDir:      "<%= yeoman.tmp %>/images/generated"
+        imagesDir:               "<%= yeoman.app %>/images"
+        javascriptsDir:          "<%= yeoman.app %>"
+        fontsDir:                "<%= yeoman.app %>/fonts"
+        importPath:              "bower_components"
+        httpImagesPath:          "/images"
         httpGeneratedImagesPath: "/images/generated"
-        httpFontsPath: "/styles/fonts"
-        relativeAssets: false
-        assetCacheBuster: false
+        httpFontsPath:           "/styles/fonts"
+        relativeAssets:          false
+        assetCacheBuster:        false
 
       dist:
         options:
@@ -177,7 +137,6 @@ module.exports = (grunt) ->
           debugInfo: true
 
 
-    # Renames files for browser caching purposes
     rev:
       dist:
         files:
@@ -188,29 +147,24 @@ module.exports = (grunt) ->
           ]
 
 
-    # Reads HTML for usemin blocks to enable smart builds that automatically
-    # concat, minify and revision files. Creates configurations in memory so
-    # additional tasks can operate on them
     useminPrepare:
       html: [
-        "<%= yeoman.app %>/<%= yeoman.views %>/**/*.jade"
+        "<%= yeoman.app %>/**/*.jade"
       ]
       options:
         dest: "<%= yeoman.dist %>"
 
 
-    # Performs rewrites based on rev and the useminPrepare configuration
     usemin:
       html: [
-        "<%= yeoman.dist %>/<%= yeoman.views %>/{,*/}*.html"
-        "<%= yeoman.dist %>/<%= yeoman.views %>/{,*/}*.jade"
+        "<%= yeoman.dist %>/**/*.html"
+        "<%= yeoman.dist %>/**/*.jade"
       ]
-      css: ["<%= yeoman.dist %>/styles/{,*/}*.css"]
+      css: ["<%= yeoman.dist %>/**/*.css"]
       options:
         assetsDirs: ["<%= yeoman.dist %>"]
 
 
-    # The following *-min tasks produce minified files in the dist folder
     imagemin:
       dist:
         files: [
@@ -225,113 +179,52 @@ module.exports = (grunt) ->
         files: [
           expand: true
           cwd: "<%= yeoman.app %>/images"
-          src: "{,*/}*.svg"
+          src: "**/*.svg"
           dest: "<%= yeoman.dist %>/images"
         ]
 
-    htmlmin:
-      dist:
-        options: {}
 
-        # Optional configurations that you can uncomment to use
-        # removeCommentsFromCDATA: true,
-        # collapseBooleanAttributes: true,
-        # removeAttributeQuotes: true,
-        # removeRedundantAttributes: true,
-        # useShortDoctype: true,
-        # removeEmptyAttributes: true,
-        # removeOptionalTags: true*/
-        files: [
-          expand: true
-          cwd: "<%= yeoman.app %>/<%= yeoman.views %>"
-          src: [
-            "*.html"
-            "partials/*.html"
-          ]
-          dest: "<%= yeoman.dist %>/<%= yeoman.views %>"
-        ]
-
-
-    # Allow the use of non-minsafe AngularJS files. Automatically makes it
-    # minsafe compatible so Uglify does not destroy the ng references
     ngmin:
       dist:
         files: [
           expand: true
-          cwd: ".tmp/concat/scripts"
-          src: "*.js"
-          dest: ".tmp/concat/scripts"
+          cwd: "<%= yeoman.tmp %>/concat"
+          src: "**/*.js"
+          dest: "<%= yeoman.tmp %>/concat"
         ]
 
 
-    # Replace Google CDN references
-    #cdnify: {
-    #      dist: {
-    #        html: ['<%= yeoman.views %>/*.html']
-    #      }
-    #    },
-
-    # Copies remaining files to places other tasks can use
     copy:
       dist:
         files: [
-          {
             expand: true
-            dot: true
             cwd: "<%= yeoman.app %>"
             dest: "<%= yeoman.dist %>"
             src: [
-              "*.{ico,png,txt}"
-              ".htaccess"
-              "bower_components/**/*"
-              "images/*"
-              "fonts/*"
-              "static/*"
+              "*.{ico,txt}"
+              "images/**/*"
+              "fonts/**/*"
+              "static/**/*"
             ]
-          }
-          {
+          ,
             expand: true
-            dot: true
-            cwd: "<%= yeoman.app %>/<%= yeoman.views %>"
-            dest: "<%= yeoman.dist %>/<%= yeoman.views %>"
-            src: "**/*.jade"
-          }
-          {
+            cwd:  "<%= yeoman.app %>"
+            dest: "<%= yeoman.dist %>"
+            src:  [ "**/*.jade" ]
+          ,
             expand: true
             cwd: ".tmp/images"
             dest: "<%= yeoman.dist %>/images"
-            src: ["generated/*"]
-          }
-        ]
-
-      heroku:
-        files: [
-          {
-            expand: true
-            dot: true
-            dest: "heroku"
-            src: [
-              "<%= yeoman.dist %>/**"
-            ]
-          }, {
-            expand: true
-            dest: "heroku"
-            src: [
-              "package.json"
-              "server.coffee"
-              "lib/**/*"
-            ]
-          }
+            src: [ "generated/**/*" ]
         ]
 
       styles:
         expand: true
-        cwd: "<%= yeoman.app %>/styles"
-        dest: ".tmp/styles/"
-        src: "{,*/}*.css"
+        cwd: "<%= yeoman.app %>"
+        dest: "<%= yeoman.tmp %>"
+        src: "**/*.css"
 
 
-    # Run some tasks in parallel to speed up the build process
     concurrent:
       server: [
         "coffee:dist"
@@ -342,9 +235,7 @@ module.exports = (grunt) ->
         "coffee"
         "compass:dist"
         "copy:styles"
-        #"imagemin"
         "svgmin"
-        "htmlmin"
       ]
 
 
@@ -359,37 +250,27 @@ module.exports = (grunt) ->
         "express-keepalive"
       ])
     grunt.task.run [
-      "clean:server"
+      "clean"
       "concurrent:server"
       "autoprefixer"
       "express:dev"
       "watch"
     ]
 
-  grunt.registerTask "server", ->
-    grunt.log.warn "The `server` task has been deprecated. Use `grunt serve` to start a server."
-    grunt.task.run ["serve"]
-
   grunt.registerTask "build", [
-    "clean:dist"
+    "clean"
     "useminPrepare"
     "concurrent:dist"
     "autoprefixer"
     "concat"
     "ngmin"
     "copy:dist"
-    #'cdnify',
     "cssmin"
     "uglify"
     "rev"
     "usemin"
   ]
-  grunt.registerTask "heroku", [
-    "build"
-    "clean:heroku"
-    "copy:heroku"
-  ]
+
   grunt.registerTask "default", [
-    "newer:jshint"
     "build"
   ]

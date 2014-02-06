@@ -1,7 +1,9 @@
+path    = require "path"
+
 {check} = require "validator"
 q       = require "q"
 
-{db}    = require "../server"
+{db}    = require "../"
 
 
 exports.bitcamp = (req, res) ->
