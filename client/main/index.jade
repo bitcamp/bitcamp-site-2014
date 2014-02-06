@@ -4,7 +4,6 @@ header#header.row.btc-row
   #logo.col-xs-12.noselect
     a(href="/")
       <img src='/images/logo.svg' width='187'  height='200'>
-  //-#title.col-xs-12 bitcamp
 
   .col-xs-12
     h3#time-and-place
@@ -43,7 +42,7 @@ header#header.row.btc-row
         input(type='email' placeholder='email'      ng-model='email' class='input-email')
         input(type='text'  placeholder='university' ng-model='university')
       h3
-        input.button#signup(type='submit' value='submit')
+        input.button#signup(type='submit' value='{{submitText}}' ng-style="submitStyles")
     <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
 
   mixin sponsor(sponsor, aHref)
@@ -54,11 +53,19 @@ header#header.row.btc-row
   #sponsors.row.btc-row.noselect
     h2 Sponsors
     .col-xs-12
+<<<<<<< HEAD:app/views/partials/main.jade
+      mixin sponsor("lg", "booz-allen-hamilton", "http://www.boozallen.com/")
+    .col-xs-12
+      mixin sponsor("md", "att",                 "http://www.att.com/")
+      mixin sponsor("md", "appian",              "http://www.appian.com/")
+      mixin sponsor("md", "cipher",              "http://www.ciphertechsolutions.com/")
+=======
       mixin sponsor("booz-allen-hamilton", "http://www.boozallen.com/")
     .col-xs-12
       mixin sponsor("att",                 "http://www.att.com/")
       mixin sponsor("appian",              "http://www.appian.com/")
       mixin sponsor("cipher",              "http://www.ciphertechsolutions.com/")
+>>>>>>> release/3.0.0:client/main/index.jade
     .col-xs-12
       mixin sponsor("clarabridge",         "http://www.clarabridge.com/")
       mixin sponsor("opis",                "http://www.opisnet.com/")
