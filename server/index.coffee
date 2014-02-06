@@ -15,9 +15,8 @@ exports.email_server    = require("emailjs").server.connect
   user     : "bitcamp_bitcamp"
   password : "b1tcamp"
   host     : "smtp.webfaction.com"
-  #port     :      # an integer
-  ssl      : true # boolean or object {key, ca, cert}
-  timeout  : 5000 # milliseconds
+  ssl      : true
+  timeout  : 5000
   domain   : "bitca.mp"
 
 
