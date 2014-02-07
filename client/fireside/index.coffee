@@ -11,7 +11,7 @@ angular.module('bitcampApp')
   .controller 'FiresideCtrl', ($scope, $http, $resource) ->
 
     blocksI = 0
-    blocksT = 4400
+    blocksT = 2400
 
     socket.on 'connect', ->
       socket.on '/api/fireside/blocks', (blocks) ->
