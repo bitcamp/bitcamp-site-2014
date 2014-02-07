@@ -53,6 +53,11 @@ header#header.row.btc-row
   #sponsors.row.btc-row.noselect
     .col-xs-12
       h2 Sponsors
+      a(href="mailto:sponsorship@bitca.mp" target="_blank")
+        button.btn#sponsor-you.noselect
+          span
+            .h1 You?
+            .h3 Contact us!
     .col-xs-12
       mixin sponsor("lts",                 "http://www.ltsnet.net/")
     .col-xs-12
@@ -86,13 +91,12 @@ header#header.row.btc-row
       | Hit up <a href="https://twitter.com/bitcmp" target="_blank">@bitcmp</a> on Twitter and
       | join the <a href="https://twitter.com/search?q=%23plustech" target="_blank">#plustech</a> conversation.
 
-  a(href="http://goo.gl/maps/qS5Tf" target="_blank")
-    #map.row.btc-row
+  a#map(href="http://goo.gl/maps/qS5Tf" target="_blank")
+    .row.btc-row
       .btc-background-wrapper
         .btc-background
       #map-inner
         #map-text
-          span.glyphicon.glyphicon-map-marker
           h2 Cole Field House
           h3 College Park, MD
 

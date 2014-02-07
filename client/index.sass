@@ -140,6 +140,16 @@ header
       @include placeholder(transparent)
 
 #sponsors
+  #sponsor-you
+    margin:  10px auto 30px auto
+    padding: 15px
+    font-size: 70%
+    *
+      color: $color_white
+    background-color: $color_orange
+    width: 100%
+    max-width: 380px
+    min-width: 290px
   #partners
     margin-top: 40px
   .sponsor
@@ -153,20 +163,31 @@ header
       opacity: 0.8
 
 #map
+  display: block
+  &:hover
+    transition: all 0.3s ease-in-out
+    text-decoration: none
+    -webkit-filter: hue-rotate(25deg) brightness(90%) contrast(110%)
+  .btc-row
+    height: 280px
   h2
     margin: 0.625em 0 0 0
   position: relative
   background-color: transparent
   overflow: hidden
-  .glyphicon-map-marker
-    font-size: 2.2em
   .btc-background-wrapper
-    min-width: 1150px
+    $bg-min-width: 700px
+    min-width: $bg-min-width
     position: absolute
+    @media (max-width: $bg-min-width)
+      left: 50%
+      margin-left: (-0.5)*$bg-min-width
     z-index: -1
     .btc-background
-      background: url('/images/map.png') no-repeat
+      -webkit-filter: blur(1px)
+      background: url('/images/cole.png') no-repeat
       background-size: 100% auto
+      background-position: 0 70%
 
 #footer
   padding: 2.5em 0 0 0
