@@ -11,7 +11,8 @@ angular.module('bitcampApp')
     $scope.blocks_on = []
 
     socket.on 'connect', ->
-      socket.on '/fireside/delta_t', (delta_t) ->
+      socket.on '/api/fireside/blocks', (blocks) ->
+      socket.on '/api/fireside/delta_t', (delta_t) ->
         clearInterval $scope.blocksI
         $scope. blocksI = setInterval blocksF, delta_t
         $scope.delta_t = delta_t
@@ -22,27 +23,18 @@ angular.module('bitcampApp')
         isArray: true
 
     do blocksF = ->
-      $scope.blocks = Blocks.get ->
-        $bs = $ '.inner-block'
-
-        $scope.blocks_on.map (i) ->
-          $b = $bs.eq i
-          $b.removeClass $b.data 'colorclass'
-          $b.addClass    $b.data 'dimclass'
-
-        $scope.blocks_on = []
-
-    socket.on '/api/fireside/blocks', (blocks) ->
-      processBlocks blocks
-
-    syncBlocks = ->
       $http.get('/api/fireside/blocks')
         .success (blocks) ->
-          processBlocks blocks
+          $bs = $ '.inner-block'
+          $scope.blocks_on.map (b, i) ->
+            $b = $bs.eq i
+            $b.removeClass $b.data 'colorclass'
+            $b.addClass    $b.data 'dimclass'
+          (b for b in blocks when b.on).map (b) ->
+            $b = $bs.eq b.i
+            $b.removeClass $b.data 'dimclass'
+            $b.addClass    $b.data 'colorclass'
         .error (err) ->
-          console.log err
+          $scope.blocks_on = []
 
-    blocksI = setInterval syncBlocks, 10000
-
-    syncBlocks()
-
+    blocksI = setInterval blocksF, 10000
