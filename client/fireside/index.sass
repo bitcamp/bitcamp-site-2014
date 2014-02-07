@@ -28,7 +28,7 @@ $inner-blocks: 8
       height: ($block-size/$inner-blocks)
       width: $block-size
       .inner-block
-        transition: background-color 1s ease-in
+        transition: background-color 2.2s ease-out
         float: left
         @include square($block-size/$inner-blocks)
 
@@ -44,12 +44,12 @@ $inner-blocks: 8
   background-color: $color_white
 
 .dim-yellow-block
-  background-color: desaturate($color_yellow,       50%)
+  background-color: desaturate($color_yellow,       60%)
 .dim-orangeyellow-block
-  background-color: desaturate($color_orangeyellow, 60%)
+  background-color: desaturate($color_orangeyellow, 45%)
 .dim-orange-block
-  background-color: desaturate($color_orange,       70%)
+  background-color: desaturate($color_orange,       50%)
 .dim-red-block
-  background-color: desaturate($color_red,          80%)
+  background-color: desaturate($color_red,          75%)
 .dim-white-block
-  background-color: darken($color_white, 30%)
+  background-color: darken($color_white, 35%)
