@@ -16,7 +16,7 @@ angular.module('bitcampApp')
         $scope. blocksI = setInterval blocksF, delta_t
         $scope.delta_t = delta_t
 
-    Blocks = $resource '/fireside/blocks', {},
+    Blocks = $resource '/api/fireside/blocks', {},
       get:
         method: 'GET'
         isArray: true
