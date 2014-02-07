@@ -49,11 +49,7 @@ refreshBlocks = ->
       randomizedBlocks 3136, count
     .then (bs) ->
       blocks = bs
+setInterval refreshBlocks, 2000
 
 exports.blocks = (req, res) ->
-  refreshBlocks()
-    .fail (err) ->
-      console.log err
-      res.json 500, []
-    .done ->
-      res.json 200, blocks
+  res.json 200, blocks
