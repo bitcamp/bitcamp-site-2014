@@ -18,6 +18,7 @@ html, body, #wrapper
   height: 100%
 
 body
+  overflow: hidden
   min-width: 320px
 
 .wrapper
@@ -70,11 +71,54 @@ fieldset
   margin-bottom: 1.25em
 
 
+$cloud-height: 150px
+
+@-webkit-keyframes float-1
+  0%
+    top:  25%
+    left: -1*$cloud-height
+  25%
+    top:  20%
+    left: 25%
+  50%
+    top:  25%
+    left: 50%
+  75%
+    top:  20%
+    left: 75%
+  100%
+    top:  25%
+    left: 100%
+
+@-webkit-keyframes float-2
+  0%
+    top:  55%
+    right: -1*$cloud-height
+  25%
+    top:  50%
+    right: 25%
+  50%
+    top:  55%
+    right: 50%
+  75%
+    top:  50%
+    right: 75%
+  100%
+    top:  55%
+    right: 100%
+
 header
   white-space: normal
   .btc-background
     max-width: 60.0em
     background: 10% bottom no-repeat url('/images/treetent.svg')
+    position: relative
+    #cloud-1, #cloud-2
+      position: absolute
+    #cloud-1
+      -webkit-animation: float-1 120s steps(20) infinite alternate
+    #cloud-2
+      -webkit-animation: float-2 220s steps(16) infinite alternate
   #logo
     padding: 0.938em 0
     margin-bottom: 40px
