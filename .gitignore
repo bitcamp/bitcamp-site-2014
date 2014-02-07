@@ -1,12 +1,10 @@
-/client/bower_components/
-/client/static/
-/client/images/
-/client/fonts/
+/bower_components
+/client/images
+/client/fonts
 
-/public/
-/heroku/
-/.tmp/
+/public
+/.tmp
 
-/node_modules/
-/.sass-cache/
-/sass-bootstrap
+/node_modules
+/sass
+/.sass-cache
