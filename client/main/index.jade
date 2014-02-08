@@ -49,12 +49,13 @@ header#header.row.btc-row
         input.button#signup(type='submit' value='{{submitText}}' ng-style="submitStyles")
     <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
 
-  mixin sponsor(sponsor, width, height, aHref)
-    style(type="text/css").
-      #sponsor-#{sponsor} {
-        background: no-repeat url('/images/sponsor/#{sponsor}.png')
-      }
-    .sponsor(id="sponsor-#{sponsor}")
+  mixin sponsor(sponsor, width, height, href)
+    a(href=href target="_blank")
+      style(type="text/css").
+        #sponsor-#{sponsor} {
+          background: no-repeat url('/images/sponsor/#{sponsor}.png')
+        }
+      .sponsor(id="sponsor-#{sponsor}")
 
   #sponsors.row.btc-row.noselect
     .col-xs-12
