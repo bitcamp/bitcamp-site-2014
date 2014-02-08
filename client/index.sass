@@ -1,5 +1,5 @@
 @import 'sass-bootstrap/lib/variables'
-@import 'layout/styles/variables'
+@import 'layout/variables'
 
 @import 'sass-bootstrap/lib/mixins'
 
@@ -9,19 +9,17 @@
 @import 'sass-bootstrap/lib/scaffolding'
 @import 'sass-bootstrap/lib/grid'
 
-@import 'layout/styles/colors'
-@import 'layout/styles/typo'
-
 
 html, body, #wrapper
   min-height: 100%
   height: 100%
 
 body
-  min-width: 320px
+  z-index: -99
+  overflow-x: hidden
 
 .wrapper
-  white-space: pre-line
+  //white-space: pre-line
   margin: 0 auto
 
 .btc-row
@@ -73,137 +71,25 @@ fieldset
 header
   white-space: normal
   .btc-background
+    z-index: 1
     max-width: 60.0em
-    background: 10% bottom no-repeat url('/images/treetent.svg')
+    height: 100%
+    #treetent
+      position: absolute
+      left: 10%
+      bottom: 0
   #logo
+    z-index: 3
     padding: 0.938em 0
     margin-bottom: 40px
-  #title
-    font-size: 2em
-    font-weight: bold
-    color: $color_orange
-  #time-and-place
-    line-height: 1.3em
-    #time
-      @media (max-width: 500px)
-        white-space: pre-line
-  #call-to-action
-    margin-bottom: 1.7em
-    button
-      white-space: pre
-      padding-left: 0
-      padding-right: 0
 
-#description
-  line-height: 1.5em
-  p
-    white-space: normal
-  #description-inner
-    margin: 0 auto
-    max-width: 1050px
-
-#isfor
-  border-bottom: 3px dashed $color_grey-dark
-  padding: 7em 0
-  .isfor-img
-    margin-bottom: 3em
-  h4
-    margin-bottom: 0.4em
-  h5
-    text-transform: uppercase
-    margin-top: 0
-  #scissors
-    position: absolute
-    bottom: -5px
-    left: 20%
-
-#permission
-  border-top: dashed 2px $color_white
-  #scissors
-    position: absolute
-    z-index: 2
-    top: -28px
-    left: 20%
-  .button
-    background-color: $color_white
-    color: $color_orange
-  input[type=text], input[type=email]
-    font-weight: 300
-    font-size: 1.8em
-    display: block
-    width: 100%
-    max-width: 18em
-    background-color: transparent
-    border: none
-    border-bottom: solid 1px $color_white
-    margin: 1em auto
-    text-align: center
-    color: $color_white
-    &:focus
-      @include placeholder(transparent)
-
-#sponsors
-  #sponsor-you
-    margin:  10px auto 30px auto
-    padding: 15px
-    font-size: 70%
-    *
-      color: $color_white
-    background-color: $color_orange
-    width: 100%
-    max-width: 380px
-    min-width: 290px
-  #partners
-    margin-top: 40px
-  .sponsor
-    padding: 20px
-    display: inline-block
-    height: 100%
-    img
-      transition: opacity 0.2s ease-out
-      &:hover
-        opacity: 1
-      opacity: 0.8
-
-#map
-  display: block
-  &:hover
-    text-decoration: none
-  .btc-row
-    height: 320px
-  h2
-    margin: 0.625em 0 0 0
-  position: relative
-  background-color: transparent
-  overflow: hidden
-  .btc-background-wrapper
-    $bg-min-width: 700px
-    min-width: $bg-min-width
-    position: absolute
-    @media (max-width: $bg-min-width)
-      left: 50%
-      margin-left: (-0.5)*$bg-min-width
-    z-index: -1
-    .btc-background
-      -webkit-filter: blur(1px)
-      background: url('/images/cole.png') no-repeat
-      background-size: 100% auto
-      background-position: 0 70%
-
-#footer
+footer
   padding: 2.5em 0 0 0
   font-size: 0.9em
-  white-space: pre-line
   a
+    &:hover
+      color: $color_white
+      text-decoration: underline
     font-weight: normal
     color: $color_white
 
-
-.ui-autocomplete
-  max-height: 18.75em
-  min-height: 3.125em
-  max-width: 21.875em
-  overflow-y: auto
-  overflow-x: hidden
-  padding-right: 0
-  z-index: 9999

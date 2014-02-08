@@ -1,11 +1,17 @@
 header#header.row.btc-row
   .btc-background-wrapper
+    #cloud-1.cloud
+      <img src="/images/cloud-1.svg" width="150" height="80">
+    #cloud-2.cloud
+      <img src="/images/cloud-2.svg" width="150" height="80">
     .btc-background
+      a(href="/fireside")
+        <img src="/images/treetent.svg" width="100" height="100" id="treetent">
   #logo.col-xs-12.noselect
     a(href="/")
-      <img src='/images/logo.svg' width='187' height='200'>
+      <img src="/images/logo.svg" width="187" height="200">
 
-  .col-xs-12
+  .col-xs-12.noselect
     h3#time-and-place
       span#time.
         Hackathon @
@@ -26,21 +32,12 @@ header#header.row.btc-row
         build something the world has never seen.
 
       p.
-        Camp is a place for creation, exploration, and imagination. At Bitcamp,
-        you’ll have 36 hours to combine your curiosities and wild ideas with code and
-        gadgets to make something awesome. Throw in world-class mentors and hundreds
-        of peers from around the world, and you’re in for an amazing time!
-
-      p.
-        We're willing to bet you'll make something incredible no matter your background
-        or experience, so we'll take care of everything, including travel, lodging, and
-        food. Get pumped to hack at the historic Cole Field House on the beautiful
-        University of Maryland campus in an event like no other.
-
-      p
-        | Such s’mores. So tech. Very camp. Wow.
-        br
-        | See you by the bonfire!
+        Camp is a place for creation, exploration, and imagination.
+        At Bitcamp, you’ll have 36 hours to combine your curiosities
+        and wild ideas with code and gadgets to make something awesome.
+        Throw in world-class mentors and hundreds of peers from
+        around the world, and you’re in for an amazing time.
+        See you by the bonfire!
 
   #permission.row.btc-row
     h2 Permission Slip
@@ -53,10 +50,13 @@ header#header.row.btc-row
         input.button#signup(type='submit' value='{{submitText}}' ng-style="submitStyles")
     <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
 
-  mixin sponsor(sponsor, aHref)
-    div.sponsor
-      a(href=aHref target="_blank")
-        <img src="/images/sponsor/#{sponsor}.png">
+  mixin sponsor(sponsor, width, height, href)
+    a(href=href target="_blank")
+      style(type="text/css").
+        #sponsor-#{sponsor} {
+          background: no-repeat url('/images/sponsor/#{sponsor}.png')
+        }
+      .sponsor(id="sponsor-#{sponsor}")
 
   #sponsors.row.btc-row.noselect
     .col-xs-12
@@ -69,36 +69,37 @@ header#header.row.btc-row
             .h3 Contact us!
 
     .col-xs-12
-      mixin sponsor("lts",                 "http://www.ltsnet.net/")
+      +sponsor("lts",                 "150px", "150px", "http://www.ltsnet.net/")
     .col-xs-12
-      mixin sponsor("booz-allen-hamilton", "http://www.boozallen.com/")
+      +sponsor("booz-allen-hamilton", "230px",  "72px", "http://www.boozallen.com/", true, "400px", "125px")
     .col-xs-12
-      mixin sponsor("appian",              "http://www.appian.com/")
-      mixin sponsor("att",                 "http://www.att.com/")
-      mixin sponsor("cipher",              "http://www.ciphertechsolutions.com/")
-      mixin sponsor("clarabridge",         "http://www.clarabridge.com/")
+      +sponsor("appian",              "172px", "100px", "http://www.appian.com/")
+      +sponsor("att",                 "175px", "100px", "http://www.att.com/")
+      +sponsor("cipher",              "200px", "100px", "http://www.ciphertechsolutions.com/")
+      +sponsor("clarabridge",         "149px", "100px", "http://www.clarabridge.com/")
     .col-xs-12
-      mixin sponsor("daocloud",            "http://daocloud.com/")
-      mixin sponsor("opis",                "http://www.opisnet.com/")
-      mixin sponsor("sparkfun",            "https://www.sparkfun.com/")
-      mixin sponsor("socialradar",         "http://socialradar.com/")
+      +sponsor("daocloud",            "117px", "100px", "http://daocloud.com/")
+      +sponsor("opis",                "121px", "100px", "http://www.opisnet.com/")
+      +sponsor("sparkfun",            "206px", "100px", "https://www.sparkfun.com/")
+      +sponsor("socialradar",         "246px", "100px", "http://socialradar.com/")
     .col-xs-12
-      mixin sponsor("mashery",             "http://www.mashery.com/")
-      mixin sponsor("mongodb",             "http://www.mongodb.com/")
-      mixin sponsor("namecheap",           "https://www.namecheap.com/")
-      mixin sponsor("rdio",                "http://www.rdio.com/")
-      mixin sponsor("sendgrid",            "http://sendgrid.com/")
-
+      +sponsor("mashery",             "138px", "100px", "http://www.mashery.com/")
+      +sponsor("mongodb",             "230px", "100px", "http://www.mongodb.com/")
+      +sponsor("namecheap",           "160px", "100px", "https://www.namecheap.com/")
+    .col-xs-12
+      +sponsor("rdio",                "164px", "100px", "http://www.rdio.com/")
+      +sponsor("sendgrid",            "230px", "100px", "http://sendgrid.com/")
 
     #partners.col-xs-12
       h2    Partners
-      mixin sponsor("terrapin-hackers",    "http://terrapinhackers.com/")
-      mixin sponsor("startup-shell",       "http://startupshell.org/")
-      mixin sponsor("mlh",                 "http://mlh.io/")
+      +sponsor("terrapin-hackers",    "126px", "100px", "http://terrapinhackers.com/")
+      +sponsor("startup-shell",       "157px", "100px", "http://startupshell.org/")
+      +sponsor("mlh",                 "166px", "100px", "http://mlh.io/")
 
   #twitter.row.btc-row
     h3
       | Hit up <a href="https://twitter.com/bitcmp" target="_blank">@bitcmp</a> on Twitter and
+      br
       | join the <a href="https://twitter.com/search?q=%23plustech" target="_blank">#plustech</a> conversation.
 
   a#map(href="http://goo.gl/maps/qS5Tf" target="_blank")
@@ -107,7 +108,10 @@ header#header.row.btc-row
         .btc-background
       #map-inner
         #map-text
-          h2 Cole Field House
+          h2
+            span.glyphicon.glyphicon-map-marker
+            br
+            | Cole Field House
           h3 College Park, MD
 
 
@@ -115,7 +119,10 @@ footer#footer.row.btc-row
   .col-xs-12
     p
       | Bitcamp 2014
-      | 
+      br
+
+      a(href="mailto:hello@bitca.mp" target="_blank") Email
+      | &ensp;·&ensp;
       a(href="https://twitter.com/bitcmp" target="_blank") Twitter
       | &ensp;·&ensp;
       a(href="https://www.facebook.com/bitcmp" target="_blank") Facebook

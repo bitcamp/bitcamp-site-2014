@@ -1,5 +1,6 @@
 angular.module('bitcampApp')
-  .controller 'MainCtrl', ($scope, $http) ->
+  .controller 'MainCtrl', ($scope, $http, $window) ->
+
     $http.get('/api/bitcamp')
       .success (data) ->
         null

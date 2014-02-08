@@ -13,7 +13,7 @@ bitcamp = angular.module('bitcampApp', [
         templateUrl: 'views/fireside'
         controller: 'FiresideCtrl'
       .when '/404',
-        templateUrl: 'layout/views/404'
+        templateUrl: 'layout/404'
         controller: '404Ctrl'
       .otherwise
         redirectTo: '/404'

@@ -1,0 +1,202 @@
+@import 'sass-bootstrap/lib/mixins'
+@import '../layout/variables'
+
+
+header
+  .cloud
+    position: absolute
+    z-index: 2
+    width: 150px
+    height: 80px
+  #cloud-1
+    top:   35%
+    left:  10%
+    animation: float-1 40s 1 forwards linear
+  #cloud-2
+    top:   15%
+    right: 10%
+    animation: float-2 34s 1 forwards linear
+
+  #time-and-place
+    line-height: 1.3em
+    #time
+      @media (max-width: 500px)
+        white-space: pre-line
+
+  #call-to-action
+    margin-bottom: 2.7em
+    button
+      white-space: pre
+      padding-left: 0
+      padding-right: 0
+
+
+#description
+  line-height: 1.5em
+  p
+    white-space: normal
+  #description-inner
+    margin: 0 auto
+    max-width: 1050px
+
+
+#isfor
+  border-bottom: 3px dashed $color_grey-dark
+  padding: 7em 0
+  .isfor-img
+    margin-bottom: 3em
+  h4
+    margin-bottom: 0.4em
+  h5
+    text-transform: uppercase
+    margin-top: 0
+  #scissors
+    position: absolute
+    bottom: -5px
+    left: 20%
+
+
+#permission
+  border-top: dashed 2px $color_white
+  #scissors
+    position: absolute
+    z-index: 2
+    top: -28px
+    left: 20%
+  .button
+    background-color: $color_white
+    color: $color_orange
+  input[type=text], input[type=email]
+    font-weight: 300
+    font-size: 1.8em
+    display: block
+    width: 100%
+    max-width: 18em
+    background-color: transparent
+    border: none
+    border-bottom: solid 1px $color_white
+    margin: 1em auto
+    text-align: center
+    color: $color_white
+    &:focus
+      @include placeholder(transparent)
+
+
+#sponsors
+  #sponsor-you
+    margin:  10px auto 30px auto
+    padding: 15px
+    font-size: 70%
+    *
+      color: $color_white
+    background-color: $color_orange
+    width: 100%
+    max-width: 380px
+  #partners
+    margin-top: 40px
+  .sponsor
+    display: inline-block
+    @media (min-width: 400px)
+      margin: 20px
+    transition: opacity 0.2s ease-out
+    &:hover
+      opacity: 1
+    opacity: 0.8
+
+  #sponsor-appian
+    width:  172px
+    height: 100px
+  #sponsor-att
+    width:  175px
+    height: 100px
+  #sponsor-booz-allen-hamilton
+    width:  230px
+    height: 72px
+  #sponsor-cipher
+    width:  200px
+    height: 100px
+  #sponsor-clarabridge
+    width:  149px
+    height: 100px
+  #sponsor-daocloud
+    width:  117px
+    height: 100px
+  #sponsor-lts
+    width:  150px
+    height: 150px
+  #sponsor-mashery
+    width:  138px
+    height: 100px
+  #sponsor-mlh
+    width:  166px
+    height: 100px
+  #sponsor-mongodb
+    width:  230px
+    height: 100px
+  #sponsor-namecheap
+    width:  160px
+    height: 100px
+  #sponsor-opis
+    width:  121px
+    height: 100px
+  #sponsor-parsons
+    width:  365px
+    height: 125px
+  #sponsor-rdio
+    width:  164px
+    height: 100px
+  #sponsor-sendgrid
+    width:  230px
+    height: 100px
+  #sponsor-socialradar
+    width:  246px
+    height: 100px
+  #sponsor-sparkfun
+    width:  206px
+    height: 100px
+  #sponsor-startup-shell
+    width:  157px
+    height: 100px
+  #sponsor-terrapin-hackers
+    width:  126px
+    height: 100px
+
+  @media only screen and (min-width: 500px)
+    #sponsor-booz-allen-hamilton
+      width:  400px
+      height: 125px
+      background: no-repeat url('/images/sponsor/booz-allen-hamilton-lg.png')
+
+#map
+  display: block
+  &:hover
+    text-decoration: none
+  .btc-row
+    height: 350px
+  h2
+    margin: 0
+  position: relative
+  background-color: transparent
+  overflow: hidden
+  .btc-background-wrapper
+    $bg-min-width: 700px
+    min-width: $bg-min-width
+    position: absolute
+    @media (max-width: $bg-min-width)
+      left: 50%
+      margin-left: (-0.5)*$bg-min-width
+    z-index: -1
+    .btc-background
+      background: url('/images/cole.png') no-repeat
+      background-size: 100% auto
+      background-position: 0 70%
+
+
+@keyframes float-1
+  100%
+    left: 100%
+
+@keyframes float-2
+  100%
+    right: 100%
+
