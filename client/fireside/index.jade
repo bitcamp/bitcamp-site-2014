@@ -2,19 +2,18 @@
   header#header.row.btc-row
     #logo.col-xs-12.noselect
       a(href="/")
-        <img src='/images/logo.svg' width='140' height='150'>
+        <img src="/images/logo.svg" width="187" height="200">
     .col-xs-12
       h1#subtitle Fireside
-      h3#time-and-place Because layovers suck.
 
-  - var sixteen = [1, 2, 3, 4, 5, 6, 7, 8]
+  - var eight = [1, 2, 3, 4, 5, 6, 7, 8]
   mixin empty_block()
     .fireside-block.empty-block
   mixin fireside_block(color)
     .fireside-block
-      each n in sixteen
+      each n in eight
         .inner-row
-          each n in sixteen
+          each n in eight
             - var _class = color+'-block'
             .inner-block(class='dim-'+_class,
               data-colorclass=_class,
