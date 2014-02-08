@@ -19,7 +19,7 @@ body
   overflow-x: hidden
 
 .wrapper
-  white-space: pre-line
+  //white-space: pre-line
   margin: 0 auto
 
 .btc-row
@@ -83,8 +83,10 @@ header
 footer
   padding: 2.5em 0 0 0
   font-size: 0.9em
-  white-space: pre-line
   a
+    &:hover
+      color: $color_white
+      text-decoration: underline
     font-weight: normal
     color: $color_white
 

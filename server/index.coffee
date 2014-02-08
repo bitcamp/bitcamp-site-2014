@@ -25,18 +25,16 @@ app.configure "development", ->
   app.use express.errorHandler()
   app.use express.logger "dev"
   app.use express.static path.join __dirname, "../.tmp"
-  app.set "views",       path.join __dirname, "../client"
+  app.use "/bower_components", express.static path.join __dirname, "../bower_components"
+  app.use express.static path.join __dirname, "../client"
 
 app.configure "production", ->
   app.use express.compress()
   app.use express.favicon path.join __dirname, "../public", "favicon.ico"
-  app.use express.static  path.join __dirname, "../public"
-  app.set "views",        path.join __dirname, "../public"
 
 app.configure ->
-  app.use "/bower_components", express.static path.join __dirname, "../bower_components"
-  app.use express.static path.join __dirname, "../client"
-  app.set "view engine", "jade"
+  app.use express.static path.join __dirname, "../public"
+  app.use "/views", express.static path.join __dirname, "../public"
   app.use express.json()
   app.use express.urlencoded()
   app.use express.methodOverride()
@@ -60,12 +58,8 @@ server.listen port, ->
 
 exports.ready = ready.promise
 
-
-exports.indexRoute = (req, res) ->
-  res.render "index"
-
-
 exports.viewsRoute = (req, res) ->
   res.render req.params[0], (err, html) ->
+    console.log err || html
     if err then res.send 404
     else        res.send html
