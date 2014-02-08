@@ -18,6 +18,7 @@ html, body, #wrapper
   height: 100%
 
 body
+  z-index: -99
   overflow: hidden
   min-width: 320px
 
@@ -82,13 +83,13 @@ $cloud-height: 150px
     left: 04%
   50%
     top:  20%
-    left: 10%
+    left: 08%
   75%
     top:  25%
-    left: 17%
+    left: 13%
   100%
     top:  15%
-    left: 23%
+    left: 19%
 
 @-webkit-keyframes float-2
   0%
@@ -96,39 +97,49 @@ $cloud-height: 150px
     right: -1*$cloud-height
   25%
     top:  50%
-    right: 5%
+    right: 03%
   50%
     top:  45%
-    right: 13%
+    right: 09%
   75%
     top:  50%
-    right: 19%
+    right: 15%
   100%
     top:  65%
-    right: 25%
+    right: 20%
 
 @-webkit-keyframes pulse
+  20%
+    -webkit-transform: scale(0.97)
   50%
-    transform: scale(1.5)
+    -webkit-transform: scale(1.05)
+  90%
+    -webkit-transform: scale(1.01)
+  100%
+    -webkit-transform: scale(1.01)
 
 header
   white-space: normal
+  .btc-background-wrapper
+    .cloud
+      z-index: 4
+      position: absolute
+      width: 150px
+      height: 80px
+    #cloud-1
+      -webkit-animation: float-1 320s steps(60) infinite alternate
+      &:hover
+        -webkit-animation: pulse .65s 1 forwards, float-1 320s steps(60) infinite alternate
+    #cloud-2
+      -webkit-animation: float-2 220s steps(42) infinite alternate
+      &:hover
+        -webkit-animation: pulse .65s 1 forwards, float-2 220s steps(42) infinite alternate
   .btc-background
+    z-index: -5
     max-width: 60.0em
     background: 10% bottom no-repeat url('/images/treetent.svg')
     position: relative
-    .cloud
-      z-index: 2
-      width: 150px
-      height: 80px
-      img
-        -webkit-animation: pulse .25s infinite alternate
-    a
-      position: absolute
-    #cloud-1
-      -webkit-animation: float-1 120s steps(20) infinite alternate
-    #cloud-2
-      -webkit-animation: float-2 120s steps(26) infinite alternate
+    height: 100%
   #logo
     z-index: 3
     padding: 0.938em 0
