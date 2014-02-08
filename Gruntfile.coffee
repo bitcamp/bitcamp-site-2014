@@ -90,11 +90,19 @@ module.exports = (grunt) ->
     jade:
       dist:
         options: pretty: true
-        expand: true
-        cwd:    "<%= yeoman.app %>"
-        src:    "**/*.jade"
-        dest:   "<%= yeoman.dist %>"
-        ext:    ".html"
+        files: [
+          expand: true
+          cwd:    "<%= yeoman.app %>"
+          src:    [ "**/*.jade", "!index.jade" ]
+          dest:   "<%= yeoman.dist %>/views"
+          ext:    ".html"
+        ,
+          expand: true
+          cwd:    "<%= yeoman.app %>"
+          src:    "index.jade"
+          dest:   "<%= yeoman.dist %>"
+          ext:    ".html"
+        ]
 
 
     autoprefixer:
@@ -141,9 +149,9 @@ module.exports = (grunt) ->
     rev:
       dist:
         src: [
-          "<%= yeoman.dist %>**/*.js"
-          "<%= yeoman.dist %>**/*.css"
-          "<%= yeoman.dist %>/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
+          "<%= yeoman.dist %>/**/*.js"
+          "<%= yeoman.dist %>/**/*.css"
+          "<%= yeoman.dist %>/**/*.{png,jpg,jpeg,gif,webp,svg}"
         ]
 
 
@@ -201,6 +209,11 @@ module.exports = (grunt) ->
         src:  "**/*.css"
         dest: "<%= yeoman.tmp %>"
 
+      components:
+        expand: true
+        src:  [ "bower_components/**" ]
+        dest: "<%= yeoman.dist %>"
+
 
     concurrent:
       server: [
@@ -252,12 +265,18 @@ module.exports = (grunt) ->
     "autoprefixer"
 
     "useminPrepare"
+
     "concat"
-    "copy:dist"
     "cssmin"
     "uglify"
+
+    "copy:dist"
     "rev"
+
     "usemin"
+
+    "copy:components"
+
     #"imagemin"
     "svgmin"
   ]

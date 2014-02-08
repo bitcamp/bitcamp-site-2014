@@ -34,7 +34,6 @@ app.configure "production", ->
 
 app.configure ->
   app.use express.static path.join __dirname, "../public"
-  app.use "/views", express.static path.join __dirname, "../public"
   app.use express.json()
   app.use express.urlencoded()
   app.use express.methodOverride()
@@ -58,8 +57,6 @@ server.listen port, ->
 
 exports.ready = ready.promise
 
-exports.viewsRoute = (req, res) ->
-  res.render req.params[0], (err, html) ->
-    console.log err || html
-    if err then res.send 404
-    else        res.send html
+
+exports.indexRoute = (req, res) ->
+  res.sendfile path.resolve "#{__dirname}/../public/index.html"
