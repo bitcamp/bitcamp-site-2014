@@ -22,10 +22,16 @@ html(ng-app="bitcampApp")
     link(rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css")
     <!-- endbuild -->
 
-    <!-- build:css({.tmp,client}) main.css -->
-    link(rel="stylesheet" href="layout/styles/fonts.css")
-    link(rel="stylesheet" href="fireside/index.css")
+    <!-- build:css(.tmp) main.css -->
     link(rel="stylesheet" href="index.css")
+
+    link(rel="stylesheet" href="layout/colors.css")
+    link(rel="stylesheet" href="layout/fonts.css")
+    link(rel="stylesheet" href="layout/typo.css")
+
+    link(rel="stylesheet" href="main/index.css")
+
+    link(rel="stylesheet" href="fireside/index.css")
     <!-- endbuild -->
 
   body
@@ -43,9 +49,11 @@ html(ng-app="bitcampApp")
     script(src="bower_components/sass-bootstrap/js/tooltip.js")
 
     script(src="bower_components/flowtype/flowtype.js")
-    <!-- endbuild -->
 
-    script(src="socket.io/socket.io.js")
+    script(src="bower_components/socket.io-client/dist/socket.io.js")
+
+    script(src="bower_components/picturefill/picturefill.js")
+    <!-- endbuild -->
 
     <!-- build:js(./) modules.js -->
     script(src="bower_components/jquery.scrollTo/jquery.scrollTo.js")
@@ -57,9 +65,9 @@ html(ng-app="bitcampApp")
     script(src="bower_components/angular-ui-autocomplete/autocomplete.js")
     <!-- endbuild -->
 
-    <!-- build:js({.tmp,client}) main.js -->
+    <!-- build:js(.tmp) main.js -->
     script(src="index.js")
-    script(src="layout/scripts/404.js")
+    script(src="layout/404/index.js")
 
     script(src="main/index.js")
 

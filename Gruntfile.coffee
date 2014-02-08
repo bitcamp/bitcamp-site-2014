@@ -31,6 +31,10 @@ module.exports = (grunt) ->
 
 
     watch:
+      jade:
+        files: ["<%= yeoman.app %>/**/*.jade"]
+        tasks: [ "newer:jade:dist" ]
+
       coffee:
         files: ["<%= yeoman.app %>/**/*.coffee"]
         tasks: ["newer:coffee:dist"]
@@ -43,17 +47,16 @@ module.exports = (grunt) ->
         ]
 
       livereload_css:
+        options: livereload: true
         files: [ "<%= yeoman.tmp %>/**/*.css" ]
-        options:
-          livereload: true
+
       livereload_else:
+        options: livereload: true
         files: [
-          "<%= yeoman.app %>/{,*//*}*.{html,jade}"
+          "<%= yeoman.dist %>/**/*.html"
           "<%= yeoman.tmp %>/**/*.js"
           "<%= yeoman.app %>/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
         ]
-        options:
-          livereload: true
 
       express:
         files: [ "<%= yeoman.srv %>/**/*.coffee" ]
@@ -78,24 +81,29 @@ module.exports = (grunt) ->
         files: [
           dot: true
           src: [
-            ".tmp"
+            "<%= yeoman.tmp %>/*"
             "<%= yeoman.dist %>/*"
-            "!<%= yeoman.dist %>/.git*"
           ]
         ]
 
 
-    autoprefixer:
-      options:
-        browsers: ["last 1 version"]
-
+    jade:
       dist:
-        files: [
-          expand: true
-          cwd:    "<%= yeoman.tmp %>/styles/"
-          src:    "**/*.css"
-          dest:   "<%= yeoman.tmp %>/styles/"
-        ]
+        options: pretty: true
+        expand: true
+        cwd:    "<%= yeoman.app %>"
+        src:    "**/*.jade"
+        dest:   "<%= yeoman.dist %>"
+        ext:    ".html"
+
+
+    autoprefixer:
+      options: browsers: ["last 1 version"]
+      dist:
+        expand: true
+        cwd:    "<%= yeoman.tmp %>"
+        src:    "**/*.css"
+        dest:   "<%= yeoman.tmp %>"
 
 
     coffee:
@@ -117,126 +125,103 @@ module.exports = (grunt) ->
       options:
         sassDir:                 "<%= yeoman.app %>"
         cssDir:                  "<%= yeoman.tmp %>"
-        generatedImagesDir:      "<%= yeoman.tmp %>/images/generated"
         imagesDir:               "<%= yeoman.app %>/images"
         javascriptsDir:          "<%= yeoman.app %>"
         fontsDir:                "<%= yeoman.app %>/fonts"
         importPath:              "bower_components"
         httpImagesPath:          "/images"
-        httpGeneratedImagesPath: "/images/generated"
-        httpFontsPath:           "/styles/fonts"
+        httpFontsPath:           "/fonts"
         relativeAssets:          false
         assetCacheBuster:        false
 
-      dist:
-        options:
-          generatedImagesDir: "<%= yeoman.dist %>/images/generated"
-
-      server:
-        options:
-          debugInfo: true
+      dist:   options: debugInfo: false
+      server: options: debugInfo: true
 
 
     rev:
       dist:
-        files:
-          src: [
-            "<%= yeoman.dist %>/scripts/{,*/}*.js"
-            "<%= yeoman.dist %>/styles/{,*/}*.css"
-            "<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}"
-          ]
+        src: [
+          "<%= yeoman.dist %>**/*.js"
+          "<%= yeoman.dist %>**/*.css"
+          "<%= yeoman.dist %>/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
+        ]
 
 
     useminPrepare:
-      html: [
-        "<%= yeoman.app %>/**/*.jade"
-      ]
-      options:
-        dest: "<%= yeoman.dist %>"
-
+      html: "<%= yeoman.dist %>/**/*.html"
+      options: dest: "<%= yeoman.dist %>"
 
     usemin:
-      html: [
-        "<%= yeoman.dist %>/**/*.html"
-        "<%= yeoman.dist %>/**/*.jade"
-      ]
-      css: ["<%= yeoman.dist %>/**/*.css"]
-      options:
-        assetsDirs: ["<%= yeoman.dist %>"]
-
+      html: [ "<%= yeoman.dist %>/**/*.html" ]
+      css:  [ "<%= yeoman.dist %>/**/*.css" ]
+      options: assetsDirs: "<%= yeoman.dist %>"
 
     imagemin:
+      options:
+        optimizationLevel: 7
+        pngquant:          true
+        progressive:       true
       dist:
-        files: [
-          expand: true
-          cwd: "<%= yeoman.app %>/images"
-          src: "{,*/}*.{png,jpg,jpeg,gif}"
-          dest: "<%= yeoman.dist %>/images"
-        ]
+        expand: true
+        cwd:  "<%= yeoman.app %>"
+        src:  "{,*//*}*.{png,jpg,jpeg,gif}"
+        dest: "<%= yeoman.app %>"
+
 
     svgmin:
       dist:
-        files: [
-          expand: true
-          cwd: "<%= yeoman.app %>/images"
-          src: "**/*.svg"
-          dest: "<%= yeoman.dist %>/images"
-        ]
+        expand: true
+        cwd: "<%= yeoman.dist %>"
+        src: "**/*.svg"
+        dest: "<%= yeoman.dist %>"
 
 
     ngmin:
       dist:
-        files: [
-          expand: true
-          cwd: "<%= yeoman.tmp %>/concat"
-          src: "**/*.js"
-          dest: "<%= yeoman.tmp %>/concat"
-        ]
+        expand: true
+        cwd: "<%= yeoman.tmp %>"
+        src: "**/*.js"
+        dest: "<%= yeoman.tmp %>"
 
 
     copy:
       dist:
-        files: [
-            expand: true
-            cwd: "<%= yeoman.app %>"
-            dest: "<%= yeoman.dist %>"
-            src: [
-              "*.{ico,txt}"
-              "images/**/*"
-              "fonts/**/*"
-              "static/**/*"
-            ]
-          ,
-            expand: true
-            cwd:  "<%= yeoman.app %>"
-            dest: "<%= yeoman.dist %>"
-            src:  [ "**/*.jade" ]
-          ,
-            expand: true
-            cwd: ".tmp/images"
-            dest: "<%= yeoman.dist %>/images"
-            src: [ "generated/**/*" ]
+        expand: true
+        cwd: "<%= yeoman.app %>"
+        dest: "<%= yeoman.dist %>"
+        src: [
+          "*.{ico,txt}"
+          "images/**/*"
+          "fonts/**/*"
         ]
 
       styles:
         expand: true
-        cwd: "<%= yeoman.app %>"
+        cwd:  "<%= yeoman.app %>"
+        src:  "**/*.css"
         dest: "<%= yeoman.tmp %>"
-        src: "**/*.css"
 
 
     concurrent:
       server: [
         "coffee:dist"
         "compass:server"
+        "jade:dist"
         "copy:styles"
       ]
       dist: [
-        "coffee"
+        "coffee:dist"
         "compass:dist"
+        "jade:dist"
         "copy:styles"
-        "svgmin"
       ]
+
+    prettify:
+      dist:
+        expand: true
+        cwd:  "<%= yeoman.dist %>"
+        src:  "**/*.html"
+        dest: "<%= yeoman.dist %>"
 
 
   grunt.registerTask "express-keepalive", "Keep grunt running", ->
@@ -259,16 +244,22 @@ module.exports = (grunt) ->
 
   grunt.registerTask "build", [
     "clean"
-    "useminPrepare"
+
     "concurrent:dist"
-    "autoprefixer"
-    "concat"
+
+    "prettify:dist"
     "ngmin"
+    "autoprefixer"
+
+    "useminPrepare"
+    "concat"
     "copy:dist"
     "cssmin"
     "uglify"
     "rev"
     "usemin"
+    #"imagemin"
+    "svgmin"
   ]
 
   grunt.registerTask "default", [
