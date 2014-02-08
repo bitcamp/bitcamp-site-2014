@@ -107,6 +107,10 @@ $cloud-height: 150px
     top:  65%
     right: 25%
 
+@-webkit-keyframes pulse
+  50%
+    transform: scale(1.5)
+
 header
   white-space: normal
   .btc-background
@@ -117,6 +121,8 @@ header
       z-index: 2
       width: 150px
       height: 80px
+      img
+        -webkit-animation: pulse .25s infinite alternate
     a
       position: absolute
     #cloud-1
