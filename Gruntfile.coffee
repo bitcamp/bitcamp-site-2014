@@ -163,6 +163,7 @@ module.exports = (grunt) ->
           "<%= yeoman.dist %>/**/*.js"
           "<%= yeoman.dist %>/**/*.css"
           "<%= yeoman.dist %>/**/*.{png,jpg,jpeg,gif,webp,svg}"
+          "!<%= yeoman.dist %>/**/opengraph.png"
         ]
 
 
