@@ -63,7 +63,7 @@ module.exports = (grunt) ->
         tasks: ["express:dev"]
         options:
           livereload: true
-          nospawn: true #Without this option specified express won't be reloaded
+          nospawn:    true #Without this option specified express won't be reloaded
 
       styles:
         files: ["<%= yeoman.app %>/**/*.css"]
@@ -85,6 +85,17 @@ module.exports = (grunt) ->
             "<%= yeoman.dist %>/*"
           ]
         ]
+
+
+    htmlmin:
+      dist:
+        options:
+          removeComments:     true
+          collapseWhitespace: true
+        expand: true
+        cwd:    "<%= yeoman.dist %>"
+        src:    "**/*.html"
+        dest:   "<%= yeoman.dist %>"
 
 
     jade:
@@ -136,7 +147,7 @@ module.exports = (grunt) ->
         imagesDir:               "<%= yeoman.app %>/images"
         javascriptsDir:          "<%= yeoman.app %>"
         fontsDir:                "<%= yeoman.app %>/fonts"
-        importPath:              "bower_components"
+        importPath:              "components"
         httpImagesPath:          "/images"
         httpFontsPath:           "/fonts"
         relativeAssets:          false
@@ -164,24 +175,13 @@ module.exports = (grunt) ->
       css:  [ "<%= yeoman.dist %>/**/*.css" ]
       options: assetsDirs: "<%= yeoman.dist %>"
 
-    imagemin:
-      options:
-        optimizationLevel: 7
-        pngquant:          true
-        progressive:       true
-      dist:
-        expand: true
-        cwd:  "<%= yeoman.app %>"
-        src:  "{,*//*}*.{png,jpg,jpeg,gif}"
-        dest: "<%= yeoman.app %>"
-
 
     svgmin:
       dist:
         expand: true
-        cwd: "<%= yeoman.dist %>"
+        cwd: "<%= yeoman.app %>"
         src: "**/*.svg"
-        dest: "<%= yeoman.dist %>"
+        dest: "<%= yeoman.app %>"
 
 
     ngmin:
@@ -211,7 +211,7 @@ module.exports = (grunt) ->
 
       components:
         expand: true
-        src:  [ "bower_components/**" ]
+        src:  [ "components/**" ]
         dest: "<%= yeoman.dist %>"
 
 
@@ -235,6 +235,12 @@ module.exports = (grunt) ->
         cwd:  "<%= yeoman.dist %>"
         src:  "**/*.html"
         dest: "<%= yeoman.dist %>"
+
+
+    inject:
+      googleAnalytics:
+        scriptSrc: "<%= yeoman.tmp %>/ga.js"
+        "<%= yeoman.dist %>/index.html": "<%= yeoman.dist %>/index.html"
 
 
   grunt.registerTask "express-keepalive", "Keep grunt running", ->
@@ -275,10 +281,11 @@ module.exports = (grunt) ->
 
     "usemin"
 
-    "copy:components"
+    "inject:googleAnalytics"
 
-    #"imagemin"
-    "svgmin"
+    "htmlmin"
+
+    "copy:components"
   ]
 
   grunt.registerTask "default", [

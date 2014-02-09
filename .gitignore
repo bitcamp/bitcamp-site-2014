@@ -1,10 +1,11 @@
-/bower_components
-/client/images
-/client/fonts
+client/images
+client/fonts
 
-/public
-/.tmp
+public
+.tmp
 
-/node_modules
-/sass
-/.sass-cache
+node_modules
+components
+
+sass
+.sass-cache

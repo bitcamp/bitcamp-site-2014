@@ -18,10 +18,11 @@ ready.then ->
 
 
   # 404
+  app.get "/404", indexRoute
   app.get "/*", [(req, res, next) ->
     res.status 404
     next() # Let angular figure out the 404 view.
-  , controllers.index]
+  , indexRoute]
 
 
 ready.done()

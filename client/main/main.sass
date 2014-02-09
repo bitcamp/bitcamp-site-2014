@@ -92,8 +92,10 @@ header
     background-color: $color_orange
     width: 100%
     max-width: 380px
+
   #partners
     margin-top: 40px
+
   .sponsor
     display: inline-block
     @media (min-width: 400px)
@@ -103,68 +105,36 @@ header
       opacity: 1
     opacity: 0.8
 
-  #sponsor-appian
-    width:  172px
-    height: 100px
-  #sponsor-att
-    width:  175px
-    height: 100px
-  #sponsor-booz-allen-hamilton
-    width:  230px
-    height: 72px
-  #sponsor-cipher
-    width:  200px
-    height: 100px
-  #sponsor-clarabridge
-    width:  149px
-    height: 100px
-  #sponsor-daocloud
-    width:  117px
-    height: 100px
-  #sponsor-lts
-    width:  150px
-    height: 150px
-  #sponsor-mashery
-    width:  138px
-    height: 100px
-  #sponsor-mlh
-    width:  166px
-    height: 100px
-  #sponsor-mongodb
-    width:  230px
-    height: 100px
-  #sponsor-namecheap
-    width:  160px
-    height: 100px
-  #sponsor-opis
-    width:  121px
-    height: 100px
-  #sponsor-parsons
-    width:  365px
-    height: 125px
-  #sponsor-rdio
-    width:  164px
-    height: 100px
-  #sponsor-sendgrid
-    width:  230px
-    height: 100px
-  #sponsor-socialradar
-    width:  246px
-    height: 100px
-  #sponsor-sparkfun
-    width:  206px
-    height: 100px
-  #sponsor-startup-shell
-    width:  157px
-    height: 100px
-  #sponsor-terrapin-hackers
-    width:  126px
-    height: 100px
+  @mixin sponsor($name, $width, $height)
+    #sponsor-#{$name}
+      width:  $width
+      height: $height
+      background: no-repeat url('/images/sponsor/#{$name}.png')
+
+  @include sponsor(appian,              172px, 100px)
+  @include sponsor(att,                 175px, 100px)
+  @include sponsor(booz-allen-hamilton, 230px,  72px)
+  @include sponsor(cipher,              200px, 100px)
+  @include sponsor(clarabridge,         149px, 100px)
+  @include sponsor(daocloud,            117px, 100px)
+  @include sponsor(lts,                 150px, 150px)
+  @include sponsor(mashery,             138px, 100px)
+  @include sponsor(mlh,                 166px, 100px)
+  @include sponsor(mongodb,             230px, 100px)
+  @include sponsor(namecheap,           160px, 100px)
+  @include sponsor(opis,                121px, 100px)
+  @include sponsor(parsons,             365px, 125px)
+  @include sponsor(rdio,                164px, 100px)
+  @include sponsor(sendgrid,            230px, 100px)
+  @include sponsor(socialradar,         246px, 100px)
+  @include sponsor(sparkfun,            206px, 100px)
+  @include sponsor(startup-shell,       157px, 100px)
+  @include sponsor(terrapin-hackers,    126px, 100px)
 
   @media only screen and (min-width: 500px)
+    @include sponsor(booz-allen-hamilton, 400px, 125px)
+
     #sponsor-booz-allen-hamilton
-      width:  400px
-      height: 125px
       background: no-repeat url('/images/sponsor/booz-allen-hamilton-lg.png')
 
 #map

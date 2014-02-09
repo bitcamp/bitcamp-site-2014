@@ -20,24 +20,45 @@ exports.email_server    = require("emailjs").server.connect
   domain   : "bitca.mp"
 
 
+cacheTime = 86400000
+
+staticDir = (p) ->
+  express.static path.join(__dirname, p),
+    maxAge: cacheTime
+    redirect: false
+
+
 app.configure "development", ->
   app.use require("connect-livereload")()
   app.use express.errorHandler()
   app.use express.logger "dev"
-  app.use express.static path.join __dirname, "../.tmp"
-  app.use "/bower_components", express.static path.join __dirname, "../bower_components"
-  app.use express.static path.join __dirname, "../client"
+  app.use                staticDir "../.tmp"
+  app.use "/components", staticDir "../components"
+  app.use                staticDir "../client"
 
 app.configure "production", ->
+  app.use (req, res, next) ->
+    res.setHeader "Cache-Control" , "public, max-age=#{cacheTime}"
+    res.setHeader "Expires"       , cacheTime
+    res.setHeader "Pragma"        , "cache"
+    next()
+
   app.use express.compress()
-  app.use express.favicon path.join __dirname, "../public", "favicon.ico"
 
 app.configure ->
-  app.use express.static path.join __dirname, "../public"
-  app.use express.json()
+  app.use staticDir "../public"
+
+  app.use (req, res, next) ->
+    res.setHeader "Cache-Control" , "max-age=0, no-cache, no-store, must-revalidate"
+    res.setHeader "Expires"       , 0
+    res.setHeader "Pragma"        , "no-cache"
+    next()
+
+  app.use app.router
+
   app.use express.urlencoded()
   app.use express.methodOverride()
-  app.use app.router
+  app.use express.json()
 
   db.configure
     host:     'localhost'
