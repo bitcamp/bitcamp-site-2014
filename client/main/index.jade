@@ -50,14 +50,6 @@ header#header.row.btc-row
         input.button#signup(type='submit' value='{{submitText}}' ng-style="submitStyles")
     <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
 
-  mixin sponsor(sponsor, width, height, href)
-    a(href=href target="_blank")
-      style(type="text/css").
-        #sponsor-#{sponsor} {
-          background: no-repeat url('/images/sponsor/#{sponsor}.png')
-        }
-      .sponsor(id="sponsor-#{sponsor}")
-
   #sponsors.row.btc-row.noselect
     .col-xs-12
       h2 Sponsors
@@ -68,33 +60,37 @@ header#header.row.btc-row
             .h1 You?
             .h3 Contact us!
 
+    mixin sponsor(sponsor, href)
+      a(href=href target="_blank")
+        .sponsor(id="sponsor-#{sponsor}")
+
     .col-xs-12
-      +sponsor("lts",                 "150px", "150px", "http://www.ltsnet.net/")
+      +sponsor("lts",                 "http://www.ltsnet.net/")
     .col-xs-12
-      +sponsor("booz-allen-hamilton", "230px",  "72px", "http://www.boozallen.com/", true, "400px", "125px")
+      +sponsor("booz-allen-hamilton", "http://www.boozallen.com/")
     .col-xs-12
-      +sponsor("appian",              "172px", "100px", "http://www.appian.com/")
-      +sponsor("att",                 "175px", "100px", "http://www.att.com/")
-      +sponsor("cipher",              "200px", "100px", "http://www.ciphertechsolutions.com/")
-      +sponsor("clarabridge",         "149px", "100px", "http://www.clarabridge.com/")
+      +sponsor("appian",              "http://www.appian.com/")
+      +sponsor("att",                 "http://www.att.com/")
+      +sponsor("cipher",              "http://www.ciphertechsolutions.com/")
+      +sponsor("clarabridge",         "http://www.clarabridge.com/")
     .col-xs-12
-      +sponsor("daocloud",            "117px", "100px", "http://daocloud.com/")
-      +sponsor("opis",                "121px", "100px", "http://www.opisnet.com/")
-      +sponsor("sparkfun",            "206px", "100px", "https://www.sparkfun.com/")
-      +sponsor("socialradar",         "246px", "100px", "http://socialradar.com/")
+      +sponsor("daocloud",            "http://daocloud.com/")
+      +sponsor("opis",                "http://www.opisnet.com/")
+      +sponsor("sparkfun",            "https://www.sparkfun.com/")
+      +sponsor("socialradar",         "http://socialradar.com/")
     .col-xs-12
-      +sponsor("mashery",             "138px", "100px", "http://www.mashery.com/")
-      +sponsor("mongodb",             "230px", "100px", "http://www.mongodb.com/")
-      +sponsor("namecheap",           "160px", "100px", "https://www.namecheap.com/")
+      +sponsor("mashery",             "http://www.mashery.com/")
+      +sponsor("mongodb",             "http://www.mongodb.com/")
+      +sponsor("namecheap",           "https://www.namecheap.com/")
     .col-xs-12
-      +sponsor("rdio",                "164px", "100px", "http://www.rdio.com/")
-      +sponsor("sendgrid",            "230px", "100px", "http://sendgrid.com/")
+      +sponsor("rdio",                "http://www.rdio.com/")
+      +sponsor("sendgrid",            "http://sendgrid.com/")
 
     #partners.col-xs-12
       h2    Partners
-      +sponsor("terrapin-hackers",    "126px", "100px", "http://terrapinhackers.com/")
-      +sponsor("startup-shell",       "157px", "100px", "http://startupshell.org/")
-      +sponsor("mlh",                 "166px", "100px", "http://mlh.io/")
+      +sponsor("terrapin-hackers",    "http://terrapinhackers.com/")
+      +sponsor("startup-shell",       "http://startupshell.org/")
+      +sponsor("mlh",                 "http://mlh.io/")
 
   #twitter.row.btc-row
     h3

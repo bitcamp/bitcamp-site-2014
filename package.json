@@ -36,6 +36,7 @@
     "connect-livereload": "~0.3.0",
     "load-grunt-tasks": "~0.2.1",
     "time-grunt": "~0.2.1",
-    "grunt-prettify": "~0.3.4"
+    "grunt-prettify": "~0.3.4",
+    "grunt-inject": "~0.1.1"
   }
 }
