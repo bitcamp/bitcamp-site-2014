@@ -8,4 +8,5 @@ node_modules
 components
 
 sass
+sass-bootstrap
 .sass-cache
