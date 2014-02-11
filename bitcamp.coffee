@@ -13,8 +13,10 @@ ready.then ->
   app.get  "/api/fireside/blocks", fireside.blocks
 
   # Angular Routes
-  app.get "/",         indexRoute
-  app.get "/fireside", indexRoute
+  app.get "/",             indexRoute
+  app.get "/fireside",     indexRoute
+  app.get "/faq",          indexRoute
+  app.get "/faq/sponsors", indexRoute
 
   # 404
   app.get "/404", indexRoute

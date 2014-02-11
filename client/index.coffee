@@ -12,6 +12,12 @@ bitcamp = angular.module('bitcampApp', [
       .when '/fireside',
         templateUrl: 'fireside/index.html'
         controller: 'FiresideCtrl'
+      .when '/faq',
+        templateUrl: 'faq/index.html'
+        controller: 'FaqCtrl'
+      .when '/faq/sponsors',
+        templateUrl: 'faq/sponsors.html'
+        controller: 'FaqCtrl'
       .when '/404',
         templateUrl: 'layout/404/index.html'
         controller: '404Ctrl'
