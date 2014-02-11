@@ -82,12 +82,12 @@ header
 #sponsors
   #sponsor-you
     margin:  10px auto 30px auto
-    font-size: 70%
-    *
-      color: $color_white
+    font-size: 75%
     background-color: $color_orange
     width: 100%
-    max-width: 40em
+    max-width: 32em
+    *
+      color: $color_white
 
   #partners
     margin-top: 40px
@@ -127,12 +127,14 @@ header
   @include sponsor(startup-shell)
   @include sponsor(terrapin-hackers)
 
+  // *sigh* custom styles for their crappy logo
   @media (min-width: 400px)
-    $bha: booz-allen-hamilton-lg
-    #sponsor-#{$bha}
-      width:  image-width('/images/sponsor/#{$bha}.png')
-      height: image-height('/images/sponsor/#{$bha}.png')
-      background: no-repeat url('/images/sponsor/#{$bha}.png')
+    #sponsor-booz-allen-hamilton
+      margin-top:    0
+      margin-bottom: 0
+      width:   image-width('/images/sponsor/booz-allen-hamilton-lg.png')
+      height: image-height('/images/sponsor/booz-allen-hamilton-lg.png')
+      background:      url('/images/sponsor/booz-allen-hamilton-lg.png') no-repeat
 
 
 

@@ -149,7 +149,7 @@ module.exports = (grunt) ->
         assetCacheBuster:        false
 
       dist:   options: debugInfo: false
-      server: options: debugInfo: true
+      server: options: debugInfo: false
 
 
     rev:
@@ -210,7 +210,8 @@ module.exports = (grunt) ->
     inject:
       googleAnalytics:
         scriptSrc: "<%= bitcamp.tmp %>/ga.js"
-        "<%= bitcamp.dist %>/index.html": "<%= bitcamp.dist %>/index.html"
+        files:
+          "<%= bitcamp.dist %>/index.html": "<%= bitcamp.dist %>/index.html"
 
 
     ngtemplates:
