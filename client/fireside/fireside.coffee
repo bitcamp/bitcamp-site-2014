@@ -41,3 +41,6 @@ angular.module('bitcampApp')
           null
 
     blocksI = setInterval blocksF, blocksT
+
+    $scope.$on "$destroy", ->
+      clearInterval blocksI

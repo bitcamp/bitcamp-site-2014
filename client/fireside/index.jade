@@ -1,8 +1,6 @@
 #layoverhacks
   header#header.row.btc-row
-    #logo.col-xs-12.noselect
-      a(href="/")
-        <img src="/images/logo.svg" width="187" height="200">
+    div(ng-include="" src=" 'layout/header-logo.html' ")
     .col-xs-12
       h1#subtitle Fireside
 
@@ -121,14 +119,3 @@
         mixin empty_block()
         mixin empty_block()
 
-  footer#footer.row.btc-row
-    .col-xs-12
-      p
-        | Bitcamp 2014
-        | 
-        a(href="mailto:hello@bitca.mp" target="_blank") Email
-        | &ensp;·&ensp;
-        a(href="https://twitter.com/bitcmp" target="_blank") Twitter
-        | &ensp;·&ensp;
-        a(href="https://www.facebook.com/bitcmp" target="_blank") Facebook
-    .clearfix
