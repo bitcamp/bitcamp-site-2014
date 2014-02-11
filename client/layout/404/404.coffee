@@ -3,4 +3,6 @@
 angular.module('bitcampApp')
 
   .controller '404Ctrl', ($scope, $http) ->
-    console.log "This one time, at bitcamp . . ."
+    console.log "404 :("
+    console.log "There's nothing here!"
+

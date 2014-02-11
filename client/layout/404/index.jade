@@ -1,15 +1,12 @@
-header#header.row.btc-row
-  .btc-background-wrapper
-    .btc-background
-  #logo.col-xs-12.noselect
-    a(href="/")
-      <img src='/images/logo.svg' width='140'  height='150'>
+#fourOhFour(ng-show="isLoaded")
+  header#header.row.btc-row
+    div(ng-include="" onload="isLoaded = true" src="'layout/header-logo.html'")
 
-  .col-xs-12
-    .vspace
-    h2 Are you lost?
-    h3
-      | You should 
-      a(href="/") head back
-      |  to the campsite.
+    .col-xs-12
+      .vspace
+      h2 Are you lost?
+      h3
+        | You should 
+        a(href="/") head back
+        |  to the campsite.
 

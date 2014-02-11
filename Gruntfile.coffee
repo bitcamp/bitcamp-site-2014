@@ -40,9 +40,15 @@ module.exports = (grunt) ->
         dest: "<%= bitcamp.dist %>"
 
     watch:
-      jade:
-        files: ["<%= bitcamp.app %>/**/*.jade"]
-        tasks: [ "newer:jade:dist" ]
+      jade_templates:
+        files: [
+          "<%= bitcamp.app %>/**/*.jade",
+          "!<%= bitcamp.app %>/index.jade"
+        ]
+        tasks: [ "newer:jade:templates" ]
+      jade_index:
+        files: [ "<%= bitcamp.app %>/index.jade" ]
+        tasks: [ "newer:jade:index" ]
 
       coffee:
         files: ["<%= bitcamp.app %>/**/*.coffee"]
@@ -62,7 +68,8 @@ module.exports = (grunt) ->
       livereload_else:
         options: livereload: true
         files: [
-          "<%= bitcamp.dist %>/**/*.html"
+          "<%= bitcamp.app %>/index.html"
+          "<%= bitcamp.tmp %>/**/*.html"
           "<%= bitcamp.tmp %>/**/*.js"
           "<%= bitcamp.app %>/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
         ]
@@ -124,7 +131,7 @@ module.exports = (grunt) ->
     coffee:
       options:
         sourceMap: true
-        sourceRoot: "<%= bitcamp.app %>"
+        sourceRoot: ""
       dist:
         files: [
           expand: true
@@ -200,11 +207,6 @@ module.exports = (grunt) ->
           "images/**/*"
           "fonts/**/*"
         ]
-      views_dist:
-        expand: true
-        cwd:  "<%= bitcamp.tmp %>"
-        dest: "<%= bitcamp.dist %>"
-        src:  [ "**/*.html", "!index.html" ]
 
 
     inject:
@@ -215,37 +217,16 @@ module.exports = (grunt) ->
 
 
     ngtemplates:
-      bitcampTemplates:
+      bitcampApp:
         cwd:  "<%= bitcamp.tmp %>"
         src:  [ "**/*.html", "!index.html" ]
         dest: "<%= bitcamp.dist %>/scripts/templates.js"
         options:
-          standalone: true
-          usemin: "scripts/templates.js"
-
-
-    concat:
-      views_dist:
-        src: [
-          "<%= bitcamp.dist %>/**/*.html"
-          "!<%= bitcamp.dist %>/index.html"
-        ]
-        dest: "<%= bitcamp.tmp %>/scripts/templates.html"
-
-
-    html2js:
-      options:
-        base:   "<%= bitcamp.dist %>"
-        module: "bitcampTemplates"
-      dev:
-        expand: true
-        src: "<%= bitcamp.tmp %>/**/*.html"
-        ext: ".js"
+          usemin: "scripts/main.js"
 
 
     concurrent:
       dist1_dev: [
-        "jade"
         "compass:server"
         "coffee:dist"
         "copy:styles_tmp"
@@ -260,11 +241,17 @@ module.exports = (grunt) ->
         "ngmin"
         "autoprefixer"
       ]
+      dist3: [
+        "copy:app_dist"
+        "copy:components_dist"
+        "inject:googleAnalytics"
+      ]
 
 
   grunt.registerTask "build", [
     "clean"
 
+    "jade"
     "concurrent:dist1"
 
     "prettify"
@@ -273,22 +260,14 @@ module.exports = (grunt) ->
     "concurrent:dist2"
 
     "ngtemplates"
-
     "concat:generated"
 
     "cssmin:generated"
     "uglify:generated"
 
-    "copy:views_dist"
-    "concat:views_dist"
-
-    #"rev"
-
     "usemin"
 
-    "copy:app_dist"
-    "copy:components_dist"
-    "inject:googleAnalytics"
+    "concurrent:dist3"
   ]
 
 
@@ -306,13 +285,15 @@ module.exports = (grunt) ->
       return grunt.task.run [
         "clean"
 
+        "jade"
         "concurrent:dist1_dev"
 
         "prettify"
 
         "autoprefixer"
+        "useminPrepare"
 
-        "html2js:dev"
+        "concurrent:dist2"
 
         "express:dev"
 

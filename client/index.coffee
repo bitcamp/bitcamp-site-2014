@@ -3,8 +3,6 @@ bitcamp = angular.module('bitcampApp', [
   'ngResource'
   'ngSanitize'
   'ngRoute'
-
-  'bitcampTemplates'
 ])
   .config ($routeProvider, $locationProvider) ->
     $routeProvider
