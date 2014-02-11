@@ -1,11 +1,12 @@
-header#header.row.btc-row
-  div(ng-include="" src=" 'layout/header-logo.html' ")
+#fourOhFour(ng-show="isLoaded")
+  header#header.row.btc-row
+    div(ng-include="" onload="isLoaded = true" src="'layout/header-logo.html'")
 
-  .col-xs-12
-    .vspace
-    h2 Are you lost?
-    h3
-      | You should 
-      a(href="/") head back
-      |  to the campsite.
+    .col-xs-12
+      .vspace
+      h2 Are you lost?
+      h3
+        | You should 
+        a(href="/") head back
+        |  to the campsite.
 

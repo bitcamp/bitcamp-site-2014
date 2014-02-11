@@ -1,4 +1,4 @@
-#main
+#main(ng-show="isLoaded")
   header#header.row.btc-row
     .btc-background-wrapper
       #cloud-1.cloud
@@ -9,7 +9,7 @@
         a(href="/fireside")
           <img src="/images/treetent.svg" width="100" height="100" id="treetent">
 
-    div(ng-include="" src=" 'layout/header-logo.html' ")
+    div(ng-include="" src="'layout/header-logo.html'" onload="isLoaded = true")
 
     .col-xs-12.noselect
       h3#time-and-place

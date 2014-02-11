@@ -1,6 +1,6 @@
-#layoverhacks
+#layoverhacks(ng-show="isLoaded")
   header#header.row.btc-row
-    div(ng-include="" src=" 'layout/header-logo.html' ")
+    div(ng-include="" onload="isLoaded = true" src="'layout/header-logo.html'")
     .col-xs-12
       h1#subtitle Fireside
 
