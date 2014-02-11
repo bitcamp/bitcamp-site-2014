@@ -13,7 +13,7 @@ exports.db     = db     = require "mysql-promise"
 
 exports.email_server    = require("emailjs").server.connect
   user     : "bitcamp_bitcamp"
-  password : process.ENV
+  password : process.env.EMAIL_PASSWORD
   host     : "smtp.webfaction.com"
   ssl      : true
   timeout  : 5000
@@ -57,16 +57,16 @@ app.configure ->
     res.setHeader "Pragma"       , "no-cache"
     next()
 
-  app.use app.router
-
   app.use express.urlencoded()
   app.use express.methodOverride()
   app.use express.json()
 
+  app.use app.router
+
   db.configure
     host:     'localhost'
     user:     'bitcamp'
-    password: process.env.EMAIL_PASSWORD
+    password: process.env.DB_PASSWORD
     database: 'bitcamp'
 
 # Start server
