@@ -38,6 +38,10 @@
         around the world, and you’re in for an amazing time.
         See you by the bonfire!
 
+
+      a(href="/faq")
+        button#faq-button.h3.b tell me more!
+
   #permission.row.btc-row
     h2 Permission Slip
     form(ng-controller='SignupCtrl' ng-submit='signup()')
@@ -53,11 +57,10 @@
     .col-xs-12
       h2 Sponsors
 
-      a(href="mailto:sponsorship@bitca.mp" target="_blank")
-        button.btn#sponsor-you.noselect
-          span
-            .h1 You?
-            .h3 Contact us!
+      a(href="/faq/sponsors")
+        button#sponsor-you.noselect
+          .h1 You?
+          .h3 Contact us!
 
     mixin sponsor(sponsor, href)
       a(href=href target="_blank")
