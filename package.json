@@ -12,7 +12,8 @@
     "mysql-promise": "~0.1.0",
     "socket.io": "~0.9.16",
     "validator": "~2.0.0",
-    "q": "~0.9.7"
+    "q": "~0.9.7",
+    "supermarked": "~1.1.0"
   },
   "devDependencies": {
     "grunt-contrib-clean": "~0.5.0",

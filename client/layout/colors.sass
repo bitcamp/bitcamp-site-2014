@@ -9,11 +9,18 @@
   button, .button
     background-color: $color_orange
 
-@mixin light-on-dark($bg, $color: $color_grey-dark)
+@mixin light-on-dark($bg, $color: $color_white)
   background-color: $bg
-  color: $color_white
+  color: $color
   button, .button
     background-color: $color_orangeyellow
+
+
+.dark-on-light
+  @include dark-on-light(transparent)
+
+.light-on-dark
+  @include light-on-dark($color_grey-dark)
 
 
 header
