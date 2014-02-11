@@ -4,43 +4,52 @@ module.exports = (grunt) ->
 
   require("time-grunt") grunt
 
-  grunt.initConfig
 
-    yeoman:
+  grunt.initConfig
+    bitcamp:
 
       app:   "client"
       srv:   "server"
-      dist:  "public"
+
       tmp:   ".tmp"
+      dist:  "public"
 
 
     express:
       options:
-        port: process.env.PORT or 8000
         cmd: "coffee"
 
       dev:
         options:
           script: "bitcamp.coffee"
           node_env: "development"
+          port: process.env.PORT or 8000
 
       prod:
         options:
           script: "bitcamp.coffee"
           node_env: "production"
+          port: process.env.PORT or 80
 
+
+    prettify:
+      dist:
+        expand: true
+        cwd:  "<%= bitcamp.dist %>"
+        src:  "**/*.html"
+        dest: "<%= bitcamp.dist %>"
 
     watch:
       jade:
-        files: ["<%= yeoman.app %>/**/*.jade"]
+        files: ["<%= bitcamp.app %>/**/*.jade"]
         tasks: [ "newer:jade:dist" ]
 
       coffee:
-        files: ["<%= yeoman.app %>/**/*.coffee"]
+        files: ["<%= bitcamp.app %>/**/*.coffee"]
         tasks: ["newer:coffee:dist"]
 
       compass:
-        files: ["<%= yeoman.app %>/**/*.sass"]
+        files: ["<%= bitcamp.app %>/**/*.sass"]
         tasks: [
           "compass:server"
           "autoprefixer"
@@ -48,27 +57,28 @@ module.exports = (grunt) ->
 
       livereload_css:
         options: livereload: true
-        files: [ "<%= yeoman.tmp %>/**/*.css" ]
+        files: [ "<%= bitcamp.tmp %>/**/*.css" ]
 
       livereload_else:
         options: livereload: true
         files: [
-          "<%= yeoman.dist %>/**/*.html"
-          "<%= yeoman.tmp %>/**/*.js"
-          "<%= yeoman.app %>/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
+          "<%= bitcamp.dist %>/**/*.html"
+          "<%= bitcamp.tmp %>/**/*.js"
+          "<%= bitcamp.app %>/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
         ]
 
       express:
-        files: [ "<%= yeoman.srv %>/**/*.coffee" ]
+        files: [ "<%= bitcamp.srv %>/**/*.coffee" ]
         tasks: ["express:dev"]
         options:
           livereload: true
-          nospawn:    true #Without this option specified express won't be reloaded
+          nospawn:    true
+          #Without this option specified express won't be reloaded
 
       styles:
-        files: ["<%= yeoman.app %>/**/*.css"]
+        files: ["<%= bitcamp.app %>/**/*.css"]
         tasks: [
-          "newer:copy:styles"
+          "newer:copy:styles_tmp"
           "autoprefixer"
         ]
 
@@ -81,72 +91,57 @@ module.exports = (grunt) ->
         files: [
           dot: true
           src: [
-            "<%= yeoman.tmp %>/*"
-            "<%= yeoman.dist %>/*"
+            "<%= bitcamp.tmp %>/*"
+            "<%= bitcamp.dist %>/*"
           ]
         ]
 
 
-    htmlmin:
-      dist:
-        options:
-          removeComments:     true
-          collapseWhitespace: true
-        expand: true
-        cwd:    "<%= yeoman.dist %>"
-        src:    "**/*.html"
-        dest:   "<%= yeoman.dist %>"
-
-
     jade:
-      dist:
-        options: pretty: true
-        files: [
-          expand: true
-          cwd:    "<%= yeoman.app %>"
-          src:    [ "**/*.jade", "!index.jade" ]
-          dest:   "<%= yeoman.dist %>/views"
-          ext:    ".html"
-        ,
-          expand: true
-          cwd:    "<%= yeoman.app %>"
-          src:    "index.jade"
-          dest:   "<%= yeoman.dist %>"
-          ext:    ".html"
-        ]
+      index:
+        expand: true
+        cwd:    "<%= bitcamp.app %>"
+        src:    [ "index.jade" ]
+        dest:   "<%= bitcamp.dist %>"
+        ext:    ".html"
+      templates:
+        expand: true
+        cwd:    "<%= bitcamp.app %>"
+        src:    [ "**/*.jade", "!index.jade" ]
+        dest:   "<%= bitcamp.tmp %>"
+        ext:    ".html"
 
 
     autoprefixer:
       options: browsers: ["last 1 version"]
       dist:
         expand: true
-        cwd:    "<%= yeoman.tmp %>"
+        cwd:    "<%= bitcamp.tmp %>"
         src:    "**/*.css"
-        dest:   "<%= yeoman.tmp %>"
+        dest:   "<%= bitcamp.tmp %>"
 
 
     coffee:
       options:
         sourceMap: true
-        sourceRoot: ""
-
+        sourceRoot: "<%= bitcamp.app %>"
       dist:
         files: [
           expand: true
-          cwd:  "<%= yeoman.app %>"
+          cwd:  "<%= bitcamp.app %>"
           src:  "**/*.coffee"
-          dest: "<%= yeoman.tmp %>"
+          dest: "<%= bitcamp.tmp %>"
           ext: ".js"
         ]
 
 
     compass:
       options:
-        sassDir:                 "<%= yeoman.app %>"
-        cssDir:                  "<%= yeoman.tmp %>"
-        imagesDir:               "<%= yeoman.app %>/images"
-        javascriptsDir:          "<%= yeoman.app %>"
-        fontsDir:                "<%= yeoman.app %>/fonts"
+        sassDir:                 "<%= bitcamp.app %>"
+        cssDir:                  "<%= bitcamp.tmp %>"
+        imagesDir:               "<%= bitcamp.app %>"
+        javascriptsDir:          "<%= bitcamp.app %>"
+        fontsDir:                "<%= bitcamp.app %>"
         importPath:              "components"
         httpImagesPath:          "/images"
         httpFontsPath:           "/fonts"
@@ -154,141 +149,178 @@ module.exports = (grunt) ->
         assetCacheBuster:        false
 
       dist:   options: debugInfo: false
-      server: options: debugInfo: true
+      server: options: debugInfo: false
 
 
     rev:
       dist:
         src: [
-          "<%= yeoman.dist %>/**/*.js"
-          "<%= yeoman.dist %>/**/*.css"
-          "<%= yeoman.dist %>/**/*.{png,jpg,jpeg,gif,webp,svg}"
-          "!<%= yeoman.dist %>/**/opengraph.png"
+          "<%= bitcamp.dist %>/**/*.js"
+          "<%= bitcamp.dist %>/**/*.css"
+          "<%= bitcamp.dist %>/**/*.{png,jpg,jpeg,gif,webp,svg}"
+          "!<%= bitcamp.dist %>/**/opengraph.png"
         ]
 
 
     useminPrepare:
-      html: "<%= yeoman.dist %>/**/*.html"
-      options: dest: "<%= yeoman.dist %>"
+      options: dest: "public"
+      html: "<%= bitcamp.dist %>/index.html"
+
 
     usemin:
-      html: [ "<%= yeoman.dist %>/**/*.html" ]
-      css:  [ "<%= yeoman.dist %>/**/*.css" ]
-      options: assetsDirs: "<%= yeoman.dist %>"
-
-
-    svgmin:
-      dist:
-        expand: true
-        cwd: "<%= yeoman.app %>"
-        src: "**/*.svg"
-        dest: "<%= yeoman.app %>"
+      options: assetsDirs: "<%= bitcamp.dist %>"
+      html: [ "<%= bitcamp.dist %>/**/*.html" ]
+      css:  [ "<%= bitcamp.dist %>/**/*.css" ]
 
 
     ngmin:
       dist:
         expand: true
-        cwd: "<%= yeoman.tmp %>"
-        src: "**/*.js"
-        dest: "<%= yeoman.tmp %>"
+        cwd:  "<%= bitcamp.tmp %>"
+        src:  "**/*.js"
+        dest: "<%= bitcamp.tmp %>"
 
 
     copy:
-      dist:
+      styles_tmp:
         expand: true
-        cwd: "<%= yeoman.app %>"
-        dest: "<%= yeoman.dist %>"
+        cwd:  "<%= bitcamp.app %>"
+        src:  "**/*.css"
+        dest: "<%= bitcamp.tmp %>"
+      components_dist:
+        expand: true
+        src:  [ "components/**" ]
+        dest: "<%= bitcamp.dist %>"
+      app_dist:
+        expand: true
+        cwd: "<%= bitcamp.app %>"
+        dest: "<%= bitcamp.dist %>"
         src: [
           "*.{ico,txt}"
           "images/**/*"
           "fonts/**/*"
         ]
-
-      styles:
+      views_dist:
         expand: true
-        cwd:  "<%= yeoman.app %>"
-        src:  "**/*.css"
-        dest: "<%= yeoman.tmp %>"
-
-      components:
-        expand: true
-        src:  [ "components/**" ]
-        dest: "<%= yeoman.dist %>"
-
-
-    concurrent:
-      server: [
-        "coffee:dist"
-        "compass:server"
-        "jade:dist"
-        "copy:styles"
-      ]
-      dist: [
-        "coffee:dist"
-        "compass:dist"
-        "jade:dist"
-        "copy:styles"
-      ]
-
-    prettify:
-      dist:
-        expand: true
-        cwd:  "<%= yeoman.dist %>"
-        src:  "**/*.html"
-        dest: "<%= yeoman.dist %>"
+        cwd:  "<%= bitcamp.tmp %>"
+        dest: "<%= bitcamp.dist %>"
+        src:  [ "**/*.html", "!index.html" ]
 
 
     inject:
       googleAnalytics:
-        scriptSrc: "<%= yeoman.tmp %>/ga.js"
-        "<%= yeoman.dist %>/index.html": "<%= yeoman.dist %>/index.html"
+        scriptSrc: "<%= bitcamp.tmp %>/ga.js"
+        files:
+          "<%= bitcamp.dist %>/index.html": "<%= bitcamp.dist %>/index.html"
 
 
-  grunt.registerTask "express-keepalive", "Keep grunt running", ->
-    @async()
+    ngtemplates:
+      bitcampTemplates:
+        cwd:  "<%= bitcamp.tmp %>"
+        src:  [ "**/*.html", "!index.html" ]
+        dest: "<%= bitcamp.dist %>/scripts/templates.js"
+        options:
+          standalone: true
+          usemin: "scripts/templates.js"
 
-  grunt.registerTask "serve", (target) ->
-    if target is "dist"
-      return grunt.task.run([
-        "build"
-        "express:prod"
-        "express-keepalive"
-      ])
-    grunt.task.run [
-      "clean"
-      "concurrent:server"
-      "autoprefixer"
-      "express:dev"
-      "watch"
-    ]
+
+    concat:
+      views_dist:
+        src: [
+          "<%= bitcamp.dist %>/**/*.html"
+          "!<%= bitcamp.dist %>/index.html"
+        ]
+        dest: "<%= bitcamp.tmp %>/scripts/templates.html"
+
+
+    html2js:
+      options:
+        base:   "<%= bitcamp.dist %>"
+        module: "bitcampTemplates"
+      dev:
+        expand: true
+        src: "<%= bitcamp.tmp %>/**/*.html"
+        ext: ".js"
+
+
+    concurrent:
+      dist1_dev: [
+        "jade"
+        "compass:server"
+        "coffee:dist"
+        "copy:styles_tmp"
+      ]
+      dist1: [
+        "jade"
+        "compass:dist"
+        "coffee:dist"
+        "copy:styles_tmp"
+      ]
+      dist2: [
+        "ngmin"
+        "autoprefixer"
+      ]
+
 
   grunt.registerTask "build", [
     "clean"
 
-    "concurrent:dist"
+    "concurrent:dist1"
 
-    "prettify:dist"
-    "ngmin"
-    "autoprefixer"
-
+    "prettify"
     "useminPrepare"
 
-    "concat"
-    "cssmin"
-    "uglify"
+    "concurrent:dist2"
 
-    "copy:dist"
-    "rev"
+    "ngtemplates"
+
+    "concat:generated"
+
+    "cssmin:generated"
+    "uglify:generated"
+
+    "copy:views_dist"
+    "concat:views_dist"
+
+    #"rev"
 
     "usemin"
 
+    "copy:app_dist"
+    "copy:components_dist"
     "inject:googleAnalytics"
-
-    "htmlmin"
-
-    "copy:components"
   ]
+
+
+  grunt.registerTask "express-keepalive", -> @async()
+
+
+  grunt.registerTask "serve", (target) ->
+    if target is "dist"
+      return grunt.task.run [
+        "build"
+        "express:prod"
+        "express-keepalive"
+      ]
+    else
+      return grunt.task.run [
+        "clean"
+
+        "concurrent:dist1_dev"
+
+        "prettify"
+
+        "autoprefixer"
+
+        "html2js:dev"
+
+        "express:dev"
+
+        "watch"
+      ]
+
 
   grunt.registerTask "default", [
     "build"
   ]
+

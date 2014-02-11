@@ -3,17 +3,19 @@ bitcamp = angular.module('bitcampApp', [
   'ngResource'
   'ngSanitize'
   'ngRoute'
+
+  'bitcampTemplates'
 ])
   .config ($routeProvider, $locationProvider) ->
     $routeProvider
       .when '/',
-        templateUrl: 'views/main/'
+        templateUrl: 'main/index.html'
         controller: 'MainCtrl'
       .when '/fireside',
-        templateUrl: 'views/fireside/'
+        templateUrl: 'fireside/index.html'
         controller: 'FiresideCtrl'
       .when '/404',
-        templateUrl: 'views/layout/404/'
+        templateUrl: 'layout/404/index.html'
         controller: '404Ctrl'
       .otherwise
         redirectTo: '/404'

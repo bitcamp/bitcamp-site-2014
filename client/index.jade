@@ -29,9 +29,9 @@ html(ng-app="bitcampApp")
     link(rel="stylesheet" href="layout/fonts.css")
     link(rel="stylesheet" href="layout/typo.css")
 
-    link(rel="stylesheet" href="main/main.css")
-
     link(rel="stylesheet" href="fireside/fireside.css")
+
+    link(rel="stylesheet" href="main/main.css")
     <!-- endbuild -->
 
   body
@@ -53,7 +53,6 @@ html(ng-app="bitcampApp")
     script(src="components/socket.io-client/dist/socket.io.js")
     <!-- endbuild -->
 
-
     <!-- build:js(./) scripts/modules.js -->
     script(src="components/jquery.scrollTo/jquery.scrollTo.js")
 
@@ -61,6 +60,12 @@ html(ng-app="bitcampApp")
     script(src="components/angular-cookies/angular-cookies.js")
     script(src="components/angular-sanitize/angular-sanitize.js")
     script(src="components/angular-route/angular-route.js")
+    <!-- endbuild -->
+
+    <!-- build:js(.tmp) scripts/templates.js -->
+    script(src="layout/404/index.js")
+    script(src="fireside/index.js")
+    script(src="main/index.js")
     <!-- endbuild -->
 
     <!-- build:js(.tmp) scripts/main.js -->

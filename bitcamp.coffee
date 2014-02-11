@@ -16,7 +16,6 @@ ready.then ->
   app.get "/",         indexRoute
   app.get "/fireside", indexRoute
 
-
   # 404
   app.get "/404", indexRoute
   app.get "/*", [(req, res, next) ->

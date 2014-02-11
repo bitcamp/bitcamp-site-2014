@@ -1,28 +1,28 @@
-header#header.row.btc-row
-  .btc-background-wrapper
-    #cloud-1.cloud
-      <img src="/images/cloud-1.svg" width="150" height="80">
-    #cloud-2.cloud
-      <img src="/images/cloud-2.svg" width="150" height="80">
-    .btc-background
-      a(href="/fireside")
-        <img src="/images/treetent.svg" width="100" height="100" id="treetent">
-  #logo.col-xs-12.noselect
-    a(href="/")
-      <img src="/images/logo.svg" width="187" height="200">
-
-  .col-xs-12.noselect
-    h3#time-and-place
-      span#time.
-        Hackathon @
-        University of Maryland
-      #place April 4-6, 2014
-
-  #call-to-action.col-xs-12
-    a(href='' scroll-to='#permission')
-      button#register.h3 register now
-
 #main
+  header#header.row.btc-row
+    .btc-background-wrapper
+      #cloud-1.cloud
+        <img src="/images/cloud-1.svg" width="150" height="80">
+      #cloud-2.cloud
+        <img src="/images/cloud-2.svg" width="150" height="80">
+      .btc-background
+        a(href="/fireside")
+          <img src="/images/treetent.svg" width="100" height="100" id="treetent">
+    #logo.col-xs-12.noselect
+      a(href="/")
+        <img src="/images/logo.svg" width="187" height="200">
+
+    .col-xs-12.noselect
+      h3#time-and-place
+        span#time.
+          Hackathon @
+          University of Maryland
+        #place April 4-6, 2014
+
+    #call-to-action.col-xs-12
+      a(href='' scroll-to='#permission')
+        button#register.h3 register now
+
   #description.row.btc-row
     #description-inner
       h2 a new hackathon experience
@@ -93,10 +93,9 @@ header#header.row.btc-row
       +sponsor("mlh",                 "http://mlh.io/")
 
   #twitter.row.btc-row
-    h3
-      | Hit up <a href="https://twitter.com/bitcmp" target="_blank">@bitcmp</a> on Twitter and
-      br
-      | join the <a href="https://twitter.com/search?q=%23plustech" target="_blank">#plustech</a> conversation.
+    h3.
+      Hit up <a href="https://twitter.com/bitcmp" target="_blank">@bitcmp</a> on Twitter and
+      join the <a href="https://twitter.com/search?q=%23plustech" target="_blank">#plustech</a> conversation.
 
   a#map(href="http://goo.gl/maps/qS5Tf" target="_blank")
     .row.btc-row
@@ -106,20 +105,20 @@ header#header.row.btc-row
         #map-text
           h2
             span.glyphicon.glyphicon-map-marker
-            br
+          h2
             | Cole Field House
           h3 College Park, MD
 
 
-footer#footer.row.btc-row
-  .col-xs-12
-    p
-      | Bitcamp 2014
-      br
+  footer#footer.row.btc-row
+    .col-xs-12
+      p
+        | Bitcamp 2014
+        | 
+        a(href="mailto:hello@bitca.mp" target="_blank") Email
+        | &ensp;·&ensp;
+        a(href="https://twitter.com/bitcmp" target="_blank") Twitter
+        | &ensp;·&ensp;
+        a(href="https://www.facebook.com/bitcmp" target="_blank") Facebook
+    .clearfix
 
-      a(href="mailto:hello@bitca.mp" target="_blank") Email
-      | &ensp;·&ensp;
-      a(href="https://twitter.com/bitcmp" target="_blank") Twitter
-      | &ensp;·&ensp;
-      a(href="https://www.facebook.com/bitcmp" target="_blank") Facebook
-  .clearfix
