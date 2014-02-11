@@ -13,7 +13,7 @@ exports.db     = db     = require "mysql-promise"
 
 exports.email_server    = require("emailjs").server.connect
   user     : "bitcamp_bitcamp"
-  password : "b1tcamp"
+  password : process.ENV
   host     : "smtp.webfaction.com"
   ssl      : true
   timeout  : 5000
@@ -32,26 +32,29 @@ app.configure "development", ->
   app.use require("connect-livereload")()
   app.use express.errorHandler()
   app.use express.logger "dev"
+
   app.use                staticDir "../.tmp"
   app.use "/components", staticDir "../components"
   app.use                staticDir "../client"
 
+
 app.configure "production", ->
   app.use (req, res, next) ->
-    res.setHeader "Cache-Control" , "public, max-age=#{cacheTime}"
-    res.setHeader "Expires"       , cacheTime
-    res.setHeader "Pragma"        , "cache"
+    res.setHeader "Cache-Control", "public, max-age=#{cacheTime}"
+    res.setHeader "Expires"      , cacheTime
+    res.setHeader "Pragma"       , "cache"
     next()
 
   app.use express.compress()
 
+
 app.configure ->
-  app.use staticDir "../public"
+  app.use staticDir "../dist"
 
   app.use (req, res, next) ->
-    res.setHeader "Cache-Control" , "max-age=0, no-cache, no-store, must-revalidate"
-    res.setHeader "Expires"       , 0
-    res.setHeader "Pragma"        , "no-cache"
+    res.setHeader "Cache-Control", "max-age=0, no-cache, no-store, must-revalidate"
+    res.setHeader "Expires"      , 0
+    res.setHeader "Pragma"       , "no-cache"
     next()
 
   app.use app.router
@@ -63,9 +66,8 @@ app.configure ->
   db.configure
     host:     'localhost'
     user:     'bitcamp'
-    password: process.env.DB_PASSWORD
+    password: process.env.EMAIL_PASSWORD
     database: 'bitcamp'
-
 
 # Start server
 ready = q.defer()
@@ -80,4 +82,4 @@ exports.ready = ready.promise
 
 
 exports.indexRoute = (req, res) ->
-  res.sendfile path.resolve "#{__dirname}/../public/index.html"
+  res.sendfile path.resolve "#{__dirname}/../dist/index.html"

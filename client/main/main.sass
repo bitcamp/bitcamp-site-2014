@@ -8,6 +8,7 @@ header
     z-index: 2
     width: 150px
     height: 80px
+
   #cloud-1
     top:   35%
     left:  10%
@@ -19,9 +20,6 @@ header
 
   #time-and-place
     line-height: 1.3em
-    #time
-      @media (max-width: 500px)
-        white-space: pre-line
 
   #call-to-action
     margin-bottom: 2.7em
@@ -30,9 +28,8 @@ header
       padding-left: 0
       padding-right: 0
 
-
-#description
-  line-height: 1.5em
+  #description
+    line-height: 1.5em
   p
     white-space: normal
   #description-inner
@@ -85,13 +82,12 @@ header
 #sponsors
   #sponsor-you
     margin:  10px auto 30px auto
-    padding: 15px
     font-size: 70%
     *
       color: $color_white
     background-color: $color_orange
     width: 100%
-    max-width: 380px
+    max-width: 40em
 
   #partners
     margin-top: 40px
@@ -107,8 +103,8 @@ header
 
   @mixin sponsor($name, $width, $height)
     #sponsor-#{$name}
-      width:  $width
-      height: $height
+      width:  image-width('/images/sponsor/#{$name}.png')
+      height: image-height('/images/sponsor/#{$name}.png')
       background: no-repeat url('/images/sponsor/#{$name}.png')
 
   @include sponsor(appian,              172px, 100px)
@@ -131,23 +127,47 @@ header
   @include sponsor(startup-shell,       157px, 100px)
   @include sponsor(terrapin-hackers,    126px, 100px)
 
-  @media only screen and (min-width: 500px)
-    @include sponsor(booz-allen-hamilton, 400px, 125px)
+  #sponsor-booz-allen-hamilton
+    background: no-repeat url('/images/sponsor/booz-allen-hamilton-lg.png')
 
-    #sponsor-booz-allen-hamilton
-      background: no-repeat url('/images/sponsor/booz-allen-hamilton-lg.png')
+  @media only screen and (max-width: 400px)
+    @include sponsor(booz-allen-hamilton, 230px, 72px)
+
+
+
+#twitter
+  h3
+    @media only screen and (max-width: 500px)
+      white-space: normal
 
 #map
   display: block
-  &:hover
-    text-decoration: none
-  .btc-row
-    height: 350px
-  h2
-    margin: 0
+
   position: relative
   background-color: transparent
   overflow: hidden
+
+  &:hover
+    text-decoration: none
+
+  .btc-row
+    padding: 0
+
+  #map-inner
+    white-space: normal
+    display: table
+    width: 100%
+    height: 25vw
+    min-height: 180px
+    max-height: 400px
+    #map-text
+      display: table-cell
+      vertical-align: middle
+      text-align: center
+
+  h2, h3
+    margin: 0
+
   .btc-background-wrapper
     $bg-min-width: 700px
     min-width: $bg-min-width
