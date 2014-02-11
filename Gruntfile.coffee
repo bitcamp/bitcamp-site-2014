@@ -12,7 +12,7 @@ module.exports = (grunt) ->
       srv:   "server"
 
       tmp:   ".tmp"
-      dist:  "dist"
+      dist:  "public"
 
 
     express:
@@ -163,7 +163,8 @@ module.exports = (grunt) ->
 
 
     useminPrepare:
-      html: "<%= bitcamp.dist %>/**/*.html"
+      options: dest: "public"
+      html: "<%= bitcamp.dist %>/index.html"
 
 
     usemin:
@@ -233,7 +234,7 @@ module.exports = (grunt) ->
 
     html2js:
       options:
-        base:   "dist"
+        base:   "<%= bitcamp.dist %>"
         module: "bitcampTemplates"
       dev:
         expand: true
@@ -280,13 +281,17 @@ module.exports = (grunt) ->
     "copy:views_dist"
     "concat:views_dist"
 
-    "rev"
+    #"rev"
 
     "usemin"
+
     "copy:app_dist"
     "copy:components_dist"
     "inject:googleAnalytics"
   ]
+
+
+  grunt.registerTask "express-keepalive", -> @async()
 
 
   grunt.registerTask "serve", (target) ->
@@ -309,7 +314,6 @@ module.exports = (grunt) ->
         "html2js:dev"
 
         "express:dev"
-        "express-keepalive"
 
         "watch"
       ]
@@ -318,8 +322,4 @@ module.exports = (grunt) ->
   grunt.registerTask "default", [
     "build"
   ]
-
-
-  grunt.registerTask "express-keepalive", "Keep grunt running", ->
-    @async()
 

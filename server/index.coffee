@@ -49,7 +49,7 @@ app.configure "production", ->
 
 
 app.configure ->
-  app.use staticDir "../dist"
+  app.use staticDir "../public"
 
   app.use (req, res, next) ->
     res.setHeader "Cache-Control", "max-age=0, no-cache, no-store, must-revalidate"
@@ -82,4 +82,4 @@ exports.ready = ready.promise
 
 
 exports.indexRoute = (req, res) ->
-  res.sendfile path.resolve "#{__dirname}/../dist/index.html"
+  res.sendfile path.resolve "#{__dirname}/../public/index.html"
