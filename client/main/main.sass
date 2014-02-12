@@ -23,13 +23,8 @@ header
 
   #call-to-action
     margin-bottom: 2.7em
-    button
-      white-space: pre
-      padding-left: 0
-      padding-right: 0
 
 #description
-  line-height: 1.5em
   #description-inner
     margin: 0 auto
     max-width: 1050px
@@ -38,8 +33,8 @@ header
 
   #faq-button
     margin-bottom: 1em
-    background-color: lighten($color_grey-light, 5%)
-    color: $color_orange
+    background-color: $color_grey-light
+    color:            $color_grey-dark
 
 
 #permission
@@ -70,12 +65,11 @@ header
 
 #sponsors
   #sponsor-you
-    margin:  10px auto 30px auto
-    background-color: $color_orange
+    margin: 0 auto
+    background-color: $color_grey
+    color:            $color_white
     width: 100%
     max-width: 10em
-    *
-      color: $color_white
 
   #partners
     margin-top: 40px
@@ -133,10 +127,8 @@ header
 
 #map
   display: block
-
   position: relative
   background-color: transparent
-  overflow: hidden
 
   &:hover
     text-decoration: none
@@ -145,7 +137,7 @@ header
     padding: 0
 
   #map-inner
-    white-space: normal
+    white-space: nowrap
     display: table
     width: 100%
     height: 25vw

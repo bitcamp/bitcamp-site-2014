@@ -40,26 +40,23 @@ module.exports = (grunt) ->
         dest: "<%= bitcamp.dist %>"
 
     watch:
-      jade_templates:
+      views_templates:
         files: [
           "<%= bitcamp.app %>/**/*.jade",
           "!<%= bitcamp.app %>/index.jade"
         ]
         tasks: [ "newer:jade:templates" ]
-      jade_index:
+      views_index:
         files: [ "<%= bitcamp.app %>/index.jade" ]
         tasks: [ "newer:jade:index" ]
 
-      coffee:
+      scripts:
         files: ["<%= bitcamp.app %>/**/*.coffee"]
         tasks: ["newer:coffee:dist"]
 
-      compass:
+      styles:
         files: ["<%= bitcamp.app %>/**/*.sass"]
-        tasks: [
-          "compass:server"
-          "autoprefixer"
-        ]
+        tasks: [ "compass:dev", "newer:autoprefixer:dist" ]
 
       livereload_css:
         options: livereload: true
@@ -68,29 +65,23 @@ module.exports = (grunt) ->
       livereload_else:
         options: livereload: true
         files: [
-          "<%= bitcamp.app %>/index.html"
+          "<%= bitcamp.dist %>/index.html"
           "<%= bitcamp.tmp %>/**/*.html"
           "<%= bitcamp.tmp %>/**/*.js"
-          "<%= bitcamp.app %>/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}"
         ]
 
       express:
-        files: [ "<%= bitcamp.srv %>/**/*.coffee" ]
+        files: [ "<%= bitcamp.srv %>/**/*.coffee", "bitcamp.coffee" ]
         tasks: ["express:dev"]
         options:
           livereload: true
           nospawn:    true
-          #Without this option specified express won't be reloaded
 
-      styles:
+      css:
         files: ["<%= bitcamp.app %>/**/*.css"]
-        tasks: [
-          "newer:copy:styles_tmp"
-          "autoprefixer"
-        ]
+        tasks: [ "newer:copy:styles_tmp", "autoprefixer" ]
 
-      gruntfile:
-        files: ["Gruntfile.js"]
+      gruntfile: files: ["Gruntfile.{js,coffee}"]
 
 
     clean:
@@ -122,10 +113,7 @@ module.exports = (grunt) ->
     autoprefixer:
       options: browsers: ["last 1 version"]
       dist:
-        expand: true
-        cwd:    "<%= bitcamp.tmp %>"
-        src:    "**/*.css"
-        dest:   "<%= bitcamp.tmp %>"
+        src: "<%= bitcamp.tmp %>/**/*.css"
 
 
     coffee:
@@ -155,8 +143,8 @@ module.exports = (grunt) ->
         relativeAssets:          false
         assetCacheBuster:        false
 
-      dist:   options: debugInfo: false
-      server: options: debugInfo: false
+      prod: options: debugInfo: false
+      dev:  options: debugInfo: true
 
 
     rev:
@@ -227,13 +215,13 @@ module.exports = (grunt) ->
 
     concurrent:
       dist1_dev: [
-        "compass:server"
+        "compass:dev"
         "coffee:dist"
         "copy:styles_tmp"
       ]
       dist1: [
         "jade"
-        "compass:dist"
+        "compass:prod"
         "coffee:dist"
         "copy:styles_tmp"
       ]
