@@ -4,6 +4,7 @@ bitcamp = angular.module('bitcampApp', [
   'ngSanitize'
   'ngRoute'
 ])
+
   .config ($routeProvider, $locationProvider) ->
     $routeProvider
       .when '/',
@@ -42,3 +43,4 @@ bitcamp = angular.module('bitcampApp', [
       maxFont   : 30
       fontRatio : 50
       lineRatio : 1.45
+

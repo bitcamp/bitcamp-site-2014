@@ -5,14 +5,18 @@
         <img src="/images/cloud-1.svg" width="150" height="80">
       #cloud-2.cloud
         <img src="/images/cloud-2.svg" width="150" height="80">
+      #cloud-3.cloud
+        <img src="/images/cloud-1.svg" width="150" height="80">
+      #cloud-4.cloud
+        <img src="/images/cloud-2.svg" width="150" height="80">
       .btc-background
         a(href="/fireside")
           <img src="/images/treetent.svg" width="100" height="100" id="treetent">
 
     div(ng-include="" src="'layout/header-logo.html'" onload="isLoaded = true")
 
-    .col-xs-12.noselect
-      h3#time-and-place
+    .col-xs-12
+      h3#time-and-place.noselect
         span#time.
           Hackathon @
           University of Maryland
@@ -56,7 +60,7 @@
         h3
           input.button#signup(type='submit' value='{{submitText}}' ng-style="submitStyles")
 
-  #sponsors.row.btc-row.noselect
+  #sponsors.row.btc-row
     .col-xs-12
       h2 Sponsors
 
@@ -113,9 +117,9 @@
         .btc-background
       #map-inner.col-xs-12
         #map-text
-          h2
+          h2.noselect
             span.glyphicon.glyphicon-map-marker
-          h2
+            br
             | Cole Field House
-          h3 College Park, MD
+          h3.noselect College Park, MD
 

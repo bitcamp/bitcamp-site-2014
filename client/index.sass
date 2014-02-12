@@ -53,6 +53,9 @@ body
 .noselect
   user-select: none
 
+*
+  @extend .noselect
+
 button, .button
   max-width: 10em
   width: 100%
@@ -60,6 +63,7 @@ button, .button
   border: none
   font-weight: bold
   border-radius: 6px
+  user-select: none !important
 
 input
   @include placeholder($color_white)
@@ -115,3 +119,4 @@ header
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak
   display: none !important
+
