@@ -3,6 +3,13 @@
 @import 'variables'
 
 
+body
+  font-family:      $font-family-base
+  font-size:        18px
+  color:            $text-color
+  background-color: $body-bg
+
+
 h1, .h1,
 h2, .h2,
 h3, .h3,
@@ -10,47 +17,62 @@ h4, .h4,
 h5, .h5,
 h6, .h6,
 p, .p
-  margin: 0
+  line-height: 1.45
   font-weight: normal
+  margin: 0
+
   font-family: inherit
-  font-size: inherit
-  line-height: 1.2
+  font-size:   inherit
+
 
 button, .button
   color: $color_white
   letter-spacing: 1px
   backface-visibility: hidden
-  @include transition(opacity 0.2s ease-out, color 0.2s ease-out, background-color 0.2s ease-out)
+  @include transition(all 0.2s ease-out)
   &:hover
-    opacity: 0.9
+    opacity: 0.85
+
 
 b, .b, strong, .strong
   font-weight: bold
 
+i, .i, em, .em
+  font-style: italic
+
+
 h1, .h1
-  font-size: $font-size-h1
+  font-size:      3.2em
+  font-weight:    300
+  margin-bottom:  0.75em
+  color:          $color_orange
   text-transform: uppercase
-  font-weight: 300
-  color: $color_orange
-  margin: 0.75em 0
+
 h2, .h2
-  font-size: $font-size-h2
-  font-weight: bold
+  font-size:     2.2em
+  font-weight:   bold
   margin-bottom: 1.0em
+
 h3, .h3
-  font-size: $font-size-h3
-  margin-bottom: 1em
+  font-size:     1.7em
+  margin-bottom: 0.5em
+
 h4, .h4
-  font-size: $font-size-h4
+  font-size:     1.5em
+  margin-bottom: 0.5em
+  color:         $color_grey-light
+
 h5, .h5
-  font-size: $font-size-h5
-  font-weight: bold
+  font-size:     1.35em
+  margin-bottom: 0.5em
+  color:         $color_grey-light
+
 h6, .h6
-  font-size: $font-size-h6
+  font-size:     1.2em
+  margin-bottom: 0.5em
 
 p, .p
-  font-size: 1.5em
-  line-height: 1.4
+  font-size:     1em
   margin-bottom: 1em
 
 
@@ -60,11 +82,21 @@ p, .p
 
 ::selection
   background: $color_blue-light
-  color: $color_grey-dark
+  color:      $color_grey-dark
+
 ::-moz-selection
   background: $color_blue-light
-  color: $color_grey-dark
+  color:      $color_grey-dark
 
 
-a:hover
+a
   text-decoration: none
+  color: $color_orangeyellow
+  &:hover
+    color: $color_red
+    text-decoration: underline
+
+
+ul
+  padding-left: 0
+  margin-left: 0

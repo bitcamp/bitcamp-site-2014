@@ -2,13 +2,13 @@
 @import 'layout/variables'
 
 @import 'sass-bootstrap/lib/mixins'
-
 @import 'sass-bootstrap/lib/normalize'
-
 @import 'sass-bootstrap/lib/glyphicons'
-@import 'sass-bootstrap/lib/scaffolding'
 @import 'sass-bootstrap/lib/grid'
 
+
+*, *:before, *:after
+  @include box-sizing(border-box)
 
 html, body
   min-height: 100%
@@ -34,7 +34,7 @@ body
   margin: 0 auto
 
 .btc-row
-  padding: 5em 0.938em 2.5em
+  padding: 5em .95em 2.5em
   text-align: center
   position: relative
 
@@ -46,10 +46,6 @@ body
   .btc-background
     margin: 0 auto
     @include square(100%)
-
-.row
-  margin-left: 0
-  margin-right: 0
 
 .clearfix
   @include clearfix()
@@ -106,7 +102,6 @@ header
     height: 100%
     width: 100%
     display: table
-    font-size: 95%
     #footer-content
       white-space: pre-line
       display: table-cell
@@ -115,8 +110,6 @@ header
   a
     &:hover
       color: $color_white
-      text-decoration: underline
-    font-weight: normal
     color: $color_white
 
 

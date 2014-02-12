@@ -23,18 +23,18 @@ header
 
   #call-to-action
     margin-bottom: 2.7em
-    button
-      white-space: pre
-      padding-left: 0
-      padding-right: 0
 
 #description
-  line-height: 1.5em
   #description-inner
     margin: 0 auto
     max-width: 1050px
     @media (max-width: 620px)
       white-space: normal
+
+  #faq-button
+    margin-bottom: 1em
+    background-color: $color_grey-light
+    color:            $color_grey-dark
 
 
 #permission
@@ -65,13 +65,11 @@ header
 
 #sponsors
   #sponsor-you
-    margin:  10px auto 30px auto
-    font-size: 75%
-    background-color: $color_orange
+    margin: 0 auto
+    background-color: $color_grey
+    color:            $color_white
     width: 100%
-    max-width: 32em
-    *
-      color: $color_white
+    max-width: 10em
 
   #partners
     margin-top: 40px
@@ -112,7 +110,7 @@ header
   @include sponsor(terrapin-hackers)
 
   // *sigh* custom styles for their crappy logo
-  @media (min-width: 400px)
+  @media (min-width: 500px)
     #sponsor-booz-allen-hamilton
       margin-top:    0
       margin-bottom: 0
@@ -129,10 +127,8 @@ header
 
 #map
   display: block
-
   position: relative
   background-color: transparent
-  overflow: hidden
 
   &:hover
     text-decoration: none
@@ -141,7 +137,7 @@ header
     padding: 0
 
   #map-inner
-    white-space: normal
+    white-space: nowrap
     display: table
     width: 100%
     height: 25vw
@@ -166,7 +162,7 @@ header
     .btc-background
       background: url('/images/cole.png') no-repeat
       background-size: 100% auto
-      background-position: 0 70%
+      background-position: 0 40%
 
 
 @keyframes float-1

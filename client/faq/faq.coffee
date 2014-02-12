@@ -1,3 +1,3 @@
 angular.module('bitcampApp')
-  .controller 'FaqCtrl', ($scope, $http) ->
-    console.log "faq!"
+  .controller 'FaqCtrl', ($scope, $http, $anchorScroll) ->
+    $anchorScroll()

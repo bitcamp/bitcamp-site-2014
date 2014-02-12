@@ -1,17 +1,21 @@
 @import '../layout/variables'
 
 #faq-content
-  white-space: normal
-  text-align: left
-  #faq-content-inner
+  .container
     max-width: 960px
-    margin: 0 auto
+  white-space: normal
+  #faq-content-inner
+    text-align: left
+    margin: 0 auto 4em
+    > p
+      text-indent: 1rem
   h3
-    margin-bottom: 1em
+    color: $color_blue-light
     &:not(:first-child)
       margin-top: 2em
-  p
-    text-indent: 2em
+  h4
+    font-style: italic
+  h5
+    color: $color_white
   a
-    color: $color_orangeyellow
     font-weight: bold
