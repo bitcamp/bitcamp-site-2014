@@ -149,9 +149,11 @@ header
     display: table
     width: 100%
     height: 25vw
-    min-height: 180px
+    min-height: 190px
     max-height: 400px
     #map-text
+      @media (max-width: 400px)
+        font-size: 0.8em
       display: table-cell
       vertical-align: middle
       text-align: center
@@ -170,7 +172,6 @@ header
     .btc-background
       background: url('/images/cole.png') no-repeat
       background-size: 100% auto
-      background-position: 0 40%
 
 
 @keyframes float-1
