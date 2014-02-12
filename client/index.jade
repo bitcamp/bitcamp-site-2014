@@ -38,9 +38,9 @@ html(ng-app="bitcampApp")
 
   body(ng-controller="BodyCtrl")
 
-    div.wrapper#wrapper(ng-view)
+    .wrapper#wrapper(ng-view)
 
-    div(ng-include="" src=" 'layout/footer.html' ")
+    .wrapper(ng-include="" src=" 'layout/footer.html' ")
 
     <!-- build:js(./) scripts/plugins.js -->
     script(src="components/jquery/jquery.js")
