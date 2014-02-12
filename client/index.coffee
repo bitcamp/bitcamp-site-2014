@@ -34,10 +34,11 @@ bitcamp = angular.module('bitcampApp', [
         $.scrollTo location, 800
 
 
-$('body').flowtype
-  minimum   : 320,
-  maximum   : 960,
-  minFont   : 12,
-  maxFont   : 20,
-  fontRatio : 55,
-  lineRatio : 1.45
+  .controller "BodyCtrl", ->
+    $('body').flowtype
+      minimum   : 320
+      maximum   : 1200
+      minFont   : 18
+      maxFont   : 30
+      fontRatio : 50
+      lineRatio : 1.45
