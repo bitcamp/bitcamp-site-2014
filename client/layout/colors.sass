@@ -8,16 +8,28 @@
   color: $color
   button, .button
     background-color: $color_orange
+  a
+    color: $color_red
+    &:hover
+      color: $color_orangeyellow
 
 @mixin light-on-dark($bg, $color: $color_white)
   background-color: $bg
   color: $color
   button, .button
     background-color: $color_orangeyellow
+  a
+    color: $color_orangeyellow
+    &:hover
+      color: $color_red
 
+
+a
+  text-decoration: none
+  @include transition(color 0.2s ease-in)
 
 .dark-on-light
-  @include dark-on-light(transparent)
+  @include dark-on-light($color_white)
 
 .light-on-dark
   @include light-on-dark($color_grey-dark)
@@ -46,7 +58,3 @@ header
 
 footer
   @include light-on-dark($color_grey-dark)
-
-
-a
-  @include transition(color 0.2s ease-in)
