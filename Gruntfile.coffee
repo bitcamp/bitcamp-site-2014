@@ -279,6 +279,7 @@ module.exports = (grunt) ->
     "usemin"
 
     "concurrent:dist3"
+    "usebanner"
   ]
 
 
