@@ -117,10 +117,19 @@ module.exports = (grunt) ->
 
 
     coffee:
-      options:
-        sourceMap: true
-        sourceRoot: ""
       dist:
+        options: sourceMap: false
+        files: [
+          expand: true
+          cwd:  "<%= bitcamp.app %>"
+          src:  "**/*.coffee"
+          dest: "<%= bitcamp.tmp %>"
+          ext: ".js"
+        ]
+      dev:
+        options:
+          sourceMap: true
+          sourceRoot: ""
         files: [
           expand: true
           cwd:  "<%= bitcamp.app %>"
@@ -216,7 +225,7 @@ module.exports = (grunt) ->
     concurrent:
       dist1_dev: [
         "compass:dev"
-        "coffee:dist"
+        "coffee:dev"
         "copy:styles_tmp"
       ]
       dist1: [
