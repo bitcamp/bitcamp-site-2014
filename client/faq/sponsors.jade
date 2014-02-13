@@ -3,15 +3,18 @@
     div(ng-include="" onload="isLoaded = true" src="'layout/header-logo.html'")
     .col-xs-12
       h1 Sponsor FAQ
-
+    .col-xs-12
+      h3 Reach us at 
+        a(href="mailto:sponsorship@bitca.mp" target="_blank")
+          | sponsorship@bitca.mp
+        | .
+    .col-xs-12
+      .spacer1
+      .spacer2
 
   #faq-content.light-on-dark
     .container
       .row.btc-row
-        .col-xs-12
-          h2 Reach us at 
-            a(href="mailto:sponsorship@bitca.mp" target="_blank") sponsorship@bitca.mp
-            | .
         #faq-content-inner.col-xs-12
           :markdown
             ### Deadlines

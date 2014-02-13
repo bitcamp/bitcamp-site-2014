@@ -56,7 +56,7 @@ module.exports = (grunt) ->
 
       styles:
         files: ["<%= bitcamp.app %>/**/*.sass"]
-        tasks: [ "compass:dev", "newer:autoprefixer:dist" ]
+        tasks: [ "compass:dev", "autoprefixer" ]
 
       livereload_css:
         options: livereload: true
@@ -113,7 +113,10 @@ module.exports = (grunt) ->
     autoprefixer:
       options: browsers: ["last 1 version"]
       dist:
-        src: "<%= bitcamp.tmp %>/**/*.css"
+        expand: true
+        cwd:    "<%= bitcamp.tmp %>"
+        src:    [ "**/*.css" ]
+        dest:   "<%= bitcamp.tmp %>"
 
 
     coffee:
@@ -130,13 +133,7 @@ module.exports = (grunt) ->
         options:
           sourceMap: true
           sourceRoot: ""
-        files: [
-          expand: true
-          cwd:  "<%= bitcamp.app %>"
-          src:  "**/*.coffee"
-          dest: "<%= bitcamp.tmp %>"
-          ext: ".js"
-        ]
+        files: "<%= coffee.dist.files %>"
 
 
     compass:
@@ -154,6 +151,9 @@ module.exports = (grunt) ->
 
       prod: options: debugInfo: false
       dev:  options: debugInfo: true
+      watch:
+        debugInfo: false
+        watch:     true
 
 
     rev:
@@ -175,6 +175,13 @@ module.exports = (grunt) ->
       options: assetsDirs: "<%= bitcamp.dist %>"
       html: [ "<%= bitcamp.dist %>/**/*.html" ]
       css:  [ "<%= bitcamp.dist %>/**/*.css" ]
+
+
+    usebanner:
+      options:
+        position: "top"
+        banner: require "./ascii"
+      files:  [ "<%= bitcamp.dist %>/index.html" ]
 
 
     ngmin:
@@ -213,15 +220,6 @@ module.exports = (grunt) ->
           "<%= bitcamp.dist %>/index.html": "<%= bitcamp.dist %>/index.html"
 
 
-    ngtemplates:
-      bitcampApp:
-        cwd:  "<%= bitcamp.tmp %>"
-        src:  [ "**/*.html", "!index.html" ]
-        dest: "<%= bitcamp.dist %>/scripts/templates.js"
-        options:
-          usemin: "scripts/main.js"
-
-
     concurrent:
       dist1_dev: [
         "compass:dev"
@@ -243,6 +241,22 @@ module.exports = (grunt) ->
         "copy:components_dist"
         "inject:googleAnalytics"
       ]
+      watch:
+        options: logConcurrentOutput: true
+        tasks: [
+          "watch"
+          "compass:watch"
+        ]
+
+
+    ngtemplates:
+      bitcampApp:
+        cwd:  "<%= bitcamp.tmp %>"
+        src:  [ "**/*.html", "!index.html" ]
+        dest: "<%= bitcamp.dist %>/scripts/templates.js"
+        options:
+          usemin: "scripts/main.js"
+
 
 
   grunt.registerTask "build", [
@@ -294,7 +308,7 @@ module.exports = (grunt) ->
 
         "express:dev"
 
-        "watch"
+        "concurrent:watch"
       ]
 
 
