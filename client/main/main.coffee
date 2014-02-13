@@ -20,7 +20,7 @@ angular.module('bitcampApp')
     submitWaiting       = false
     $scope.submitStyles = {}
 
-    submitDelay = 2000 # milliseconds
+    submitDelay = 1400 # milliseconds
 
     $scope.signup = ->
       return if submitWaiting
@@ -40,28 +40,30 @@ angular.module('bitcampApp')
         headers: 'Content-Type': 'application/json'
 
       .success (data) ->
-        $scope.submitText                       = submitSuccess
-        $scope.submitStyles["background-color"] = "white"
-        $scope.submitStyles["color"]            = "#53a559"
-
-        setTimeout ->
-          $scope.$apply ->
+        setTimeout (-> $scope.$apply ->
+          $scope.submitText                       = submitSuccess
+          $scope.submitStyles["background-color"] = "white"
+          $scope.submitStyles["color"]            = "#53a559"
+          setTimeout (-> $scope.$apply ->
             $scope.submitText   = submitDefault
             $scope.submitStyles = {}
             $scope.name         = ''
             $scope.email        = ''
             $scope.university   = ''
-        , submitDelay
+          ), submitDelay
+        ), submitDelay
 
       .error (data) ->
-        $scope.submitText                       = submitError
-        $scope.submitStyles["background-color"] = "#ff404a"
-        $scope.submitStyles["color"]            = "white"
-
         setTimeout ->
           $scope.$apply ->
-            $scope.submitText   = submitDefault
-            $scope.submitStyles = {}
+            $scope.submitText                       = submitError
+            $scope.submitStyles["background-color"] = "#ff404a"
+            $scope.submitStyles["color"]            = "white"
+            setTimeout ->
+              $scope.$apply ->
+                $scope.submitText   = submitDefault
+                $scope.submitStyles = {}
+            , submitDelay
         , submitDelay
 
       .finally ->
