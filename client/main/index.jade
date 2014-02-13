@@ -48,7 +48,9 @@
 
 
   #permission.row.btc-row
-    <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
+    .btc-background-wrapper
+      <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
+      .btc-background
     .col-xs-12
       h2 Permission Slip
       form(ng-controller='SignupCtrl' ng-submit='signup()')
