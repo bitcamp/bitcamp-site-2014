@@ -31,7 +31,6 @@ bitcamp = angular.module('bitcampApp', [
     (scope, element, attrs) ->
       element.bind "click", (event) ->
         event.stopPropagation()
-        scope.$on "$locationChangeStart", (e) -> e.preventDefault()
         location = attrs.scrollTo
         $.scrollTo location, 800
 
