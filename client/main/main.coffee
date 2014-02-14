@@ -2,7 +2,7 @@ angular.module('bitcampApp')
   .controller 'MainCtrl', ($scope, $http) ->
     null
 
-  .controller 'SignupCtrl', ($scope, $http, $window) ->
+  .controller 'SignupCtrl', ($scope, $http, $timeout) ->
     $scope.name       = ''
     $scope.email      = ''
     $scope.university = ''
@@ -35,29 +35,29 @@ angular.module('bitcampApp')
         headers: 'Content-Type': 'application/json'
 
       .success (data) ->
-        $window.setTimeout submitDelay, (-> $scope.$apply ->
+        $timeout (->
           $scope.submitText                       = submitSuccess
           $scope.submitStyles["background-color"] = "white"
           $scope.submitStyles["color"]            = "#53a559"
-          $window.setTimeout submitDelay, (-> $scope.$apply ->
+          $timeout (->
             $scope.submitText   = submitDefault
             $scope.submitStyles = {}
             $scope.name         = ''
             $scope.email        = ''
             $scope.university   = ''
-          )
-        )
+          ), submitDelay
+        ), submitDelay
 
       .error (data) ->
-        $window.setTimeout submitDelay, (-> $scope.$apply ->
+        $timeout (->
           $scope.submitText                       = submitError
           $scope.submitStyles["background-color"] = "#ff404a"
           $scope.submitStyles["color"]            = "white"
-          $window.setTimeout submitDelay, (-> $scope.$apply ->
+          $timeout (->
             $scope.submitText   = submitDefault
             $scope.submitStyles = {}
-          )
-        )
+          ), submitDelay
+        ), submitDelay
 
       .finally ->
         submitWaiting = false
