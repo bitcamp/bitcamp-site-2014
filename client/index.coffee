@@ -7,6 +7,8 @@ bitcamp = angular.module('bitcampApp', [
 ])
 
   .config ($routeProvider, $locationProvider) ->
+    console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
+
     $routeProvider
       .when '/',
         templateUrl: 'main/index.html'
@@ -30,10 +32,8 @@ bitcamp = angular.module('bitcampApp', [
   .directive "scrollTo", ->
     (scope, element, attrs) ->
       element.bind "click", (event) ->
-        event.stopPropagation()
         location = attrs.scrollTo
-        $.scrollTo location, 800
-
+        $.scrollTo location, +attrs.scrollSpeed or 300
 
   .controller "BodyCtrl", ($http, $scope, $rootScope, $timeout) ->
     $rootScope.isLoaded = true
@@ -49,8 +49,8 @@ bitcamp = angular.module('bitcampApp', [
       .error (data) ->
         null
 
-    $rootScope.$on "$locationChangeStart", (e, next, current) ->
-      $.scrollTo "#wrapper", 600
+    $rootScope.$on "$routeChangeStart", (e, next, current) ->
+      null
 
     $('body').flowtype
       minimum   : 320

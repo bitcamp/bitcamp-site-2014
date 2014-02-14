@@ -122,27 +122,15 @@ fieldset
   display: none !important
 
 
-//.wrapper
-//  $enterTime: 1.0s
-//  $leaveTime: 0.5s
-//  &.ng-enter
-//    animation: fadeIn $enterTime forwards
-//  &.ng-leave
-//    animation: fadeOut $leaveTime forwards
-//
-
-
 #buffer
   &.ng-enter
-    animation: fadeIn 0.5s
+    animation: fadeIn 0.4s
 
 #wrapper
-  opacity: 0
   &.bitcamp-view
-    $enterTime: 0.4s
+    $enterTime: 0.3s
     $leaveTime: 0.2s
     &.ng-leave
-      animation: fadeOut $leaveTime
+      animation: fadeOutUp $leaveTime
     &.ng-enter
-      animation: fadeIn $enterTime $leaveTime
-    opacity: 1
+      animation: fadeInDown $enterTime $leaveTime

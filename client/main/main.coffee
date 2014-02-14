@@ -1,5 +1,5 @@
 angular.module('bitcampApp')
-  .controller 'MainCtrl', ($scope, $http) ->
+  .controller 'MainCtrl', ($scope, $http, $anchorScroll) ->
     null
 
   .controller 'SignupCtrl', ($scope, $http, $timeout) ->
