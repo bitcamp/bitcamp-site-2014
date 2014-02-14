@@ -13,6 +13,8 @@
     "socket.io-client": "~0.9.16",
     "picturefill": "~1.2.1",
     "jquery": "~2.1.0",
-    "flowtype": "*"
+    "flowtype": "*",
+    "angular-animate": "~1.2.12",
+    "animate.css": "~3.0.0"
   }
 }

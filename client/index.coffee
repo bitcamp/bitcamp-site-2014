@@ -3,6 +3,7 @@ bitcamp = angular.module('bitcampApp', [
   'ngResource'
   'ngSanitize'
   'ngRoute'
+  'ngAnimate'
 ])
 
   .config ($routeProvider, $locationProvider) ->
@@ -35,7 +36,23 @@ bitcamp = angular.module('bitcampApp', [
         $.scrollTo location, 800
 
 
-  .controller "BodyCtrl", ->
+  .controller "BodyCtrl", ($http, $scope, $rootScope, $timeout) ->
+    $rootScope.isLoaded = true
+    $scope.animClass = ''
+    $scope.animReady = false
+
+    $http.get('/api/bitcamp')
+      .success (data) ->
+        $timeout ->
+          $scope.animClass = "bitcamp-view"
+          $scope.animReady = true
+        , 10
+      .error (data) ->
+        null
+
+    $rootScope.$on "$locationChangeStart", (e, next, current) ->
+      $.scrollTo "#wrapper", 600
+
     $('body').flowtype
       minimum   : 320
       maximum   : 1200
@@ -43,4 +60,3 @@ bitcamp = angular.module('bitcampApp', [
       maxFont   : 22
       fontRatio : 40
       lineRatio : 1.45
-
