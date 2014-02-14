@@ -1,13 +1,8 @@
 angular.module('bitcampApp')
-  .controller 'MainCtrl', ($scope, $http, $window) ->
+  .controller 'MainCtrl', ($scope, $http) ->
+    null
 
-    $http.get('/api/bitcamp')
-      .success (data) ->
-        null
-      .error (data) ->
-        null
-
-  .controller 'SignupCtrl', ($scope, $http) ->
+  .controller 'SignupCtrl', ($scope, $http, $window) ->
     $scope.name       = ''
     $scope.email      = ''
     $scope.university = ''
@@ -40,31 +35,29 @@ angular.module('bitcampApp')
         headers: 'Content-Type': 'application/json'
 
       .success (data) ->
-        setTimeout (-> $scope.$apply ->
+        $window.setTimeout submitDelay, (-> $scope.$apply ->
           $scope.submitText                       = submitSuccess
           $scope.submitStyles["background-color"] = "white"
           $scope.submitStyles["color"]            = "#53a559"
-          setTimeout (-> $scope.$apply ->
+          $window.setTimeout submitDelay, (-> $scope.$apply ->
             $scope.submitText   = submitDefault
             $scope.submitStyles = {}
             $scope.name         = ''
             $scope.email        = ''
             $scope.university   = ''
-          ), submitDelay
-        ), submitDelay
+          )
+        )
 
       .error (data) ->
-        setTimeout ->
-          $scope.$apply ->
-            $scope.submitText                       = submitError
-            $scope.submitStyles["background-color"] = "#ff404a"
-            $scope.submitStyles["color"]            = "white"
-            setTimeout ->
-              $scope.$apply ->
-                $scope.submitText   = submitDefault
-                $scope.submitStyles = {}
-            , submitDelay
-        , submitDelay
+        $window.setTimeout submitDelay, (-> $scope.$apply ->
+          $scope.submitText                       = submitError
+          $scope.submitStyles["background-color"] = "#ff404a"
+          $scope.submitStyles["color"]            = "white"
+          $window.setTimeout submitDelay, (-> $scope.$apply ->
+            $scope.submitText   = submitDefault
+            $scope.submitStyles = {}
+          )
+        )
 
       .finally ->
         submitWaiting = false

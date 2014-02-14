@@ -121,3 +121,28 @@ fieldset
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak
   display: none !important
 
+
+//.wrapper
+//  $enterTime: 1.0s
+//  $leaveTime: 0.5s
+//  &.ng-enter
+//    animation: fadeIn $enterTime forwards
+//  &.ng-leave
+//    animation: fadeOut $leaveTime forwards
+//
+
+
+#buffer
+  &.ng-enter
+    animation: fadeIn 0.5s
+
+#wrapper
+  opacity: 0
+  &.bitcamp-view
+    $enterTime: 0.4s
+    $leaveTime: 0.2s
+    &.ng-leave
+      animation: fadeOut $leaveTime
+    &.ng-enter
+      animation: fadeIn $enterTime $leaveTime
+    opacity: 1

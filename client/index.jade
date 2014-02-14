@@ -20,6 +20,7 @@ html(ng-app="bitcampApp")
 
     <!-- build:css(./) styles/vendor.css -->
     link(rel="stylesheet" href="components/jquery-ui/themes/base/jquery-ui.css")
+    link(rel="stylesheet" href="components/animate.css/animate.css")
     <!-- endbuild -->
 
     <!-- build:css(.tmp) styles/main.css -->
@@ -38,9 +39,10 @@ html(ng-app="bitcampApp")
 
   body(ng-controller="BodyCtrl")
 
-    .wrapper#wrapper(ng-view)
+    #buffer(ng-if="animReady")
+      .wrapper#wrapper(ng-view ng-class="animClass")
 
-    .wrapper(ng-include="" src=" 'layout/footer.html' ")
+      .wrapper.ng-cloak(ng-include="" src=" 'layout/footer.html' ")
 
     <!-- build:js(./) scripts/plugins.js -->
     script(src="components/jquery/jquery.js")
@@ -61,6 +63,7 @@ html(ng-app="bitcampApp")
     script(src="components/angular-cookies/angular-cookies.js")
     script(src="components/angular-sanitize/angular-sanitize.js")
     script(src="components/angular-route/angular-route.js")
+    script(src="components/angular-animate/angular-animate.js")
     <!-- endbuild -->
 
     <!-- build:js(.tmp) scripts/main.js -->
