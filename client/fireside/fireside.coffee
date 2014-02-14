@@ -1,4 +1,3 @@
-socket = io.connect "50.22.11.232:13891"
 
 randomN = (min, max) ->
   Math.random() * (max - min) + min
@@ -9,6 +8,7 @@ randomInt = (min, max) ->
 
 angular.module('bitcampApp')
   .controller 'FiresideCtrl', ($scope, $http, $resource) ->
+    socket = io.connect "50.22.11.232:13891"
 
     blocksI = 0
     blocksT = 2400
@@ -44,3 +44,4 @@ angular.module('bitcampApp')
 
     $scope.$on "$destroy", ->
       clearInterval blocksI
+      socket.disconnect()
