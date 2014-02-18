@@ -62,6 +62,6 @@ bitcamp = angular.module('bitcampApp', [
         null
 
     $rootScope.$on "$routeChangeSuccess", ->
-      $window._gaq?.push ['_trackPageview', $location.path()]
-      null
+      $window.ga? "set", "page", $location.path()
+      $window.ga? "send", "pageview"
 
