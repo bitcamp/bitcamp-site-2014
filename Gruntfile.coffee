@@ -215,7 +215,7 @@ module.exports = (grunt) ->
 
     inject:
       googleAnalytics:
-        scriptSrc: "<%= bitcamp.tmp %>/ga.js"
+        scriptSrc: "<%= bitcamp.app %>/ga.js"
         files:
           "<%= bitcamp.dist %>/index.html": "<%= bitcamp.dist %>/index.html"
 
