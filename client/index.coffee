@@ -6,8 +6,10 @@ bitcamp = angular.module('bitcampApp', [
   'ngAnimate'
 ])
 
+
   .config ($routeProvider, $locationProvider) ->
-    console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
+
+    $locationProvider.html5Mode(true)
 
     $routeProvider
       .when '/',
@@ -27,30 +29,6 @@ bitcamp = angular.module('bitcampApp', [
         controller: '404Ctrl'
       .otherwise
         redirectTo: '/404'
-    $locationProvider.html5Mode(true)
-
-  .directive "scrollTo", ->
-    (scope, element, attrs) ->
-      element.bind "click", (event) ->
-        location = attrs.scrollTo
-        $.scrollTo location, +attrs.scrollSpeed or 300
-
-  .controller "BodyCtrl", ($http, $scope, $rootScope, $timeout) ->
-    $rootScope.isLoaded = true
-    $scope.animClass = ''
-    $scope.animReady = false
-
-    $http.get('/api/bitcamp')
-      .success (data) ->
-        $timeout ->
-          $scope.animClass = "bitcamp-view"
-          $scope.animReady = true
-        , 10
-      .error (data) ->
-        null
-
-    $rootScope.$on "$routeChangeStart", (e, next, current) ->
-      null
 
     $('body').flowtype
       minimum   : 320
@@ -59,3 +37,31 @@ bitcamp = angular.module('bitcampApp', [
       maxFont   : 22
       fontRatio : 40
       lineRatio : 1.45
+
+    console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
+
+
+  .directive "scrollTo", ->
+    (scope, element, attrs) ->
+      element.bind "click", (event) ->
+        location = attrs.scrollTo
+        $.scrollTo location, +attrs.scrollSpeed or 300
+
+
+  .controller "BodyCtrl", ($http, $scope, $rootScope, $window, $location) ->
+    $rootScope.isLoaded = true
+
+    $scope.animClass = ''
+    $scope.animReady = false
+
+    $http.get('/api/bitcamp')
+      .success ->
+        $scope.animClass = "bitcamp-view"
+        $scope.animReady = true
+      .error (data) ->
+        null
+
+    $rootScope.$on "$routeChangeSuccess", ->
+      $window._gaq?.push ['_trackPageview', $location.path()]
+      null
+
