@@ -44,7 +44,7 @@
 
         h3.b
           a(href="/faq" scroll-to="#wrapper")
-            button#faq-button tell me more!
+            button#faq-button details + faq
 
 
   #permission.row.btc-row
@@ -57,7 +57,7 @@
         fieldset
           input(type='text'  placeholder='name'       ng-model='name')
           input(type='email' placeholder='email'      ng-model='email' class='input-email')
-          input(type='text'  placeholder='university' ng-model='university')
+          input(type='text'  placeholder='school'     ng-model='school')
         h3
           input.button#signup(type='submit' value='{{submitText}}' ng-style="submitStyles")
 
@@ -65,14 +65,8 @@
     .col-xs-12
       h2 Sponsors
 
-      h4.b Read the fine print in the
-      h3
-        a(href="/faq/sponsors" scroll-to="#wrapper")
-          button#sponsor-you sponsorship FAQ
-      h5 or email us at 
-        a(href="mailto:sponsorship@bitca.mp" target="_blank")
-          | sponsorship@bitca.mp
-        | .
+      h5 a(href="mailto:sponsorship@bitca.mp" target="_blank")
+          | let's talk, email sponsorship@bitca.mp
 
     mixin sponsor(sponsor, href)
       a(href=href target="_blank")
@@ -88,23 +82,32 @@
       +sponsor("cipher",              "http://www.ciphertechsolutions.com/")
       +sponsor("clarabridge",         "http://www.clarabridge.com/")
     .col-xs-12
-      +sponsor("daocloud",            "http://daocloud.com/")
+      +sponsor("daocloud",            "http://www.daocloud.com/")
+      +sponsor("fiscalnote",          "http://www.fiscalnote.com/")
+      +sponsor("microsoft",           "http://www.microsoft.com/")
       +sponsor("opis",                "http://www.opisnet.com/")
+    .col-xs-12
       +sponsor("sparkfun",            "https://www.sparkfun.com/")
       +sponsor("socialradar",         "http://socialradar.com/")
+      +sponsor("tata",                "http://web.tatatechnologies.com/")
+      +sponsor("thiel",               "http://thielfellowship.org/")
     .col-xs-12
       +sponsor("mashery",             "http://www.mashery.com/")
       +sponsor("mongodb",             "http://www.mongodb.com/")
       +sponsor("namecheap",           "https://www.namecheap.com/")
     .col-xs-12
       +sponsor("rdio",                "http://www.rdio.com/")
-      +sponsor("sendgrid",            "http://sendgrid.com/")
+      +sponsor("sendgrid",            "http://www.sendgrid.com/")
 
     #partners.col-xs-12
       h2 Partners
       +sponsor("terrapin-hackers",    "http://terrapinhackers.com/")
       +sponsor("startup-shell",       "http://startupshell.org/")
       +sponsor("mlh",                 "http://mlh.io/")
+      
+          h3
+      a(href="/faq/sponsors" scroll-to="#wrapper")
+        button#sponsor-you sponsor faq
 
   #twitter.row.btc-row
     .col-xs-12
