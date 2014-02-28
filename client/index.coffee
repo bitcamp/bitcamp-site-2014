@@ -35,9 +35,26 @@ bitcamp = angular.module("bitcampApp", [
         controller: "FaqCtrl"
 
       .state "register",
+        abstract: true
         url: "/register"
         templateUrl: "register/index.html"
         controller: "RegisterCtrl"
+      .state "register.one",
+        url: "/one"
+        templateUrl: "register/1.html"
+        controller: "RegisterCtrl_1"
+      .state "register.two",
+        url: "/two"
+        templateUrl: "register/2.html"
+        controller: "RegisterCtrl_2"
+      .state "register.three",
+        url: "/three"
+        templateUrl: "register/3.html"
+        controller: "RegisterCtrl_3"
+      .state "register.four",
+        url: "/four"
+        templateUrl: "register/4.html"
+        controller: "RegisterCtrl_4"
 
       .state "404",
         url: "/404"
@@ -83,9 +100,12 @@ bitcamp = angular.module("bitcampApp", [
     "grey"         : "#a58c7c"
     "grey-dark"    : "#7f6c60"
     "orange"       : "#ff6d40"
+    "orange-dark"  : "#dd773d"
     "yellow"       : "#ffec40"
     "orangeyellow" : "#ffad40"
     "red"          : "#ff404a"
     "blue-light"   : "#ccf3ff"
     "blue-dark"    : "#538ca5"
+    "blue-darker"  : "#1a2e3c"
     "green"        : "#53a559"
+    "green-light"  : "#40997c"

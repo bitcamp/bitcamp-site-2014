@@ -1,4 +1,25 @@
-#register(ng-show="isLoaded")
-  header#header.row.btc-row
+#register
+  .register-view
+    .register-wrapper
+      header
+        h3.b New Camper Registration
+        nav.nav-bubbles
+          a(ui-sref=".one")
+            .nav-bubble#nav-bubbles-one(
+              ng-class="{'nav-bubble-active': navBubble == 1}")
+          .nav-bubble-spacer
+          a(ui-sref=".two")
+            .nav-bubble#nav-bubbles-two(
+              ng-class="{'nav-bubble-active': navBubble == 2}")
+          .nav-bubble-spacer
+          a(ui-sref=".three")
+            .nav-bubble#nav-bubbles-three(
+              ng-class="{'nav-bubble-active': navBubble == 3}")
+          .nav-bubble-spacer
+          a(ui-sref=".four")
+            .nav-bubble#nav-bubbles-four(
+              ng-class="{'nav-bubble-active': navBubble == 4}")
 
-  section(ui-view)
+      section.register-body
+        .register-body-inner
+          ui-view

@@ -1,0 +1,37 @@
+#register-one
+  p
+    small * = required
+
+  .row
+    .form-group.col-xs-6
+        input#register-fname.form-control(
+          type="text" placeholder="* first name")
+    .form-group.col-xs-6
+        input#register-lname.form-control(
+          type="text" placeholder="* last name")
+
+  .row
+    .form-group.col-xs-12
+      input#register-email.form-control(
+        type="email" placeholder="* email address")
+
+  .row
+    .form-group.col-xs-12
+      input#register-password.form-control(
+        type="password" placeholder="* password")
+
+  .row
+    .form-group.col-xs-12
+      input#register-password-confirm.form-control(
+        type="password" placeholder="* password (once more)")
+
+  .row
+    .form-group.col-xs-12.col-sm-6
+      a(ui-sref="main")
+        button#register-go-back.btn.btn-warning
+          | go back
+
+    .form-group.col-xs-12.col-sm-6
+      a(ui-sref="register.two")
+        button#register-continue1.btn.btn-info
+          | continue

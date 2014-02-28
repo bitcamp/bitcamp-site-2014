@@ -15,6 +15,7 @@
     "flowtype": "*",
     "angular-animate": "~1.2.12",
     "animate.css": "~3.0.0",
-    "angular-ui-router": "0.2.8-bowratic-tedium"
+    "angular-ui-router": "0.2.8-bowratic-tedium",
+    "blueimp-file-upload": "~9.5.6"
   }
 }

@@ -1,2 +1,62 @@
+@import '../layout/variables'
+@import 'sass-bootstrap/lib/mixins'
+
+
 #register
-  background-color: transparent
+  margin-top:    -5vw
+  margin-bottom: -5vw
+  width: 100%
+
+  &:before, &:after
+    margin-top: 10vw
+    content: ""
+    display: block
+
+  .register-view
+    padding: 0 1rem
+    .register-wrapper
+      margin: 0 auto
+      max-width: 30em
+      width: 100%
+
+      header
+        padding: 2rem 1rem
+        background-color: $color_grey-dark
+        text-align: center
+        border-radius: 12px 12px 0 0
+
+      .register-body
+        padding: 2rem
+        background-color: $color_grey-light
+        color: $color_grey-dark
+
+        select
+          padding-top:    2px
+          padding-bottom: 2px
+
+
+.nav-bubbles
+  width: 100%
+  margin: 0 auto
+
+  $bubble_size: 24px
+  $bubble_border_size: 3px
+  .nav-bubble
+    display: inline-block
+    line-height: $bubble_size
+    background-color: $color_grey
+    @include square($bubble_size - $bubble_border_size)
+    border: $bubble_border_size solid $color_grey-light
+    border-radius: $bubble_size
+
+    transition: background-color 0.2s ease-in
+
+    &.nav-bubble-active
+      background-color: $color_orange
+
+  .nav-bubble-spacer
+    display: inline-block
+    width: $bubble_size * 0.85
+    height: 3px
+    background-color: $color_grey-light
+    margin: ($bubble_size/2) 0 (($bubble_size/2) - $bubble_border_size - 1px) 0

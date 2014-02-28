@@ -2,6 +2,10 @@
 @import '../layout/variables'
 
 
+#main
+  button, input[type=button], input[type=submit]
+    max-width: 10em
+
 header
   .cloud
     position: absolute
@@ -49,6 +53,9 @@ header
 
 
 #permission
+  input
+    @include placeholder($color_white)
+
   border-top: dashed 2px $color_white
   #scissors
     position: absolute
