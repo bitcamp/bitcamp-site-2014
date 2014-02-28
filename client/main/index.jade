@@ -47,20 +47,6 @@
             button#faq-button details + FAQ
 
 
-  #permission.row.btc-row
-    .btc-background-wrapper
-      <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
-      .btc-background
-    .col-xs-12
-      h2 Permission Slip
-      form(ng-controller='SignupCtrl' ng-submit='signup()')
-        fieldset
-          input(type='text'  placeholder='name'       ng-model='name')
-          input(type='email' placeholder='email'      ng-model='email' class='input-email')
-          input(type='text'  placeholder='school'     ng-model='school')
-        h3
-          input.button#signup(type='submit' value='{{submitText}}' ng-style="submitStyles")
-
   #sponsors.row.btc-row
     .col-xs-12
       h2 Sponsors

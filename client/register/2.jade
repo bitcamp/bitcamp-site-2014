@@ -8,28 +8,35 @@
           type="text" placeholder="school")
 
   .row
-    .form-group.col-xs-6
+    .form-group.col-xs-12.col-sm-6
       input#register-majors.form-control(
         type="email" placeholder="major(s)")
-    .form-group.col-xs-6
+    .form-group.col-xs-12.col-sm-6
         input#register-minors.form-control(
           type="text" placeholder="minor(s)")
 
   .row
-    .form-group.col-xs-12.col-sm-8
+    .form-group.col-xs-12.col-sm-7
       label mode of transportation
       select#register-mode-of-transportation.form-control.input-md
         option get myself there
         option can take a bus
         option need a plane
+    .form-group.col-xs-6.col-sm-3.text-right
+      br
+      label travel stipend?
+    .form-group.col-xs-6.col-sm-2.text-left
+      br
+      input#register-require-reiumbursement(type="checkbox")
 
+
+footer
   .row
     .form-group.col-xs-12.col-sm-6
-      a(ui-sref="main")
-        button#register-go-back.btn.btn-warning
+      a(ui-sref="register.one")
+        button#register-goback2.btn.btn-warning
           | go back
-
     .form-group.col-xs-12.col-sm-6
-      a(ui-sref="register.two")
-        button#register-continue1.btn.btn-info
+      a(ui-sref="register.three")
+        button#register-continue2.btn.btn-success
           | continue

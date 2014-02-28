@@ -6,19 +6,19 @@
         nav.nav-bubbles
           a(ui-sref=".one")
             .nav-bubble#nav-bubbles-one(
-              ng-class="{'nav-bubble-active': navBubble == 1}")
+              ng-class="{'nav-bubble-active': navBubbles[0]}")
           .nav-bubble-spacer
           a(ui-sref=".two")
             .nav-bubble#nav-bubbles-two(
-              ng-class="{'nav-bubble-active': navBubble == 2}")
+              ng-class="{'nav-bubble-active': navBubbles[1]}")
           .nav-bubble-spacer
           a(ui-sref=".three")
             .nav-bubble#nav-bubbles-three(
-              ng-class="{'nav-bubble-active': navBubble == 3}")
+              ng-class="{'nav-bubble-active': navBubbles[2]}")
           .nav-bubble-spacer
           a(ui-sref=".four")
             .nav-bubble#nav-bubbles-four(
-              ng-class="{'nav-bubble-active': navBubble == 4}")
+              ng-class="{'nav-bubble-active': navBubbles[3]}")
 
       section.register-body
         .register-body-inner
