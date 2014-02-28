@@ -13,14 +13,18 @@
 html, body
   min-height: 100%
   height: 100%
+  overflow-y: auto
 
 body
+  transition: background-color 0.4s ease-in
   z-index: -99
   overflow-x: hidden
 
 #wrapper
   white-space: pre-line
+  height: auto
   min-height: 100%
+  width: 100%
   margin-bottom: -1*$footer-height
 
 #wrapper:after
@@ -122,15 +126,12 @@ fieldset
   display: none !important
 
 
-#buffer
+body
   &.ng-enter
     animation: fadeIn 0.4s
 
 #wrapper
   &.bitcamp-view
-    $enterTime: 0.3s
     $leaveTime: 0.2s
-    &.ng-leave
-      animation: fadeOutUp $leaveTime
     &.ng-enter
-      animation: fadeInDown $enterTime $leaveTime
+      animation: fadeInDown $leaveTime

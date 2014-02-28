@@ -35,14 +35,17 @@ html(ng-app="bitcampApp")
     link(rel="stylesheet" href="fireside/fireside.css")
 
     link(rel="stylesheet" href="faq/faq.css")
+
+    link(rel="stylesheet" href="register/register.css")
     <!-- endbuild -->
 
-  body(ng-controller="BodyCtrl")
 
-    #buffer(ng-if="animReady")
-      .wrapper#wrapper(ng-view ng-class="animClass")
+  body(ng-controller="BodyCtrl" ng-cloak ng-style="bodyCSS")
 
-      .wrapper.ng-cloak(ng-include="" src=" 'layout/footer.html' ")
+    .wrapper.bitcamp-view#wrapper(ui-view)
+
+    .wrapper.ng-cloak(ng-include="" src=" 'layout/footer.html' ")
+
 
     <!-- build:js(./) scripts/plugins.js -->
     script(src="components/jquery/dist/jquery.js")
@@ -59,10 +62,11 @@ html(ng-app="bitcampApp")
     <!-- build:js(./) scripts/modules.js -->
     script(src="components/jquery.scrollTo/jquery.scrollTo.js")
 
+    script(src="components/angular-ui-router/release/angular-ui-router.js")
+
     script(src="components/angular-resource/angular-resource.js")
     script(src="components/angular-cookies/angular-cookies.js")
     script(src="components/angular-sanitize/angular-sanitize.js")
-    script(src="components/angular-route/angular-route.js")
     script(src="components/angular-animate/angular-animate.js")
     <!-- endbuild -->
 
@@ -75,6 +79,8 @@ html(ng-app="bitcampApp")
     script(src="fireside/fireside.js")
 
     script(src="faq/faq.js")
+
+    script(src="register/register.js")
     <!-- endbuild -->
 
     <!-- Google Analytics: gs.js -->
