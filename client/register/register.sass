@@ -84,6 +84,11 @@
     &.nav-bubble-active
       background-color: $color_orange
 
+  .nav-bubble, .nav-bubble-spacer
+    &:hover
+      transition: opacity 0.1s ease-out
+      opacity: 0.7
+
   .nav-bubble-spacer
     display: inline-block
     width: $bubble_size * 0.85

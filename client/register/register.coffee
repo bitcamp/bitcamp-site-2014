@@ -1,11 +1,17 @@
 bitcamp = angular.module("bitcampApp")
 
-  .controller "RegisterCtrl", ($scope, $rootScope, $location, $cookieStore) ->
+  .controller "RegisterCtrl", ($scope, $rootScope, $location, $cookieStore, $timeout) ->
     $rootScope.api_messages = []
 
     $scope.email    = ""
     $scope.password = ""
     $scope.confirm  = ""
+    $rootScope.$on "register", ->
+      $timeout ->
+        $scope.email    = ""
+        $scope.password = ""
+        $scope.confirm  = ""
+      , 3000
 
     $scope.profile  = {}
 
@@ -44,17 +50,22 @@ bitcamp = angular.module("bitcampApp")
 
     null
 
-  .controller "RegisterCtrl_1", ($rootScope, $scope, $http, colors, $cookieStore, $state) ->
+  .controller "RegisterCtrl_1", ($rootScope, $scope, $http, colors, $cookieStore, $state, $timeout) ->
     $rootScope.navBubbles = [true, false, false, false]
     $rootScope.bodyCSS["background-color"] = colors["green-light"]
+
+    $rootScope.$on "register", ->
+      $timeout ->
+        $rootScope.api_messages = []
+        $scope.emailErr     = ""
+        $scope.passwordErr  = ""
+        $scope.confirmErr   = ""
+      , 3000
 
     if $cookieStore.get "auth"
       $state.go "register.two"
 
     $scope.register = ->
-      $scope.emailErr    = ""
-      $scope.passwordErr = ""
-      $scope.confirmErr  = ""
       $http.post("/api/register", {
         email:    $scope.email
         password: $scope.password
@@ -62,12 +73,11 @@ bitcamp = angular.module("bitcampApp")
       })
         .success (data) ->
           $rootScope.api_messages = []
-          $scope.email    = ""
-          $scope.password = ""
-          $scope.confirm  = ""
+          $rootScope.$emit "register", null, data
           console.log data
           null
         .error (err) ->
+          $rootScope.$emit "register", err
           $rootScope.api_messages = []
           console.log err
           $scope.emailErr    = $rootScope.apiErr "email", err

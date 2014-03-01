@@ -1,0 +1,11 @@
+.btc-background-wrapper
+
+  #login-logout-wrapper
+    button#logout-btn.btn.btn-danger(ng-show="cookie" ng-click="logout()")
+      | logout
+
+  .btc-background
+
+#logo.col-xs-12.noselect
+  a.noselect(ui-sref="main")
+    <img src="/images/logo.svg" width="187" height="200">

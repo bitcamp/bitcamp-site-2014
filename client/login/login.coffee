@@ -9,8 +9,7 @@ bitcamp = angular.module("bitcampApp")
 
     $scope.apiErr = (name, errObj) ->
       if errObj[name]
-        m = "#{name} #{errObj[k][v] for k,v in errObj}"
-        api_messages.push m
+        m = "#{name} #{errObj[name][errObj[name].length-1]}"
         console.log m
         m
       else false
