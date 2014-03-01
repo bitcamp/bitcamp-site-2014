@@ -88,7 +88,8 @@ bitcamp = angular.module("bitcampApp", [
       .error (data) ->
         null
 
-    $rootScope.$on "$routeChangeSuccess", ->
+    $rootScope.$on "$stateChangeSuccess", ->
+      $window.scrollTo 0, 0
       $window.ga? "set", "page", $location.path()
       $window.ga? "send", "pageview"
 

@@ -1,7 +1,7 @@
 bitcamp = angular.module("bitcampApp")
 
   .controller "RegisterCtrl", ($scope, $rootScope, $location) ->
-    $rootScope.navBubbles = [false, false, false, false]
+    null
 
   .controller "RegisterCtrl_1", ($rootScope, colors) ->
     $rootScope.navBubbles = [true, false, false, false]
