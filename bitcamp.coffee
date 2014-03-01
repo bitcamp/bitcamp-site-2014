@@ -14,6 +14,9 @@ ready.then ->
 
   # Angular Routes
   app.get "/",             indexRoute
+
+  app.get "/login",        indexRoute
+
   app.get "/fireside",     indexRoute
   app.get "/faq",          indexRoute
   app.get "/faq/sponsors", indexRoute

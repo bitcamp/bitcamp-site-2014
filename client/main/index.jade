@@ -19,10 +19,19 @@
           University of Maryland
         #place April 4-6, 2014
 
-    #call-to-action.col-xs-12
-      h3
-        a(ui-sref="register.one" role="button")
-          button#register-btn register now
+    #call-to-action.text-center
+      .col-xs-12(ng-show="cookie")
+        h3
+          a(ui-sref="register.one" role="button")
+            button.btn-warning#register1-btn register now
+      .col-xs-12.col-sm-5.col-sm-push-1(ng-hide="cookie")
+        h3
+          a(ui-sref="register.two" role="button")
+            button.btn-warning#register2-btn register
+      .col-xs-12.col-sm-5.col-sm-push-1(ng-hide="cookie")
+        h3
+          a(ui-sref="login" role="button")
+            button.btn-info#login-btn login
 
 
   #description.row.btc-row

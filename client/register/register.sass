@@ -2,10 +2,26 @@
 @import 'sass-bootstrap/lib/mixins'
 
 
-#register
+#register, #login
   margin-top:    -5vw
   margin-bottom: -5vw
   width: 100%
+
+  input[type=text], input[type=email], input[type=text], input[type=password]
+    padding-top:    1.4rem
+    padding-bottom: 1.4rem
+
+  select
+    height: 2.8rem
+
+  option[selected]
+    color: $color_grey
+  option
+    color: $color_black
+
+  .form-control
+    margin-bottom: 0.7rem
+
 
   &:before, &:after
     margin-top: 10vw
@@ -42,10 +58,6 @@
           background-color: $color_orange
         &.btn-warning
           background-color: $color_blue-dark
-
-      select
-        padding-top:    2px
-        padding-bottom: 2px
 
 
 .nav-bubbles

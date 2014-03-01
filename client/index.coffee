@@ -20,6 +20,17 @@ bitcamp = angular.module("bitcampApp", [
         templateUrl: "main/index.html"
         controller: "MainCtrl"
 
+      .state "login",
+        url: "/login?token"
+        templateUrl: "login/index.html"
+        controller: "LoginCtrl"
+
+      .state "confirm",
+        url: "/confirm?token"
+        controller: ($stateParams, $state) ->
+          console.log $stateParams
+          $state.go("login", $stateParams)
+
       .state "fireside",
         url: "/fireside"
         templateUrl: "fireside/index.html"
@@ -77,10 +88,12 @@ bitcamp = angular.module("bitcampApp", [
         $.scrollTo location, +attrs.scrollSpeed or 300
 
 
-  .controller "BodyCtrl", ($http, $scope, $rootScope, $window, $location, $timeout) ->
+  .controller "BodyCtrl", ($http, $scope, $rootScope, $window, $location, $timeout, $cookieStore) ->
     $rootScope.isLoaded = true
 
     $rootScope.bodyCSS = {}
+
+    $rootScope.cookie = $cookieStore.get "auth"
 
     $http.get("/api/bitcamp")
       .success ->
@@ -92,6 +105,16 @@ bitcamp = angular.module("bitcampApp", [
       $window.scrollTo 0, 0
       $window.ga? "set", "page", $location.path()
       $window.ga? "send", "pageview"
+
+    $rootScope.logout = ->
+      $http.get("/api/logout")
+        .success (data) ->
+          cookie = $cookieStore.get "auth"
+          delete $http.defaults.headers.common["Authorization"]
+          $rootScope.cookie      = null
+          $cookieStore.put "auth", null
+        .error (err) ->
+          console.log err
 
 
   .factory "colors", ->

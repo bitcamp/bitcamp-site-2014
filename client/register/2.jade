@@ -3,6 +3,15 @@
     small * = required
 
   .row
+    .form-group.col-xs-6
+        input#register-fname.form-control(
+          type="text" placeholder="* first name")
+    .form-group.col-xs-6
+        input#register-lname.form-control(
+          type="text" placeholder="* last name")
+
+
+  .row
     .form-group.col-xs-12
         input#register-school.form-control(
           type="text" placeholder="school")
@@ -17,25 +26,26 @@
 
   .row
     .form-group.col-xs-12.col-sm-7
-      label mode of transportation
-      select#register-mode-of-transportation.form-control.input-md
+      label(for="mode-of-transportation") * mode of transportation
+      select#mode-of-transportation.form-control.input-md(name="mode-of-transportation")
         option get myself there
         option can take a bus
         option need a plane
     .form-group.col-xs-6.col-sm-3.text-right
       br
-      label travel stipend?
+      label(for="register-stipend") travel stipend?
     .form-group.col-xs-6.col-sm-2.text-left
       h3
-        input#register-require-reiumbursement(type="checkbox")
+        input#register-stipend(type="checkbox", name="register-stipend")
 
 
 footer
   .row
     .form-group.col-xs-12.col-sm-6
-      a(ui-sref="register.one")
-        button#register-goback2.btn.btn-warning
-          | go back
+      a(ui-sref="register.one" ng-if="!cookie")
+        button#register-goback2.btn.btn-warning go back
+      a(ui-sref="main"         ng-if="cookie")
+        button#register-goback2.btn.btn-warning go back
     .form-group.col-xs-12.col-sm-6
       a(ui-sref="register.three")
         button#register-continue2.btn.btn-success

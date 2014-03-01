@@ -6,7 +6,6 @@
 @import 'sass-bootstrap/lib/glyphicons'
 @import 'sass-bootstrap/lib/grid'
 @import 'sass-bootstrap/lib/forms'
-@import 'sass-bootstrap/lib/buttons'
 
 
 *, *:before, *:after
@@ -70,6 +69,11 @@ button, .button
   font-weight: bold
   border-radius: 6px
   user-select: none !important
+  &:hover, &:focus
+    background-color: none !important
+
+.btn-warning
+  background-color: $color_orange
 
 *:focus, *:active, *:hover
   outline: none
@@ -144,3 +148,35 @@ body
   text-align: right
 .text-left
   text-align: left
+
+
+#login-logout-wrapper
+  position: relative
+  width: 100%
+  button
+    background-color: $color_grey
+    color: $color_white
+    opacity: 0.7
+    position: absolute
+    width: 100px
+    z-index: 1000
+    top:   10px
+    right: 20px
+    &#login-btn:hover
+      opacity: .85
+      background-color: $color_green
+    &#logout-btn:hover
+      opacity: .85
+      background-color: $color_red
+
+
+.btn-primary
+  background-color: $brand-primary
+.btn-success
+  background-color: $brand-success
+.btn-warning
+  background-color: $brand-warning
+.btn-danger
+  background-color: $brand-danger
+.btn-info
+  background-color: $brand-info

@@ -23,3 +23,9 @@
       section.register-body
         .register-body-inner
           ui-view(autoscroll="false")
+
+          hr(ng-if="api_messages")
+
+          p#api-message.text-center(ng-repeat="m in api_messages")
+            label.label.label-warning
+              {{ m }}

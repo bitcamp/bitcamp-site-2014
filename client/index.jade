@@ -37,10 +37,16 @@ html(ng-app="bitcampApp")
     link(rel="stylesheet" href="faq/faq.css")
 
     link(rel="stylesheet" href="register/register.css")
+
+    link(rel="stylesheet" href="login/login.css")
     <!-- endbuild -->
 
 
   body(ng-controller="BodyCtrl" ng-cloak ng-style="bodyCSS")
+
+    #login-logout-wrapper
+      button#logout-btn.btn.btn-danger(ng-show="cookie" ng-click="logout()")
+        | logout
 
     .wrapper.bitcamp-view#wrapper(ui-view)
 
@@ -81,6 +87,8 @@ html(ng-app="bitcampApp")
     script(src="faq/faq.js")
 
     script(src="register/register.js")
+
+    script(src="login/login.js")
     <!-- endbuild -->
 
     <!-- Google Analytics: gs.js -->
