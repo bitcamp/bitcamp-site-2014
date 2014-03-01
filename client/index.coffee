@@ -88,12 +88,25 @@ bitcamp = angular.module("bitcampApp", [
         $.scrollTo location, +attrs.scrollSpeed or 300
 
 
-  .controller "BodyCtrl", ($http, $scope, $rootScope, $window, $location, $timeout, $cookieStore) ->
+  .controller "BodyCtrl", ($http, $scope, $rootScope, $window, $location, $timeout, $cookieStore, $resource) ->
     $rootScope.isLoaded = true
+
+    $rootScope._profile = $resource("/api/profile")
 
     $rootScope.bodyCSS = {}
 
-    $rootScope.cookie = $cookieStore.get "auth"
+    cookie = $cookieStore.get "auth"
+    if cookie
+      $rootScope.cookie = cookie
+      $http.defaults.headers
+        .common["Authorization"] = "Token token=\"#{cookie.token}\""
+      $rootScope._profile.get()
+
+      $http.get("/api/profile")
+        .success (data) ->
+          console.log data
+        .error (err) ->
+          console.log err
 
     $http.get("/api/bitcamp")
       .success ->

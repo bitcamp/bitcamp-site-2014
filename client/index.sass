@@ -136,7 +136,14 @@ body
   display: table
   width: 100%
 
-.bitcamp-view
+.bitcamp-view-wrapper
+  .bitcamp-view
+    display: block
+    $leaveTime: 0.2s
+    &.ng-enter
+      animation: fadeInUp $leaveTime
+
+body > .bitcamp-view
   $leaveTime: 0.2s
   &.ng-enter
     animation: fadeInDown $leaveTime
@@ -160,8 +167,8 @@ body
     position: absolute
     width: 100px
     z-index: 1000
-    top:   10px
-    right: 20px
+    top:   20px
+    right: 6%
     &#login-btn:hover
       opacity: .85
       background-color: $color_green

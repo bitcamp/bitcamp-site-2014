@@ -11,13 +11,15 @@ form#login(novalidate="" ng-submit="login(email, password)")
             .form-group.col-xs-12
               input#register-email.form-control(
                 type="email" placeholder="* email address"
-                ng-model="email")
+                ng-model="email"
+                ng-class="{shake: emailErr, animated: emailErr}")
 
           .row
             .form-group.col-xs-12
               input#register-password.form-control(
                 type="password" placeholder="* password"
-                ng-model="password")
+                ng-model="password"
+                ng-class="{shake: emailErr, animated: emailErr}")
 
           footer
             input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
@@ -29,3 +31,9 @@ form#login(novalidate="" ng-submit="login(email, password)")
               .form-group.col-xs-12.col-sm-6
                 button.btn.btn-info
                   | login
+
+        hr(ng-if="api_messages")
+
+        p#api-message.text-center(ng-repeat="m in api_messages")
+          label.label.label-warning
+            {{ m }}

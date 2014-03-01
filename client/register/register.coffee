@@ -7,6 +7,32 @@ bitcamp = angular.module("bitcampApp")
     $scope.password = ""
     $scope.confirm  = ""
 
+    $scope.profile  = {}
+
+    $scope.profile_fields = [
+        field: "first"
+        label: "first name"
+      ,
+        field: "last"
+        label: "last name"
+      ,
+        field: "school"
+        label: "school"
+      ,
+        field: "github"
+        label: "github username"
+      ,
+        field: "website"
+        label: "website url"
+      ,
+        field: "blurb"
+        label: "hopes and dreams"
+    ]
+
+    $rootScope._profile.get()
+      .$promise.then (data) ->
+        $scope.profile = data
+
     $rootScope.apiErr = (name, errObj) ->
       if errObj[name]
         m = "#{name} #{errObj[name][errObj[name].length-1]}"

@@ -3,8 +3,8 @@
 
 
 #register, #login
-  margin-top:    -5vw
-  margin-bottom: -5vw
+  margin-top:    -10vw
+  margin-bottom: -10vw
   width: 100%
 
   input[type=text], input[type=email], input[type=text], input[type=password]
@@ -23,23 +23,28 @@
     margin-bottom: 0.7rem
 
 
+  $form_width: 35rem
+
+
   &:before, &:after
-    margin-top: 10vw
+    margin-top: 14vw
+    @media only screen and (max-width: $form_width)
+      margin-top: 10vw
     content: ""
     display: block
 
   .register-view
-    padding: 0 1rem
     .register-wrapper
       margin: 0 auto
-      max-width: 30em
+      max-width: $form_width
       width: 100%
 
       header
         padding: 2rem 1rem
         background-color: $color_grey-dark
         text-align: center
-        border-radius: 12px 12px 0 0
+        @media only screen and (min-width: $form_width)
+          border-radius: 12px 12px 0 0
 
       .register-body
         padding: 2rem

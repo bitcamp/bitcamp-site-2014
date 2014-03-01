@@ -21,8 +21,8 @@
               ng-class="{'nav-bubble-active': navBubbles[3]}")
 
       section.register-body
-        .register-body-inner
-          ui-view(autoscroll="false")
+        .register-body-inner.bitcamp-view-wrapper
+          ui-view.bitcamp-view(autoscroll="false")
 
           hr(ng-if="api_messages")
 

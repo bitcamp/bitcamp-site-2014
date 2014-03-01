@@ -44,10 +44,6 @@ html(ng-app="bitcampApp")
 
   body(ng-controller="BodyCtrl" ng-cloak ng-style="bodyCSS")
 
-    #login-logout-wrapper
-      button#logout-btn.btn.btn-danger(ng-show="cookie" ng-click="logout()")
-        | logout
-
     .wrapper.bitcamp-view#wrapper(ui-view)
 
     .wrapper.ng-cloak(ng-include="" src=" 'layout/footer.html' ")
