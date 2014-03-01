@@ -19,10 +19,19 @@
           University of Maryland
         #place April 4-6, 2014
 
-    #call-to-action.col-xs-12
-      h3
-        a(href='' scroll-to='#permission' scroll-speed=800)
-          button#register register now
+    #call-to-action.text-center
+      .col-xs-12(ng-show="cookie")
+        h3
+          a(ui-sref="register.one" role="button")
+            button.btn-warning#register1-btn register now
+      .col-xs-12.col-sm-5.col-sm-push-1(ng-hide="cookie")
+        h3
+          a(ui-sref="register.two" role="button")
+            button.btn-warning#register2-btn register
+      .col-xs-12.col-sm-5.col-sm-push-1(ng-hide="cookie")
+        h3
+          a(ui-sref="login" role="button")
+            button.btn-info#login-btn login
 
 
   #description.row.btc-row
@@ -43,23 +52,9 @@
           See you by the bonfire!
 
         h3.b
-          a(href="/faq" scroll-to="#wrapper")
+          a(ui-sref="faq" scroll-to="#wrapper")
             button#faq-button details + FAQ
 
-
-  #permission.row.btc-row
-    .btc-background-wrapper
-      <img id="scissors" src="/images/scissors.svg" alt="scissors" width="60" height="32">
-      .btc-background
-    .col-xs-12
-      h2 Permission Slip
-      form(ng-controller='SignupCtrl' ng-submit='signup()')
-        fieldset
-          input(type='text'  placeholder='name'       ng-model='name')
-          input(type='email' placeholder='email'      ng-model='email' class='input-email')
-          input(type='text'  placeholder='school'     ng-model='school')
-        h3
-          input.button#signup(type='submit' value='{{submitText}}' ng-style="submitStyles")
 
   #sponsors.row.btc-row
     .col-xs-12
@@ -107,7 +102,7 @@
 
     .col-xs-12
       h3
-        a(href="/faq/sponsors" scroll-to="#wrapper")
+        a(ui-sref="faq_sponsors" scroll-to="#wrapper")
           button#sponsor-you sponsor FAQ
 
   #twitter.row.btc-row

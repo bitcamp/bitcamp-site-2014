@@ -1,0 +1,38 @@
+#register-three
+  p
+    small * = required
+
+  .row
+    .form-group.col-xs-12
+      input#register-dietary-restrictions.form-control(
+        type="email" placeholder="dietary restrictions")
+
+  .row
+    .form-group.col-xs-12
+      label tee-shirt size *
+      select#register-tshirt-size.form-control.input-md
+        option men's small
+        option men's medium
+        option men's large
+        option(selected) choose one
+        option lady's small
+        option lady's medium
+        option lady's large
+
+  .row
+    .form-group.col-xs-12
+      textarea#register-expectations.form-control(
+        rows="3"
+        placeholder="what you hope to get out of bitcamp")
+
+
+footer
+  .row
+    .form-group.col-xs-12.col-sm-6
+      a(ui-sref="register.two")
+        button#register-goback3.btn.btn-warning
+          | go back
+    .form-group.col-xs-12.col-sm-6
+      a(ui-sref="register.four")
+        button#register-continue3.btn.btn-success
+          | continue

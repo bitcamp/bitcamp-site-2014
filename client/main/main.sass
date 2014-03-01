@@ -2,7 +2,11 @@
 @import '../layout/variables'
 
 
-header
+#main
+  button, input[type=button], input[type=submit]
+    max-width: 10em
+
+#header
   .cloud
     position: absolute
     z-index: 2
@@ -49,14 +53,14 @@ header
 
 
 #permission
+  input
+    @include placeholder($color_white)
+
   border-top: dashed 2px $color_white
   #scissors
     position: absolute
     top: -28px
     left: 20%
-  .button
-    background-color: $color_white
-    color: $color_orange
   input[type=text], input[type=email]
     font-weight: 300
     font-size: 1.8em

@@ -1,0 +1,31 @@
+#register
+  .register-view
+    .register-wrapper
+      header
+        h3.b New Camper Registration
+        nav.nav-bubbles
+          a(ui-sref=".one")
+            .nav-bubble#nav-bubbles-one(
+              ng-class="{'nav-bubble-active': navBubbles[0]}")
+          .nav-bubble-spacer
+          a(ui-sref=".two")
+            .nav-bubble#nav-bubbles-two(
+              ng-class="{'nav-bubble-active': navBubbles[1]}")
+          .nav-bubble-spacer
+          a(ui-sref=".three")
+            .nav-bubble#nav-bubbles-three(
+              ng-class="{'nav-bubble-active': navBubbles[2]}")
+          .nav-bubble-spacer
+          a(ui-sref=".four")
+            .nav-bubble#nav-bubbles-four(
+              ng-class="{'nav-bubble-active': navBubbles[3]}")
+
+      section.register-body
+        .register-body-inner
+          ui-view(autoscroll="false")
+
+          hr(ng-if="api_messages")
+
+          p#api-message.text-center(ng-repeat="m in api_messages")
+            label.label.label-warning
+              {{ m }}

@@ -1,0 +1,31 @@
+form#login(novalidate="" ng-submit="login(email, password)")
+  .register-view
+    .register-wrapper
+      header
+        h3.b camper login
+
+      section.register-body
+        .register-body-inner
+
+          .row
+            .form-group.col-xs-12
+              input#register-email.form-control(
+                type="email" placeholder="* email address"
+                ng-model="email")
+
+          .row
+            .form-group.col-xs-12
+              input#register-password.form-control(
+                type="password" placeholder="* password"
+                ng-model="password")
+
+          footer
+            input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
+            .row
+              .form-group.col-xs-12.col-sm-6
+                a(ui-sref="main")
+                  button.btn.btn-danger
+                    | cancel
+              .form-group.col-xs-12.col-sm-6
+                button.btn.btn-info
+                  | login

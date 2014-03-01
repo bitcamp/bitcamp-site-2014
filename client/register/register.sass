@@ -1,0 +1,87 @@
+@import '../layout/variables'
+@import 'sass-bootstrap/lib/mixins'
+
+
+#register, #login
+  margin-top:    -5vw
+  margin-bottom: -5vw
+  width: 100%
+
+  input[type=text], input[type=email], input[type=text], input[type=password]
+    padding-top:    1.4rem
+    padding-bottom: 1.4rem
+
+  select
+    height: 2.8rem
+
+  option[selected]
+    color: $color_grey
+  option
+    color: $color_black
+
+  .form-control
+    margin-bottom: 0.7rem
+
+
+  &:before, &:after
+    margin-top: 10vw
+    content: ""
+    display: block
+
+  .register-view
+    padding: 0 1rem
+    .register-wrapper
+      margin: 0 auto
+      max-width: 30em
+      width: 100%
+
+      header
+        padding: 2rem 1rem
+        background-color: $color_grey-dark
+        text-align: center
+        border-radius: 12px 12px 0 0
+
+      .register-body
+        padding: 2rem
+        background-color: $color_grey-light
+        color: $color_grey-dark
+
+      footer
+        padding-top: 1rem
+
+      .btn
+        font-weight: bold
+        padding-top:    0.7rem
+        padding-bottom: 0.7rem
+        border: none
+        &.btn-success
+          background-color: $color_orange
+        &.btn-warning
+          background-color: $color_blue-dark
+
+
+.nav-bubbles
+  width: 100%
+  margin: 0 auto
+
+  $bubble_size: 24px
+  $bubble_border_size: 3px
+  .nav-bubble
+    display: inline-block
+    line-height: $bubble_size
+    background-color: $color_grey
+    @include square($bubble_size - $bubble_border_size)
+    border: $bubble_border_size solid $color_grey-light
+    border-radius: $bubble_size
+
+    transition: background-color 0.2s ease-in
+
+    &.nav-bubble-active
+      background-color: $color_orange
+
+  .nav-bubble-spacer
+    display: inline-block
+    width: $bubble_size * 0.85
+    height: 3px
+    background-color: $color_grey-light
+    margin: ($bubble_size/2) 0 (($bubble_size/2) - $bubble_border_size - 1px) 0
