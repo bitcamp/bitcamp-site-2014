@@ -4,7 +4,10 @@
       header
         h3.b New Camper Registration
         nav.nav-bubbles
-          a(ui-sref=".one")
+          a(ui-sref=".one" ng-hide="cookie")
+            .nav-bubble#nav-bubbles-one(
+              ng-class="{'nav-bubble-active': navBubbles[0]}")
+          a(ui-sref=".two" ng-show="cookie")
             .nav-bubble#nav-bubbles-one(
               ng-class="{'nav-bubble-active': navBubbles[0]}")
           .nav-bubble-spacer

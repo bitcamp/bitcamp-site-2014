@@ -20,7 +20,8 @@ form#register-one(novalidate="")
     .form-group.col-xs-12
       input#register-password-confirm.form-control(
         type="password" placeholder="* password (once more)"
-        ng-model="confirm")
+        ng-model="confirm"
+        ng-class="{shake: confirmErr, animated: confirmErr}")
 
 footer
   .row

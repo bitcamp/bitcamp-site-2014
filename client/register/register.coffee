@@ -1,6 +1,6 @@
 bitcamp = angular.module("bitcampApp")
 
-  .controller "RegisterCtrl", ($scope, $rootScope, $location) ->
+  .controller "RegisterCtrl", ($scope, $rootScope, $location, $cookieStore) ->
     $rootScope.api_messages = []
 
     $scope.email    = ""
@@ -29,13 +29,15 @@ bitcamp = angular.module("bitcampApp")
         label: "hopes and dreams"
     ]
 
-    $rootScope._profile.get()
-      .$promise.then (data) ->
-        $scope.profile = data
+    if $cookieStore.get "auth"
+      $rootScope._profile.get()
+        .$promise.then (data) ->
+          $scope.profile = data
 
     $rootScope.apiErr = (name, errObj) ->
       if errObj[name]
         m = "#{name} #{errObj[name][errObj[name].length-1]}"
+        $rootScope.api_messages.push m
         console.log m
         m
       else false
@@ -48,12 +50,11 @@ bitcamp = angular.module("bitcampApp")
 
     if $cookieStore.get "auth"
       $state.go "register.two"
-    else
-      $state.go "main"
 
     $scope.register = ->
       $scope.emailErr    = ""
       $scope.passwordErr = ""
+      $scope.confirmErr  = ""
       $http.post("/api/register", {
         email:    $scope.email
         password: $scope.password
@@ -68,8 +69,14 @@ bitcamp = angular.module("bitcampApp")
           null
         .error (err) ->
           $rootScope.api_messages = []
+          console.log err
           $scope.emailErr    = $rootScope.apiErr "email", err
           $scope.passwordErr = $rootScope.apiErr "password", err
+          $scope.confirmErr  = $scope.password isnt $scope.confirm
+
+          if $scope.confirmErr
+            err.confirm = ["that your passwords match"]
+            $scope.passwordErr = $rootScope.apiErr "confirm", err
 
 
   .controller "RegisterCtrl_2", ($rootScope, colors, $cookieStore, $state) ->
@@ -77,18 +84,18 @@ bitcamp = angular.module("bitcampApp")
     $rootScope.bodyCSS["background-color"] = colors["blue-light"]
 
     unless $cookieStore.get "auth"
-      $state.go "main"
+      $state.go "login"
 
   .controller "RegisterCtrl_3", ($rootScope, colors, $cookieStore, $state) ->
     $rootScope.navBubbles = [true, true, true, false]
     $rootScope.bodyCSS["background-color"] = colors["orange-dark"]
 
     unless $cookieStore.get "auth"
-      $state.go "main"
+      $state.go "login"
 
   .controller "RegisterCtrl_4", ($rootScope, colors, $cookieStore, $state) ->
     $rootScope.navBubbles = [true, true, true, true]
     $rootScope.bodyCSS["background-color"] = colors["blue-darker"]
 
     unless $cookieStore.get "auth"
-      $state.go "main"
+      $state.go "login"

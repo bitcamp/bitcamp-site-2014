@@ -1,4 +1,4 @@
-#register-four
+form#register-four
   h2.text-center review and submit
 
   .row(ng-repeat="f in profile_fields")
@@ -9,13 +9,13 @@
         type="text"
         value="{{profile[f.field]}}")
 
-footer
-  .row
-    .form-group.col-xs-12.col-sm-6
-      a(ui-sref="register.three")
-        button#register-goback4.btn.btn-warning
-          | go back
-    .form-group.col-xs-12.col-sm-6
-      a(ui-sref="register.confirm")
-        button#register-continue4.btn.btn-success
-          | submit
+  footer
+    .row
+      .form-group.col-xs-12.col-sm-6
+        a(ui-sref="register.three")
+          button#register-goback4.btn.btn-warning
+            | go back
+      .form-group.col-xs-12.col-sm-6
+        a(ui-sref="register.confirm")
+          button#register-continue4.btn.btn-success
+            | submit
