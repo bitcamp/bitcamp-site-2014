@@ -10,18 +10,20 @@ The website hosted at http://bitca.mp/.
 
 1. Fork this repo.
 2. Clone it to your machine  
-    > git clone git@github.com:$USER/bitca.mp.git
-3. Setup a MySQL server.
-  * Create a user called bitcamp.
-  * Create a database called 'bitcamp' 
-  * Create a table in 'bitcamp' called 'signup' that looks like this:  
-    ; id(int):key | name(string) | email(string) | university(string)
-4. Install dependencies:  
-    > cd bitca.mp && npm i  
-    > npm install -g grunt-cli
-5. Start her up in development mode:  
-    > DB_PASSWORD=foobar grunt serve
-6. Head to http://localhost:8000/
+    `git clone git@github.com:$USER/bitca.mp.git`
+3. Install dependencies:  
+    `cd bitca.mp; npm i && bower i`  
+    `npm install -g grunt-cli`
+4. Start her up in development mode:  
+    `grunt serve`
+5. Head to http://localhost:8000/
+
+### P.S.
+You'll have to setup and run the backend,
+[ember](https://github.com/bitcamp/ember), seperately.  Either use nginx or
+apache (or something) serve both of these projects in development mode, or run
+the `grunt` command to produce a fully compiled frontend in the ./public
+folder, and make `ember` serve that.
 
 
 ## Code with us
