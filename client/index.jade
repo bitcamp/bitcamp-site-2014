@@ -44,6 +44,17 @@ html(ng-app="bitcampApp")
 
   body(ng-controller="BodyCtrl" ng-cloak ng-style="bodyCSS")
 
+    .btc-background-wrapper
+      .btc-background
+        #cloud-1.cloud
+          <img src="/images/cloud-1.svg" width="150" height="80">
+        #cloud-2.cloud
+          <img src="/images/cloud-2.svg" width="150" height="80">
+        #cloud-3.cloud
+          <img src="/images/cloud-1.svg" width="150" height="80">
+        #cloud-4.cloud
+          <img src="/images/cloud-2.svg" width="150" height="80">
+
     .wrapper.bitcamp-view#wrapper(ui-view)
 
     .wrapper.ng-cloak(ng-include="" src=" 'layout/footer.html' ")

@@ -1,15 +1,5 @@
 #main(ng-show="isLoaded")
   header#header.row.btc-row
-    .btc-background-wrapper
-      #cloud-1.cloud
-        <img src="/images/cloud-1.svg" width="150" height="80">
-      #cloud-2.cloud
-        <img src="/images/cloud-2.svg" width="150" height="80">
-      #cloud-3.cloud
-        <img src="/images/cloud-1.svg" width="150" height="80">
-      #cloud-4.cloud
-        <img src="/images/cloud-2.svg" width="150" height="80">
-
     div(ng-include="" src="'layout/header-logo.html'" onload="isLoaded = true")
 
     .col-xs-12
@@ -27,7 +17,7 @@
             button.btn-warning#register2-btn signup
       .col-xs-12.col-sm-5.col-sm-push-1(ng-hide="cookie")
         h3.text-left-md
-          a(ui-sref="login" role="button")
+          a(ui-sref="login.main" role="button")
             button.btn-info#login-btn login
 
       .col-xs-12(ng-show="cookie")

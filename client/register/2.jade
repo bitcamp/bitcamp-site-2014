@@ -4,20 +4,23 @@
 
   .row
     .form-group.col-xs-12.col-sm-6
+      label(for="register-fname") * first name
       input#register-fname.form-control(
-        type="text" placeholder="* first name"
+        type="text" placeholder="sally"
         ng-model="profile.first")
     .form-group.col-xs-12.col-sm-6
+      label(for="register-lname") * last name
       input#register-lname.form-control(
-        type="text" placeholder="* last name"
+        type="text" placeholder="bitcamper"
         ng-model="profile.last")
 
 
   .row
     .form-group.col-xs-12
-        input#register-school.form-control(
-          type="text" placeholder="school"
-          ng-model="profile.school")
+      label(for="register-school") school
+      input#register-school.form-control(
+        type="text" placeholder="bitcamp high"
+        ng-model="profile.school")
 
   .row
     .form-group.col-xs-12.col-sm-7
@@ -34,7 +37,7 @@
         .form-group.col-xs-12
           input#stipend-input(type="checkbox", name="stipend-input"
             ng-model="profile.stipend")
-          label.label(for="stipend-input") travel stipend?
+          label.label.checkbox-label(for="stipend-input") travel stipend?
 
 footer
   .row

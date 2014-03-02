@@ -11,62 +11,16 @@
     padding-top:    1.4rem
     padding-bottom: 1.4rem
 
-  #stipend
+  .required
+    text-align: right
+    margin-top: -2rem
+
+  label, .label
+    margin-bottom: 0.5rem
+
+  #register-stipend
     text-align: center
     position: relative
-    $checkbox_size: 40px
-    label
-      cursor: pointer
-      width: 100%
-      line-height: $checkbox_size
-    input[type=checkbox]
-      display: none
-      width:  $checkbox_size
-      height: $checkbox_size
-      @media only screen and (max-width: $screen-sm)
-        margin-right: -1*$checkbox_size
-      + label:before
-        cursor: pointer
-        position: absolute
-        left: -1*$checkbox_size/2
-        top:  $checkbox_size/3
-        @media only screen and (min-width: $screen-sm)
-          left: 17.5%
-          top:  $checkbox_size*1.5
-        display: block
-        font-family: 'Glyphicons Halflings'
-        font-size: 2rem
-        content: "\e014"
-        margin-top: -1*(0.7*$checkbox_size/2)
-        margin-left:     $checkbox_size
-        margin-right: -1*$checkbox_size
-        width:  $checkbox_size
-        height: $checkbox_size
-        &, label, label:before
-          transition: color 0.2s ease-in, background-color 0.2s ease-in, font-size 0.3s ease-out
-      &:hover + label, label:hover
-        color: $color_green
-      &:checked
-        &:hover + label, label:hover
-          color: $color_red
-          &:before
-            border-color: $color_red
-      &:checked + label:before
-        top:  $checkbox_size
-        left: 20%
-        @media only screen and (max-width: $screen-sm)
-          left: -1*$checkbox_size/4.2
-          top:  0
-        content: ""
-        font-size: 1rem
-        animation: checkbox 0.6s forwards
-        transform: rotate(30deg)
-        border-bottom: 4px solid $color_grey-dark
-        border-right:  4px solid $color_grey-dark
-
-      &:focus
-        outline: none !important
-
   select
     height: 2.8rem
 
@@ -143,11 +97,6 @@
         padding-bottom: 0.7rem
         border: none
 
-
-#register-stipend
-  h3
-    font-size: 1em
-    line-height: 1em
 
 .nav-bubbles
   width: 100%

@@ -44,14 +44,17 @@ body
   text-align: center
   position: relative
 
-.btc-background-wrapper
-  position: absolute
-  top: 0
-  left: 0
-  @include square(100%)
-  .btc-background
-    margin: 0 auto
+body
+  position: relative
+  .btc-background-wrapper
+    position: absolute
+    top: 0
+    left: 0
+    overflow: hidden
     @include square(100%)
+    .btc-background
+      margin: 0 auto
+      @include square(100%)
 
 .clearfix
   @include clearfix()
@@ -171,16 +174,21 @@ body > .bitcamp-view
       background-color: $color_red
 
 
+.float-right
+  float: right
+.float-left
+  float: left
+
 .btn-primary
   background-color: $brand-primary
+.btn-info
+  background-color: $brand-info
 .btn-success
   background-color: $brand-success
 .btn-warning
   background-color: $brand-warning
 .btn-danger
   background-color: $brand-danger
-.btn-info
-  background-color: $brand-info
 
 
 @media only screen and (min-width: $screen-xs)
@@ -206,4 +214,59 @@ body > .bitcamp-view
     text-align: right
   .text-center-lg
     text-align: center
+
+
+label.checkbox-label
+  cursor: pointer
+  width: 100%
+  line-height: $checkbox_size
+  margin-top: -0.5rem
+
+input[type=checkbox]
+  display: none
+  width:  $checkbox_size
+  height: $checkbox_size
+  @media only screen and (max-width: $screen-sm)
+    margin-right: -1*$checkbox_size
+  + label:before
+    cursor: pointer
+    position: absolute
+    left: -1*$checkbox_size/2
+    top:  $checkbox_size/5
+    @media only screen and (min-width: $screen-sm)
+      left: 17.5%
+      top:  $checkbox_size*1.30
+    display: block
+    font-family: 'Glyphicons Halflings'
+    font-size: 2rem
+    content: "\e014"
+    margin-top: -1*(0.7*$checkbox_size/2)
+    margin-left:     $checkbox_size
+    margin-right: -1*$checkbox_size
+    width:  $checkbox_size
+    height: $checkbox_size
+    &, label, label:before
+      transition: color 0.2s ease-in, background-color 0.2s ease-in, font-size 0.3s ease-out
+  &:hover + label, label:hover
+    color: $color_red
+  &:checked
+    &:hover + label, label:hover
+      color: $color_green
+      &:before
+        border-color: $color_green
+  &:checked + label:before
+    top:  $checkbox_size*0.85
+    left: 21%
+    @media only screen and (max-width: $screen-sm)
+      left: -1*$checkbox_size/4.2
+      top: -1*$checkbox_size/4
+    content: ""
+    font-size: 1rem
+    animation: checkbox 0.6s forwards
+    transform: rotate(30deg)
+    border-bottom: 4px solid $color_grey-dark
+    border-right:  4px solid $color_grey-dark
+
+  &:focus
+    outline: none !important
 

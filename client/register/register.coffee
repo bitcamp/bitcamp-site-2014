@@ -51,12 +51,15 @@ bitcamp = angular.module("bitcampApp")
       $rootScope._profile.get()
         .$promise.then (data) ->
           $scope.profile = data
+          $scope.profile.stipend or= false
+
+
+
 
     $rootScope.apiErr = (name, errObj) ->
       if errObj[name]
         m = "#{name} #{errObj[name][errObj[name].length-1]}"
         $rootScope.api_messages.push m
-        console.log m
         m
       else false
 
@@ -66,11 +69,21 @@ bitcamp = angular.module("bitcampApp")
     $rootScope.navBubbles = [true, false, false, false]
     $rootScope.bodyCSS["background-color"] = colors["green-light"]
 
+    $scope.registerBtnText = "register"
+
+    $scope.err = ->
+      $scope.emailErr or $scope.confirmErr or $scope.passwordErr
+
+    $scope.registering = false
     $rootScope.$on "register", ->
+      return if $scope.registering
+      $scope.registering = true
       $timeout ->
+        $scope.registering = false
         $scope.emailErr     = ""
         $scope.passwordErr  = ""
         $scope.confirmErr   = ""
+        $scope.registerBtnText = "register"
       , 3000
 
     if $cookieStore.get "auth"
@@ -85,12 +98,11 @@ bitcamp = angular.module("bitcampApp")
         .success (data) ->
           $rootScope.api_messages = []
           $rootScope.$emit "register", null, data
-          console.log data
           null
         .error (err) ->
+          $scope.registerBtnText = ":("
           $rootScope.$emit "register", err
           $rootScope.api_messages = []
-          console.log err
           $scope.emailErr    = $rootScope.apiErr "email", err
           $scope.passwordErr = $rootScope.apiErr "password", err
           $scope.confirmErr  = $scope.password isnt $scope.confirm
@@ -100,15 +112,26 @@ bitcamp = angular.module("bitcampApp")
             $scope.passwordErr = $rootScope.apiErr "confirm", err
 
 
-  .controller "RegisterCtrl_2", ($rootScope, colors, $cookieStore, $state) ->
+  .controller "RegisterCtrl_2", ($scope, $rootScope, colors, $cookieStore, $state) ->
     $rootScope.navBubbles = [true, true, false, false]
     $rootScope.bodyCSS["background-color"] = colors["blue-light"]
 
-  .controller "RegisterCtrl_3", ($rootScope, colors, $cookieStore, $state) ->
+  .controller "RegisterCtrl_3", ($scope, $rootScope, colors, $cookieStore, $state) ->
     $rootScope.navBubbles = [true, true, true, false]
     $rootScope.bodyCSS["background-color"] = colors["orange-dark"]
 
-  .controller "RegisterCtrl_4", ($rootScope, colors, $cookieStore, $state) ->
+  .controller "RegisterCtrl_4", ($scope, $rootScope, colors, $cookieStore, $state) ->
     $rootScope.navBubbles = [true, true, true, true]
     $rootScope.bodyCSS["background-color"] = colors["blue-darker"]
+
+    $scope.submit = ->
+      $rootScope._profile.save()
+        .$promise.then (data) ->
+          console.log data
+          $state.go "fireside"
+        .catch (data) ->
+          console.log "PRETENDING LIKE WE SAVED THE PROFILE ;)"
+          $rootScope._profile.complete = true
+          $scope.profile.complete = true
+          $state.go "fireside"
 

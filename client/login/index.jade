@@ -1,4 +1,5 @@
-form#login(novalidate="" ng-submit="!loggingIn && loginF(email, password)")
+#login
+
   .register-view
     .register-wrapper
       header
@@ -10,36 +11,4 @@ form#login(novalidate="" ng-submit="!loggingIn && loginF(email, password)")
 
       section.register-body
         .register-body-inner
-
-          .row
-            .form-group.col-xs-12
-              input#login-email.form-control(
-                type="email" placeholder="* email address"
-                ng-model="email"
-                ng-class="{shake: emailErr, animated: emailErr}"
-                ng-disabled="loggingIn")
-
-          .row
-            .form-group.col-xs-12
-              input#login-password.form-control(
-                type="password" placeholder="* password"
-                ng-model="password"
-                ng-class="{shake: emailErr, animated: emailErr}"
-                ng-disabled="loggingIn")
-
-          footer
-            input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
-            .row
-              .form-group.col-xs-12
-                button.btn.btn-success(
-                  ng-click="!loggingIn && loginF(email, password)"
-                  ng-style="loginB_CSS")
-                  | {{api_messages && api_messages[0] || 'login'}}
-              .form-group.col-xs-12.col-sm-6
-                a(ui-sref="login.reset")
-                  button.btn.btn-warning
-                    | reset password
-              .form-group.col-xs-12.col-sm-6
-                a(ui-sref="main")
-                  button.btn.btn-danger
-                    | cancel
+          ui-view.bitcamp-view(autoscroll="false")

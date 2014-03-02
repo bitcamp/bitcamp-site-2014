@@ -5,7 +5,7 @@
         a(ui-sref="main" title="cancel")
           i#cancel-register.glyphicon.glyphicon-remove
         #header-inner
-          h3.b new camper
+          h3.b new bitcamper
         nav.nav-bubbles
           a(ui-sref="{{cookie && '.two' || '.one'}}")
             .nav-bubble#nav-bubbles-one(
@@ -26,9 +26,3 @@
       section.register-body
         .register-body-inner.bitcamp-view-wrapper
           ui-view.bitcamp-view(autoscroll="false")
-
-          hr(ng-if="api_messages")
-
-          p#api-message.text-center(ng-repeat="m in api_messages")
-            label.label.label-warning
-              | {{ m }}

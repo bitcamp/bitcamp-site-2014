@@ -21,15 +21,24 @@ bitcamp = angular.module("bitcampApp", [
         controller: "MainCtrl"
 
       .state "login",
-        url: "/login?token"
+        abstract: true
+        url: "/login"
         templateUrl: "login/index.html"
         controller: "LoginCtrl"
+      .state "login.main",
+        url: "?token"
+        templateUrl: "login/login.html"
+        controller: "LoginCtrl.main"
+      .state "login.reset",
+        url: "/reset"
+        templateUrl: "login/reset.html"
+        controller: "LoginCtrl.reset"
 
       .state "confirm",
         url: "/confirm?token"
         controller: ($stateParams, $state) ->
           console.log $stateParams
-          $state.go("login", $stateParams)
+          $state.go("login.main", $stateParams)
 
       .state "fireside",
         url: "/fireside"
@@ -136,7 +145,7 @@ bitcamp = angular.module("bitcampApp", [
     $rootScope.$on "$stateChangeStart", (ev, state) ->
       if state.auth is true and not $cookieStore.get("auth")
         ev.preventDefault()
-        $state.go "login"
+        $state.go "login.main"
 
     $rootScope.$on "$stateChangeSuccess", ->
       $window.scrollTo 0, 0
