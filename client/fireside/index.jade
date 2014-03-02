@@ -1,10 +1,10 @@
 #layoverhacks(ng-show="isLoaded" ng-style="firesideCSS")
   header#header.row.btc-row
     div(ng-include="" onload="isLoaded = true" src="'layout/header-logo.html'")
-    .col-xs-12(ng-if="_profile.complete")
+    .col-xs-12(ng-if="profile$.complete")
       h1 registration complete
       h2 see you by the bonfire :)
-    .col-xs-12(ng-if="!_profile.complete")
+    .col-xs-12(ng-if="!profile$.complete")
       h1 fireside
 
     - var eight = [1, 2, 3, 4, 5, 6, 7, 8]

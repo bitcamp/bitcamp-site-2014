@@ -15,10 +15,9 @@ angular.module('bitcampApp')
         "#{colors["blue-darker"]} 100%"  + \
         ")"
 
-
     blocksI     = 0
     blocksT     = 2400
-    blocksT_min = 100
+    blocksT_min = 400
     $bs = $(".fireside-block:not(.empty-block) .inner-block")
 
     requestAnimationFrame = window.requestAnimationFrame
@@ -27,7 +26,7 @@ angular.module('bitcampApp')
     blocksF = ->
       blocks = $bs.map (i, b) ->
         i: i
-        on: randomInt(0, $bs.length) < ($bs.length/4)
+        on: randomInt(0, $bs.length) < ($bs.length/3)
       (b for b in blocks when b.on).map (b) ->
         do ($b = $bs.eq b.i) ->
           $timeout((-> requestAnimationFrame ->

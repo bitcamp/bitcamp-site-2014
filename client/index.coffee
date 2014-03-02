@@ -37,7 +37,6 @@ bitcamp = angular.module("bitcampApp", [
       .state "confirm",
         url: "/confirm?token"
         controller: ($stateParams, $state) ->
-          console.log $stateParams
           $state.go("login.main", $stateParams)
 
       .state "fireside",
@@ -100,7 +99,7 @@ bitcamp = angular.module("bitcampApp", [
       "transition": "background-color 0.4s ease-out"
     }
 
-    cookie = $cookieStore.get "auth"
+    $rootScope.profile$  = {}
 
     $rootScope._login = (cookie) ->
       $rootScope.cookie   = cookie
@@ -110,24 +109,20 @@ bitcamp = angular.module("bitcampApp", [
         .common["Authorization"] = "Token token=\"#{cookie.token}\""
 
     $rootScope._logout = ->
-      $rootScope._profile = null
+      $rootScope.profile$    = {}
+      $rootScope._profile    = null
       $rootScope.cookie      = null
       $cookieStore.put "auth", null
       cookie = $cookieStore.get "auth"
       delete $http.defaults.headers.common["Authorization"]
 
-    if cookie
-      if moment(cookie.expires).diff(moment()) <= 0
-        $rootScope._logout()
-      else
-        $rootScope._login(cookie)
-
-        #$rootScope._profile.get()
-        $http.get("/api/profile")
-          .success (data) ->
-            console.log data
-          .error (err) ->
-            console.log err
+    if $rootScope.cookie
+      #$rootScope._profile.get()
+      $http.get("/api/profile")
+        .success (data) ->
+          console.log data
+        .error (err) ->
+          console.log err
 
     $http.get("/api/bitcamp")
       .success ->
@@ -143,7 +138,13 @@ bitcamp = angular.module("bitcampApp", [
         null
 
     $rootScope.$on "$stateChangeStart", (ev, state) ->
-      if state.auth is true and not $cookieStore.get("auth")
+      cookie = $cookieStore.get "auth"
+      if cookie
+        if moment(cookie.expires).diff(moment()) <= 0
+          $rootScope._logout()
+        else
+          $rootScope._login(cookie)
+      if state.auth is true and not cookie
         ev.preventDefault()
         $state.go "login.main"
 

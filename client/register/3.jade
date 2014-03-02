@@ -1,24 +1,6 @@
 #register-three
-  p
+  .p.label.required
     small * = required
-
-  .row
-    .form-group.col-xs-12
-      input#register-dietary-restrictions.form-control(
-        type="text" placeholder="dietary restrictions"
-        ng-model="profile.dietary_restrictions")
-
-  .row
-    .form-group.col-xs-12
-      input#register-github-username.form-control(
-        type="text" placeholder="github username"
-        ng-model="profile.github")
-
-  .row
-    .form-group.col-xs-12
-      input#register-website-url.form-control(
-        type="text" placeholder="website url"
-        ng-model="profile.website")
 
   .row
     .form-group.col-xs-12
@@ -32,11 +14,36 @@
         option lady's medium
         option lady's large
 
+    .form-group.col-xs-12.col-sm-6
+      label.label(for="register-dietary-restrictions") dietary restrictions
+      input#register-dietary-restrictions.form-control(
+        type="text" placeholder="vegan, halal, carnivore"
+        ng-model="profile.resume")
+
+    .form-group.col-xs-12.col-sm-6
+      label.label(for="register-github-username") github
+      input#register-github-username.form-control(
+        type="text" placeholder="just the username"
+        ng-model="profile.github")
+
+    .form-group.col-xs-12
+      label.label(for="register-website-url") website url
+      input#register-website-url.form-control(
+        type="text" placeholder="if you have a portfolio website"
+        ng-model="profile.website")
+
+    .form-group.col-xs-12
+      label.label(for="register-resume-url") resume url
+      input#register-website-url.form-control(
+        type="text" placeholder="host it on Dropbox or something"
+        ng-model="profile.website")
+
   .row
     .form-group.col-xs-12
+      label.label(for="register-expectations") notes
       textarea#register-expectations.form-control(
         rows="3"
-        placeholder="what you hope to get out of bitcamp"
+        placeholder="tell us what you hope to get out of bitcamp"
         ng-model="profile.blurb")
 
 

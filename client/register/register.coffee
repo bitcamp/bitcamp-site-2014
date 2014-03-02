@@ -13,8 +13,6 @@ bitcamp = angular.module("bitcampApp")
         $scope.confirm  = ""
       , 3000
 
-    $scope.profile  = {}
-
     $scope.profile_fields = [
         field: "first"
         label: "first name"
@@ -52,8 +50,6 @@ bitcamp = angular.module("bitcampApp")
         .$promise.then (data) ->
           $scope.profile = data
           $scope.profile.stipend or= false
-
-
 
 
     $rootScope.apiErr = (name, errObj) ->
@@ -114,7 +110,7 @@ bitcamp = angular.module("bitcampApp")
 
   .controller "RegisterCtrl_2", ($scope, $rootScope, colors, $cookieStore, $state) ->
     $rootScope.navBubbles = [true, true, false, false]
-    $rootScope.bodyCSS["background-color"] = colors["blue-light"]
+    $rootScope.bodyCSS["background-color"] = colors["blue-darker"]
 
   .controller "RegisterCtrl_3", ($scope, $rootScope, colors, $cookieStore, $state) ->
     $rootScope.navBubbles = [true, true, true, false]
@@ -122,7 +118,7 @@ bitcamp = angular.module("bitcampApp")
 
   .controller "RegisterCtrl_4", ($scope, $rootScope, colors, $cookieStore, $state) ->
     $rootScope.navBubbles = [true, true, true, true]
-    $rootScope.bodyCSS["background-color"] = colors["blue-darker"]
+    $rootScope.bodyCSS["background-color"] = colors["blue-light"]
 
     $scope.submit = ->
       $rootScope._profile.save()
@@ -131,7 +127,6 @@ bitcamp = angular.module("bitcampApp")
           $state.go "fireside"
         .catch (data) ->
           console.log "PRETENDING LIKE WE SAVED THE PROFILE ;)"
-          $rootScope._profile.complete = true
-          $scope.profile.complete = true
+          $rootScope.profile$.complete = true
           $state.go "fireside"
 
