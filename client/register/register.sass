@@ -16,7 +16,7 @@
     position: relative
     $checkbox_size: 40px
     label
-      clear: both
+      cursor: pointer
       width: 100%
       line-height: $checkbox_size
     input[type=checkbox]
@@ -26,8 +26,9 @@
       @media only screen and (max-width: $screen-sm)
         margin-right: -1*$checkbox_size
       + label:before
+        cursor: pointer
         position: absolute
-        left: -1*$checkbox_size/3
+        left: -1*$checkbox_size/2
         top:  $checkbox_size/3
         @media only screen and (min-width: $screen-sm)
           left: 17.5%
@@ -42,7 +43,7 @@
         width:  $checkbox_size
         height: $checkbox_size
         &, label, label:before
-          transition: all 0.2s ease-in
+          transition: color 0.2s ease-in, background-color 0.2s ease-in, font-size 0.3s ease-out
       &:hover + label, label:hover
         color: $color_green
       &:checked
@@ -52,7 +53,9 @@
             border-color: $color_red
       &:checked + label:before
         top:  $checkbox_size
+        left: 20%
         @media only screen and (max-width: $screen-sm)
+          left: -1*$checkbox_size/4.2
           top:  0
         content: ""
         font-size: 1rem
@@ -179,20 +182,20 @@
 
 
 @keyframes checkbox
-  $h_movement: 2.0em
-  $w_movement: 1.4em
+  $h: 2.0em
+  $w: 1.4em
   0%
-    height: 0
-    width:  0
-    margin-top:  $h_movement
-    margin-right: $w_movement
+    height:       0
+    width:        0
+    margin-top:   $h
+    margin-right: $w
   50%
-    height: $h_movement
-    width:  0
-    margin-top:  0
-    margin-right: $w_movement
+    height:       $h/2
+    width:        $w/2
+    margin-top:   $h/2
+    margin-right: $w/2
   100%
-    height: $h_movement
-    width:  $w_movement
-    margin-top:  0
+    height:       $h
+    width:        $w
+    margin-top:   0
     margin-right: 0
