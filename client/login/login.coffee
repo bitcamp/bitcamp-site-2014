@@ -36,13 +36,10 @@ bitcamp = angular.module("bitcampApp")
         token:    $scope.token
       })
         .success (cookie) ->
-          $rootScope.cookie = cookie
-          $cookieStore.put "auth", cookie
-          $http.defaults.headers.common["Authorization"] = "Token token=\"#{cookie.token}\""
+          $rootScope._login(cookie)
           if $scope.token
-            $state.go("register.two")
-          else
-            $state.go("main")
+          then $state.go("register.two")
+          else $state.go("main")
         .error ->
           $scope.api_messages = []
           $scope.api_messages.push "invalid credentials!"

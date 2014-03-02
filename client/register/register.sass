@@ -11,6 +11,59 @@
     padding-top:    1.4rem
     padding-bottom: 1.4rem
 
+  #stipend
+    text-align: center
+    position: relative
+    $checkbox_size: 40px
+    label
+      clear: both
+      width: 100%
+      line-height: $checkbox_size
+    input[type=checkbox]
+      display: none
+      width:  $checkbox_size
+      height: $checkbox_size
+      @media only screen and (max-width: $screen-sm)
+        margin-right: -1*$checkbox_size
+      + label:before
+        position: absolute
+        left: -1*$checkbox_size/3
+        top:  $checkbox_size/3
+        @media only screen and (min-width: $screen-sm)
+          left: 17.5%
+          top:  $checkbox_size*1.5
+        display: block
+        font-family: 'Glyphicons Halflings'
+        font-size: 2rem
+        content: "\e014"
+        margin-top: -1*(0.7*$checkbox_size/2)
+        margin-left:     $checkbox_size
+        margin-right: -1*$checkbox_size
+        width:  $checkbox_size
+        height: $checkbox_size
+        &, label, label:before
+          transition: all 0.2s ease-in
+      &:hover + label, label:hover
+        color: $color_green
+      &:checked
+        &:hover + label, label:hover
+          color: $color_red
+          &:before
+            border-color: $color_red
+      &:checked + label:before
+        top:  $checkbox_size
+        @media only screen and (max-width: $screen-sm)
+          top:  0
+        content: ""
+        font-size: 1rem
+        animation: checkbox 0.6s forwards
+        transform: rotate(30deg)
+        border-bottom: 4px solid $color_grey-dark
+        border-right:  4px solid $color_grey-dark
+
+      &:focus
+        outline: none !important
+
   select
     height: 2.8rem
 
@@ -123,3 +176,23 @@
     height: 3px
     background-color: $color_grey-light
     margin: ($bubble_size/2) 0 (($bubble_size/2) - $bubble_border_size - 1px) 0
+
+
+@keyframes checkbox
+  $h_movement: 2.0em
+  $w_movement: 1.4em
+  0%
+    height: 0
+    width:  0
+    margin-top:  $h_movement
+    margin-right: $w_movement
+  50%
+    height: $h_movement
+    width:  0
+    margin-top:  0
+    margin-right: $w_movement
+  100%
+    height: $h_movement
+    width:  $w_movement
+    margin-top:  0
+    margin-right: 0

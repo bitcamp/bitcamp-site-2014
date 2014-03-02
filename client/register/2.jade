@@ -28,20 +28,20 @@
         option get myself there
         option can take a bus
         option need a plane
+
     .col-xs-12.col-sm-5#register-stipend
-      .row
-        .form-group.col-xs-6.col-sm-12.text-center-md
-          label.label(for="stipend") travel stipend?
-        .form-group.col-xs-6.col-sm-12.text-center.text-left-sm.text-center-md.text-center-lg
-          input#stipend(type="checkbox", name="register-stipend"
+      .row#stipend
+        .form-group.col-xs-12
+          input#stipend-input(type="checkbox", name="stipend-input"
             ng-model="profile.stipend")
+          label.label(for="stipend-input") travel stipend?
 
 footer
   .row
     .form-group.col-xs-12.col-sm-8.col-sm-push-4
       a(ui-sref="register.three")
-        button#register-continue2.btn.btn-success
+        button#register-continue2.btn.btn-info
           | continue
-    .form-group.col-xs-12.col-sm-8.col-sm-push-4
+    .form-group.col-xs-12.col-sm-4.col-sm-pull-8
       a(ui-sref="{{cookie && 'main' || 'register.one'}}")
         button#register-goback2.btn.btn-warning go back

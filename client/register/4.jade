@@ -12,8 +12,8 @@ form#register-four
   footer
     .row
       .form-group.col-xs-12.col-sm-8.col-sm-push-4
-        a(ui-sref="register.confirm")
-          button#register-continue4.btn.btn-success
+        a(ui-sref="fireside")
+          button#register-continue4.btn.btn-success(ng-click="_profile.complete=true")
             | submit
       .form-group.col-xs-12.col-sm-4.col-sm-pull-8
         a(ui-sref="register.three")

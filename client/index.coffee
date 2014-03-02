@@ -71,6 +71,7 @@ bitcamp = angular.module("bitcampApp", [
         controller: "RegisterCtrl_4"
         auth: true
 
+
       .state "404",
         url: "/404"
         templateUrl: "layout/404/index.html"
@@ -86,30 +87,31 @@ bitcamp = angular.module("bitcampApp", [
   .controller "BodyCtrl", ($http, $scope, $rootScope, $window, $location, $timeout, $cookieStore, $resource, $state) ->
     $rootScope.isLoaded = true
 
-    $rootScope._profile = $resource("/api/profile")
-
     $rootScope.bodyCSS = {
       "transition": "background-color 0.4s ease-out"
     }
 
     cookie = $cookieStore.get "auth"
 
-    login = (cookie) ->
-      $rootScope.cookie = cookie
+    $rootScope._login = (cookie) ->
+      $rootScope.cookie   = cookie
+      $rootScope._profile = $resource("/api/profile")
+      $cookieStore.put "auth", cookie
       $http.defaults.headers
         .common["Authorization"] = "Token token=\"#{cookie.token}\""
 
-    logout = ->
-      cookie = $cookieStore.get "auth"
-      delete $http.defaults.headers.common["Authorization"]
+    $rootScope._logout = ->
+      $rootScope._profile = null
       $rootScope.cookie      = null
       $cookieStore.put "auth", null
+      cookie = $cookieStore.get "auth"
+      delete $http.defaults.headers.common["Authorization"]
 
     if cookie
       if moment(cookie.expires).diff(moment()) <= 0
-        logout()
+        $rootScope._logout()
       else
-        login(cookie)
+        $rootScope._login(cookie)
 
         #$rootScope._profile.get()
         $http.get("/api/profile")
@@ -148,7 +150,7 @@ bitcamp = angular.module("bitcampApp", [
           console.log "logged out!"
         .error (err) ->
           console.log err
-      logout()
+      $rootScope._logout()
 
   .factory "colors", ->
     "white"        : "#ffffff"
