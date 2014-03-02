@@ -5,21 +5,29 @@
   .row
     .form-group.col-xs-12
       input#register-dietary-restrictions.form-control(
-        type="email" placeholder="dietary restrictions")
+        type="text" placeholder="dietary restrictions"
+        ng-model="profile.dietary_restrictions")
 
   .row
     .form-group.col-xs-12
       input#register-github-username.form-control(
-        type="email" placeholder="github username")
+        type="text" placeholder="github username"
+        ng-model="github")
+
+  .row
+    .form-group.col-xs-12
+      input#register-website-url.form-control(
+        type="text" placeholder="website url"
+        ng-model="profile.website")
 
   .row
     .form-group.col-xs-12
       label tee-shirt size *
-      select#register-tshirt-size.form-control.input-md
+      select#register-tshirt-size.form-control.input-md(
+        ng-model="profile.tshirt_size")
         option men's small
         option men's medium
         option men's large
-        option(selected) choose one
         option lady's small
         option lady's medium
         option lady's large
@@ -28,16 +36,17 @@
     .form-group.col-xs-12
       textarea#register-expectations.form-control(
         rows="3"
-        placeholder="what you hope to get out of bitcamp")
+        placeholder="what you hope to get out of bitcamp"
+        ng-model="profile.blurb")
 
 
 footer
   .row
-    .form-group.col-xs-12.col-sm-6
+    .form-group.col-xs-12.col-sm-4
       a(ui-sref="register.two")
         button#register-goback3.btn.btn-warning
           | go back
-    .form-group.col-xs-12.col-sm-6
+    .form-group.col-xs-12.col-sm-8
       a(ui-sref="register.four")
         button#register-continue3.btn.btn-success
           | continue

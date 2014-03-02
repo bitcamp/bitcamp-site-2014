@@ -9,20 +9,27 @@
   footer
     margin-top: 100px
 
-$block-size: 80px
+$block-size: 10vw
 $blocks-per-row: 8
 $inner-blocks: 8
 
+$block-size-max: 100px
+
 #fireside-blocks
   width: $block-size*$blocks-per-row
+  max-width:  $blocks-per-row*$block-size-max
   margin: 0 auto 80px auto
 
 .fireside-row
   height: $block-size
   width: $block-size*$blocks-per-row
+  max-height: $block-size-max
+  max-width:  $blocks-per-row*$block-size-max
   .fireside-block
     float: left
     @include square($block-size)
+    max-height: $block-size-max
+    max-width:  $block-size-max
 
     .inner-row
       height: ($block-size/$inner-blocks)

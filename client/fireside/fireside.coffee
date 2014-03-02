@@ -7,41 +7,29 @@ randomInt = (min, max) ->
 
 
 angular.module('bitcampApp')
-  .controller 'FiresideCtrl', ($scope, $http, $resource) ->
-    socket = io.connect "50.22.11.232:13891"
-
+  .controller 'FiresideCtrl', ($scope, $http, $resource, $timeout) ->
     blocksI = 0
     blocksT = 2400
 
-    socket.on 'connect', ->
-      socket.on '/api/fireside/blocks', (blocks) ->
-
-    Blocks = $resource '/api/fireside/blocks', {},
-      get:
-        method: 'GET'
-        isArray: true
-
+    $bs = $(".fireside-block:not(.empty-block) .inner-block")
     do blocksF = ->
-      $http.get('/api/fireside/blocks')
 
-        .success (blocks) ->
-          $bs = $ '.inner-block'
-          (b for b in blocks when b.on).map (b) ->
-            do ($b = $bs.eq b.i) ->
-              setTimeout ->
-                $b.removeClass $b.data 'dimclass'
-                $b.addClass    $b.data 'colorclass'
-                setTimeout ->
-                  $b.removeClass $b.data 'colorclass'
-                  $b.addClass    $b.data 'dimclass'
-                , (randomN 1, blocksT)
-              , (randomN 1, blocksT)
+      blocks = $bs.map (i, b) ->
+        i: i
+        on: randomInt(0, $bs.length) < ($bs.length/4)
 
-        .error (err) ->
-          null
+      (b for b in blocks when b.on).map (b) ->
+        do ($b = $bs.eq b.i) ->
+          $timeout ->
+            $b.removeClass $b.data 'dimclass'
+            $b.addClass    $b.data 'colorclass'
+            $timeout ->
+              $b.removeClass $b.data 'colorclass'
+              $b.addClass    $b.data 'dimclass'
+            , (randomN 1, blocksT)
+          , (randomN 1, blocksT)
 
     blocksI = setInterval blocksF, blocksT
 
     $scope.$on "$destroy", ->
       clearInterval blocksI
-      socket.disconnect()

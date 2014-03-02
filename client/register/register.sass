@@ -25,6 +25,18 @@
 
   $form_width: 35rem
 
+  $header-inner-size: 100px
+
+  #cancel-register
+    position: absolute
+    z-index: 1000
+    right: 1rem
+    top:   1rem
+    font-size: 2em
+    color: $color_white
+    transition: color 0.2s ease-out
+    &:hover
+      color: $brand_danger
 
   &:before, &:after
     margin-top: 14vw
@@ -40,14 +52,29 @@
       width: 100%
 
       header
-        padding: 2rem 1rem
+        position: relative
+        #header-inner
+          color: $color_grey
+          padding: 1em 0.4em
+          @media only screen and (min-width: $form_width)
+            border-radius: 12px
+          background-color: $color_white
+          width: 100%
+          margin: 2rem 0
+
+
         background-color: $color_grey-dark
         text-align: center
+
+        padding: 2rem 0
         @media only screen and (min-width: $form_width)
+          padding: 2rem 4vw
           border-radius: 12px 12px 0 0
 
       .register-body
-        padding: 2rem
+        @media only screen and (max-width: $form_width)
+          margin-bottom: -10vw
+        padding: 3rem 2rem
         background-color: $color_grey-light
         color: $color_grey-dark
 
@@ -64,6 +91,11 @@
         &.btn-warning
           background-color: $color_blue-dark
 
+
+#register-stipend
+  h3
+    font-size: 1em
+    line-height: 1em
 
 .nav-bubbles
   width: 100%

@@ -54,32 +54,27 @@ bitcamp = angular.module("bitcampApp", [
         url: "/one"
         templateUrl: "register/1.html"
         controller: "RegisterCtrl_1"
+        auth: false
       .state "register.two",
         url: "/two"
         templateUrl: "register/2.html"
         controller: "RegisterCtrl_2"
+        auth: true
       .state "register.three",
         url: "/three"
         templateUrl: "register/3.html"
         controller: "RegisterCtrl_3"
+        auth: true
       .state "register.four",
         url: "/four"
         templateUrl: "register/4.html"
         controller: "RegisterCtrl_4"
+        auth: true
 
       .state "404",
         url: "/404"
         templateUrl: "layout/404/index.html"
         controller: "404Ctrl"
-
-    $("body").flowtype
-      minimum   : 320
-      maximum   : 1200
-      minFont   : 17
-      maxFont   : 22
-      fontRatio : 40
-      lineRatio : 1.45
-
 
   .directive "scrollTo", ->
     (scope, element, attrs) ->
@@ -88,31 +83,58 @@ bitcamp = angular.module("bitcampApp", [
         $.scrollTo location, +attrs.scrollSpeed or 300
 
 
-  .controller "BodyCtrl", ($http, $scope, $rootScope, $window, $location, $timeout, $cookieStore, $resource) ->
+  .controller "BodyCtrl", ($http, $scope, $rootScope, $window, $location, $timeout, $cookieStore, $resource, $state) ->
     $rootScope.isLoaded = true
 
     $rootScope._profile = $resource("/api/profile")
 
-    $rootScope.bodyCSS = {}
+    $rootScope.bodyCSS = {
+      "transition": "background-color 0.4s ease-out"
+    }
 
     cookie = $cookieStore.get "auth"
-    if cookie
+
+    login = (cookie) ->
       $rootScope.cookie = cookie
       $http.defaults.headers
         .common["Authorization"] = "Token token=\"#{cookie.token}\""
-      $rootScope._profile.get()
 
-      $http.get("/api/profile")
-        .success (data) ->
-          console.log data
-        .error (err) ->
-          console.log err
+    logout = ->
+      cookie = $cookieStore.get "auth"
+      delete $http.defaults.headers.common["Authorization"]
+      $rootScope.cookie      = null
+      $cookieStore.put "auth", null
+
+    if cookie
+      if moment(cookie.expires).diff(moment()) <= 0
+        logout()
+      else
+        login(cookie)
+
+        #$rootScope._profile.get()
+        $http.get("/api/profile")
+          .success (data) ->
+            console.log data
+          .error (err) ->
+            console.log err
 
     $http.get("/api/bitcamp")
       .success ->
         console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
+        $("body").flowtype
+          minimum   : 320
+          maximum   : 1200
+          minFont   : 17
+          maxFont   : 22
+          fontRatio : 40
+          lineRatio : 1.45
       .error (data) ->
         null
+
+    $rootScope.$on "$stateChangeStart", (ev, state) ->
+      if state.auth is true and not $cookieStore.get("auth")
+        ev.preventDefault()
+        $state.go "login"
 
     $rootScope.$on "$stateChangeSuccess", ->
       $window.scrollTo 0, 0
@@ -120,15 +142,13 @@ bitcamp = angular.module("bitcampApp", [
       $window.ga? "send", "pageview"
 
     $rootScope.logout = ->
+      # call the logout function after the logout get request
       $http.get("/api/logout")
         .success (data) ->
-          cookie = $cookieStore.get "auth"
-          delete $http.defaults.headers.common["Authorization"]
-          $rootScope.cookie      = null
-          $cookieStore.put "auth", null
+          console.log "logged out!"
         .error (err) ->
           console.log err
-
+      logout()
 
   .factory "colors", ->
     "white"        : "#ffffff"

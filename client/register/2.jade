@@ -5,40 +5,43 @@
   .row
     .form-group.col-xs-12.col-sm-6
       input#register-fname.form-control(
-        type="text" placeholder="* first name")
+        type="text" placeholder="* first name"
+        ng-model="profile.first")
     .form-group.col-xs-12.col-sm-6
       input#register-lname.form-control(
-        type="text" placeholder="* last name")
+        type="text" placeholder="* last name"
+        ng-model="profile.last")
 
 
   .row
     .form-group.col-xs-12
         input#register-school.form-control(
-          type="text" placeholder="school")
+          type="text" placeholder="school"
+          ng-model="profile.school")
 
   .row
     .form-group.col-xs-12.col-sm-7
       label(for="mode-of-transportation") * mode of transportation
-      select#mode-of-transportation.form-control.input-md(name="mode-of-transportation")
+      select#mode-of-transportation.form-control.input-md(
+        name="mode-of-transportation"
+        ng-model="profile.transportation")
         option get myself there
         option can take a bus
         option need a plane
-    .form-group.col-xs-6.col-sm-3.text-right
-      br
-      label(for="register-stipend") travel stipend?
-    .form-group.col-xs-6.col-sm-2.text-left
-      h3
-        input#register-stipend(type="checkbox", name="register-stipend")
-
+    .col-xs-12.col-sm-5#register-stipend
+      .row
+        .form-group.col-xs-6.col-sm-12.text-center-md
+          label.label(for="stipend") travel stipend?
+        .form-group.col-xs-6.col-sm-12.text-center.text-left-sm.text-center-md.text-center-lg
+          input#stipend(type="checkbox", name="register-stipend"
+            ng-model="profile.stipend")
 
 footer
   .row
-    .form-group.col-xs-12.col-sm-6
-      a(ui-sref="register.one" ng-if="!cookie")
+    .form-group.col-xs-12.col-sm-4
+      a(ui-sref="{{cookie && 'main' || 'register.one'}}")
         button#register-goback2.btn.btn-warning go back
-      a(ui-sref="main"         ng-if="cookie")
-        button#register-goback2.btn.btn-warning go back
-    .form-group.col-xs-12.col-sm-6
+    .form-group.col-xs-12.col-sm-8
       a(ui-sref="register.three")
         button#register-continue2.btn.btn-success
           | continue

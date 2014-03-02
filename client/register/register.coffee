@@ -25,6 +25,18 @@ bitcamp = angular.module("bitcampApp")
         field: "school"
         label: "school"
       ,
+        field: "transportation"
+        label: "mode of transportation"
+      ,
+        field: "stipend"
+        label: "travel stipend"
+      ,
+        field: "dietary_restrictions"
+        label: "dietary restrictions"
+      ,
+        field: "tshirt_size"
+        label: "t-shirt size"
+      ,
         field: "github"
         label: "github username"
       ,
@@ -93,19 +105,11 @@ bitcamp = angular.module("bitcampApp")
     $rootScope.navBubbles = [true, true, false, false]
     $rootScope.bodyCSS["background-color"] = colors["blue-light"]
 
-    unless $cookieStore.get "auth"
-      $state.go "login"
-
   .controller "RegisterCtrl_3", ($rootScope, colors, $cookieStore, $state) ->
     $rootScope.navBubbles = [true, true, true, false]
     $rootScope.bodyCSS["background-color"] = colors["orange-dark"]
-
-    unless $cookieStore.get "auth"
-      $state.go "login"
 
   .controller "RegisterCtrl_4", ($rootScope, colors, $cookieStore, $state) ->
     $rootScope.navBubbles = [true, true, true, true]
     $rootScope.bodyCSS["background-color"] = colors["blue-darker"]
 
-    unless $cookieStore.get "auth"
-      $state.go "login"

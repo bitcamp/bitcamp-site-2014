@@ -1,9 +1,13 @@
 bitcamp = angular.module("bitcampApp")
 
-  .controller "LoginCtrl", ($http, $scope, $rootScope, $stateParams, $state, $cookieStore) ->
+  .controller "LoginCtrl", ($http, $scope, $rootScope, $stateParams, $state, $cookieStore, colors) ->
+    $rootScope.bodyCSS["background-color"] = colors["blue-light"]
+
     $scope.email    = ""
     $scope.password = ""
     $scope.token    = $stateParams.token
+
+    $scope.title    = "camper login"
 
     $rootScope.api_messages = []
 
