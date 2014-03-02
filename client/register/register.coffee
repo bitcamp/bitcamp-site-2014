@@ -68,7 +68,6 @@ bitcamp = angular.module("bitcampApp")
 
     $rootScope.$on "register", ->
       $timeout ->
-        $rootScope.api_messages = []
         $scope.emailErr     = ""
         $scope.passwordErr  = ""
         $scope.confirmErr   = ""

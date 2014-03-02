@@ -7,29 +7,38 @@ randomInt = (min, max) ->
 
 
 angular.module('bitcampApp')
-  .controller 'FiresideCtrl', ($scope, $http, $resource, $timeout) ->
-    blocksI = 0
-    blocksT = 2400
+  .controller 'FiresideCtrl', ($scope, $rootScope, $http, $resource, $timeout, $interval, colors) ->
+    $scope.firesideCSS =
+      "background-image": "linear-gradient(to bottom," +\
+        "#{colors["blue-light"]}  40%, " + \
+        "#{colors["blue-dark"]}   90%, " + \
+        "#{colors["blue-darker"]} 100%"  + \
+        ")"
 
+
+    blocksI     = 0
+    blocksT     = 2400
+    blocksT_min = 100
     $bs = $(".fireside-block:not(.empty-block) .inner-block")
-    do blocksF = ->
 
+    requestAnimationFrame = window.requestAnimationFrame
+    requestAnimationFrame or= (f) -> f()
+
+    blocksF = ->
       blocks = $bs.map (i, b) ->
         i: i
         on: randomInt(0, $bs.length) < ($bs.length/4)
-
       (b for b in blocks when b.on).map (b) ->
         do ($b = $bs.eq b.i) ->
-          $timeout ->
+          $timeout((-> requestAnimationFrame ->
             $b.removeClass $b.data 'dimclass'
             $b.addClass    $b.data 'colorclass'
-            $timeout ->
+            $timeout((-> requestAnimationFrame ->
               $b.removeClass $b.data 'colorclass'
               $b.addClass    $b.data 'dimclass'
-            , (randomN 1, blocksT)
-          , (randomN 1, blocksT)
+            ), (randomN blocksT_min, blocksT-blocksT_min))
+          ), (randomN blocksT_min, blocksT-blocksT_min))
 
-    blocksI = setInterval blocksF, blocksT
-
-    $scope.$on "$destroy", ->
-      clearInterval blocksI
+    blocksF()
+    blocksI = $interval blocksF, blocksT
+    $scope.$on "$destroy", -> $interval.cancel blocksI

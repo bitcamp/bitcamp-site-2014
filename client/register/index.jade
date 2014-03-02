@@ -11,15 +11,15 @@
             .nav-bubble#nav-bubbles-one(
               ng-class="{'nav-bubble-active': navBubbles[0]}")
           .nav-bubble-spacer
-          a(ui-sref="{{cookie && '.two' || ''}}")
+          a(ui-sref="{{cookie && '.two' || '.one'}}")
             .nav-bubble#nav-bubbles-two(
               ng-class="{'nav-bubble-active': navBubbles[1]}")
           .nav-bubble-spacer
-          a(ui-sref="{{cookie && '.three' || ''}}")
+          a(ui-sref="{{cookie && '.three' || '.one'}}")
             .nav-bubble#nav-bubbles-three(
               ng-class="{'nav-bubble-active': navBubbles[2]}")
           .nav-bubble-spacer
-          a(ui-sref="{{cookie && '.four' || ''}}")
+          a(ui-sref="{{cookie && '.four' || '.one'}}")
             .nav-bubble#nav-bubbles-four(
               ng-class="{'nav-bubble-active': navBubbles[3]}")
 

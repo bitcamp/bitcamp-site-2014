@@ -1,13 +1,17 @@
 bitcamp = angular.module("bitcampApp")
 
-  .controller "LoginCtrl", ($http, $scope, $rootScope, $stateParams, $state, $cookieStore, colors) ->
+  .controller "LoginCtrl", ($http, $scope, $rootScope, $stateParams, $state, $cookieStore, colors, $timeout) ->
     $rootScope.bodyCSS["background-color"] = colors["blue-light"]
 
-    $scope.email    = ""
-    $scope.password = ""
-    $scope.token    = $stateParams.token
+    $scope.email     = ""
+    $scope.password  = ""
+    $scope.token     = $stateParams.token
 
-    $scope.title    = "camper login"
+    $scope.title     = "camper login"
+
+    $scope.loginB_CSS = {
+      "transition": "background-color 0.3s ease-out"
+    }
 
     $rootScope.api_messages = []
 
@@ -21,7 +25,9 @@ bitcamp = angular.module("bitcampApp")
     if $cookieStore.get "auth"
       $state.go "main"
 
-    $scope.login = (email, password, token) ->
+    $scope.loggingIn = false
+    $scope.loginF = (email, password, token) ->
+      $scope.loggingIn   = true
       $scope.emailErr    = false
       $scope.passwordErr = false
       $http.post("/api/login", {
@@ -37,7 +43,15 @@ bitcamp = angular.module("bitcampApp")
             $state.go("register.two")
           else
             $state.go("main")
-        .error (err) ->
-          console.log err
+        .error ->
+          $scope.api_messages = []
+          $scope.api_messages.push "invalid credentials!"
+          $scope.loginB_CSS["background-color"] = colors["red"]
+          ($timeout (->
+            $scope.loggingIn = false
+            delete $scope.loginB_CSS["background-color"]
+            $scope.api_messages = []
+            $("#login-password").focus()
+          ), 2000)
           $scope.emailErr    = true
           $scope.passwordErr = true

@@ -1,4 +1,4 @@
-form#login(novalidate="" ng-submit="login(email, password)")
+form#login(novalidate="" ng-submit="!loggingIn && loginF(email, password)")
   .register-view
     .register-wrapper
       header
@@ -13,34 +13,33 @@ form#login(novalidate="" ng-submit="login(email, password)")
 
           .row
             .form-group.col-xs-12
-              input#register-email.form-control(
+              input#login-email.form-control(
                 type="email" placeholder="* email address"
                 ng-model="email"
-                ng-class="{shake: emailErr, animated: emailErr}")
+                ng-class="{shake: emailErr, animated: emailErr}"
+                ng-disabled="loggingIn")
 
           .row
             .form-group.col-xs-12
-              input#register-password.form-control(
+              input#login-password.form-control(
                 type="password" placeholder="* password"
                 ng-model="password"
-                ng-class="{shake: emailErr, animated: emailErr}")
+                ng-class="{shake: emailErr, animated: emailErr}"
+                ng-disabled="loggingIn")
 
           footer
             input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
             .row
-              .form-group.col-xs-12.col-sm-6.col-sm-push-6
-                button.btn.btn-info(ng-click="login(email, password)")
-                  | login
-              .form-group.col-xs-12.col-sm-6.col-sm-pull-6
+              .form-group.col-xs-12
+                button.btn.btn-success(
+                  ng-click="!loggingIn && loginF(email, password)"
+                  ng-style="loginB_CSS")
+                  | {{api_messages && api_messages[0] || 'login'}}
+              .form-group.col-xs-12.col-sm-6
+                a(ui-sref="login.reset")
+                  button.btn.btn-warning
+                    | reset password
+              .form-group.col-xs-12.col-sm-6
                 a(ui-sref="main")
                   button.btn.btn-danger
                     | cancel
-              .form-group.col-xs-12.col-sm-6.col-sm-push-6
-                button.btn.btn-success
-                  | reset password
-
-        hr(ng-if="api_messages")
-
-        p#api-message.text-center(ng-repeat="m in api_messages")
-          label.label.label-warning
-            {{ m }}

@@ -38,10 +38,10 @@
 
 footer
   .row
-    .form-group.col-xs-12.col-sm-4
-      a(ui-sref="{{cookie && 'main' || 'register.one'}}")
-        button#register-goback2.btn.btn-warning go back
-    .form-group.col-xs-12.col-sm-8
+    .form-group.col-xs-12.col-sm-8.col-sm-push-4
       a(ui-sref="register.three")
         button#register-continue2.btn.btn-success
           | continue
+    .form-group.col-xs-12.col-sm-8.col-sm-push-4
+      a(ui-sref="{{cookie && 'main' || 'register.one'}}")
+        button#register-goback2.btn.btn-warning go back

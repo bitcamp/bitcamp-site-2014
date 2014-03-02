@@ -25,10 +25,10 @@ form#register-one(novalidate="")
 
 footer
   .row
-    .form-group.col-xs-12.col-sm-4
+    .form-group.col-xs-12.col-sm-8.col-sm-push-4
+      button#register-continue1.btn.btn-info(ng-click="register()")
+        | register
+    .form-group.col-xs-12.col-sm-4.col-sm-pull-8
       a(ui-sref="main")
         button#register-goback1.btn.btn-warning
           | go back
-    .form-group.col-xs-12.col-sm-8
-      button#register-continue1.btn.btn-success(ng-click="register()")
-        | continue
