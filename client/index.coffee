@@ -99,34 +99,28 @@ bitcamp = angular.module("bitcampApp", [
       "transition": "background-color 0.4s ease-out"
     }
 
-    $rootScope.profile$  = {}
+    $rootScope.profile = $resource("/api/profile")
+
+    $rootScope._init = ->
+      $rootScope.profile.get()
 
     $rootScope._login = (cookie) ->
-      $rootScope.cookie   = cookie
-      $rootScope._profile = $resource("/api/profile")
+      $rootScope.cookie = cookie
       $cookieStore.put "auth", cookie
       $http.defaults.headers
         .common["Authorization"] = "Token token=\"#{cookie.token}\""
+      $rootScope._init()
 
     $rootScope._logout = ->
-      $rootScope.profile$    = {}
-      $rootScope._profile    = null
-      $rootScope.cookie      = null
+      $rootScope.cookie  = null
       $cookieStore.put "auth", null
-      cookie = $cookieStore.get "auth"
       delete $http.defaults.headers.common["Authorization"]
-
-    if $rootScope.cookie
-      #$rootScope._profile.get()
-      $http.get("/api/profile")
-        .success (data) ->
-          console.log data
-        .error (err) ->
-          console.log err
+      $rootScope.profile  = null
 
     $http.get("/api/bitcamp")
       .success ->
-        console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
+        #console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
+        $rootScope._init() if $cookieStore.get "auth"
         $("body").flowtype
           minimum   : 320
           maximum   : 1200

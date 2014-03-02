@@ -46,7 +46,7 @@ bitcamp = angular.module("bitcampApp")
     ]
 
     if $cookieStore.get "auth"
-      $rootScope._profile.get()
+      $rootScope.profile.get()
         .$promise.then (data) ->
           $scope.profile = data
           $scope.profile.stipend or= false
@@ -121,7 +121,7 @@ bitcamp = angular.module("bitcampApp")
     $rootScope.bodyCSS["background-color"] = colors["blue-light"]
 
     $scope.submit = ->
-      $rootScope._profile.save()
+      $rootScope.profile.save()
         .$promise.then (data) ->
           console.log data
           $state.go "fireside"
