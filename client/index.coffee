@@ -30,7 +30,7 @@ bitcamp = angular.module("bitcampApp", [
         templateUrl: "login/login.html"
         controller: "LoginCtrl.main"
       .state "login.reset",
-        url: "/reset"
+        url: "/reset?token"
         templateUrl: "login/reset.html"
         controller: "LoginCtrl.reset"
 
@@ -79,11 +79,11 @@ bitcamp = angular.module("bitcampApp", [
         controller: "RegisterCtrl_4"
         auth: true
 
-
       .state "404",
         url: "/404"
         templateUrl: "layout/404/index.html"
         controller: "404Ctrl"
+
 
   .directive "scrollTo", ->
     (scope, element, attrs) ->
@@ -99,28 +99,20 @@ bitcamp = angular.module("bitcampApp", [
       "transition": "background-color 0.4s ease-out"
     }
 
-    $rootScope.profile = $resource("/api/profile")
-
-    $rootScope._init = ->
-      $rootScope.profile.get()
-
     $rootScope._login = (cookie) ->
       $rootScope.cookie = cookie
       $cookieStore.put "auth", cookie
       $http.defaults.headers
         .common["Authorization"] = "Token token=\"#{cookie.token}\""
-      $rootScope._init()
 
     $rootScope._logout = ->
-      $rootScope.cookie  = null
+      $rootScope.cookie = null
       $cookieStore.put "auth", null
       delete $http.defaults.headers.common["Authorization"]
-      $rootScope.profile  = null
 
     $http.get("/api/bitcamp")
       .success ->
         #console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
-        $rootScope._init() if $cookieStore.get "auth"
         $("body").flowtype
           minimum   : 320
           maximum   : 1200
@@ -138,7 +130,7 @@ bitcamp = angular.module("bitcampApp", [
           $rootScope._logout()
         else
           $rootScope._login(cookie)
-      if state.auth is true and not cookie
+      if state.auth is true and not $cookieStore.get "auth"
         ev.preventDefault()
         $state.go "login.main"
 
@@ -148,7 +140,6 @@ bitcamp = angular.module("bitcampApp", [
       $window.ga? "send", "pageview"
 
     $rootScope.logout = ->
-      # call the logout function after the logout get request
       $http.get("/api/logout")
         .success (data) ->
           console.log "logged out!"
@@ -172,3 +163,11 @@ bitcamp = angular.module("bitcampApp", [
     "blue-darker"  : "#1a2e3c"
     "green"        : "#53a559"
     "green-light"  : "#40997c"
+
+
+  .factory "profile", ($resource) ->
+    $resource("/api/profile", {}, {
+      save:
+        method: 'PUT'
+    })
+

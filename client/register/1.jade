@@ -10,7 +10,7 @@ form#register-one(novalidate="" ng-submit="!registering && register()")
                   ng-class="{'text-danger': emailErr}")
         | {{emailErr && emailErr || '* email address'}}
       input#register-email.form-control(
-        type="email" placeholder="like 'camper-susan@bitca.mp'"
+        type="email" placeholder="sally.hacker@bitca.mp"
         ng-model="email"
         ng-class="{shake: emailErr, animated: emailErr}")
 

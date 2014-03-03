@@ -5,7 +5,6 @@ bitcamp = angular.module("bitcampApp")
 
     $scope.email     = ""
     $scope.password  = ""
-    $scope.token     = $stateParams.token
 
     $scope.title     = ""
 
@@ -14,6 +13,8 @@ bitcamp = angular.module("bitcampApp")
 
   .controller "LoginCtrl.main", ($http, $scope, $rootScope, $stateParams, $state, $cookieStore, colors, $timeout) ->
     $scope.$emit "login:title", "bitcamper login"
+
+    $scope.token     = $stateParams.token
 
     $scope.loginB_CSS = {
       "transition": "background-color 0.3s ease-out"
@@ -59,6 +60,12 @@ bitcamp = angular.module("bitcampApp")
           $scope.emailErr    = true
           $scope.passwordErr = true
 
-  .controller "LoginCtrl.reset", ($http, $scope, $rootScope, $stateParams, $state, $cookieStore, colors, $timeout) ->
+  .controller "LoginCtrl.reset", ($http, $scope, $rootScope, $state, $stateParams, $cookieStore, colors, $timeout) ->
+    $scope.token = $stateParams.token
+
+    $scope.email    = ""
+    $scope.password = ""
+    $scope.confirm  = ""
+
     $scope.$emit "login:title", "password reset"
     null

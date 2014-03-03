@@ -1,4 +1,4 @@
-#register-two
+form#register-two(novalidate="" ng-submit="!submitting && submit()")
   .p.label.required
     small * = required
 
@@ -11,7 +11,7 @@
     .form-group.col-xs-12.col-sm-6
       label(for="register-lname") * last name
       input#register-lname.form-control(
-        type="text" placeholder="bitcamper"
+        type="text" placeholder="hacker"
         ng-model="profile.last")
 
 
@@ -24,10 +24,10 @@
 
   .row
     .form-group.col-xs-12.col-sm-7
-      label(for="mode-of-transportation") * mode of transportation
-      select#mode-of-transportation.form-control.input-md(
-        name="mode-of-transportation"
-        ng-model="profile.transportation")
+      label(for="mode-of-travel") * mode of transportation
+      select#mode-of-travel.form-control.input-md(
+        name="mode-of-travel"
+        ng-model="profile.travel")
         option get myself there
         option can take a bus
         option need a plane
@@ -40,11 +40,11 @@
           label.label.checkbox-label(for="stipend-input") travel stipend?
 
 footer
+  input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
   .row
     .form-group.col-xs-12.col-sm-8.col-sm-push-4
-      a(ui-sref="register.three")
-        button#register-continue2.btn.btn-info
-          | continue
+      button#register-continue2.btn.btn-info(ng-click="!submitting && submit()")
+        | continue
     .form-group.col-xs-12.col-sm-4.col-sm-pull-8
       a(ui-sref="{{cookie && 'main' || 'register.one'}}")
         button#register-goback2.btn.btn-warning go back

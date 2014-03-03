@@ -1,6 +1,12 @@
 bitcamp = angular.module("bitcampApp")
 
-  .controller "RegisterCtrl", ($scope, $rootScope, $location, $cookieStore, $timeout) ->
+  .controller "RegisterCtrl", (
+    $scope,
+    $rootScope,
+    $location,
+    $cookieStore,
+    $timeout) ->
+
     $rootScope.api_messages = []
 
     $scope.email    = ""
@@ -23,20 +29,23 @@ bitcamp = angular.module("bitcampApp")
         field: "school"
         label: "school"
       ,
-        field: "transportation"
+        field: "travel"
         label: "mode of transportation"
       ,
         field: "stipend"
         label: "travel stipend"
       ,
-        field: "dietary_restrictions"
+        field: "dietary"
         label: "dietary restrictions"
       ,
-        field: "tshirt_size"
+        field: "tshirt"
         label: "t-shirt size"
       ,
         field: "github"
         label: "github username"
+      ,
+        field: "resume"
+        label: "resume url"
       ,
         field: "website"
         label: "website url"
@@ -44,13 +53,6 @@ bitcamp = angular.module("bitcampApp")
         field: "blurb"
         label: "hopes and dreams"
     ]
-
-    if $cookieStore.get "auth"
-      $rootScope.profile.get()
-        .$promise.then (data) ->
-          $scope.profile = data
-          $scope.profile.stipend or= false
-
 
     $rootScope.apiErr = (name, errObj) ->
       if errObj[name]
@@ -108,25 +110,87 @@ bitcamp = angular.module("bitcampApp")
             $scope.passwordErr = $rootScope.apiErr "confirm", err
 
 
-  .controller "RegisterCtrl_2", ($scope, $rootScope, colors, $cookieStore, $state) ->
+  .controller "RegisterCtrl_2", (
+    $scope,
+    $rootScope,
+    $cookieStore,
+    $state,
+    colors,
+    profile) ->
+
     $rootScope.navBubbles = [true, true, false, false]
     $rootScope.bodyCSS["background-color"] = colors["blue-darker"]
 
-  .controller "RegisterCtrl_3", ($scope, $rootScope, colors, $cookieStore, $state) ->
+    $scope.profile = profile.get ->
+      $scope.profile.stipend or= false
+
+    $scope.submitting = false
+    $scope.submit = ->
+      return if $scope.submitting
+      $scope.submitting = true
+      $scope.profile.$save()
+        .then (data) ->
+          $state.go "^.three"
+          unless $scope.profile.first and
+                 $scope.profile.last  and
+                 $scope.profile.travel
+            throw exception
+        .catch (err) ->
+          console.log err
+        .finally ->
+          $scope.submitting = false
+
+
+
+  .controller "RegisterCtrl_3", (
+    $scope,
+    $rootScope,
+    colors,
+    $cookieStore,
+    $state,
+    profile) ->
+
     $rootScope.navBubbles = [true, true, true, false]
     $rootScope.bodyCSS["background-color"] = colors["orange-dark"]
 
-  .controller "RegisterCtrl_4", ($scope, $rootScope, colors, $cookieStore, $state) ->
+    $scope.profile = profile.get ->
+      console.log $scope.profile
+
+    $scope.submitting = false
+    $scope.submit = ->
+      return if $scope.submitting
+      $scope.submitting = true
+      $scope.profile.$save()
+        .then (data) ->
+          $state.go "^.four"
+        .catch (err) ->
+          console.log err
+        .finally ->
+          $scope.submitting = false
+
+
+  .controller "RegisterCtrl_4", (
+    $scope,
+    $rootScope,
+    colors,
+    $cookieStore,
+    $state,
+    profile) ->
+
     $rootScope.navBubbles = [true, true, true, true]
     $rootScope.bodyCSS["background-color"] = colors["blue-light"]
 
+    $scope.profile = profile.get()
+
+    $scope.submitting = false
     $scope.submit = ->
-      $rootScope.profile.save()
-        .$promise.then (data) ->
-          console.log data
+      return if $scope.submitting
+      $scope.submitting = true
+      $scope.profile.$save()
+        .then (data) ->
           $state.go "fireside"
-        .catch (data) ->
-          console.log "PRETENDING LIKE WE SAVED THE PROFILE ;)"
-          $rootScope.profile$.complete = true
-          $state.go "fireside"
+        .catch (err) ->
+          console.log err
+        .finally ->
+          $scope.submitting = false
 
