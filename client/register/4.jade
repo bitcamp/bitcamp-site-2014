@@ -1,5 +1,7 @@
 form#register-four
-  h2.text-center review and submit
+  .h2.text-center review form
+  br
+  br
 
   .row(ng-repeat="f in profile_fields")
     .form-group.col-xs-12.col-sm-4
@@ -16,5 +18,5 @@ form#register-four
           | submit
       .form-group.col-xs-12.col-sm-4.col-sm-pull-8
         a(ui-sref="register.three")
-          button#register-goback4.btn.btn-danger
+          button#register-goback4.btn.btn-warning
             | edit

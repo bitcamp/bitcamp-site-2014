@@ -4,12 +4,12 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
 
   .row
     .form-group.col-xs-12.col-sm-6
-      label(for="register-fname") * first name
+      label(for="register-fname") first name *
       input#register-fname.form-control(
         type="text" placeholder="sally"
         ng-model="profile.first")
     .form-group.col-xs-12.col-sm-6
-      label(for="register-lname") * last name
+      label(for="register-lname") last name *
       input#register-lname.form-control(
         type="text" placeholder="hacker"
         ng-model="profile.last")
@@ -24,7 +24,7 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
 
   .row
     .form-group.col-xs-12.col-sm-7
-      label(for="mode-of-travel") * mode of transportation
+      label(for="mode-of-travel") mode of transportation *
       select#mode-of-travel.form-control.input-md(
         name="mode-of-travel"
         ng-model="profile.travel")

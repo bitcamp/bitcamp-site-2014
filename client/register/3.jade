@@ -4,7 +4,7 @@ form#register-three(novalidate="" ng-submit="!submitting && submit()")
 
   .row
     .form-group.col-xs-12
-      label tee-shirt size *
+      label shirt size *
       select#register-tshirt-size.form-control.input-md(
         ng-model="profile.tshirt")
         option men's small
@@ -14,14 +14,20 @@ form#register-three(novalidate="" ng-submit="!submitting && submit()")
         option lady's medium
         option lady's large
 
-    .form-group.col-xs-12.col-sm-6
+    .form-group.col-xs-12
       label.label(for="register-dietary-restrictions") dietary restrictions
       input#register-dietary-restrictions.form-control(
         type="text" placeholder="vegan, halal, carnivore"
         ng-model="profile.dietary")
 
     .form-group.col-xs-12.col-sm-6
-      label.label(for="register-github-username") github
+      label.label(for="register-twitter") twitter handle
+      input#register-twitter.form-control(
+        type="text" placeholder="@bitcmp"
+        ng-model="profile.twitter")
+
+    .form-group.col-xs-12.col-sm-6
+      label.label(for="register-github-username") github username
       input#register-github-username.form-control(
         type="text" placeholder="just the username"
         ng-model="profile.github")

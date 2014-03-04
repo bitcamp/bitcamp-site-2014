@@ -27,10 +27,13 @@ bitcamp = angular.module("bitcampApp")
         label: "mode of transportation"
       ,
         field: "stipend"
-        label: "travel stipend"
+        label: "request travel stipend"
       ,
         field: "dietary"
         label: "dietary restrictions"
+      ,
+        field: "twitter"
+        label: "twitter handle"
       ,
         field: "tshirt"
         label: "t-shirt size"
@@ -142,18 +145,14 @@ bitcamp = angular.module("bitcampApp")
     $scope.submit = ->
       return if $scope.submitting
       $scope.submitting = true
+
       $scope.profile.$save()
         .then (data) ->
           $state.go "^.three"
-          unless $scope.profile.first and
-                 $scope.profile.last  and
-                 $scope.profile.travel
-            throw exception
         .catch (err) ->
-          console.log err
+          $state.go "login.main"
         .finally ->
           $scope.submitting = false
-
 
 
   .controller "RegisterCtrl_3", (
@@ -167,8 +166,7 @@ bitcamp = angular.module("bitcampApp")
     $rootScope.navBubbles = [true, true, true, false]
     $rootScope.bodyCSS["background-color"] = colors["orange-dark"]
 
-    $scope.profile = profile.get ->
-      console.log $scope.profile
+    $scope.profile = profile.get()
 
     $scope.submitting = false
     $scope.submit = ->
@@ -178,7 +176,7 @@ bitcamp = angular.module("bitcampApp")
         .then (data) ->
           $state.go "^.four"
         .catch (err) ->
-          console.log err
+          $state.go "login.main"
         .finally ->
           $scope.submitting = false
 
@@ -205,7 +203,7 @@ bitcamp = angular.module("bitcampApp")
           $rootScope.registered = true
           $state.go "fireside"
         .catch (err) ->
-          console.log err
+          $state.go "login.main"
         .finally ->
           $scope.submitting = false
 

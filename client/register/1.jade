@@ -8,7 +8,7 @@ form#register-one(novalidate="" ng-submit="!registering && register()")
 
       label.label(for="register-email"
                   ng-class="{'text-danger': emailErr}")
-        | {{emailErr && emailErr || '* email address'}}
+        | {{emailErr && emailErr || 'email address *'}}
       input#register-email.form-control(
         type="email" placeholder="sally.hacker@bitca.mp"
         ng-model="email"
@@ -19,7 +19,7 @@ form#register-one(novalidate="" ng-submit="!registering && register()")
     .form-group.col-xs-12
       label.label(for="register-password"
                   ng-class="{'text-danger': passwordErr}")
-        | {{passwordErr && passwordErr || '* password'}}
+        | {{passwordErr && passwordErr || 'password *'}}
       input#register-password.form-control(
         type="password" placeholder="five+ numbers and letters"
         ng-model="password"
@@ -30,7 +30,7 @@ form#register-one(novalidate="" ng-submit="!registering && register()")
     .form-group.col-xs-12
       label.label(for="register-password-confirm"
                   ng-class="{'text-danger': confirmErr}")
-        | {{confirmErr && 'password mismatch' || '* password'}}
+        | {{confirmErr && 'password mismatch' || 'confirm password *'}}
       input#register-password-confirm.form-control(
         type="password" placeholder="(once more)"
         ng-model="confirm"
