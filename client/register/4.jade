@@ -1,14 +1,22 @@
-#register-four
-  p
-    small * = required
+form#register-four
+  .h2.text-center review form
+  br
+  br
 
-footer
-  .row
-    .form-group.col-xs-12.col-sm-6
-      a(ui-sref="register.three")
-        button#register-goback4.btn.btn-warning
-          | go back
-    .form-group.col-xs-12.col-sm-6
-      a(ui-sref="register.confirm")
-        button#register-continue4.btn.btn-success
-          | continue
+  .row(ng-repeat="f in profile_fields")
+    .form-group.col-xs-12.col-sm-4
+      label.label.label-default {{f.label}}
+    .form-group.col-xs-12.col-sm-8
+      input#register-fname.form-control(readonly=""
+        type="text"
+        value="{{profile[f.field]}}")
+
+  footer
+    .row
+      .form-group.col-xs-12.col-sm-8.col-sm-push-4
+        button#register-continue4.btn.btn-success(ng-click="submit()")
+          | submit
+      .form-group.col-xs-12.col-sm-4.col-sm-pull-8
+        a(ui-sref="register.three")
+          button#register-goback4.btn.btn-warning
+            | edit

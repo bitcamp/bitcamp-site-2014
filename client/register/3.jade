@@ -1,38 +1,65 @@
-#register-three
-  p
+form#register-three(novalidate="" ng-submit="!submitting && submit()")
+  .p.label.required
     small * = required
 
   .row
     .form-group.col-xs-12
-      input#register-dietary-restrictions.form-control(
-        type="email" placeholder="dietary restrictions")
-
-  .row
-    .form-group.col-xs-12
-      label tee-shirt size *
-      select#register-tshirt-size.form-control.input-md
+      label shirt size *
+      select#register-tshirt-size.form-control.input-md(
+        ng-model="profile.tshirt")
         option men's small
         option men's medium
         option men's large
-        option(selected) choose one
         option lady's small
         option lady's medium
         option lady's large
 
+    .form-group.col-xs-12
+      label.label(for="register-dietary-restrictions") dietary restrictions
+      input#register-dietary-restrictions.form-control(
+        type="text" placeholder="vegan, halal, carnivore"
+        ng-model="profile.dietary")
+
+    .form-group.col-xs-12.col-sm-6
+      label.label(for="register-twitter") twitter handle
+      input#register-twitter.form-control(
+        type="text" placeholder="@bitcmp"
+        ng-model="profile.twitter")
+
+    .form-group.col-xs-12.col-sm-6
+      label.label(for="register-github-username") github username
+      input#register-github-username.form-control(
+        type="text" placeholder="just the username"
+        ng-model="profile.github")
+
+    .form-group.col-xs-12
+      label.label(for="register-website-url") website url
+      input#register-website-url.form-control(
+        type="text" placeholder="if you have a portfolio website"
+        ng-model="profile.website")
+
+    .form-group.col-xs-12
+      label.label(for="register-resume-url") resume url
+      input#register-website-url.form-control(
+        type="text" placeholder="host it on Dropbox or something"
+        ng-model="profile.resume")
+
   .row
     .form-group.col-xs-12
+      label.label(for="register-expectations") notes
       textarea#register-expectations.form-control(
         rows="3"
-        placeholder="what you hope to get out of bitcamp")
+        placeholder="tell us what you hope to get out of bitcamp"
+        ng-model="profile.blurb")
 
 
 footer
+  input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
   .row
-    .form-group.col-xs-12.col-sm-6
+    .form-group.col-xs-12.col-sm-8.col-sm-push-4
+      button#register-continue3.btn.btn-info(ng-click="!submitting && submit()")
+        | review
+    .form-group.col-xs-12.col-sm-4.col-sm-pull-8
       a(ui-sref="register.two")
         button#register-goback3.btn.btn-warning
-          | go back
-    .form-group.col-xs-12.col-sm-6
-      a(ui-sref="register.four")
-        button#register-continue3.btn.btn-success
-          | continue
+          | previous

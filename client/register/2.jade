@@ -1,52 +1,51 @@
-#register-two
-  p
+form#register-two(novalidate="" ng-submit="!submitting && submit()")
+  .p.label.required
     small * = required
 
   .row
-    .form-group.col-xs-6
-        input#register-fname.form-control(
-          type="text" placeholder="* first name")
-    .form-group.col-xs-6
-        input#register-lname.form-control(
-          type="text" placeholder="* last name")
+    .form-group.col-xs-12.col-sm-6
+      label(for="register-fname") first name *
+      input#register-fname.form-control(
+        type="text" placeholder="sally"
+        ng-model="profile.first")
+    .form-group.col-xs-12.col-sm-6
+      label(for="register-lname") last name *
+      input#register-lname.form-control(
+        type="text" placeholder="hacker"
+        ng-model="profile.last")
 
 
   .row
     .form-group.col-xs-12
-        input#register-school.form-control(
-          type="text" placeholder="school")
-
-  .row
-    .form-group.col-xs-12.col-sm-6
-      input#register-majors.form-control(
-        type="email" placeholder="major(s)")
-    .form-group.col-xs-12.col-sm-6
-        input#register-minors.form-control(
-          type="text" placeholder="minor(s)")
+      label(for="register-school") school
+      input#register-school.form-control(
+        type="text" placeholder="bitcamp high"
+        ng-model="profile.school")
 
   .row
     .form-group.col-xs-12.col-sm-7
-      label(for="mode-of-transportation") * mode of transportation
-      select#mode-of-transportation.form-control.input-md(name="mode-of-transportation")
+      label(for="mode-of-travel") mode of transportation *
+      select#mode-of-travel.form-control.input-md(
+        name="mode-of-travel"
+        ng-model="profile.travel")
         option get myself there
         option can take a bus
         option need a plane
-    .form-group.col-xs-6.col-sm-3.text-right
-      br
-      label(for="register-stipend") travel stipend?
-    .form-group.col-xs-6.col-sm-2.text-left
-      h3
-        input#register-stipend(type="checkbox", name="register-stipend")
 
+    .col-xs-12.col-sm-5#register-stipend
+      .row#stipend
+        .form-group.col-xs-12
+          input#stipend-input(type="checkbox", name="stipend-input"
+            ng-model="profile.stipend")
+          label.label.checkbox-label(for="stipend-input") travel stipend?
 
 footer
+  input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
   .row
-    .form-group.col-xs-12.col-sm-6
-      a(ui-sref="register.one" ng-if="!cookie")
-        button#register-goback2.btn.btn-warning go back
-      a(ui-sref="main"         ng-if="cookie")
-        button#register-goback2.btn.btn-warning go back
-    .form-group.col-xs-12.col-sm-6
-      a(ui-sref="register.three")
-        button#register-continue2.btn.btn-success
-          | continue
+    .form-group.col-xs-12.col-sm-8.col-sm-push-4
+      button#register-continue2.btn.btn-info(ng-click="!submitting && submit()")
+        | continue
+    .form-group.col-xs-12.col-sm-4.col-sm-pull-8
+      a(ui-sref="{{cookie && 'main' || 'register.one'}}")
+        button#register-goback2.btn.btn-warning
+          | previous

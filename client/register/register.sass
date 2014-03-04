@@ -3,14 +3,24 @@
 
 
 #register, #login
-  margin-top:    -5vw
-  margin-bottom: -5vw
+  margin-top:    -10vw
+  margin-bottom: -10vw
   width: 100%
 
   input[type=text], input[type=email], input[type=text], input[type=password]
-    padding-top:    1.4rem
-    padding-bottom: 1.4rem
+    height: 2.8rem
+    line-height: 2.8rem
 
+  .required
+    text-align: right
+    margin-top: -2rem
+
+  label, .label
+    margin-bottom: 0.5rem
+
+  #register-stipend
+    text-align: center
+    position: relative
   select
     height: 2.8rem
 
@@ -23,26 +33,58 @@
     margin-bottom: 0.7rem
 
 
+  $form_width: 35rem
+
+  $header-inner-size: 100px
+
+  #cancel-register
+    position: absolute
+    z-index: 1000
+    right: 1rem
+    top:   1rem
+    font-size: 2em
+    color: $color_white
+    transition: color 0.2s ease-out
+    &:hover
+      color: $brand_danger
+
   &:before, &:after
-    margin-top: 10vw
+    margin-top: 14vw
+    @media only screen and (max-width: $form_width)
+      margin-top: 10vw
     content: ""
     display: block
 
   .register-view
-    padding: 0 1rem
     .register-wrapper
       margin: 0 auto
-      max-width: 30em
+      max-width: $form_width
       width: 100%
 
       header
-        padding: 2rem 1rem
+        position: relative
+        #header-inner
+          color: $color_grey
+          padding: 1em 0.4em
+          @media only screen and (min-width: $form_width)
+            border-radius: 12px
+          background-color: $color_white
+          width: 100%
+          margin: 2rem 0
+
+
         background-color: $color_grey-dark
         text-align: center
-        border-radius: 12px 12px 0 0
+
+        padding: 2rem 0
+        @media only screen and (min-width: $form_width)
+          padding: 2rem 4vw
+          border-radius: 12px 12px 0 0
 
       .register-body
-        padding: 2rem
+        @media only screen and (max-width: $form_width)
+          margin-bottom: -10vw
+        padding: 3rem 2rem
         background-color: $color_grey-light
         color: $color_grey-dark
 
@@ -54,10 +96,6 @@
         padding-top:    0.7rem
         padding-bottom: 0.7rem
         border: none
-        &.btn-success
-          background-color: $color_orange
-        &.btn-warning
-          background-color: $color_blue-dark
 
 
 .nav-bubbles
@@ -79,9 +117,34 @@
     &.nav-bubble-active
       background-color: $color_orange
 
+  .nav-bubble, .nav-bubble-spacer
+    &:hover
+      transition: opacity 0.1s ease-out
+      opacity: 0.7
+
   .nav-bubble-spacer
     display: inline-block
     width: $bubble_size * 0.85
     height: 3px
     background-color: $color_grey-light
     margin: ($bubble_size/2) 0 (($bubble_size/2) - $bubble_border_size - 1px) 0
+
+
+@keyframes checkbox
+  $h: 2.0em
+  $w: 1.4em
+  0%
+    height:       0
+    width:        0
+    margin-top:   $h
+    margin-right: $w
+  50%
+    height:       $h/2
+    width:        $w/2
+    margin-top:   $h/2
+    margin-right: $w/2
+  100%
+    height:       $h
+    width:        $w
+    margin-top:   0
+    margin-right: 0
