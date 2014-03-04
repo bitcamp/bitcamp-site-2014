@@ -5,26 +5,30 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
   .row
     .form-group.col-xs-12.col-sm-6
       label(for="register-fname") first name *
-      input#register-fname.form-control(
+      input#register-fname.form-control(tabindex="1"
         type="text" placeholder="Sally"
-        ng-model="profile.first")
+        ng-model="profile.first"
+        ng-disabled="lockInputs")
     .form-group.col-xs-12.col-sm-6
       label(for="register-lname") last name *
       input#register-lname.form-control(
         type="text" placeholder="Hacker"
-        ng-model="profile.last")
+        ng-model="profile.last"
+        ng-disabled="lockInputs")
 
     .form-group.col-xs-12
       label(for="register-school") school
       input#register-school.form-control(
         type="text" placeholder="Bonfire High"
-        ng-model="profile.school")
+        ng-model="profile.school"
+        ng-disabled="lockInputs")
 
     .form-group.col-xs-12
       label(for="mode-of-travel") mode of transportation *
       select#mode-of-travel.form-control.input-md(
         name="mode-of-travel"
-        ng-model="profile.travel")
+        ng-model="profile.travel"
+        ng-disabled="lockInputs")
         option get myself there
         option can take a bus
         option need a plane
@@ -32,7 +36,8 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
      .form-group.col-xs-12.col-sm-6
       label shirt size *
       select#register-tshirt-size.form-control.input-md(
-        ng-model="profile.tshirt")
+        ng-model="profile.tshirt"
+        ng-disabled="lockInputs")
         option men's small
         option men's medium
         option men's large
@@ -44,12 +49,15 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
       label.label(for="register-dietary-restrictions") dietary restrictions
       input#register-dietary-restrictions.form-control(
         type="text" placeholder="vegan, halal, carnivore"
-        ng-model="profile.dietary")
+        ng-model="profile.dietary"
+        ng-disabled="lockInputs")
 
 
-footer
-  input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
-  .row
-    .form-group.col-xs-12
-      button#register-continue2.btn.btn-info(ng-click="!submitting && submit()")
-        | continue
+  footer
+    input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
+    .row
+      .form-group.col-xs-12
+        button#register-continue2.btn.btn-info(
+          ng-click="submit()"
+          ng-class="{'btn-danger': err, 'btn-wait': submitting}")
+            | {{continueBtn || 'continue'}}
