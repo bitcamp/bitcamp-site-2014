@@ -12,12 +12,6 @@ bitcamp = angular.module("bitcampApp")
     $scope.email    = ""
     $scope.password = ""
     $scope.confirm  = ""
-    $rootScope.$on "register", ->
-      $timeout ->
-        $scope.email    = ""
-        $scope.password = ""
-        $scope.confirm  = ""
-      , 3000
 
     $scope.profile_fields = [
         field: "first"
@@ -63,7 +57,15 @@ bitcamp = angular.module("bitcampApp")
 
     null
 
-  .controller "RegisterCtrl_1", ($rootScope, $scope, $http, colors, $cookieStore, $state, $timeout) ->
+  .controller "RegisterCtrl_1", (
+    $rootScope,
+    $scope,
+    $http,
+    colors,
+    $cookieStore,
+    $state,
+    $timeout) ->
+
     $rootScope.navBubbles = [true, false, false, false]
     $rootScope.bodyCSS["background-color"] = colors["green-light"]
 
@@ -72,22 +74,16 @@ bitcamp = angular.module("bitcampApp")
     $scope.err = ->
       $scope.emailErr or $scope.confirmErr or $scope.passwordErr
 
-    $scope.registering = false
-    $rootScope.$on "register", ->
-      return if $scope.registering
-      $scope.registering = true
-      $timeout ->
-        $scope.registering = false
-        $scope.emailErr     = ""
-        $scope.passwordErr  = ""
-        $scope.confirmErr   = ""
-        $scope.registerBtnText = "register"
-      , 3000
-
     if $cookieStore.get "auth"
       $state.go "register.two"
 
+    $scope.registering = false
     $scope.register = ->
+      return if $scope.registering or $scope.registerSuccess
+      $scope.registering = true
+
+      $scope.registerBtnText = ". . ."
+
       $http.post("/api/register", {
         email:    $scope.email
         password: $scope.password
@@ -95,19 +91,37 @@ bitcamp = angular.module("bitcampApp")
       })
         .success (data) ->
           $rootScope.api_messages = []
-          $rootScope.$emit "register", null, data
-          null
+          $timeout ->
+            $scope.registerBtnText = "check your email!"
+            $scope.registerSuccess = true
+            $scope.registering     = false
+          , 2000
+
         .error (err) ->
           $scope.registerBtnText = ":("
-          $rootScope.$emit "register", err
           $rootScope.api_messages = []
           $scope.emailErr    = $rootScope.apiErr "email", err
           $scope.passwordErr = $rootScope.apiErr "password", err
           $scope.confirmErr  = $scope.password isnt $scope.confirm
 
+          $timeout ->
+            $scope.registerBtnText = "register"
+            $scope.registering = false
+          , 2000
+
           if $scope.confirmErr
             err.confirm = ["that your passwords match"]
             $scope.passwordErr = $rootScope.apiErr "confirm", err
+
+        .finally ->
+          $timeout ->
+            $scope.emailErr    = ""
+            $scope.passwordErr = ""
+            $scope.confirmErr  = ""
+            $scope.email       = ""
+            $scope.password    = ""
+            $scope.confirm     = ""
+          , 2000
 
 
   .controller "RegisterCtrl_2", (
