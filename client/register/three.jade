@@ -16,15 +16,15 @@ form#register-three(novalidate="" ng-submit="!submitting && submit()")
         ng-model="profile.github")
 
     .form-group.col-xs-12
-      label.label(for="register-website-url") website url
-      input#register-website-url.form-control(
+      label.label(for="register-website") website url
+      input#register-website.form-control(
         type="text" placeholder="bitca.mp/portfolio"
         ng-model="profile.website")
 
     .form-group.col-xs-12
-      label.label(for="register-resume-url") resume url
-      input#register-website-url.form-control(
-        type="text" placeholder="host it on Dropbox or something"
+      label.label(for="register-resume") resume url
+      input#register-resume.form-control(
+        type="text" placeholder="bitca.mp/resume.pdf"
         ng-model="profile.resume")
 
   .row
