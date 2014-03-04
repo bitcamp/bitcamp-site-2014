@@ -60,7 +60,8 @@ bitcamp = angular.module("bitcampApp")
 
     null
 
-  .controller "RegisterCtrl_1", (
+
+  .controller "RegisterCtrl.one", (
     $rootScope,
     $scope,
     $http,
@@ -127,7 +128,7 @@ bitcamp = angular.module("bitcampApp")
           , 2000
 
 
-  .controller "RegisterCtrl_2", (
+  .controller "RegisterCtrl.two", (
     $scope,
     $rootScope,
     $cookieStore,
@@ -150,12 +151,12 @@ bitcamp = angular.module("bitcampApp")
         .then (data) ->
           $state.go "^.three"
         .catch (err) ->
-          $state.go "login.main"
+          null
         .finally ->
           $scope.submitting = false
 
 
-  .controller "RegisterCtrl_3", (
+  .controller "RegisterCtrl.three", (
     $scope,
     $rootScope,
     colors,
@@ -176,12 +177,12 @@ bitcamp = angular.module("bitcampApp")
         .then (data) ->
           $state.go "^.four"
         .catch (err) ->
-          $state.go "login.main"
+          null
         .finally ->
           $scope.submitting = false
 
 
-  .controller "RegisterCtrl_4", (
+  .controller "RegisterCtrl.four", (
     $scope,
     $rootScope,
     colors,
@@ -203,7 +204,7 @@ bitcamp = angular.module("bitcampApp")
           $rootScope.registered = true
           $state.go "fireside"
         .catch (err) ->
-          $state.go "login.main"
+          null
         .finally ->
           $scope.submitting = false
 

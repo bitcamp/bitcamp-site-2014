@@ -1,6 +1,15 @@
 bitcamp = angular.module("bitcampApp")
 
-  .controller "LoginCtrl", ($http, $scope, $rootScope, $stateParams, $state, $cookieStore, colors, $timeout) ->
+  .controller "LoginCtrl", (
+    $http,
+    $scope,
+    $rootScope,
+    $stateParams,
+    $state,
+    $cookieStore,
+    colors,
+    $timeout) ->
+
     $rootScope.bodyCSS["background-color"] = colors["blue-light"]
 
     $scope.email     = ""
@@ -11,10 +20,19 @@ bitcamp = angular.module("bitcampApp")
     $scope.$on "login:title", (ev, title) ->
       $scope.title = title
 
-  .controller "LoginCtrl.main", ($http, $scope, $rootScope, $stateParams, $state, $cookieStore, colors, $timeout) ->
+  .controller "LoginCtrl.main", (
+    $http,
+    $scope,
+    $rootScope,
+    $stateParams,
+    $state,
+    $cookieStore,
+    colors,
+    $timeout) ->
+
     $scope.$emit "login:title", "bitcamper login"
 
-    $scope.token     = $stateParams.token
+    $scope.token = $stateParams.token
 
     $scope.loginB_CSS = {
       "transition": "background-color 0.3s ease-out"
@@ -42,11 +60,18 @@ bitcamp = angular.module("bitcampApp")
         password: $scope.password,
         token:    $scope.token
       })
+
         .success (cookie) ->
           $rootScope._login(cookie)
-          if $scope.token
+
+          if $stateParams.token
           then $state.go("register.two")
+
+          else if $stateParams.redirect
+          then $state.go(decodeURIComponent $stateParams.redirect)
+
           else $state.go("main")
+
         .error ->
           $scope.api_messages = []
           $scope.api_messages.push "invalid credentials!"
@@ -59,6 +84,7 @@ bitcamp = angular.module("bitcampApp")
           ), 2000)
           $scope.emailErr    = true
           $scope.passwordErr = true
+
 
   .controller "LoginCtrl.reset", ($http, $scope, $rootScope, $state, $stateParams, $cookieStore, colors, $timeout) ->
     $scope.token = $stateParams.token

@@ -32,13 +32,6 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
         option can take a bus
         option need a plane
 
-    .col-xs-12.col-sm-5#register-stipend
-      .row#stipend
-        .form-group.col-xs-12
-          input#stipend-input(type="checkbox", name="stipend-input"
-            ng-model="profile.stipend")
-          label.label.checkbox-label(for="stipend-input") travel stipend?
-
 footer
   input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
   .row

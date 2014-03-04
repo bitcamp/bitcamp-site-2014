@@ -8,7 +8,30 @@ bitcamp = angular.module("bitcampApp", [
 ])
 
 
-  .config ($stateProvider, $urlRouterProvider, $locationProvider) ->
+  .config (
+    $stateProvider,
+    $urlRouterProvider,
+    $locationProvider,
+    $httpProvider) ->
+
+    $httpProvider.responseInterceptors.push ["$location", "$q", "$injector"
+      ($location, $q, $injector) ->
+        error = (response) ->
+
+          isLogout = response.config.url is "/api/logout"
+          isLogin  = response.config.url is "/api/login"
+
+          if response.status is 401 and
+            not isLogout and
+            not isLogin
+              $state = $injector.get("$state")
+              $injector.get("$rootScope")._logout()
+              $state.go "login.main",
+                redirect: encodeURIComponent($state.$current.name)
+          $q.reject response
+        (promise) ->
+          promise.then ((x) -> x), error
+    ]
 
     $locationProvider.html5Mode(true)
 
@@ -26,18 +49,13 @@ bitcamp = angular.module("bitcampApp", [
         templateUrl: "login/index.html"
         controller: "LoginCtrl"
       .state "login.main",
-        url: "?token"
+        url: "?token&redirect"
         templateUrl: "login/login.html"
         controller: "LoginCtrl.main"
       .state "login.reset",
         url: "/reset?token"
         templateUrl: "login/reset.html"
         controller: "LoginCtrl.reset"
-
-      .state "confirm",
-        url: "/confirm?token"
-        controller: ($stateParams, $state) ->
-          $state.go("login.main", $stateParams)
 
       .state "fireside",
         url: "/fireside"
@@ -60,24 +78,20 @@ bitcamp = angular.module("bitcampApp", [
         controller: "RegisterCtrl"
       .state "register.one",
         url: "/one"
-        templateUrl: "register/1.html"
-        controller: "RegisterCtrl_1"
-        auth: false
+        templateUrl: "register/one.html"
+        controller: "RegisterCtrl.one"
       .state "register.two",
         url: "/two"
-        templateUrl: "register/2.html"
-        controller: "RegisterCtrl_2"
-        auth: true
+        templateUrl: "register/two.html"
+        controller: "RegisterCtrl.two"
       .state "register.three",
         url: "/three"
-        templateUrl: "register/3.html"
-        controller: "RegisterCtrl_3"
-        auth: true
+        templateUrl: "register/three.html"
+        controller: "RegisterCtrl.three"
       .state "register.four",
         url: "/four"
-        templateUrl: "register/4.html"
-        controller: "RegisterCtrl_4"
-        auth: true
+        templateUrl: "register/four.html"
+        controller: "RegisterCtrl.four"
 
       .state "404",
         url: "/404"
@@ -92,7 +106,17 @@ bitcamp = angular.module("bitcampApp", [
         $.scrollTo location, +attrs.scrollSpeed or 300
 
 
-  .controller "BodyCtrl", ($http, $scope, $rootScope, $window, $location, $timeout, $cookieStore, $resource, $state) ->
+  .controller "BodyCtrl", (
+    $http,
+    $scope,
+    $rootScope,
+    $window,
+    $location,
+    $timeout,
+    $cookieStore,
+    $resource,
+    $state) ->
+
     $rootScope.isLoaded = true
 
     $rootScope.bodyCSS = {
@@ -112,7 +136,7 @@ bitcamp = angular.module("bitcampApp", [
 
     $http.get("/api/bitcamp")
       .success ->
-        #console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
+        console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
         $("body").flowtype
           minimum   : 320
           maximum   : 1200
@@ -130,9 +154,6 @@ bitcamp = angular.module("bitcampApp", [
           $rootScope._logout()
         else
           $rootScope._login(cookie)
-      if state.auth is true and not $cookieStore.get "auth"
-        ev.preventDefault()
-        $state.go "login.main"
 
     $rootScope.$on "$stateChangeSuccess", ->
       $window.scrollTo 0, 0
