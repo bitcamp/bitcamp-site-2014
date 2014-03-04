@@ -1,8 +1,9 @@
 .btc-background-wrapper
 
   #login-logout-wrapper
-    button#logout-btn.btn.btn-danger(ng-show="cookie" ng-click="logout()")
-      | logout
+    a(ui-sref="main")
+      button#logout-btn.btn.btn-danger(ng-show="cookie" ng-click="logout()")
+        | logout
 
   .btc-background
     a(ui-sref="fireside")
