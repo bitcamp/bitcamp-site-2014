@@ -6,7 +6,7 @@ form(novalidate="" ng-submit="!loggingIn && loginF(email, password)")
 
   .row
     .form-group.col-xs-12
-      input#login-email.form-control(tabindex="1"
+      input#login-email.form-control(
         type="email" placeholder="* email address"
         ng-model="email"
         ng-class="{shake: emailErr, animated: emailErr}"
