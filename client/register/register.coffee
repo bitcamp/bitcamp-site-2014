@@ -15,19 +15,19 @@ bitcamp = angular.module("bitcampApp")
 
     $scope.profile_fields = [
         field: "first"
-        label: "first name"
+        label: "first name *"
       ,
         field: "last"
-        label: "last name"
+        label: "last name *"
       ,
         field: "school"
         label: "school"
       ,
         field: "travel"
-        label: "mode of transportation"
+        label: "travel plans *"
       ,
-        field: "stipend"
-        label: "request travel stipend"
+        field: "tshirt"
+        label: "shirt size *"
       ,
         field: "dietary"
         label: "dietary restrictions"
@@ -35,11 +35,8 @@ bitcamp = angular.module("bitcampApp")
         field: "twitter"
         label: "twitter handle"
       ,
-        field: "tshirt"
-        label: "t-shirt size"
-      ,
         field: "github"
-        label: "github username"
+        label: "github profile"
       ,
         field: "resume"
         label: "resume url"
@@ -60,7 +57,8 @@ bitcamp = angular.module("bitcampApp")
 
     null
 
-  .controller "RegisterCtrl_1", (
+
+  .controller "RegisterCtrl.one", (
     $rootScope,
     $scope,
     $http,
@@ -127,7 +125,7 @@ bitcamp = angular.module("bitcampApp")
           , 2000
 
 
-  .controller "RegisterCtrl_2", (
+  .controller "RegisterCtrl.two", (
     $scope,
     $rootScope,
     $cookieStore,
@@ -150,12 +148,12 @@ bitcamp = angular.module("bitcampApp")
         .then (data) ->
           $state.go "^.three"
         .catch (err) ->
-          $state.go "login.main"
+          null
         .finally ->
           $scope.submitting = false
 
 
-  .controller "RegisterCtrl_3", (
+  .controller "RegisterCtrl.three", (
     $scope,
     $rootScope,
     colors,
@@ -176,12 +174,12 @@ bitcamp = angular.module("bitcampApp")
         .then (data) ->
           $state.go "^.four"
         .catch (err) ->
-          $state.go "login.main"
+          null
         .finally ->
           $scope.submitting = false
 
 
-  .controller "RegisterCtrl_4", (
+  .controller "RegisterCtrl.four", (
     $scope,
     $rootScope,
     colors,
@@ -203,7 +201,7 @@ bitcamp = angular.module("bitcampApp")
           $rootScope.registered = true
           $state.go "fireside"
         .catch (err) ->
-          $state.go "login.main"
+          null
         .finally ->
           $scope.submitting = false
 
