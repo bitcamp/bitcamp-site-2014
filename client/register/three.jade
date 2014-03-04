@@ -5,7 +5,7 @@ form#register-three(novalidate="" ng-submit="submit()")
   .row
     .form-group.col-xs-12.col-sm-6
       label.label(for="register-twitter") twitter handle
-      input#register-twitter.form-control(tabindex="1"
+      input#register-twitter.form-control(
         type="text" placeholder="@bitcmp"
         ng-model="profile.twitter"
         ng-disabled="submitting")
