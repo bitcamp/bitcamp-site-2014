@@ -27,9 +27,9 @@ form#register-three(novalidate="" ng-submit="!submitting && submit()")
         ng-model="profile.twitter")
 
     .form-group.col-xs-12.col-sm-6
-      label.label(for="register-github-username") github username
-      input#register-github-username.form-control(
-        type="text" placeholder="just the username"
+      label.label(for="register-github") github
+      input#register-github.form-control(
+        type="text" placeholder="github.com/bitcamp"
         ng-model="profile.github")
 
     .form-group.col-xs-12

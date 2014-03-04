@@ -15,22 +15,19 @@ bitcamp = angular.module("bitcampApp", [
     $httpProvider) ->
 
     $httpProvider.responseInterceptors.push ["$location", "$q", "$injector"
-      ($location, $q, $injector) ->
-        error = (response) ->
-
-          isLogout = response.config.url is "/api/logout"
-          isLogin  = response.config.url is "/api/login"
-
+      ($location, $q, $injector) -> (promise) ->
+        promise.then ((x) -> x), (response) ->
+          isRegister = response.config.url is "/api/register"
+          isLogin    = response.config.url is "/api/login"
+          isLogout   = response.config.url is "/api/logout"
           if response.status is 401 and
-            not isLogout and
-            not isLogin
+            not isRegister and
+            not isLogin and
+            not isLogout
               $state = $injector.get("$state")
-              $injector.get("$rootScope")._logout()
               $state.go "login.main",
                 redirect: encodeURIComponent($state.$current.name)
           $q.reject response
-        (promise) ->
-          promise.then ((x) -> x), error
     ]
 
     $locationProvider.html5Mode(true)
@@ -163,10 +160,11 @@ bitcamp = angular.module("bitcampApp", [
     $rootScope.logout = ->
       $http.get("/api/logout")
         .success (data) ->
-          console.log "logged out!"
+          null
         .error (err) ->
           console.log err
-      $rootScope._logout()
+        .finally ->
+          $rootScope._logout()
 
   .factory "colors", ->
     "white"        : "#ffffff"

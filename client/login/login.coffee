@@ -63,13 +63,8 @@ bitcamp = angular.module("bitcampApp")
 
         .success (cookie) ->
           $rootScope._login(cookie)
-
-          if $stateParams.token
-          then $state.go("register.two")
-
-          else if $stateParams.redirect
+          if $stateParams.redirect
           then $state.go(decodeURIComponent $stateParams.redirect)
-
           else $state.go("main")
 
         .error ->

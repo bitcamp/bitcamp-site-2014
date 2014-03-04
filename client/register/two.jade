@@ -35,10 +35,6 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
 footer
   input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
   .row
-    .form-group.col-xs-12.col-sm-8.col-sm-push-4
+    .form-group.col-xs-12
       button#register-continue2.btn.btn-info(ng-click="!submitting && submit()")
         | continue
-    .form-group.col-xs-12.col-sm-4.col-sm-pull-8
-      a(ui-sref="{{cookie && 'main' || 'register.one'}}")
-        button#register-goback2.btn.btn-warning
-          | previous

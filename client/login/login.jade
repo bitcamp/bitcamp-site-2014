@@ -1,4 +1,9 @@
 form(novalidate="" ng-submit="!loggingIn && loginF(email, password)")
+
+  .row(ng-if="token")
+    .form-group.col-xs-12.text-center
+      .p login to validate your email
+
   .row
     .form-group.col-xs-12
       input#login-email.form-control(

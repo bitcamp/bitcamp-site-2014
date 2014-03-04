@@ -40,11 +40,7 @@ form#register-one(novalidate="" ng-submit="!registering && register()")
   footer
     input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
     .row
-      .form-group.col-xs-12.col-sm-8.col-sm-push-4
+      .form-group.col-xs-12
         button#register-continue1.btn.btn-info(ng-click="!registering && register()"
           ng-class="{'btn-danger': err(), 'btn-success': registerSuccess, 'btn-wait': registering}")
           | {{registerBtnText}}
-      .form-group.col-xs-12.col-sm-4.col-sm-pull-8
-        a(ui-sref="main")
-          button#register-goback1.btn.btn-warning
-            | previous
