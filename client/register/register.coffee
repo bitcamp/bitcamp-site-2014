@@ -15,28 +15,25 @@ bitcamp = angular.module("bitcampApp")
 
     $scope.profile_fields = [
         field: "first"
-        label: "first name"
+        label: "first name *"
       ,
         field: "last"
-        label: "last name"
+        label: "last name *"
       ,
         field: "school"
         label: "school"
       ,
         field: "travel"
-        label: "mode of transportation"
+        label: "travel plans *"
       ,
-        field: "stipend"
-        label: "request travel stipend"
+        field: "tshirt"
+        label: "shirt size *"
       ,
         field: "dietary"
         label: "dietary restrictions"
       ,
         field: "twitter"
         label: "twitter handle"
-      ,
-        field: "tshirt"
-        label: "t-shirt size"
       ,
         field: "github"
         label: "github username"

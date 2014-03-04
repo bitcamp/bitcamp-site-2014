@@ -14,23 +14,37 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
         type="text" placeholder="hacker"
         ng-model="profile.last")
 
-
-  .row
     .form-group.col-xs-12
       label(for="register-school") school
       input#register-school.form-control(
         type="text" placeholder="bitcamp high"
         ng-model="profile.school")
 
-  .row
-    .form-group.col-xs-12.col-sm-7
-      label(for="mode-of-travel") mode of transportation *
+    .form-group.col-xs-12
+      label(for="register-travel") mode of transportation *
       select#mode-of-travel.form-control.input-md(
-        name="mode-of-travel"
+        name="register-travel"
         ng-model="profile.travel")
         option get myself there
         option can take a bus
         option need a plane
+
+    .form-group.col-xs-12.col-sm-6
+      label shirt size *
+      select#register-tshirt-size.form-control.input-md(
+        ng-model="profile.tshirt")
+        option men's small
+        option men's medium
+        option men's large
+        option lady's small
+        option lady's medium
+        option lady's large
+
+    .form-group.col-xs-12.col-sm-6
+      label.label(for="register-dietary-restrictions") dietary restrictions
+      input#register-dietary-restrictions.form-control(
+        type="text" placeholder="vegan, halal, carnivore"
+        ng-model="profile.dietary")
 
 footer
   input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")

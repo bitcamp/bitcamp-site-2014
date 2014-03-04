@@ -3,23 +3,6 @@ form#register-three(novalidate="" ng-submit="!submitting && submit()")
     small * = required
 
   .row
-    .form-group.col-xs-12
-      label shirt size *
-      select#register-tshirt-size.form-control.input-md(
-        ng-model="profile.tshirt")
-        option men's small
-        option men's medium
-        option men's large
-        option lady's small
-        option lady's medium
-        option lady's large
-
-    .form-group.col-xs-12
-      label.label(for="register-dietary-restrictions") dietary restrictions
-      input#register-dietary-restrictions.form-control(
-        type="text" placeholder="vegan, halal, carnivore"
-        ng-model="profile.dietary")
-
     .form-group.col-xs-12.col-sm-6
       label.label(for="register-twitter") twitter handle
       input#register-twitter.form-control(
