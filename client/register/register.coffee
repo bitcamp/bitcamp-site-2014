@@ -188,6 +188,7 @@ bitcamp = angular.module("bitcampApp")
       $scope.submitting = true
       $scope.profile.$save()
         .then (data) ->
+          $rootScope.registered = true
           $state.go "fireside"
         .catch (err) ->
           console.log err
