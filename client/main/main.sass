@@ -2,33 +2,37 @@
 @import '../layout/variables'
 
 
-header
-  .cloud
-    position: absolute
-    z-index: 2
-    width: 150px
-    height: 80px
+#main
+  button, input[type=button], input[type=submit]
+    max-width: 10em
 
-  $animTime1: 40s
-  $animTime2: 45s
-  $cloudHeight: 150px
-  #cloud-1
-    top:   35%
-    left:  10%
-    animation: float-1 $animTime1 1 forwards linear
-  #cloud-2
-    top:   15%
-    right: 10%
-    animation: float-2 $animTime1 1 forwards linear
-  #cloud-3
-    top:   35%
-    left:  -1*$cloudHeight
-    animation: float-1 $animTime2 $animTime1 infinite forwards linear
-  #cloud-4
-    top:   15%
-    right: -1*$cloudHeight
-    animation: float-2 $animTime2 $animTime1 infinite forwards linear
+.cloud
+  position: absolute
+  z-index: -2
+  width: 150px
+  height: 80px
 
+$animTime1: 40s
+$animTime2: 45s
+$cloudHeight: 150px
+#cloud-1
+  top:   30%
+  left:  10%
+  animation: float-1 $animTime1 1 forwards linear
+#cloud-2
+  top:   10%
+  right: 10%
+  animation: float-2 $animTime1 1 forwards linear
+#cloud-3
+  top:   35%
+  left:  -1*$cloudHeight
+  animation: float-1 $animTime2 $animTime1 infinite forwards linear
+#cloud-4
+  top:   15%
+  right: -1*$cloudHeight
+  animation: float-2 $animTime2 $animTime1 infinite forwards linear
+
+#header
   #time-and-place
     line-height: 1.3em
 
@@ -49,14 +53,14 @@ header
 
 
 #permission
+  input
+    @include placeholder($color_white)
+
   border-top: dashed 2px $color_white
   #scissors
     position: absolute
     top: -28px
     left: 20%
-  .button
-    background-color: $color_white
-    color: $color_orange
   input[type=text], input[type=email]
     font-weight: 300
     font-size: 1.8em
@@ -193,3 +197,10 @@ header
   100%
     right: 150%
 
+
+.text-success
+  color: $brand_success
+.text-warning
+  color: $brand_warning
+.text-danger
+  color: $brand_danger

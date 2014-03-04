@@ -1,5 +1,6 @@
 angular.module('bitcampApp')
-  .controller 'MainCtrl', ($scope, $http, $anchorScroll) ->
+  .controller 'MainCtrl', ($scope, $rootScope, colors) ->
+    $rootScope.bodyCSS["background-color"] = colors["blue-light"]
     null
 
   .controller 'SignupCtrl', ($scope, $http, $timeout) ->

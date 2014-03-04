@@ -5,6 +5,7 @@
 @import 'sass-bootstrap/lib/normalize'
 @import 'sass-bootstrap/lib/glyphicons'
 @import 'sass-bootstrap/lib/grid'
+@import 'sass-bootstrap/lib/forms'
 
 
 *, *:before, *:after
@@ -13,14 +14,18 @@
 html, body
   min-height: 100%
   height: 100%
+  overflow-y: auto
 
 body
+  transition: background-color 0.4s ease-in
   z-index: -99
   overflow-x: hidden
 
 #wrapper
   white-space: pre-line
+  height: auto
   min-height: 100%
+  width: 100%
   margin-bottom: -1*$footer-height
 
 #wrapper:after
@@ -39,14 +44,17 @@ body
   text-align: center
   position: relative
 
-.btc-background-wrapper
-  position: absolute
-  top: 0
-  left: 0
-  @include square(100%)
-  .btc-background
-    margin: 0 auto
+body
+  position: relative
+  .btc-background-wrapper
+    position: absolute
+    top: 0
+    left: 0
+    overflow: hidden
     @include square(100%)
+    .btc-background
+      margin: 0 auto
+      @include square(100%)
 
 .clearfix
   @include clearfix()
@@ -58,16 +66,12 @@ body
   @extend .noselect
 
 button, .button
-  max-width: 10em
   width: 100%
   padding: 0.5em
   border: none
   font-weight: bold
   border-radius: 6px
   user-select: none !important
-
-input
-  @include placeholder($color_white)
 
 *:focus, *:active, *:hover
   outline: none
@@ -86,6 +90,7 @@ fieldset
 
 
 #header
+  padding-top: 5rem
   white-space: normal
   .btc-background
     z-index: 1
@@ -93,14 +98,14 @@ fieldset
     height: 100%
     #treetent
       position: absolute
-      left: 10%
+      left: 18%
       bottom: 0
   #logo
     z-index: 3
     padding: 0.938em 0
     margin-bottom: 40px
 
-#footer
+footer#footer
   padding-top: 0
   padding-bottom: 0
   #footer-inner
@@ -114,7 +119,7 @@ fieldset
       text-align: center
   a
     &:hover
-      color: $color_white
+      color: $color_orangeyellow
     color: $color_white
 
 
@@ -122,15 +127,149 @@ fieldset
   display: none !important
 
 
-#buffer
+body
   &.ng-enter
     animation: fadeIn 0.4s
 
 #wrapper
-  &.bitcamp-view
-    $enterTime: 0.3s
+  display: table
+  width: 100%
+
+.bitcamp-view-wrapper
+  .bitcamp-view
+    display: block
     $leaveTime: 0.2s
-    &.ng-leave
-      animation: fadeOutUp $leaveTime
     &.ng-enter
-      animation: fadeInDown $enterTime $leaveTime
+      animation: fadeInUp $leaveTime
+
+body > .bitcamp-view
+  $leaveTime: 0.2s
+  &.ng-enter
+    animation: fadeInDown $leaveTime
+
+
+.text-center
+  text-align: center
+.text-right
+  text-align: right
+.text-left
+  text-align: left
+
+
+#login-logout-wrapper
+  position: relative
+  button
+    background-color: $color_grey
+    color: $color_white
+    opacity: 0.7
+    position: absolute
+    width: 100px
+    z-index: 1000
+    top:   20px
+    right: 40px
+    &#login-btn:hover
+      opacity: .85
+      background-color: $color_green
+    &#logout-btn:hover
+      opacity: .85
+      background-color: $color_red
+
+
+.float-right
+  float: right
+.float-left
+  float: left
+
+.btn-primary
+  background-color: $brand-primary
+.btn-info
+  background-color: $brand-info
+.btn-success
+  background-color: $brand-success
+.btn-warning
+  background-color: $brand-warning
+.btn-danger
+  background-color: $brand-danger
+.btn-wait
+  background-color: $color_grey-dark
+
+
+@media only screen and (min-width: $screen-xs)
+  .text-left-sm
+    text-align: left
+  .text-right-sm
+    text-align: right
+  .text-center-sm
+    text-align: center
+
+@media only screen and (min-width: $screen-sm)
+  .text-left-md
+    text-align: left
+  .text-right-md
+    text-align: right
+  .text-center-md
+    text-align: center
+
+@media only screen and (min-width: $screen-md)
+  .text-left-lg
+    text-align: left
+  .text-right-lg
+    text-align: right
+  .text-center-lg
+    text-align: center
+
+
+label.checkbox-label
+  cursor: pointer
+  width: 100%
+  line-height: $checkbox_size
+  margin-top: -0.5rem
+
+input[type=checkbox]
+  display: none
+  width:  $checkbox_size
+  height: $checkbox_size
+  @media only screen and (max-width: $screen-sm)
+    margin-right: -1*$checkbox_size
+  + label:before
+    cursor: pointer
+    position: absolute
+    left: -1*$checkbox_size/2
+    top:  $checkbox_size/5
+    @media only screen and (min-width: $screen-sm)
+      left: 17.5%
+      top:  $checkbox_size*1.30
+    display: block
+    font-family: 'Glyphicons Halflings'
+    font-size: 2rem
+    content: "\e014"
+    margin-top: -1*(0.7*$checkbox_size/2)
+    margin-left:     $checkbox_size
+    margin-right: -1*$checkbox_size
+    width:  $checkbox_size
+    height: $checkbox_size
+    &, label, label:before
+      transition: color 0.2s ease-in, background-color 0.2s ease-in, font-size 0.3s ease-out
+  &:hover + label, label:hover
+    color: $color_red
+  &:checked
+    &:hover + label, label:hover
+      color: $color_green
+      &:before
+        border-color: $color_green
+  &:checked + label:before
+    top:  $checkbox_size*0.85
+    left: 21%
+    @media only screen and (max-width: $screen-sm)
+      left: -1*$checkbox_size/4.2
+      top: -1*$checkbox_size/4
+    content: ""
+    font-size: 1rem
+    animation: checkbox 0.6s forwards
+    transform: rotate(30deg)
+    border-bottom: 4px solid $color_grey-dark
+    border-right:  4px solid $color_grey-dark
+
+  &:focus
+    outline: none !important
+

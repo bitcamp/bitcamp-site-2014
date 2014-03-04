@@ -7,41 +7,37 @@ randomInt = (min, max) ->
 
 
 angular.module('bitcampApp')
-  .controller 'FiresideCtrl', ($scope, $http, $resource) ->
-    socket = io.connect "50.22.11.232:13891"
+  .controller 'FiresideCtrl', ($scope, $rootScope, $http, $resource, $timeout, $interval, colors) ->
+    $scope.firesideCSS =
+      "background-image": "linear-gradient(to bottom," +\
+        "#{colors["blue-light"]}  40%, " + \
+        "#{colors["blue-dark"]}   90%, " + \
+        "#{colors["blue-darker"]} 100%"  + \
+        ")"
 
-    blocksI = 0
-    blocksT = 2400
+    blocksI     = 0
+    blocksT     = 2400
+    blocksT_min = 400
+    $bs = $(".fireside-block:not(.empty-block) .inner-block")
 
-    socket.on 'connect', ->
-      socket.on '/api/fireside/blocks', (blocks) ->
+    requestAnimationFrame = window.requestAnimationFrame
+    requestAnimationFrame or= (f) -> f()
 
-    Blocks = $resource '/api/fireside/blocks', {},
-      get:
-        method: 'GET'
-        isArray: true
+    blocksF = ->
+      blocks = $bs.map (i, b) ->
+        i: i
+        on: randomInt(0, $bs.length) < ($bs.length/3)
+      (b for b in blocks when b.on).map (b) ->
+        do ($b = $bs.eq b.i) ->
+          $timeout((-> requestAnimationFrame ->
+            $b.removeClass $b.data 'dimclass'
+            $b.addClass    $b.data 'colorclass'
+            $timeout((-> requestAnimationFrame ->
+              $b.removeClass $b.data 'colorclass'
+              $b.addClass    $b.data 'dimclass'
+            ), (randomN blocksT_min, blocksT-blocksT_min))
+          ), (randomN blocksT_min, blocksT-blocksT_min))
 
-    do blocksF = ->
-      $http.get('/api/fireside/blocks')
-
-        .success (blocks) ->
-          $bs = $ '.inner-block'
-          (b for b in blocks when b.on).map (b) ->
-            do ($b = $bs.eq b.i) ->
-              setTimeout ->
-                $b.removeClass $b.data 'dimclass'
-                $b.addClass    $b.data 'colorclass'
-                setTimeout ->
-                  $b.removeClass $b.data 'colorclass'
-                  $b.addClass    $b.data 'dimclass'
-                , (randomN 1, blocksT)
-              , (randomN 1, blocksT)
-
-        .error (err) ->
-          null
-
-    blocksI = setInterval blocksF, blocksT
-
-    $scope.$on "$destroy", ->
-      clearInterval blocksI
-      socket.disconnect()
+    blocksF()
+    blocksI = $interval blocksF, blocksT
+    $scope.$on "$destroy", -> $interval.cancel blocksI

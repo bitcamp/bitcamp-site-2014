@@ -1,0 +1,50 @@
+form#register-one(novalidate="" ng-submit="!registering && register()")
+
+  .p.label.required
+    small * = required
+
+  .row
+    .form-group.col-xs-12
+
+      label.label(for="register-email"
+                  ng-class="{'text-danger': emailErr}")
+        | {{emailErr && emailErr || 'email address *'}}
+      input#register-email.form-control(
+        type="email" placeholder="sally.hacker@bitca.mp"
+        ng-model="email"
+        ng-class="{shake: emailErr, animated: emailErr}"
+        ng-disabled="registering")
+
+  .row
+    .form-group.col-xs-12
+      label.label(for="register-password"
+                  ng-class="{'text-danger': passwordErr}")
+        | {{passwordErr && passwordErr || 'password *'}}
+      input#register-password.form-control(
+        type="password" placeholder="five+ numbers and letters"
+        ng-model="password"
+        ng-class="{shake: passwordErr, animated: passwordErr}"
+        ng-disabled="registering")
+
+  .row
+    .form-group.col-xs-12
+      label.label(for="register-password-confirm"
+                  ng-class="{'text-danger': confirmErr}")
+        | {{confirmErr && 'password mismatch' || 'confirm password *'}}
+      input#register-password-confirm.form-control(
+        type="password" placeholder="(once more)"
+        ng-model="confirm"
+        ng-class="{shake: confirmErr, animated: confirmErr}"
+        ng-disabled="registering")
+
+  footer
+    input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
+    .row
+      .form-group.col-xs-12.col-sm-8.col-sm-push-4
+        button#register-continue1.btn.btn-info(ng-click="!registering && register()"
+          ng-class="{'btn-danger': err(), 'btn-success': registerSuccess, 'btn-wait': registering}")
+          | {{registerBtnText}}
+      .form-group.col-xs-12.col-sm-4.col-sm-pull-8
+        a(ui-sref="main")
+          button#register-goback1.btn.btn-warning
+            | previous
