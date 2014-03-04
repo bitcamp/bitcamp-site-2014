@@ -74,7 +74,12 @@ button, .button
   user-select: none !important
 
 *:focus, *:active, *:hover
-  outline: none
+  outline: 0
+
+input, .form-control
+  &:focus, &:active, &:hover
+    border: 1px $color_orange solid
+    box-shadow: none
 
 .noselect
   @include user-select(none)
