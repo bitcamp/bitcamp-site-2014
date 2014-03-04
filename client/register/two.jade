@@ -5,7 +5,7 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
   .row
     .form-group.col-xs-12.col-sm-6
       label(for="register-fname") first name *
-      input#register-fname.form-control(tabindex="1"
+      input#register-fname.form-control(
         type="text" placeholder="Sally"
         ng-model="profile.first"
         ng-disabled="lockInputs")

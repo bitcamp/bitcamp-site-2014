@@ -2,24 +2,24 @@
   .register-view
     .register-wrapper
       header
-        a(ui-sref="main" title="cancel")
+        a(ui-sref="main" title="cancel" tabindex="-1")
           i#cancel-register.glyphicon.glyphicon-remove
         #header-inner
           h3.b new bitcamper
         nav.nav-bubbles
-          a(ui-sref="{{cookie && '.two' || '.one'}}")
+          a(ui-sref="{{cookie && '.two' || '.one'}}" tabindex="-1")
             .nav-bubble#nav-bubbles-one(
               ng-class="{'nav-bubble-active': navBubbles[0]}")
           .nav-bubble-spacer
-          a(ui-sref="{{cookie && '.two' || '.one'}}")
+          a(ui-sref="{{cookie && '.two' || '.one'}}" tabindex="-1")
             .nav-bubble#nav-bubbles-two(
               ng-class="{'nav-bubble-active': navBubbles[1]}")
           .nav-bubble-spacer
-          a(ui-sref="{{cookie && '.three' || '.one'}}")
+          a(ui-sref="{{cookie && '.three' || '.one'}}" tabindex="-1")
             .nav-bubble#nav-bubbles-three(
               ng-class="{'nav-bubble-active': navBubbles[2]}")
           .nav-bubble-spacer
-          a(ui-sref="{{cookie && '.four' || '.one'}}")
+          a(ui-sref="{{cookie && '.four' || '.one'}}" tabindex="-1")
             .nav-bubble#nav-bubbles-four(
               ng-class="{'nav-bubble-active': navBubbles[3]}")
 
