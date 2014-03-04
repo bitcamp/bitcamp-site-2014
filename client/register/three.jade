@@ -1,31 +1,35 @@
-form#register-three(novalidate="" ng-submit="!submitting && submit()")
+form#register-three(novalidate="" ng-submit="submit()")
   .p.label.required
     small * = required
 
   .row
     .form-group.col-xs-12.col-sm-6
       label.label(for="register-twitter") twitter handle
-      input#register-twitter.form-control(
+      input#register-twitter.form-control(tabindex="1"
         type="text" placeholder="@bitcmp"
-        ng-model="profile.twitter")
+        ng-model="profile.twitter"
+        ng-disabled="submitting")
 
     .form-group.col-xs-12.col-sm-6
       label.label(for="register-github") github profile
       input#register-github.form-control(
         type="text" placeholder="github.com/bitcamp"
-        ng-model="profile.github")
+        ng-model="profile.github"
+        ng-disabled="submitting")
 
     .form-group.col-xs-12
       label.label(for="register-website") website url
       input#register-website.form-control(
         type="text" placeholder="bitca.mp/portfolio"
-        ng-model="profile.website")
+        ng-model="profile.website"
+        ng-disabled="submitting")
 
     .form-group.col-xs-12
       label.label(for="register-resume") resume url
       input#register-resume.form-control(
         type="text" placeholder="bitca.mp/resume.pdf"
-        ng-model="profile.resume")
+        ng-model="profile.resume"
+        ng-disabled="submitting")
 
   .row
     .form-group.col-xs-12
@@ -33,16 +37,19 @@ form#register-three(novalidate="" ng-submit="!submitting && submit()")
       textarea#register-expectations.form-control(
         rows="3"
         placeholder="tell us what you hope to get out of bitcamp"
-        ng-model="profile.blurb")
+        ng-model="profile.blurb"
+        ng-disabled="submitting")
 
 
-footer
-  input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
-  .row
-    .form-group.col-xs-12.col-sm-8.col-sm-push-4
-      button#register-continue3.btn.btn-info(ng-click="!submitting && submit()")
-        | review
-    .form-group.col-xs-12.col-sm-4.col-sm-pull-8
-      a(ui-sref="register.two")
-        button#register-goback3.btn.btn-warning
-          | previous
+  footer
+    input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
+    .row
+      .form-group.col-xs-12.col-sm-8.col-sm-push-4
+        button#register-continue3.btn.btn-info(ng-click="submit()"
+          ng-click="submit()"
+          ng-class="{'btn-danger': err, 'btn-wait': submitting}")
+            | {{continueBtn || 'review'}}
+      .form-group.col-xs-12.col-sm-4.col-sm-pull-8
+        a(ui-sref="register.two")
+          button#register-goback3.btn.btn-warning
+            | previous

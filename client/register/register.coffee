@@ -131,26 +131,40 @@ bitcamp = angular.module("bitcampApp")
     $cookieStore,
     $state,
     colors,
-    profile) ->
+    profile,
+    $timeout) ->
 
     $rootScope.navBubbles = [true, true, false, false]
     $rootScope.bodyCSS["background-color"] = colors["blue-darker"]
 
+    $scope.lockInputs = true
     $scope.profile = profile.get ->
+      $scope.lockInputs = false
       $scope.profile.stipend or= false
 
     $scope.submitting = false
     $scope.submit = ->
       return if $scope.submitting
+      $scope.continueBtn = ". . ."
       $scope.submitting = true
+      $scope.lockInputs = true
 
       $scope.profile.$save()
         .then (data) ->
-          $state.go "^.three"
+          $timeout ->
+            $state.go "^.three"
+          , 200
         .catch (err) ->
+          $scope.err = true
+          $scope.continueBtn = ":("
           null
         .finally ->
-          $scope.submitting = false
+          $timeout ->
+            $scope.lockInputs  = false
+            $scope.err         = false
+            $scope.submitting  = false
+            $scope.continueBtn = "continue"
+          , 1200
 
 
   .controller "RegisterCtrl.three", (
@@ -159,24 +173,37 @@ bitcamp = angular.module("bitcampApp")
     colors,
     $cookieStore,
     $state,
-    profile) ->
+    profile,
+    $timeout) ->
 
     $rootScope.navBubbles = [true, true, true, false]
     $rootScope.bodyCSS["background-color"] = colors["orange-dark"]
 
-    $scope.profile = profile.get()
+    $scope.lockInputs = true
+    $scope.profile = profile.get ->
+      $scope.lockInputs = false
 
     $scope.submitting = false
     $scope.submit = ->
       return if $scope.submitting
+      $scope.continueBtn = ". . ."
       $scope.submitting = true
+
       $scope.profile.$save()
         .then (data) ->
-          $state.go "^.four"
+          $timeout ->
+            $state.go "^.four"
+          , 250
         .catch (err) ->
-          null
+          $scope.err = true
+          $scope.continueBtn = ":("
         .finally ->
-          $scope.submitting = false
+          $timeout ->
+            $scope.lockInputs  = false
+            $scope.err         = false
+            $scope.submitting  = false
+            $scope.continueBtn = "review"
+          , 1200
 
 
   .controller "RegisterCtrl.four", (

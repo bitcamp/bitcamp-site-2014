@@ -7,9 +7,9 @@ form#register-one(novalidate="" ng-submit="!registering && register()")
     .form-group.col-xs-12
 
       label.label(for="register-email"
-                  ng-class="{'text-danger': emailErr}")
+        ng-class="{'text-danger': emailErr}")
         | {{emailErr && emailErr || 'email address *'}}
-      input#register-email.form-control(
+      input#register-email.form-control(tabindex="1"
         type="email" placeholder="sally.hacker@bitca.mp"
         ng-model="email"
         ng-class="{shake: emailErr, animated: emailErr}"
