@@ -36,7 +36,7 @@ bitcamp = angular.module("bitcampApp")
         label: "twitter handle"
       ,
         field: "github"
-        label: "github username"
+        label: "github profile"
       ,
         field: "resume"
         label: "resume url"
