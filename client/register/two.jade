@@ -1,6 +1,4 @@
 form#register-two(novalidate="" ng-submit="!submitting && submit()")
-  .p.label.required
-    small * = required
 
   .row
     .form-group.col-xs-12.col-sm-6
@@ -17,33 +15,31 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
         ng-disabled="lockInputs")
 
     .form-group.col-xs-12
-      label(for="register-school") school
+      label(for="register-school") school *
       input#register-school.form-control(
-        type="text" placeholder="Bonfire High"
+        type="text" placeholder="Bitcamp Academy"
         ng-model="profile.school"
         ng-disabled="lockInputs")
 
     .form-group.col-xs-12
-      label(for="mode-of-travel") mode of transportation *
-      select#mode-of-travel.form-control.input-md(
+      label(for="mode-of-travel") travel funds needed
+      input#mode-of-travel.form-control(
+        type="text" placeholder="$75"
         name="mode-of-travel"
         ng-model="profile.travel"
         ng-disabled="lockInputs")
-        option get myself there
-        option can take a bus
-        option need a plane
 
      .form-group.col-xs-12.col-sm-6
-      label shirt size *
+      label shirt size
       select#register-tshirt-size.form-control.input-md(
         ng-model="profile.tshirt"
         ng-disabled="lockInputs")
-        option men's small
-        option men's medium
-        option men's large
-        option lady's small
-        option lady's medium
-        option lady's large
+        option small (men)
+        option small (women)
+        option medium (men)
+        option medium (women)
+        option large (men)
+        option large (women)
 
     .form-group.col-xs-12.col-sm-6
       label.label(for="register-dietary-restrictions") dietary restrictions

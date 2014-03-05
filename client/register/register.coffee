@@ -96,6 +96,9 @@ bitcamp = angular.module("bitcampApp")
             $scope.registerBtnText = "check your email!"
             $scope.registerSuccess = true
             $scope.registering     = false
+            $scope.email           = ""
+            $scope.password        = ""
+            $scope.confirm         = ""
           , 2000
 
         .error (err) ->
@@ -119,9 +122,6 @@ bitcamp = angular.module("bitcampApp")
             $scope.emailErr    = ""
             $scope.passwordErr = ""
             $scope.confirmErr  = ""
-            $scope.email       = ""
-            $scope.password    = ""
-            $scope.confirm     = ""
           , 2000
 
 
