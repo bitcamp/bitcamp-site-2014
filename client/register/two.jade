@@ -27,7 +27,11 @@ form#register-two(novalidate="" ng-submit="!submitting && submit()")
         type="text" placeholder="$75"
         name="mode-of-travel"
         ng-model="profile.travel"
-        ng-disabled="lockInputs")
+        ng-disabled="lockInputs"
+        tooltip="If you requested travel reimbursement, we'll be in touch within the next 5 days to let you know if you're being reimbursed or if your school has a bus."
+        tooltip-trigger="focus"
+        tooltip-placement="top"
+        )
 
      .form-group.col-xs-12.col-sm-6
       label shirt size
