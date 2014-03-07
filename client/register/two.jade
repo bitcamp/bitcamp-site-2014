@@ -37,12 +37,14 @@ form#register-two(ng-submit="!submitting && submit()")
       select#register-tshirt-size.form-control.input-md(
         ng-model="profile.tshirt"
         ng-disabled="lockInputs")
-        option small (men)
-        option small (women)
-        option medium (men)
-        option medium (women)
-        option large (men)
-        option large (women)
+        option S (men)
+        option S (women)
+        option M (men)
+        option M (women)
+        option L (men)
+        option L (women)
+        option XL (men)
+        option XL (women)
 
     .form-group.col-xs-12.col-sm-6
       label.label(for="register-dietary-restrictions") dietary restrictions
