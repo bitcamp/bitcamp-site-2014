@@ -97,9 +97,12 @@ $cloudHeight: 150px
 
   @mixin sponsor($name)
     #sponsor-#{$name}
-      width:  image-width('/images/sponsor/#{$name}.png')
-      height: image-height('/images/sponsor/#{$name}.png')
+      $w: min(290px, image-width( '/images/sponsor/#{$name}.png'))
+      $h: min(300px, image-height('/images/sponsor/#{$name}.png'))
+      width:  $w
+      height: $h
       background: no-repeat url('/images/sponsor/#{$name}.png')
+      background-size: $w $h
 
   @include sponsor(appian)
   @include sponsor(att)
@@ -115,14 +118,15 @@ $cloudHeight: 150px
   @include sponsor(namecheap)
   @include sponsor(oculus)
   @include sponsor(opis)
-  //-@include sponsor(opower)
+  @include sponsor(opower)
   @include sponsor(parsons)
   @include sponsor(rdio)
   @include sponsor(sendgrid)
+  @include sponsor(sga)
   @include sponsor(socialradar)
   @include sponsor(sparkfun)
   @include sponsor(startup-shell)
-  //-@include sponsor(stickermule)
+  @include sponsor(stickermule)
   @include sponsor(tata)
   @include sponsor(terrapin-hackers)
   @include sponsor(thiel)
