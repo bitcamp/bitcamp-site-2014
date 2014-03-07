@@ -59,16 +59,12 @@ body
 .clearfix
   @include clearfix()
 
-.noselect
-  user-select: none
-
 button, .button
   width: 100%
   padding: 0.5em
   border: none
   font-weight: bold
   border-radius: 6px
-  user-select: none !important
 
 *:focus, *:active, *:hover
   outline: 0
@@ -77,9 +73,6 @@ input, .form-control
   &:focus, &:active, &:hover
     border: 1px $color_orange solid
     box-shadow: none
-
-.noselect
-  @include user-select(none)
 
 fieldset
   border: none
