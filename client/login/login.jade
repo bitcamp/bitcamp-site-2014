@@ -27,7 +27,7 @@ form(novalidate="" ng-submit="!loggingIn && loginF(email, password)")
         button.btn.btn-success(
           ng-click="!loggingIn && loginF(email, password)"
           ng-style="loginB_CSS")
-          | {{api_messages && api_messages[0] || 'login'}}
+          | {{passwordErr && 'invalid credentials!' || 'login'}}
     .row
       .form-group.col-xs-12
         a(ui-sref="^.reset")

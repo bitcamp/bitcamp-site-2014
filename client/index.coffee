@@ -5,6 +5,7 @@ bitcamp = angular.module("bitcampApp", [
   "ngAnimate"
 
   "ui.router"
+  "ui.bootstrap"
 ])
 
 
@@ -20,10 +21,12 @@ bitcamp = angular.module("bitcampApp", [
           isRegister = response.config.url is "/api/register"
           isLogin    = response.config.url is "/api/login"
           isLogout   = response.config.url is "/api/logout"
+          isReset    = response.config.url is "/api/login/reset"
           if response.status is 401 and
             not isRegister and
             not isLogin and
-            not isLogout
+            not isLogout and
+            not isReset
               $state = $injector.get("$state")
               $state.go "login.main",
                 redirect: encodeURIComponent($state.$current.name)

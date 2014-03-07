@@ -12,13 +12,11 @@ bitcamp = angular.module("bitcampApp")
 
     $rootScope.bodyCSS["background-color"] = colors["blue-light"]
 
-    $scope.email     = ""
-    $scope.password  = ""
-
     $scope.title     = ""
 
     $scope.$on "login:title", (ev, title) ->
       $scope.title = title
+
 
   .controller "LoginCtrl.main", (
     $http,
@@ -32,13 +30,15 @@ bitcamp = angular.module("bitcampApp")
 
     $scope.$emit "login:title", "bitcamper login"
 
+    $scope.email    = ""
+    $scope.password = ""
+    $scope.confirm  = ""
+
     $scope.token = $stateParams.token
 
     $scope.loginB_CSS = {
       "transition": "background-color 0.3s ease-out"
     }
-
-    $rootScope.api_messages = []
 
     $scope.apiErr = (name, errObj) ->
       if errObj[name]
@@ -53,8 +53,6 @@ bitcamp = angular.module("bitcampApp")
     $scope.loggingIn = false
     $scope.loginF = (email, password, token) ->
       $scope.loggingIn   = true
-      $scope.emailErr    = false
-      $scope.passwordErr = false
       $http.post("/api/login", {
         email:    $scope.email,
         password: $scope.password,
@@ -68,25 +66,69 @@ bitcamp = angular.module("bitcampApp")
           else $state.go("main")
 
         .error ->
-          $scope.api_messages = []
-          $scope.api_messages.push "invalid credentials!"
           $scope.loginB_CSS["background-color"] = colors["red"]
+          $scope.emailErr    = true
+          $scope.passwordErr = true
           ($timeout (->
             $scope.loggingIn = false
             delete $scope.loginB_CSS["background-color"]
-            $scope.api_messages = []
             $("#login-password").focus()
-          ), 2000)
-          $scope.emailErr    = true
-          $scope.passwordErr = true
+            $scope.emailErr    = false
+            $scope.passwordErr = false
+          ), 1000)
 
 
   .controller "LoginCtrl.reset", ($http, $scope, $rootScope, $state, $stateParams, $cookieStore, colors, $timeout) ->
+    $scope.$emit "login:title", "password reset"
+
     $scope.token = $stateParams.token
 
     $scope.email    = ""
     $scope.password = ""
     $scope.confirm  = ""
 
-    $scope.$emit "login:title", "password reset"
-    null
+    $scope.resetting = false
+
+    $scope.resetRequest = ->
+      $scope.resetting = true
+      console.log $scope.email
+      console.log $scope
+      $scope.emailErr    = false
+      $scope.passwordErr = false
+      $http.put("/api/login/reset", {
+        email: $scope.email
+      })
+        .success (cookie) ->
+          # FIXME: $rootScope._login(cookie)
+          $scope.isReset = true
+          $scope.email = ""
+        .error ->
+          ($timeout (->
+            $scope.resetting    = false
+          ), 1000)
+          $scope.emailErr    = true
+          $scope.passwordErr = true
+
+    $scope.resetResponse = ->
+      $scope.resetting = true
+      console.log $scope.email
+      console.log $scope
+      $scope.emailErr    = false
+      $scope.passwordErr = false
+      $http.post("/api/login/reset", {
+        password: $scope.password,
+        confirm:  $scope.confirm,
+        token:    $scope.token,
+      })
+        .success (cookie) ->
+          # FIXME: $rootScope._login(cookie)
+          $scope.isReset = true
+          $scope.password = ""
+          $scope.confirm = ""
+          $state.go "login.main"
+        .error ->
+          ($timeout (->
+            $scope.resetting = false
+          ), 1000)
+          $scope.emailErr    = true
+          $scope.passwordErr = true
