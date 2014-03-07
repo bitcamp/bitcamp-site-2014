@@ -2,7 +2,7 @@ form#reset-form(ng-submit="!resetting && resetRequest()" ng-if="!token")
   .row
     .form-group.col-xs-12
       input#reset-email.form-control(
-        type="email" placeholder="* email address"
+        type="email" placeholder="email address"
         ng-model="$parent.email"
         ng-class="{shake: emailErr, animated: emailErr}"
         ng-disabled="resetting")
@@ -10,13 +10,13 @@ form#reset-form(ng-submit="!resetting && resetRequest()" ng-if="!token")
     input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
     .row
       .form-group.col-xs-12.col-sm-6
-        button.btn(ng-click="!resetting && resetRequest()"
-          ng-class="{'btn-warning': !isReset, 'btn-success': isReset}")
-            | {{isReset && 'check your email' || 'reset password'}}
-      .form-group.col-xs-12.col-sm-6
         a(ui-sref="^.main")
           button.btn.btn-danger
             | cancel
+      .form-group.col-xs-12.col-sm-6
+        button.btn(ng-click="!resetting && resetRequest()"
+          ng-class="{'btn-warning': !isReset, 'btn-success': isReset}")
+            | {{isReset && 'check your email' || 'reset password'}}
 
 
 form#reset-form(ng-submit="!resetting && resetResponse()" ng-if="token")
@@ -41,10 +41,10 @@ form#reset-form(ng-submit="!resetting && resetResponse()" ng-if="token")
 
     .row(ng-if="token")
       .form-group.col-xs-12.col-sm-6
-        button.btn.btn-success(ng-click="!resetting && resetResponse()")
-          | reset password
-      .form-group.col-xs-12.col-sm-6
         a(ui-sref="^.main")
           button.btn.btn-danger
             | cancel
+      .form-group.col-xs-12.col-sm-6
+        button.btn.btn-success(ng-click="!resetting && resetResponse()")
+          | reset password
 

@@ -123,11 +123,12 @@ bitcamp = angular.module("bitcampApp")
         .success (cookie) ->
           # FIXME: $rootScope._login(cookie)
           $scope.isReset = true
-          $scope.email = ""
+          $scope.password = ""
+          $scope.confirm = ""
+          $state.go "login.main"
         .error ->
           ($timeout (->
-            $scope.resetting    = false
+            $scope.resetting = false
           ), 1000)
           $scope.emailErr    = true
           $scope.passwordErr = true
-
