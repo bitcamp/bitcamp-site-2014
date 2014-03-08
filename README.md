@@ -34,3 +34,7 @@ folder, and make `ember` serve that.
 4. Probably do step #3 a few more times.
 5. Send a Pull Request.
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/bitcamp/bitca.mp/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
