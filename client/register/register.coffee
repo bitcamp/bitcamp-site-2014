@@ -93,7 +93,9 @@ bitcamp = angular.module("bitcampApp")
         .success (data) ->
           $rootScope.api_messages = []
           $timeout ->
-            $scope.registerBtnText = "check your email!"
+            # FIXME
+            $timeout (-> $state.go "login.main", redirect: "register.two"), 1000
+            #$scope.registerBtnText = "check your email!"
             $scope.registerSuccess = true
             $scope.registering     = false
             $scope.email           = ""
@@ -217,7 +219,9 @@ bitcamp = angular.module("bitcampApp")
     $rootScope.navBubbles = [true, true, true, true]
     $rootScope.bodyCSS["background-color"] = colors["blue-light"]
 
-    $scope.profile = profile.get()
+    $scope.lockInputs = true
+    $scope.profile = profile.get ->
+      $scope.lockInputs = false
 
     $scope.submitting = false
     $scope.submit = ->

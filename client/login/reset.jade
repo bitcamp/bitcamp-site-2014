@@ -1,4 +1,4 @@
-form#reset-form(ng-submit="!resetting && resetRequest()" ng-if="!token")
+form#reset-form(novalidate="" ng-submit="!resetting && resetRequest()" ng-if="!token")
   .row
     .form-group.col-xs-12
       input#reset-email.form-control(
@@ -19,7 +19,7 @@ form#reset-form(ng-submit="!resetting && resetRequest()" ng-if="!token")
             | {{isReset && 'check your email' || 'reset password'}}
 
 
-form#reset-form(ng-submit="!resetting && resetResponse()" ng-if="token")
+form#reset-form(novalidate="" ng-submit="!resetting && resetResponse()" ng-if="token")
   .row
     .form-group.col-xs-12
       label.label(for="reset-password") * password

@@ -1,4 +1,4 @@
-form(ng-submit="!loggingIn && loginF(email, password)")
+form(novalidate="" ng-submit="!loggingIn && loginF(email, password)")
 
   .row(ng-if="token")
     .form-group.col-xs-12.text-center

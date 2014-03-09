@@ -97,8 +97,8 @@ $cloudHeight: 150px
 
   @mixin sponsor($name)
     #sponsor-#{$name}
-      $w: min(275px, image-width( '/images/sponsor/#{$name}.png'))
-      $h: min(300px, image-height('/images/sponsor/#{$name}.png'))
+      $w: min(270px, image-width( '/images/sponsor/#{$name}.png'))
+      $h: min(999px, image-height('/images/sponsor/#{$name}.png'))
       width:  $w
       height: $h
       background: no-repeat url('/images/sponsor/#{$name}.png')
@@ -139,6 +139,12 @@ $cloudHeight: 150px
       width:   image-width('/images/sponsor/booz-allen-hamilton-lg.png')
       height: image-height('/images/sponsor/booz-allen-hamilton-lg.png')
       background:      url('/images/sponsor/booz-allen-hamilton-lg.png') no-repeat
+    #sponsor-oculus
+      margin-top:    0
+      margin-bottom: 0
+      width:   image-width('/images/sponsor/oculus-lg.png')
+      height: image-height('/images/sponsor/oculus-lg.png')
+      background:      url('/images/sponsor/oculus-lg.png') no-repeat
 
 
 
