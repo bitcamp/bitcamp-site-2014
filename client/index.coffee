@@ -57,6 +57,11 @@ bitcamp = angular.module("bitcampApp", [
         templateUrl: "login/reset.html"
         controller: "LoginCtrl.reset"
 
+      .state "colorwar",
+        url: "/colorwar"
+        templateUrl: "color/index.html"
+        controller: "ColorCtrl"        
+
       .state "fireside",
         url: "/fireside"
         templateUrl: "fireside/index.html"
@@ -66,6 +71,7 @@ bitcamp = angular.module("bitcampApp", [
         url: "/faq"
         templateUrl: "faq/index.html"
         controller: "FaqCtrl"
+
       .state "faq_sponsors",
         url: "/faq/sponsors"
         templateUrl: "faq/sponsors.html"

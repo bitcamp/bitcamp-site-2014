@@ -17,6 +17,8 @@ ready.then ->
 
   app.get "/login",        indexRoute
 
+  
+  app.get "/colorwar",     indexRoute
   app.get "/fireside",     indexRoute
   app.get "/faq",          indexRoute
   app.get "/faq/sponsors", indexRoute
