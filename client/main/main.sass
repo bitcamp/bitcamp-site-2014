@@ -73,6 +73,8 @@ $cloudHeight: 150px
 
 
 #sponsors
+  padding-left: 15vw
+  padding-right: 15vw
   #sponsor-you
     margin: 0 auto
     background-color: $color_grey
@@ -84,7 +86,7 @@ $cloudHeight: 150px
     color: $color_grey
 
   #partners
-    margin-top: 40px
+    margin: 40px 0
 
   .sponsor
     display: inline-block
@@ -97,17 +99,29 @@ $cloudHeight: 150px
 
   @mixin sponsor($name)
     #sponsor-#{$name}
-      width:  image-width('/images/sponsor/#{$name}.png')
-      height: image-height('/images/sponsor/#{$name}.png')
+      $w: min(270px, image-width( '/images/sponsor/#{$name}.png'))
+      $h: min(999px, image-height('/images/sponsor/#{$name}.png'))
+      width:  $w
+      height: $h
       background: no-repeat url('/images/sponsor/#{$name}.png')
+      background-size: $w $h
 
+  @include sponsor(ampvita)
   @include sponsor(appian)
   @include sponsor(att)
   @include sponsor(booz-allen-hamilton)
   @include sponsor(cipher)
   @include sponsor(clarabridge)
+  @include sponsor(creativemarket)
   @include sponsor(daocloud)
-  @include sponsor(fiscalnote)
+  @include sponsor(digitalocean)
+  @include sponsor(generalcatalyst)
+  @include sponsor(globalthinking)
+  @include sponsor(hp)
+  @include sponsor(imaginex)
+  @include sponsor(intel)
+  @include sponsor(kivvik)
+  @include sponsor(lob)
   @include sponsor(lts)
   @include sponsor(mashery)
   @include sponsor(microsoft)
@@ -116,24 +130,37 @@ $cloudHeight: 150px
   @include sponsor(namecheap)
   @include sponsor(oculus)
   @include sponsor(opis)
-  @include sponsor(parsons)
+  @include sponsor(opower)
+  @include sponsor(pepsi)
   @include sponsor(rdio)
   @include sponsor(sendgrid)
+  @include sponsor(sga)
   @include sponsor(socialradar)
   @include sponsor(sparkfun)
   @include sponsor(startup-shell)
+  @include sponsor(stickermule)
   @include sponsor(tata)
   @include sponsor(terrapin-hackers)
   @include sponsor(thiel)
+  @include sponsor(ventureboard)
+  @include sponsor(wolfram)
 
   // *sigh* custom styles for their crappy logo
   @media (min-width: 500px)
+    #sponsors
+      padding: 0 0
     #sponsor-booz-allen-hamilton
       margin-top:    0
       margin-bottom: 0
       width:   image-width('/images/sponsor/booz-allen-hamilton-lg.png')
       height: image-height('/images/sponsor/booz-allen-hamilton-lg.png')
       background:      url('/images/sponsor/booz-allen-hamilton-lg.png') no-repeat
+    #sponsor-oculus
+      margin-top:    0
+      margin-bottom: 0
+      width:   image-width('/images/sponsor/oculus-lg.png')
+      height: image-height('/images/sponsor/oculus-lg.png')
+      background:      url('/images/sponsor/oculus-lg.png') no-repeat
 
 
 

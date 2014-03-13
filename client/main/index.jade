@@ -17,7 +17,7 @@
             button.btn-warning#register1-btn register
 
       .col-xs-12(ng-hide="cookie")
-        .h3.text-center
+        .p.text-center
           a(ui-sref="login.main" role="button")
             span#login-btn login
 
@@ -45,55 +45,66 @@
 
         h3.b
           a(ui-sref="faq" scroll-to="#wrapper")
-            button.btn-btn-warning#faq-button details + FAQ
+            button.btn-btn-warning#faq-button FAQ
 
 
   #sponsors.row.btc-row
     .col-xs-12
       h2 Sponsors
 
-      h5
-        a(href="mailto:sponsorship@bitca.mp" target="_blank")
-          | interested in sponsoring?
-
     mixin sponsor(sponsor, href)
       a(href=href target="_blank")
         .sponsor(id="sponsor-#{sponsor}")
 
-    //.col-xs-12
-    //  +sponsor("lts",                 "http://www.ltsnet.net/")
+    .col-xs-12
+      +sponsor("lts",                 "http://www.ltsnet.net/")
     .col-xs-12
       +sponsor("booz-allen-hamilton", "http://www.boozallen.com/")
+      +sponsor("oculus",              "http://www.oculusvr.com/")
+      +sponsor("globalthinking",      "http://www.globalthinking.com/")
     .col-xs-12
       +sponsor("appian",              "http://www.appian.com/")
       +sponsor("att",                 "http://www.att.com/")
       +sponsor("cipher",              "http://www.ciphertechsolutions.com/")
       +sponsor("clarabridge",         "http://www.clarabridge.com/")
+      +sponsor("creativemarket",      "http://www.creativemarket.com/")
       +sponsor("daocloud",            "http://www.daocloud.com/")
-    .col-xs-12
-      +sponsor("fiscalnote",          "http://www.fiscalnote.com/")
+      +sponsor("digitalocean",        "http://www.digitalocean.com/")
+      +sponsor("generalcatalyst",     "http://www.generalcatalyst.com/")
+      +sponsor("hp",                  "http://www.hp.com/")
+      +sponsor("intel",               "http://www.intel.com/")
+      +sponsor("lob",                 "http://www.lob.com/")
       +sponsor("mashery",             "http://www.mashery.com/")
       +sponsor("microsoft",           "http://www.microsoft.com/")
       +sponsor("mongodb",             "http://www.mongodb.com/")
       +sponsor("namecheap",           "https://www.namecheap.com/")
-      +sponsor("oculus",              "http://www.oculusvr.com/")
-    .col-xs-12
       +sponsor("opis",                "http://www.opisnet.com/")
+      +sponsor("opower",              "http://opower.com/")
+      +sponsor("pepsi",               "http://pepsi.com/")
       +sponsor("rdio",                "http://www.rdio.com/")
       +sponsor("sendgrid",            "http://www.sendgrid.com/")
-      +sponsor("sparkfun",            "https://www.sparkfun.com/")
+      +sponsor("sga",                 "http://www.mdsga.com/")
       +sponsor("socialradar",         "http://socialradar.com/")
+      +sponsor("sparkfun",            "https://www.sparkfun.com/")
+      +sponsor("stickermule",         "http://www.stickermule.com/")
       +sponsor("tata",                "http://web.tatatechnologies.com/")
       +sponsor("thiel",               "http://thielfellowship.org/")
-    .col-xs-12
+      +sponsor("wolfram",             "http://wolfram.com/")
+      +sponsor("ampvita",             "http://gethotdrop.com/")
+      +sponsor("imaginex",            "https://www.facebook.com/imaginexco/")
+      +sponsor("kivvik",              "http://kivvik.com/")
+      +sponsor("ventureboard",        "http://ventureboard.co/")
 
     #partners.col-xs-12
       h2 Partners
-      +sponsor("terrapin-hackers",    "http://terrapinhackers.com/")
       +sponsor("startup-shell",       "http://startupshell.org/")
+      +sponsor("terrapin-hackers",    "http://terrapinhackers.com/")
       +sponsor("mlh",                 "http://mlh.io/")
 
     .col-xs-12
+      h5
+        a(href="mailto:sponsorship@bitca.mp" target="_blank")
+          | your name here?
       h3
         a(ui-sref="faq_sponsors" scroll-to="#wrapper")
           button#sponsor-you sponsor FAQ
@@ -115,4 +126,3 @@
             br
             | Cole Field House
           .h3 College Park, MD
-
