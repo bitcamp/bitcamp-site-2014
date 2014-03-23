@@ -16,6 +16,8 @@ ready.then ->
   app.get "/",             indexRoute
 
   app.get "/login",        indexRoute
+  app.get "/conduct",      indexRoute
+  app.get "/hackumentary", indexRoute
 
   
   app.get "/colorwar",     indexRoute

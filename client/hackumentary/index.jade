@@ -1,0 +1,13 @@
+#faq(ng-show="isLoaded")
+  header#header.row.btc-row
+    div(ng-include="" onload="isLoaded = true" src="'layout/header-logo-notenttree.html'")
+    .col-xs-12
+      h1 YOU+TECH
+      h3 the hackumentary
+
+  #faq-content.light-on-dark
+    .container
+      .row.btc-row
+        #faq-content-inner.col-xs-12
+          :markdown
+            Hackathons are taking the world by storm, and we want to show the everyone what it's all about. This feature length documentary will focus on the hackathon movement and all of Bitcamp's efforts to move the community forward. YOU+TECH is all about taking what you love, fusing it with tech, and building something the world has never seen. Pre-production is already underway, we're so excited to make this happen! Contact [hello@bitca.mp](mailto:hello@bitca.mp) if you have ideas or want to get involved in the production.
