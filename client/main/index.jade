@@ -51,8 +51,6 @@
           a(href="https://docs.google.com/forms/d/1vk4a96fPxru0OEQuQZLQcSwNrVPrHpg1AP7Dn_5FqbE/viewform" role="button")
             span.light-on-dark volunteer sign-up
 
-
-
   #sponsors.row.btc-row
     .col-xs-12
       h2 Sponsors
@@ -60,25 +58,36 @@
     mixin sponsor(sponsor, href)
       a(href=href target="_blank")
         .sponsor(id="sponsor-#{sponsor}")
+          img(src="/images/sponsor/#{sponsor}.svg")
 
     .col-xs-12
       +sponsor("lts",                 "http://www.ltsnet.net/")
     .col-xs-12
-      +sponsor("booz-allen-hamilton", "http://www.boozallen.com/")
+      +sponsor("booz", "http://www.boozallen.com/")
+      +sponsor("bloomberg",           "http://www.bloomberg.com/")
+      +sponsor("drakontas",           "http://www.drakontasconsulting.com/")
       +sponsor("oculus",              "http://www.oculusvr.com/")
       +sponsor("globalthinking",      "http://www.globalthinking.com/")
     .col-xs-12
+      +sponsor("ampvita",             "http://www.gethotdrop.com/")
       +sponsor("appian",              "http://www.appian.com/")
       +sponsor("att",                 "http://www.att.com/")
+      +sponsor("bookholders",         "http://www.bookholders.com/")
       +sponsor("cipher",              "http://www.ciphertechsolutions.com/")
       +sponsor("clarabridge",         "http://www.clarabridge.com/")
       +sponsor("creativemarket",      "http://www.creativemarket.com/")
       +sponsor("daocloud",            "http://www.daocloud.com/")
       +sponsor("digitalocean",        "http://www.digitalocean.com/")
+      +sponsor("epic",                "http://www.epic.com/")
       +sponsor("generalcatalyst",     "http://www.generalcatalyst.com/")
+      +sponsor("girldevelopit",       "http://www.girldevelopit.com/")
+      +sponsor("hd",                  "http://www.hdtradeservices.com/")
       +sponsor("hp",                  "http://www.hp.com/")
+      +sponsor("imaginex",            "https://www.facebook.com/imaginexco/")
       +sponsor("intel",               "http://www.intel.com/")
+      +sponsor("kivvik",              "http://kivvik.com/")
       +sponsor("lob",                 "http://www.lob.com/")
+      +sponsor("lockheed",            "http://www.lockheedmartin.com/")
       +sponsor("mashery",             "http://www.mashery.com/")
       +sponsor("microsoft",           "http://www.microsoft.com/")
       +sponsor("mongodb",             "http://www.mongodb.com/")
@@ -88,23 +97,26 @@
       +sponsor("pepsi",               "http://pepsi.com/")
       +sponsor("rdio",                "http://www.rdio.com/")
       +sponsor("sendgrid",            "http://www.sendgrid.com/")
-      +sponsor("sga",                 "http://www.mdsga.com/")
       +sponsor("socialradar",         "http://socialradar.com/")
       +sponsor("sparkfun",            "https://www.sparkfun.com/")
       +sponsor("stickermule",         "http://www.stickermule.com/")
       +sponsor("tata",                "http://web.tatatechnologies.com/")
       +sponsor("thiel",               "http://thielfellowship.org/")
-      +sponsor("wolfram",             "http://wolfram.com/")
-      +sponsor("ampvita",             "http://gethotdrop.com/")
-      +sponsor("imaginex",            "https://www.facebook.com/imaginexco/")
-      +sponsor("kivvik",              "http://kivvik.com/")
       +sponsor("ventureboard",        "http://ventureboard.co/")
+      +sponsor("wolfram",             "http://wolfram.com/")
 
     #partners.col-xs-12
       h2 Partners
       +sponsor("startup-shell",       "http://startupshell.org/")
       +sponsor("terrapin-hackers",    "http://terrapinhackers.com/")
       +sponsor("mlh",                 "http://mlh.io/")
+    .col-xs-12
+      +sponsor("bsos",                "http://bsos.umd.edu/")
+      +sponsor("clark",               "http://eng.umd.edu/")
+      +sponsor("ece",                 "http://ece.umd.edu/")
+      +sponsor("cmns",                "http://cmns.umd.edu/")
+      +sponsor("cs",                  "http://cs.umd.edu/")
+      //- +sponsor("divit",                 "http://it.umd.edu/")
 
     .col-xs-12
       h5
