@@ -7,6 +7,8 @@
 
   #waiver-content.light-on-dark
     .container
+      h3(ng-if="done")
+        button.btn.btn-success You're already good to go, camper!
       .row.btc-row
         #waiver-content-inner.col-xs-12
           h2 Liability Release
