@@ -134,7 +134,7 @@
             p
               | I acknowledge that I am responsible for respecting humankind and the hacking community at large by conducting myself in a manner deemed appropriate by the
               | Bitcamp officials and not being abusive to other individuals during the event.
-          form.center(ng-submit="submit()")
+          form.center(ng-submit="!done && submit()")
             p(align='center')
               strong
                 | BY ENTERING MY NAME IN THE SIGNATURE BOX BELOW AND CLICKING THE "I AGREE" BUTTON, I UNDERSTAND THAT I AM AGREEING TO THE TERMS AND CONDITIONS SET FORTH IN THE LIABILITY RELEASE, THE CODE OF CONDUCT, AND THE PARTICIPATION AGREEMENT ABOVE VIA ELECTRONIC SIGNATURE.
@@ -143,9 +143,10 @@
               placeholder="Sally Hacker",
               ng-model="name2", ng-disabled="done")
 
+              div(ng-if="!(name2 && done)")
+                br
+                p {{name}}
               br
-              br
-              p {{name}}
               br
 
             button.btn(type='submit',

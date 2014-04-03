@@ -2,7 +2,6 @@ angular.module('bitcampApp')
   .controller 'WaiverCtrl', ($scope, $http, profile) ->
 
     $scope.name  = ""
-    $scope.name2 = ""
     $scope.done = false
 
     $scope.profile = profile.get ->
@@ -12,6 +11,7 @@ angular.module('bitcampApp')
     .success((data, status, headers, config) ->
       if status == 200
         $scope.done = true
+        $scope.name2 = $scope.name
     )
     .error((data, status, headers, config) ->
     )
