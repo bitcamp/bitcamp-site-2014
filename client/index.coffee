@@ -219,3 +219,10 @@ bitcamp = angular.module("bitcampApp", [
         method: 'PUT'
     })
 
+  .factory "waiver", ($resource) ->
+    $resource("/api/profile", {}, {
+      save:
+        method: 'POST'
+    })
+
+
