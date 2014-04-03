@@ -4,14 +4,14 @@ angular.module('bitcampApp')
     $scope.name  = ""
     $scope.done = false
 
-    $scope.profile = profile.get ->
-      $scope.name = "#{$scope.profile.first} #{$scope.profile.last}"
-
     $http.get('/api/waiver')
     .success((data, status, headers, config) ->
-      if status == 200
+      if data.first and data.last
+        $scope.name = "#{data.first} #{data.last}"
+      else
         $scope.done = true
-        $scope.name2 = $scope.name
+        $scope.profile = profile.get (data) ->
+          $scope.name2 = "#{data.first} #{data.last}"
     )
     .error((data, status, headers, config) ->
     )
