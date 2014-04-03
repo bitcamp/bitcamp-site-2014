@@ -114,6 +114,11 @@ bitcamp = angular.module("bitcampApp", [
         templateUrl: "register/four.html"
         controller: "RegisterCtrl.four"
 
+      .state "waiver",
+        url: "/waiver"
+        templateUrl: "waiver/index.html"
+        controller: "WaiverCtrl"
+
       .state "404",
         url: "/404"
         templateUrl: "layout/404/index.html"
