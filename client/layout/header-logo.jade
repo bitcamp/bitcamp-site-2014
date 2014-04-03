@@ -9,6 +9,13 @@
           ng-mouseleave="editHover = false"
           )
           | revise
+      a(ui-sref="waiver")
+        button#logout-btn.btn.btn-wait(
+          ng-class="{'btn-success': waiverHover, 'btn-wait': !waiverHover}"
+          ng-mouseover="waiverHover = true"
+          ng-mouseleave="waiverHover = false"
+          )
+            | waiver
       a(ui-sref="main")
         button#logout-btn.btn.btn-wait(
           ng-click="logout()"
@@ -16,7 +23,7 @@
           ng-mouseover="logoutHover = true"
           ng-mouseleave="logoutHover = false"
           )
-            |logout
+            | logout
 
   .btc-background
     a(ui-sref="fireside")
