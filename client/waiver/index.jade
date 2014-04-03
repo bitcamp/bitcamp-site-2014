@@ -139,9 +139,13 @@
             .text-center
               input(type='text', name='name',
               placeholder="Sally Hacker",
-              ng-model="name", ng-disabled="!name")
-            br
-            br
+              ng-model="name2", ng-disabled="done")
+
+              br
+              br
+              p {{name}}
+              br
+
             button.btn(type='submit',
-            ng-class="{'btn-info': name, 'btn-success': !name}")
-              | {{name && 'I AGREE' || profile && 'Good to go!' || 'Login!'}}
+            ng-class="{'btn-info': !done, 'btn-success': done}")
+              | {{!done && 'I AGREE' || profile && 'Good to go!' || 'Login!'}}
