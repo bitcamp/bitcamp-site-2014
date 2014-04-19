@@ -10,16 +10,15 @@
         #place April 4-6, 2014
 
     #call-to-action.text-center
+      //-
+        .col-xs-12(ng-hide="cookie")
+          h3
+            button.disabled#register1-btn closed :(
 
-      .col-xs-12(ng-hide="cookie")
-        h3
-          a(ui-sref="register.one" role="button")
-            button.btn-warning#register1-btn register
-
-      .col-xs-12(ng-hide="cookie")
-        .p.text-center
-          a(ui-sref="login.main" role="button")
-            span#login-btn login
+        .col-xs-12(ng-hide="cookie")
+          .p.text-center
+            a(ui-sref="login.main" role="button")
+              span#login-btn login
 
       .col-xs-12(ng-show="cookie")
         br
@@ -44,7 +43,7 @@
 
         p
           a(href="https://docs.google.com/forms/d/1vk4a96fPxru0OEQuQZLQcSwNrVPrHpg1AP7Dn_5FqbE/viewform" role="button")
-            span.light-on-dark volunteer sign-up
+          //-  span.light-on-dark volunteer sign-up
 
   #sponsors.row.btc-row
     .col-xs-12
@@ -121,9 +120,10 @@
       h5
         a(href="mailto:sponsorship@bitca.mp" target="_blank")
           | interested in sponsoring?
-      h3
-        a(ui-sref="faq_sponsors" scroll-to="#wrapper")
-          button#sponsor-you sponsor FAQ
+      //-
+        h3
+          a(ui-sref="faq_sponsors" scroll-to="#wrapper")
+            button#sponsor-you sponsor FAQ
 
   #twitter.row.btc-row
     .col-xs-12
