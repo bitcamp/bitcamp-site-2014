@@ -24,7 +24,7 @@
 
 a
   text-decoration: none
-  @include transition(color 0.2s ease-in)
+  @include transition(color 0.1s ease-in)
 
 .dark-on-light
   @include dark-on-light($color_white)
@@ -34,25 +34,10 @@ a
 
 
 #header
-  @include dark-on-light(transparent)
+  @include dark-on-light(transparent, $color_white)
 
-#description
-  @include light-on-dark($color_grey-dark)
-
-#isfor
-  @include dark-on-light($color_white)
-
-#permission
+#updates
   @include light-on-dark($color_orange)
 
-#sponsors, #partners
-  @include dark-on-light($color_white)
-
-#twitter
-  @include dark-on-light($color_blue-light, $color_grey-dark)
-
-#map
-  @include light-on-dark($color_blue-dark)
-
 #footer
-  @include light-on-dark($color_grey-dark)
+  @include light-on-dark($color_orange)

@@ -32,51 +32,25 @@ html(ng-app="bitcampApp")
     link(rel="stylesheet" href="layout/typo.css")
 
     link(rel="stylesheet" href="main/main.css")
-
-    link(rel="stylesheet" href="fireside/fireside.css")
-
-    link(rel="stylesheet" href="faq/faq.css")
-
-    link(rel="stylesheet" href="waiver/waiver.css")
-
-    link(rel="stylesheet" href="register/register.css")
-
-    link(rel="stylesheet" href="login/login.css")
-
-    link(rel="stylesheet" href="color/color.css")
-
-    link(rel="stylesheet" href="travel/travel.css")
     <!-- endbuild -->
 
 
   body(ng-controller="BodyCtrl" ng-cloak ng-style="bodyCSS")
 
-    .btc-background-wrapper
+    .btc-background-wrapper.ng-cloak
       .btc-background
-        #cloud-1.cloud
-          <img src="/images/cloud-1.svg" width="150" height="80">
-        #cloud-2.cloud
-          <img src="/images/cloud-2.svg" width="150" height="80">
-        #cloud-3.cloud
-          <img src="/images/cloud-1.svg" width="150" height="80">
-        #cloud-4.cloud
-          <img src="/images/cloud-2.svg" width="150" height="80">
 
     .wrapper.bitcamp-view#wrapper(ui-view)
 
-    .wrapper.ng-cloak(ng-include="" src=" 'layout/footer.html' ")
+    .wrapper#wrapper-footer(ng-include="" src=" 'layout/footer.html' ")
 
 
     <!-- build:js({./,client}) scripts/plugins.js -->
     script(src="components/jquery/dist/jquery.js")
 
-    script(src="components/jquery-ui/ui/jquery-ui.js")
-
     script(src="components/angular/angular.js")
 
     script(src="components/flowtype/flowtype.js")
-
-    script(src="components/moment/moment.js")
 
     script(src="lib/ui-bootstrap-custom-0.10.0.js")
     script(src="lib/ui-bootstrap-custom-tpls-0.10.0.js")
@@ -91,25 +65,16 @@ html(ng-app="bitcampApp")
     script(src="components/angular-cookies/angular-cookies.js")
     script(src="components/angular-sanitize/angular-sanitize.js")
     script(src="components/angular-animate/angular-animate.js")
+
+    script(src="components/angulartics/dist/angulartics.min.js")
+    script(src="components/angulartics/dist/angulartics-ga.min.js")
     <!-- endbuild -->
 
     <!-- build:js(.tmp) scripts/main.js -->
     script(src="index.js")
     script(src="layout/404/404.js")
-
+    script(src="main/poisson-disk-sample.js")
     script(src="main/main.js")
-
-    script(src="fireside/fireside.js")
-
-    script(src="faq/faq.js")
-    script(src="waiver/waiver.js")
-    script(src="conduct/conduct.js")
-    script(src="color/color.js")
-    script(src="travel/travel.js")
-    script(src="hackumentary/hackumentary.js")
-    script(src="register/register.js")
-
-    script(src="login/login.js")
     <!-- endbuild -->
 
     <!-- Google Analytics: gs.js -->
