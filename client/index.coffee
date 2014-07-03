@@ -18,24 +18,6 @@ bitcamp = angular.module("bitcampApp", [
     $locationProvider,
     $httpProvider) ->
 
-    $httpProvider.responseInterceptors.push ["$location", "$q", "$injector"
-      ($location, $q, $injector) -> (promise) ->
-        promise.then ((x) -> x), (response) ->
-          isRegister = response.config.url is "/api/register"
-          isLogin    = response.config.url is "/api/login"
-          isLogout   = response.config.url is "/api/logout"
-          isReset    = response.config.url is "/api/login/reset"
-          if response.status is 401 and
-            not isRegister and
-            not isLogin and
-            not isLogout and
-            not isReset
-              $state = $injector.get("$state")
-              $state.go "login.main",
-                redirect: encodeURIComponent($state.$current.name)
-          $q.reject response
-    ]
-
     $locationProvider.html5Mode(true)
 
     $urlRouterProvider.otherwise "/404"

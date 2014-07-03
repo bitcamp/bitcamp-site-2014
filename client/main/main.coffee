@@ -1,5 +1,5 @@
 angular.module('bitcampApp')
-  .controller 'MainCtrl', ($scope, $rootScope, colors, $timeout) ->
+  .controller 'MainCtrl', ($scope, $rootScope, colors, $timeout, $http) ->
     $rootScope.bodyCSS["background-color"] = colors["blue-dark"]
 
     makeStars = (minDistance=2.4, sampleFrequency=7)->
@@ -29,6 +29,27 @@ angular.module('bitcampApp')
 
     $scope.$on "$viewContentLoaded", -> makeStars 23, 20
 
-    $scope.signup = ->
-      console.log "stuff"
+    makeSignup = ->
+      $scope.signup =
+        name:       ""
+        email:      ""
+        university: ""
+    makeSignup()
+    $scope.submit = ->
+      $scope.successText = ". . ."
+      $timeout ->
+        $http.post("/api/signup", $scope.signup)
+          .success ->
+            $scope.signupSuccess = true
+            $scope.successText = "success! :)"
+            $timeout ->
+              makeSignup()
+              $scope.successText = null
+              $scope.signupSuccess = false
+            , 3000
+          .error ->
+            $scope.signupError = true
+            $scope.successText = "error :("
+            $timeout (-> $scope.successText = null), 3000
+      , 1200
     null

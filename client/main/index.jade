@@ -11,10 +11,17 @@
 
   #updates.btc-row
     #updates-input
-      h2 get email updates
+      h2 {{successText || 'get email updates'}}
       h3
-        form(id="signup", name="signup", ng-submit="signup()")
-          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false", ng-model="signup.name"   placeholder="name")
-          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false", ng-model="signup.email"  placeholder="email")
-          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false", ng-model="signup.school" placeholder="school")
+        form.animated(id="signup", name="signup", ng-submit="submit()",
+          ng-class="{'shake': signupError, 'tada': signupSuccess}")
+          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false",
+            ng-model="signup.name" placeholder="name", ng-disabled="successText")
+          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false",
+            ng-model="signup.email" placeholder="email", ng-disabled="successText")
+          input.animated(
+            type="text", autocapitalize="off", autocorrect="off", spellcheck="false",
+            ng-model="signup.university" placeholder="school", ng-disabled="successText")
+          input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
+
 

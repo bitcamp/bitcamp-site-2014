@@ -25,7 +25,7 @@
           )
             | logout
 
-  .btc-background(ng-show="!twinkle")
+  .btc-background(ng-if="!twinkle")
     .star(
       ng-repeat="star in stars1"
       id="star-{{$index}}"
