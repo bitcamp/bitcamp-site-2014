@@ -93,7 +93,9 @@ bitcamp = angular.module("bitcampApp", [
 
     $rootScope.$on "$stateChangeSuccess", ->
       $window.scrollTo 0, 0
-      $window.ga "send", page: $location.path()
+      $window.ga? "set", "page", $location.path()
+      $window.ga? "send", "pageview"
+
 
     $rootScope.logout = ->
       $http.get("/api/logout")
