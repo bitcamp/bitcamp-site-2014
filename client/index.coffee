@@ -6,6 +6,9 @@ bitcamp = angular.module("bitcampApp", [
 
   "ui.router"
   "ui.bootstrap"
+
+  "angulartics"
+  "angulartics.google.analytics"
 ])
 
 
@@ -14,24 +17,6 @@ bitcamp = angular.module("bitcampApp", [
     $urlRouterProvider,
     $locationProvider,
     $httpProvider) ->
-
-    $httpProvider.responseInterceptors.push ["$location", "$q", "$injector"
-      ($location, $q, $injector) -> (promise) ->
-        promise.then ((x) -> x), (response) ->
-          isRegister = response.config.url is "/api/register"
-          isLogin    = response.config.url is "/api/login"
-          isLogout   = response.config.url is "/api/logout"
-          isReset    = response.config.url is "/api/login/reset"
-          if response.status is 401 and
-            not isRegister and
-            not isLogin and
-            not isLogout and
-            not isReset
-              $state = $injector.get("$state")
-              $state.go "login.main",
-                redirect: encodeURIComponent($state.$current.name)
-          $q.reject response
-    ]
 
     $locationProvider.html5Mode(true)
 
@@ -42,83 +27,6 @@ bitcamp = angular.module("bitcampApp", [
         url: "/"
         templateUrl: "main/index.html"
         controller: "MainCtrl"
-
-      .state "login",
-        abstract: true
-        url: "/login"
-        templateUrl: "login/index.html"
-        controller: "LoginCtrl"
-      .state "login.main",
-        url: "?token&redirect"
-        templateUrl: "login/login.html"
-        controller: "LoginCtrl.main"
-      .state "login.reset",
-        url: "/reset?token"
-        templateUrl: "login/reset.html"
-        controller: "LoginCtrl.reset"
-
-      .state "colorwar",
-        url: "/colorwar"
-        templateUrl: "color/index.html"
-        controller: "ColorCtrl"
-
-      .state "travel",
-        url: "/travel"
-        templateUrl: "travel/index.html"
-        controller: "TravelCtrl"
-
-      .state "conduct",
-        url: "/conduct"
-        templateUrl: "conduct/index.html"
-        controller: "ConductCtrl"
-
-      .state "hackumentary",
-        url: "/hackumentary"
-        templateUrl: "hackumentary/index.html"
-        controller: "HackumentaryCtrl"
-
-      .state "fireside",
-        url: "/fireside"
-        templateUrl: "fireside/index.html"
-        controller: "FiresideCtrl"
-
-      .state "faq",
-        url: "/faq"
-        templateUrl: "faq/index.html"
-        controller: "FaqCtrl"
-
-      .state "faq_sponsors",
-        url: "/faq/sponsors"
-        templateUrl: "faq/sponsors.html"
-        controller: "FaqCtrl"
-
-      .state "register",
-        abstract: true
-        url: "/register"
-        templateUrl: "register/index.html"
-        controller: "RegisterCtrl"
-      .state "register.one",
-        url: "/one"
-        templateUrl: "register/one.html"
-        controller: "RegisterCtrl.one"
-      .state "register.two",
-        url: "/two"
-        templateUrl: "register/two.html"
-        controller: "RegisterCtrl.two"
-      .state "register.three",
-        url: "/three"
-        templateUrl: "register/three.html"
-        controller: "RegisterCtrl.three"
-      .state "register.four",
-        url: "/four"
-        templateUrl: "register/four.html"
-        controller: "RegisterCtrl.four"
-
-      .state "waiver",
-        url: "/waiver"
-        templateUrl: "waiver/index.html"
-        controller: "WaiverCtrl"
-
       .state "404",
         url: "/404"
         templateUrl: "layout/404/index.html"
@@ -160,14 +68,16 @@ bitcamp = angular.module("bitcampApp", [
       $cookieStore.put "auth", null
       delete $http.defaults.headers.common["Authorization"]
 
+    $rootScope.ready = false
     $http.get("/api/bitcamp")
       .success ->
         console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
+        $rootScope.ready = true
         $("body").flowtype
           minimum   : 320
           maximum   : 1200
           minFont   : 17
-          maxFont   : 22
+          maxFont   : 32
           fontRatio : 40
           lineRatio : 1.45
       .error (data) ->
@@ -195,6 +105,9 @@ bitcamp = angular.module("bitcampApp", [
         .finally ->
           $rootScope._logout()
 
+    $rootScope.treetentClick = ->
+      $rootScope.$emit "treetent:click"
+
   .factory "colors", ->
     "white"        : "#ffffff"
     "black"        : "#000000"
@@ -207,7 +120,7 @@ bitcamp = angular.module("bitcampApp", [
     "orangeyellow" : "#ffad40"
     "red"          : "#ff404a"
     "blue-light"   : "#ccf3ff"
-    "blue-dark"    : "#538ca5"
+    "blue-dark"    : "#1A2D33"
     "blue-darker"  : "#1a2e3c"
     "green"        : "#53a559"
     "green-light"  : "#40997c"
