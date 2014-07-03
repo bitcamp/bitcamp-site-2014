@@ -96,6 +96,7 @@ bitcamp = angular.module("bitcampApp", [
       $window.ga? "set", "page", $location.path()
       $window.ga? "send", "pageview"
 
+
     $rootScope.logout = ->
       $http.get("/api/logout")
         .success (data) ->
