@@ -35,7 +35,9 @@ html(ng-app="bitcampApp")
     <!-- endbuild -->
 
 
-  body(ng-controller="BodyCtrl" ng-cloak ng-style="bodyCSS")
+  body.custom-scollbar(
+    ng-controller="BodyCtrl"
+    ng-cloak ng-style="bodyCSS")
 
     .btc-background-wrapper.ng-cloak
       .btc-background

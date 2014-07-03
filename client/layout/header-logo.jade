@@ -26,7 +26,16 @@
             | logout
 
   .btc-background
+    .star(
+      ng-repeat="star in stars"
+      id="star-{{$index}}"
+      ng-style="{'left': star.x+'%', 'top': star.y+'%'}")
     #treetent
+      #treetent-img
+        img(
+          src="/images/treetent.svg",
+          width="100", height="100"
+          ng-click="treetentClick()")
 
 #logo.col-xs-12.noselect
   a.noselect(ui-sref="main")

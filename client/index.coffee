@@ -123,6 +123,9 @@ bitcamp = angular.module("bitcampApp", [
         .finally ->
           $rootScope._logout()
 
+    $rootScope.treetentClick = ->
+      $rootScope.$emit "treetent:click"
+
   .factory "colors", ->
     "white"        : "#ffffff"
     "black"        : "#000000"
