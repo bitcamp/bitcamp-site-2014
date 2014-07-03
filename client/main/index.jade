@@ -1,144 +1,27 @@
 #main(ng-show="isLoaded")
-  header#header.row.btc-row
-    div(ng-include="" src="'layout/header-logo.html'" onload="isLoaded = true")
+  header#header.btc-row
+    div.clearfix(ng-include="" src="'layout/header-logo.html'" onload="isLoaded = true")
 
-    .col-xs-12
-      h3#time-and-place
-        span#time.
-          Hackathon @
-          University of Maryland
-        #place April 4-6, 2014
+    .h1#title Lights Out
+    .p#subtitle Ready for s'more hacks? Bitcamp 2015 coming soon.
 
-    #call-to-action.text-center
-      //-
-        .col-xs-12(ng-hide="cookie")
-          h3
-            button.disabled#register1-btn closed :(
+    h3
+      a(href="//2014.bitca.mp/" target="_blank")
+        button 2014 website
 
-        .col-xs-12(ng-hide="cookie")
-          .p.text-center
-            a(ui-sref="login.main" role="button")
-              span#login-btn login
+  #updates.btc-row
+    #updates-input
+      h2 {{successText || 'get email updates'}}
+      h3
+        form.animated(id="signup", name="signup", ng-submit="submit()",
+          ng-class="{'shake': signupError, 'tada': signupSuccess}")
+          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false",
+            ng-model="signup.name" placeholder="name", ng-disabled="successText")
+          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false",
+            ng-model="signup.email" placeholder="email", ng-disabled="successText")
+          input.animated(
+            type="text", autocapitalize="off", autocorrect="off", spellcheck="false",
+            ng-model="signup.university" placeholder="school", ng-disabled="successText")
+          input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
 
-      .col-xs-12(ng-show="cookie")
-        br
-        br
 
-
-  #description.row.btc-row
-    .col-xs-12
-      #description-inner
-        h2 a new hackathon experience
-
-        h3.
-          Take what you love, fuse it with tech,
-          build something the world has never seen.
-
-        p.
-          Camp is a place for creation, exploration, and imagination. At Bitcamp, you’ll have 36 hours to combine your curiosities and wild ideas with code and gadgets to make something awesome. Throw in world-class mentors and hundreds of peers from around the world, and you’re in for an amazing time. See you by the bonfire!
-
-        h3.b
-          a(ui-sref="faq" scroll-to="#wrapper")
-            button.btn-btn-warning#faq-button FAQ
-
-        p
-          a(href="https://docs.google.com/forms/d/1vk4a96fPxru0OEQuQZLQcSwNrVPrHpg1AP7Dn_5FqbE/viewform" role="button")
-          //-  span.light-on-dark volunteer sign-up
-
-  #sponsors.row.btc-row
-    .col-xs-12
-      h2 Sponsors
-
-    mixin sponsor(sponsor, href)
-      a(href=href target="_blank")
-        .sponsor(id="sponsor-#{sponsor}")
-          img(src="/images/sponsor/#{sponsor}.svg")
-
-    .col-xs-12
-      +sponsor("lts",                 "http://www.ltsnet.net/")
-    .col-xs-12
-      +sponsor("booz", "http://www.boozallen.com/")
-      +sponsor("bloomberg",           "http://www.bloomberg.com/")
-      +sponsor("drakontas",           "http://drakontasconsulting.com/")
-      +sponsor("oculus",              "http://www.oculusvr.com/")
-      +sponsor("globalthinking",      "http://www.globalthinking.com/")
-    .col-xs-12
-      +sponsor("ampvita",             "http://gethotdrop.com/")
-      +sponsor("appian",              "http://www.appian.com/")
-      +sponsor("att",                 "http://www.att.com/")
-      +sponsor("bookholders",         "http://www.bookholders.com/")
-      +sponsor("cipher",              "http://www.ciphertechsolutions.com/")
-      +sponsor("clarabridge",         "http://www.clarabridge.com/")
-      +sponsor("creativemarket",      "http://www.creativemarket.com/")
-      +sponsor("daocloud",            "http://www.daocloud.com/")
-      +sponsor("digitalocean",        "http://www.digitalocean.com/")
-      +sponsor("epic",                "http://www.epic.com/")
-      +sponsor("generalcatalyst",     "http://www.generalcatalyst.com/")
-      +sponsor("giantivy",            "http://www.giantivy.com/")
-      +sponsor("girldevelopit",       "http://www.girldevelopit.com/")
-      +sponsor("hp",                  "http://www.hp.com/")
-      +sponsor("imaginex",            "https://www.facebook.com/imaginexco/")
-      +sponsor("intel",               "http://www.intel.com/")
-      +sponsor("kivvik",              "http://kivvik.com/")
-      +sponsor("kloudless",           "https://kloudless.com/")
-      +sponsor("lob",                 "http://www.lob.com/")
-      +sponsor("lockheed",            "http://www.lockheedmartin.com/")
-      +sponsor("mashery",             "http://www.mashery.com/")
-      +sponsor("microsoft",           "http://www.microsoft.com/")
-      +sponsor("mongodb",             "http://www.mongodb.com/")
-      +sponsor("namecheap",           "https://www.namecheap.com/")
-      +sponsor("opis",                "http://www.opisnet.com/")
-      +sponsor("opower",              "http://opower.com/")
-      +sponsor("pepsi",               "http://pepsi.com/")
-      +sponsor("rdio",                "http://www.rdio.com/")
-      +sponsor("sendgrid",            "http://www.sendgrid.com/")
-      +sponsor("socialradar",         "http://socialradar.com/")
-      +sponsor("sparkfun",            "https://www.sparkfun.com/")
-      +sponsor("stickermule",         "http://www.stickermule.com/")
-      +sponsor("tata",                "http://web.tatatechnologies.com/")
-      +sponsor("thiel",               "http://thielfellowship.org/")
-      +sponsor("twilio",              "http://twilio.com/")
-      +sponsor("ventureboard",        "http://ventureboard.co/")
-      +sponsor("wolfram",             "http://wolfram.com/")
-
-    #partners.col-xs-12
-      h2 Partners
-      +sponsor("startup-shell",       "http://startupshell.org/")
-      +sponsor("terrapin-hackers",    "http://terrapinhackers.com/")
-      +sponsor("mlh",                 "http://mlh.io/")
-    #umd-partners.col-xs-12
-      +sponsor("clark",               "http://eng.umd.edu/")
-      +sponsor("cmns",                "http://cmns.umd.edu/")
-      +sponsor("bsos",                "http://bsos.umd.edu/")
-      +sponsor("aie",                 "http://innovation.umd.edu/")
-      +sponsor("ece",                 "http://ece.umd.edu/")
-      +sponsor("cs",                  "http://cs.umd.edu/")
-      +sponsor("umaics",              "http://umiacs.umd.edu/")
-      +sponsor("max",                 "http://www.maxgigapop.net/")
-
-    .col-xs-12
-      h5
-        a(href="mailto:sponsorship@bitca.mp" target="_blank")
-          | interested in sponsoring?
-      //-
-        h3
-          a(ui-sref="faq_sponsors" scroll-to="#wrapper")
-            button#sponsor-you sponsor FAQ
-
-  #twitter.row.btc-row
-    .col-xs-12
-      h3.
-        Hit up <a href="https://twitter.com/bitcmp" target="_blank">@bitcmp</a> on Twitter and
-        join the <a href="https://twitter.com/search?q=%23plustech" target="_blank">#plustech</a> conversation.
-
-  a#map(href="http://goo.gl/maps/qS5Tf" target="_blank")
-    .row.btc-row
-      .btc-background-wrapper
-        .btc-background
-      #map-inner.col-xs-12
-        #map-text
-          .h2
-            span.glyphicon.glyphicon-map-marker
-            br
-            | Cole Field House
-          .h3 College Park, MD

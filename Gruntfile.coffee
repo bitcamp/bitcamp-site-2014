@@ -17,7 +17,7 @@ module.exports = (grunt) ->
 
     express:
       options:
-        cmd: "coffee"
+        cmd: "/usr/bin/coffee"
 
       dev:
         options:

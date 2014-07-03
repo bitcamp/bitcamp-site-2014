@@ -2,164 +2,100 @@
 @import '../layout/variables'
 
 
+#wrapper
+  height: 100%
+
 #main
-  button, input[type=button], input[type=submit]
-    max-width: 10em
 
-.cloud
-  position: absolute
-  z-index: -2
-  width: 150px
-  height: 80px
-
-$animTime1: 40s
-$animTime2: 45s
-$cloudHeight: 150px
-#cloud-1
-  top:   30%
-  left:  10%
-  animation: float-1 $animTime1 1 forwards linear
-#cloud-2
-  top:   10%
-  right: 10%
-  animation: float-2 $animTime1 1 forwards linear
-#cloud-3
-  top:   35%
-  left:  -1*$cloudHeight
-  animation: float-1 $animTime2 $animTime1 infinite forwards linear
-#cloud-4
-  top:   15%
-  right: -1*$cloudHeight
-  animation: float-2 $animTime2 $animTime1 infinite forwards linear
-
-#header
-  #time-and-place
-    line-height: 1.3em
-
-  #call-to-action
-    margin-bottom: 2.7em
-
-#description
-  #description-inner
-    margin: 0 auto
-    max-width: 820px
-    @media (max-width: 620px)
-      white-space: normal
-
-
-#permission
-  input
-    @include placeholder($color_white)
-
-  border-top: dashed 2px $color_white
-  #scissors
+  .btc-background
     position: absolute
-    top: -28px
-    left: 20%
-  input[type=text], input[type=email]
-    font-weight: 300
-    font-size: 1.8em
-    display: block
-    width: 100%
-    max-width: 18em
-    background-color: transparent
-    border: none
-    border-bottom: solid 1px $color_white
-    margin: 1em auto
-    text-align: center
-    color: $color_white
-    &:focus
-      @include placeholder(transparent)
-
-
-#sponsors
-  @media only screen and (min-width: 1280px)
-    padding: 0 12vw
-
-  #sponsor-you
-    margin: 0 auto
-    background-color: $color_grey
-    color:            $color_white
-    width: 100%
-    max-width: 10em
-
-  h4, h5
-    color: $color_grey
-
-  #partners
-    margin: 40px 0 0
-
-  #umd-partners
-    margin: 0
-
-  .sponsor
-    display: inline-block
-    transition: opacity 0.2s ease-out
-    &:hover
+    $btcbgtime: 1.0s
+    &.ng-enter, &.ng-leave
+      transition: all linear $btcbgtime
+    &.ng-enter, &.ng-leave.ng-leave-active
+      opacity: 0
+      animation: fadeInRight $btcbgtime
+    &.ng-leave, &.ng-enter.ng-enter-active
       opacity: 1
-    opacity: 0.8
-    img
-      max-width: 100%
+      animation: fadeOutRight $btcbgtime
+    .star
+      z-index: -4
+      background-color: $color_white
+      position: absolute
+      @include square(0.2em)
+      &.animated
+        opacity: 0
+        animation: twinkle 2s infinite ease
+      &.ng-enter, &.ng-leave
+        transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all
+      &.ng-enter.ng-enter-active, &.ng-leave
+        opacity: 1
+      &.ng-leave.ng-leave-active, &.ng-enter
+        opacity: 0
+      @for $i from 0 through 1000
+        &#star-#{$i}
+          animation-delay:  0.0075s * $i !important
+          transition-delay: 0.0075s * $i !important
 
+  display: flex
+  min-height: 100%
+  flex-direction: column
+  button, input[type=button], input[type=submit]
+    max-width: 12em
 
+  #header
+    padding: 4rem 0
+    flex: 0
 
+    #title
+      margin-bottom: 2rem
 
-
-#twitter
-  h3
-    @media only screen and (max-width: 500px)
-      white-space: normal
-  a
-    color: $color_red
-    &:hover
-      text-decoration: none
+    button
       color: $color_orange
-
-#map
-  display: block
-  position: relative
-  background-color: transparent
-
-  &:hover
-    text-decoration: none
-
-  .btc-row
-    padding: 0
-
-  #map-inner
-    white-space: nowrap
-    display: table
-    width: 100%
-    height: 25vw
-    min-height: 190px
-    max-height: 400px
-    #map-text
-      @media (max-width: 400px)
-        font-size: 0.8em
-      display: table-cell
-      vertical-align: middle
-      text-align: center
-
-  .btc-background-wrapper
-    $bg-min-width: 700px
-    min-width: $bg-min-width
-    position: absolute
-    @media (max-width: $bg-min-width)
-      left: 50%
-      margin-left: (-0.5)*$bg-min-width
-    z-index: -1
-    .btc-background
-      background: url('/images/cole.png') no-repeat
-      background-size: 100% auto
+      background: transparent
+      border: 2px solid $color_orange
+      border-radius: 12px
+      margin: 2em 0.5em
+      padding: 1.8rem 1rem
+      transition: color 0.1s ease-in, background-color 0.1s ease-in, transform 0.1s ease-in
+      &:hover
+        background-color: $color_orange
+        color: $color_white
+    a
+      display: inline-block
+      perspective: 40rem
+      min-width: 10em
+      &:hover button
+        transform: translateZ(2.0rem) translateY(-0.8rem)
 
 
-@keyframes float-1
-  100%
-    left: 150%
+  #updates
+    flex: 1
+    display: flex
+    flex-direction: column
+    justify-content: center
+    padding: 2rem 0
+    #updates-input
+      z-index: 2
+      padding-bottom: 0.5*$footer-height
+      input[type="text"]
+        display: block
+        margin: 0 auto
+        border: none
+        border-bottom: 2px solid $color_white
+        padding-top:    0.7rem
+        padding-bottom: 0.4rem
+        width: 70%
+        max-width: 650px
+        color: $color_white
+        background: transparent
+        text-align: center
 
-@keyframes float-2
-  100%
-    right: 150%
+
+::-webkit-input-placeholder
+  color: $color_white
+::-moz-placeholder
+  color: $color_white
 
 
 .text-success
@@ -168,3 +104,12 @@ $cloudHeight: 150px
   color: $brand_warning
 .text-danger
   color: $brand_danger
+
+
+@keyframes twinkle
+  35%
+    opacity: 0
+  50%
+    opacity: 1
+  65%
+    opacity: 0

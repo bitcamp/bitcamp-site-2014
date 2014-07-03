@@ -1,65 +1,55 @@
 angular.module('bitcampApp')
-  .controller 'MainCtrl', ($scope, $rootScope, colors) ->
-    $rootScope.bodyCSS["background-color"] = colors["blue-light"]
+  .controller 'MainCtrl', ($scope, $rootScope, colors, $timeout, $http) ->
+    $rootScope.bodyCSS["background-color"] = colors["blue-dark"]
+
+    makeStars = (minDistance=2.4, sampleFrequency=7)->
+      starSampler = new PoissonDiskSampler 94, 94, minDistance, sampleFrequency
+      stars = starSampler.sampleUntilSolution()
+      stars.forEach (star) ->
+        star.x += 2
+        star.y += 2
+      stars.reverse()
+      stars
+
+    $scope.stars1 = makeStars 22, 10
+
+    $scope.twinkle = false
+    clicking = false
+    $rootScope.$on "treetent:click", ->
+      return if clicking
+      clicking = true
+      $scope.twinkle = not $scope.twinkle
+      $scope.stars1 = null if     $scope.twinkle
+      $scope.stars2 = null unless $scope.twinkle
+      $timeout ->
+        $scope.stars1 = makeStars 22,  10 unless $scope.twinkle
+        $scope.stars2 = makeStars 2.4, 7  if     $scope.twinkle
+        clicking = false
+      , 400
+
+    $scope.$on "$viewContentLoaded", -> makeStars 23, 20
+
+    makeSignup = ->
+      $scope.signup =
+        name:       ""
+        email:      ""
+        university: ""
+    makeSignup()
+    $scope.submit = ->
+      $scope.successText = ". . ."
+      $timeout ->
+        $http.post("/api/signup", $scope.signup)
+          .success ->
+            $scope.signupSuccess = true
+            $scope.successText = "success! :)"
+            $timeout ->
+              makeSignup()
+              $scope.successText = null
+              $scope.signupSuccess = false
+            , 3000
+          .error ->
+            $scope.signupError = true
+            $scope.successText = "error :("
+            $timeout (-> $scope.successText = null), 3000
+      , 1200
     null
-
-  .controller 'SignupCtrl', ($scope, $http, $timeout) ->
-    $scope.name       = ''
-    $scope.email      = ''
-    $scope.university = ''
-
-    $scope.submitText   = 'submit'
-    submitDefault       = $scope.submitText
-    submitSuccess       = 'good to go!'
-    submitError         = 'error :('
-    submitWait          = '. . .'
-    submitWaiting       = false
-    $scope.submitStyles = {}
-
-    submitDelay = 1400 # milliseconds
-
-    $scope.signup = ->
-      return if submitWaiting
-      submitWaiting = true
-
-      $scope.submitText = submitWait
-      $scope.submitStyles["color"]            = "#e5d8cf" #grey-light
-      $scope.submitStyles["background-color"] = "#7f6c60" #grey-dark
-
-      $http
-        method: 'POST'
-        url: '/api/signup'
-        data:
-          name:       $scope.name
-          email:      $scope.email
-          university: $scope.university
-        headers: 'Content-Type': 'application/json'
-
-      .success (data) ->
-        $timeout (->
-          $scope.submitText                       = submitSuccess
-          $scope.submitStyles["background-color"] = "white"
-          $scope.submitStyles["color"]            = "#53a559"
-          $timeout (->
-            $scope.submitText   = submitDefault
-            $scope.submitStyles = {}
-            $scope.name         = ''
-            $scope.email        = ''
-            $scope.university   = ''
-          ), submitDelay
-        ), submitDelay
-
-      .error (data) ->
-        $timeout (->
-          $scope.submitText                       = submitError
-          $scope.submitStyles["background-color"] = "#ff404a"
-          $scope.submitStyles["color"]            = "white"
-          $timeout (->
-            $scope.submitText   = submitDefault
-            $scope.submitStyles = {}
-          ), submitDelay
-        ), submitDelay
-
-      .finally ->
-        submitWaiting = false
-
