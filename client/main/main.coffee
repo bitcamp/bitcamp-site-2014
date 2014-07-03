@@ -2,32 +2,32 @@ angular.module('bitcampApp')
   .controller 'MainCtrl', ($scope, $rootScope, colors, $timeout) ->
     $rootScope.bodyCSS["background-color"] = colors["blue-dark"]
 
-    #makeStars = (minDistance=22, sampleFrequency=10)->
-    makeStars = (minDistance=2.0, sampleFrequency=3)->
+    makeStars = (minDistance=2.4, sampleFrequency=7)->
       starSampler = new PoissonDiskSampler 94, 94, minDistance, sampleFrequency
-      $scope.stars = starSampler.sampleUntilSolution()
-      $scope.stars.forEach (star) ->
+      stars = starSampler.sampleUntilSolution()
+      stars.forEach (star) ->
         star.x += 2
         star.y += 2
-      $scope.stars.reverse()
+      stars.reverse()
+      stars
+
+    $scope.stars1 = makeStars 22, 10
 
     $scope.twinkle = false
     clicking = false
     $rootScope.$on "treetent:click", ->
       return if clicking
       clicking = true
-      if $scope.twinkle
-        makeStars 22, 10
-        clicking = false
-      else
-        makeStars()
-        $timeout ->
-          clicking = false
-          $rootScope.$emit "treetent:click"
-        , (100 + $scope.stars.length * 7.5)
       $scope.twinkle = not $scope.twinkle
+      $scope.stars1 = null if     $scope.twinkle
+      $scope.stars2 = null unless $scope.twinkle
+      $timeout ->
+        $scope.stars1 = makeStars 22,  10 unless $scope.twinkle
+        $scope.stars2 = makeStars 2.4, 7  if     $scope.twinkle
+        clicking = false
+      , 400
 
-    $scope.$on "$viewContentLoaded", -> makeStars(22, 10)
+    $scope.$on "$viewContentLoaded", -> makeStars 23, 20
 
     $scope.signup = ->
       console.log "stuff"

@@ -14,7 +14,7 @@
       h2 get email updates
       h3
         form(id="signup", name="signup", ng-submit="signup()")
-          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false", placeholder="name")
-          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false", placeholder="email")
-          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false", placeholder="school")
+          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false", ng-model="signup.name"   placeholder="name")
+          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false", ng-model="signup.email"  placeholder="email")
+          input(type="text", autocapitalize="off", autocorrect="off", spellcheck="false", ng-model="signup.school" placeholder="school")
 

@@ -8,11 +8,20 @@
 #main
 
   .btc-background
+    &.ng-enter, &.ng-leave
+      transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s
+    &.ng-enter, &.ng-leave.ng-leave-active
+      animation: fadeOutDown 0.4s
+    &.ng-leave, &.ng-enter.ng-enter-active
+      animation: fadeInUp 0.4s
     .star
       z-index: -4
       background-color: $color_white
       position: absolute
       @include square(0.2em)
+      &.animated
+        opacity: 0
+        animation: twinkle 2s infinite ease
       &.ng-enter, &.ng-leave
         transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all
       &.ng-enter.ng-enter-active, &.ng-leave
@@ -21,8 +30,8 @@
         opacity: 0
       @for $i from 0 through 1000
         &#star-#{$i}
-          animation-delay:  0.0055s * $i !important
-          transition-delay: 0.0055s * $i !important
+          animation-delay:  0.0075s * $i !important
+          transition-delay: 0.0075s * $i !important
 
   display: flex
   min-height: 100%
@@ -96,9 +105,7 @@
 @keyframes twinkle
   35%
     opacity: 0
-  45%
-    opacity: 1
-  55%
+  50%
     opacity: 1
   65%
     opacity: 0

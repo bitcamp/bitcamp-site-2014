@@ -25,9 +25,20 @@
           )
             | logout
 
-  .btc-background
+  .btc-background(ng-show="!twinkle")
     .star(
-      ng-repeat="star in stars"
+      ng-repeat="star in stars1"
+      id="star-{{$index}}"
+      ng-style="{'left': star.x+'%', 'top': star.y+'%'}")
+    #treetent
+      #treetent-img
+        img(
+          src="/images/treetent.svg",
+          width="100", height="100"
+          ng-click="treetentClick()")
+  .btc-background(ng-if="twinkle")
+    .star.animated(
+      ng-repeat="star in stars2"
       id="star-{{$index}}"
       ng-style="{'left': star.x+'%', 'top': star.y+'%'}")
     #treetent
