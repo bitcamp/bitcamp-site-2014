@@ -1,0 +1,15 @@
+Bitcamp
+https://bitca.mp/
+
+
+The Bitcamp website was made with love by:
+
+Zach Fogg - frontend :: AngularJS, Jade, Sass (Compass), CoffeeScript
+@zfogg, http://zfo.gg/
+
+Dan Gillespie - backend :: REST API, Ruby, Rails, PostgreSQL
+@jollyswagman12
+
+Jeff Hilnbrand - media assets, design, and brand
+@jhil
+
