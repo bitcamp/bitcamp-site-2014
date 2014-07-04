@@ -6,36 +6,26 @@
   height: 100%
 
 #main
+  $btcbgtime: 1.0s
 
   .btc-background
     position: absolute
-    $btcbgtime: 1.0s
-    &.ng-enter, &.ng-leave
-      transition: all linear $btcbgtime
     &.ng-enter, &.ng-leave.ng-leave-active
-      opacity: 0
-      animation: fadeInRight $btcbgtime
+      animation: fadeOutUp $btcbgtime
     &.ng-leave, &.ng-enter.ng-enter-active
-      opacity: 1
-      animation: fadeOutRight $btcbgtime
+      animation: fadeInUp $btcbgtime
     .star
       z-index: -4
       background-color: $color_white
       position: absolute
       @include square(0.2em)
-      &.animated
+      &.twinkle
         opacity: 0
-        animation: twinkle 2s infinite ease
-      &.ng-enter, &.ng-leave
-        transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all
-      &.ng-enter.ng-enter-active, &.ng-leave
-        opacity: 1
-      &.ng-leave.ng-leave-active, &.ng-enter
-        opacity: 0
+        animation: twinkle 4.0s infinite ease-in
       @for $i from 0 through 1000
         &#star-#{$i}
-          animation-delay:  0.0075s * $i !important
-          transition-delay: 0.0075s * $i !important
+          animation-delay:  0.0035s * $i !important
+          transition-delay: 0.0035s * $i !important
 
   display: flex
   min-height: 100%
@@ -44,6 +34,18 @@
     max-width: 12em
 
   #header
+    min-height: 100vh
+    @for $i from 1 through 5
+      > *:nth-child(#{$i*2})
+        &.ng-enter, &.ng-leave.ng-leave-active
+          animation: fadeOutLeft $btcbgtime
+        &.ng-leave, &.ng-enter.ng-enter-active
+          animation: fadeInLeft $btcbgtime
+      > *:nth-child(#{$i*2-1})
+        &.ng-enter, &.ng-leave.ng-leave-active
+          animation: fadeOutRight $btcbgtime
+        &.ng-leave, &.ng-enter.ng-enter-active
+          animation: fadeInRight $btcbgtime
     padding: 4rem 0
     flex: 0
 
@@ -67,7 +69,6 @@
       min-width: 10em
       &:hover button
         transform: translateZ(2.0rem) translateY(-0.8rem)
-
 
   #updates
     flex: 1
@@ -107,9 +108,9 @@
 
 
 @keyframes twinkle
-  35%
+  10%
     opacity: 0
-  50%
+  20%
     opacity: 1
-  65%
+  30%
     opacity: 0

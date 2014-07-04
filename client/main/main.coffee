@@ -2,6 +2,8 @@ angular.module('bitcampApp')
   .controller 'MainCtrl', ($scope, $rootScope, colors, $timeout, $http) ->
     $rootScope.bodyCSS["background-color"] = colors["blue-dark"]
 
+    $scope.poisson = true
+
     makeStars = (minDistance=2.4, sampleFrequency=7)->
       starSampler = new PoissonDiskSampler 94, 94, minDistance, sampleFrequency
       stars = starSampler.sampleUntilSolution()
@@ -19,13 +21,14 @@ angular.module('bitcampApp')
       return if clicking
       clicking = true
       $scope.twinkle = not $scope.twinkle
-      $scope.stars1 = null if     $scope.twinkle
-      $scope.stars2 = null unless $scope.twinkle
+      unless $scope.twinkle
+        $scope.stars1 = makeStars 22,  10
+        $scope.stars2 = null
       $timeout ->
-        $scope.stars1 = makeStars 22,  10 unless $scope.twinkle
-        $scope.stars2 = makeStars 2.4, 7  if     $scope.twinkle
+        if $scope.twinkle
+          $scope.stars2 = makeStars 2.4, 7
         clicking = false
-      , 400
+      , 500
 
     $scope.$on "$viewContentLoaded", -> makeStars 23, 20
 
