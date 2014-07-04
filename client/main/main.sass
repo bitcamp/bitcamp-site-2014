@@ -10,32 +10,22 @@
   .btc-background
     position: absolute
     $btcbgtime: 1.0s
-    &.ng-enter, &.ng-leave
-      transition: all linear $btcbgtime
     &.ng-enter, &.ng-leave.ng-leave-active
-      opacity: 0
-      animation: fadeInRight $btcbgtime
+      animation: fadeOutUp $btcbgtime
     &.ng-leave, &.ng-enter.ng-enter-active
-      opacity: 1
-      animation: fadeOutRight $btcbgtime
+      animation: fadeInUp $btcbgtime
     .star
       z-index: -4
       background-color: $color_white
       position: absolute
       @include square(0.2em)
-      &.animated
+      &.twinkle
         opacity: 0
-        animation: twinkle 3.7s infinite ease-in
-      &.ng-enter, &.ng-leave
-        transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all
-      &.ng-enter.ng-enter-active, &.ng-leave
-        opacity: 1
-      &.ng-leave.ng-leave-active, &.ng-enter
-        opacity: 0
+        animation: twinkle 4.0s infinite ease-in
       @for $i from 0 through 1000
         &#star-#{$i}
-          animation-delay:  0.0075s * $i !important
-          transition-delay: 0.0075s * $i !important
+          animation-delay:  0.0035s * $i !important
+          transition-delay: 0.0035s * $i !important
 
   display: flex
   min-height: 100%
@@ -107,9 +97,9 @@
 
 
 @keyframes twinkle
-  35%
+  5%
     opacity: 0
-  50%
+  15%
     opacity: 1
-  65%
+  25%
     opacity: 0
