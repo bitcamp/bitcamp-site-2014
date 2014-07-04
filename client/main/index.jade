@@ -2,10 +2,10 @@
   header#header.btc-row
     div.clearfix(ng-include="" src="'layout/header-logo.html'" onload="isLoaded = true")
 
-    .h1#title Lights Out
-    .p#subtitle Ready for s'more hacks? Bitcamp 2015 coming soon.
+    .h1#title(ng-if="!twinkle") Lights Out
+    .p#subtitle(ng-if="!twinkle") Ready for s'more hacks? Bitcamp 2015 coming soon.
 
-    h3
+    h3(ng-if="!twinkle")
       a(href="//2014.bitca.mp/" target="_blank")
         button 2014 website
 

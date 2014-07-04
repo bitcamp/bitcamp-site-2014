@@ -2,6 +2,8 @@ angular.module('bitcampApp')
   .controller 'MainCtrl', ($scope, $rootScope, colors, $timeout, $http) ->
     $rootScope.bodyCSS["background-color"] = colors["blue-dark"]
 
+    $scope.poisson = true
+
     makeStars = (minDistance=2.4, sampleFrequency=7)->
       starSampler = new PoissonDiskSampler 94, 94, minDistance, sampleFrequency
       stars = starSampler.sampleUntilSolution()

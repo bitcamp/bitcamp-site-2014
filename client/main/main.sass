@@ -6,10 +6,10 @@
   height: 100%
 
 #main
+  $btcbgtime: 1.0s
 
   .btc-background
     position: absolute
-    $btcbgtime: 1.0s
     &.ng-enter, &.ng-leave.ng-leave-active
       animation: fadeOutUp $btcbgtime
     &.ng-leave, &.ng-enter.ng-enter-active
@@ -34,6 +34,18 @@
     max-width: 12em
 
   #header
+    min-height: 100vh
+    @for $i from 1 through 5
+      > *:nth-child(#{$i*2})
+        &.ng-enter, &.ng-leave.ng-leave-active
+          animation: fadeOutLeft $btcbgtime
+        &.ng-leave, &.ng-enter.ng-enter-active
+          animation: fadeInLeft $btcbgtime
+      > *:nth-child(#{$i*2-1})
+        &.ng-enter, &.ng-leave.ng-leave-active
+          animation: fadeOutRight $btcbgtime
+        &.ng-leave, &.ng-enter.ng-enter-active
+          animation: fadeInRight $btcbgtime
     padding: 4rem 0
     flex: 0
 
@@ -57,7 +69,6 @@
       min-width: 10em
       &:hover button
         transform: translateZ(2.0rem) translateY(-0.8rem)
-
 
   #updates
     flex: 1
@@ -97,9 +108,9 @@
 
 
 @keyframes twinkle
-  5%
+  10%
     opacity: 0
-  15%
+  20%
     opacity: 1
-  25%
+  30%
     opacity: 0
