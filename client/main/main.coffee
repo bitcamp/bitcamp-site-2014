@@ -5,11 +5,11 @@ angular.module('bitcampApp')
     $scope.poisson = true
 
     makeStars = (minDistance=2.4, sampleFrequency=7)->
-      starSampler = new PoissonDiskSampler 94, 94, minDistance, sampleFrequency
+      starSampler = new PoissonDiskSampler 98, 98, minDistance, sampleFrequency
       stars = starSampler.sampleUntilSolution()
       stars.forEach (star) ->
-        star.x += 2
-        star.y += 2
+        star.x += 1
+        star.y += 1
       stars.reverse()
       stars
 

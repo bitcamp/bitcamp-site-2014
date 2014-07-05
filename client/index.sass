@@ -17,7 +17,8 @@ html, body
   overflow-y: auto
 
 body
-  animation: fadeIn 4s
+  opacity: 0
+  animation: fadeIn 1.5s 0.2s forwards
   transition: background-color 0.4s ease-in
   z-index: -99
   overflow-x: hidden
@@ -31,7 +32,8 @@ body
 
 #wrapper
   &.ng-enter
-    animation: fadeInUp 1.1s
+    opacity: 0
+    animation: fadeInDown 1.0s 0.2s forwards
 
 #wrapper:after
   content: ""
@@ -64,9 +66,8 @@ body
   @include clearfix()
 
 
-::-webkit-scrollbar
-  height: 0
-  width:  0
+body::-webkit-scrollbar
+  display: none
 
 
 button, .button
@@ -95,11 +96,9 @@ fieldset
 
 
 .btc-background
-  max-width: 60.0em
   height: 100%
   #treetent
-    width:  100%
-    height: 100%
+    @include square(100%)
     display: flex
     align-items: flex-end
     justify-content: center
@@ -109,10 +108,16 @@ fieldset
       img
         z-index: 10
         cursor: pointer
+        transition: transform 0.2s ease-out
+        perspective: 40rem
+        transform-origin: 50% 100%
+        &:hover
+          transform: translateX(2em) scale(1.1)
 
 #logo
   z-index: 3
-  padding: 0.938em 0
+  padding: 2em 0 0 0
+
 
 footer#footer
   padding-top: 0

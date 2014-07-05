@@ -1,13 +1,18 @@
-#main(ng-show="isLoaded")
+#main(ng-show="isLoaded", ng-class="{'fullscreen': twinkle}")
   header#header.btc-row
-    div.clearfix(ng-include="" src="'layout/header-logo.html'" onload="isLoaded = true")
+    .header-logo(
+      ng-include="" src="'layout/header-logo.html'"
+      onload="isLoaded = true")
 
-    .h1#title(ng-if="!twinkle") Lights Out
-    .p#subtitle(ng-if="!twinkle") Ready for s'more hacks? Bitcamp 2015 coming soon.
-
-    h3(ng-if="!twinkle")
-      a(href="http://2014.bitca.mp/" target="_blank")
-        button 2014 website
+    .flexbox
+      .flex
+        .h1#title(ng-if="!twinkle") Lights Out
+      .flex
+        .p#subtitle(ng-if="!twinkle") Ready for s'more hacks? Bitcamp 2015 coming soon.
+      .flex
+        .h3#old-site(ng-if="!twinkle")
+          a(href="http://2014.bitca.mp/" target="_blank")
+            button 2014 website
 
   #updates.btc-row
     #updates-input
