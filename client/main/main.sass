@@ -5,7 +5,13 @@
 #wrapper
   height: 100%
 
+
 #main
+
+  &.fullscreen
+    height: 100vh
+    overflow: hidden
+
   $btcbgtime: 1.0s
 
   .btc-background
@@ -31,54 +37,58 @@
   min-height: 100%
   flex-direction: column
   button, input[type=button], input[type=submit]
-    max-width: 12em
+    max-width: 10em
 
   #header
-    min-height: 100vh
+    padding: 0 2em
+    min-height: 97vh
     @for $i from 1 through 5
-      > *:nth-child(#{$i*2})
+      > *:nth-child(#{$i*2}) > *
         &.ng-enter, &.ng-leave.ng-leave-active
           animation: fadeOutLeft $btcbgtime
         &.ng-leave, &.ng-enter.ng-enter-active
           animation: fadeInLeft $btcbgtime
-      > *:nth-child(#{$i*2-1})
+      > *:nth-child(#{$i*2-1}) > *
         &.ng-enter, &.ng-leave.ng-leave-active
           animation: fadeOutRight $btcbgtime
         &.ng-leave, &.ng-enter.ng-enter-active
           animation: fadeInRight $btcbgtime
-    padding: 4rem 0
-    flex: 0
-
-    #title
-      margin-bottom: 2rem
 
     button
       color: $color_orange
       background: transparent
       border: 2px solid $color_orange
       border-radius: 12px
-      margin: 2em 0.5em
-      padding: 1.8rem 1rem
+      padding: 1.8rem 0.4rem
       transition: color 0.1s ease-in, background-color 0.1s ease-in, transform 0.1s ease-in
       &:hover
         background-color: $color_orange
         color: $color_white
-    a
+
+    #old-site
       display: inline-block
       perspective: 40rem
-      min-width: 10em
+      min-width: 5em
+      max-width: 11em
+      width: 100%
+      padding: 0.5em 1em
+      margin: 0 auto
       &:hover button
-        transform: translateZ(2.0rem) translateY(-0.8rem)
+        transform: translateZ(2.2rem) translateY(1.0rem)
 
   #updates
+    min-height: 40vh
     flex: 1
     display: flex
     flex-direction: column
     justify-content: center
-    padding: 2rem 0
+    padding: 3rem 0
     #updates-input
+      flex: 1
+      display: flex
+      flex-direction: column
+      justify-content: center
       z-index: 2
-      padding-bottom: 0.5*$footer-height
       input[type="text"]
         display: block
         margin: 0 auto
@@ -93,9 +103,15 @@
         text-align: center
 
 
-::-webkit-input-placeholder
+*::-webkit-input-placeholder
   color: $color_white
-::-moz-placeholder
+*:-moz-placeholder
+  color: $color_white
+  opacity:  1
+*::-moz-placeholder
+  color: $color_white
+  opacity:  1
+*:-ms-input-placeholder
   color: $color_white
 
 
@@ -114,3 +130,28 @@
     opacity: 1
   30%
     opacity: 0
+
+
+#header
+  display: flex
+  flex-direction: column
+  justify-content: center
+  > *:not(.header-logo)
+    flex: 2
+  .flexbox
+    display: flex
+    flex-direction: column
+    justify-content: center
+    padding-bottom: 100px
+    > *
+      margin: 0.5rem 0
+  .header-logo
+    &.placeholder
+      visibility: hidden
+
+
+// @zfogg - just ask me to explain this bug to you lol
+#main #updates #updates-input
+  margin-bottom: -0.5*$footer-height
+  @media screen and (-webkit-min-device-pixel-ratio: 0)
+    margin-bottom: 0.5*$footer-height

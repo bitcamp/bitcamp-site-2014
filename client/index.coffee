@@ -36,8 +36,7 @@ bitcamp = angular.module("bitcampApp", [
   .directive "scrollTo", ->
     (scope, element, attrs) ->
       element.bind "click", (event) ->
-        location = attrs.scrollTo
-        $.scrollTo location, +attrs.scrollSpeed or 300
+        $(attrs.scrollTo)[0].scrollIntoView(true)
 
 
   .controller "BodyCtrl", (
@@ -74,12 +73,9 @@ bitcamp = angular.module("bitcampApp", [
         console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
         $rootScope.ready = true
         $("body").flowtype
-          minimum   : 320
-          maximum   : 1200
-          minFont   : 17
-          maxFont   : 32
-          fontRatio : 40
-          lineRatio : 1.45
+          minFont   : 11
+          maxFont   : 24
+          fontRatio : 42
       .error (data) ->
         null
 
