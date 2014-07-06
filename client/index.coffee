@@ -1,11 +1,7 @@
 bitcamp = angular.module("bitcampApp", [
-  "ngCookies"
-  "ngResource"
-  "ngSanitize"
   "ngAnimate"
 
   "ui.router"
-  "ui.bootstrap"
 
   "angulartics"
   "angulartics.google.analytics"
@@ -46,26 +42,15 @@ bitcamp = angular.module("bitcampApp", [
     $window,
     $location,
     $timeout,
-    $cookieStore,
-    $resource,
     $state) ->
 
     $rootScope.isLoaded = true
 
+    $rootScope.bowser = $window.bowser
+
     $rootScope.bodyCSS = {
       "transition": "background-color 0.4s ease-out"
     }
-
-    $rootScope._login = (cookie) ->
-      $rootScope.cookie = cookie
-      $cookieStore.put "auth", cookie
-      $http.defaults.headers
-        .common["Authorization"] = "Token token=\"#{cookie.token}\""
-
-    $rootScope._logout = ->
-      $rootScope.cookie = null
-      $cookieStore.put "auth", null
-      delete $http.defaults.headers.common["Authorization"]
 
     $rootScope.ready = false
     $http.get("/api/bitcamp")
@@ -73,25 +58,14 @@ bitcamp = angular.module("bitcampApp", [
         console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
         $rootScope.ready = true
         $("body").flowtype
-          minFont   : 11
+          minFont   : 14
           maxFont   : 24
-          fontRatio : 42
+          fontRatio : 38
       .error (data) ->
         null
 
-    $rootScope.$on "$stateChangeStart", (ev, state) ->
-      cookie = $cookieStore.get "auth"
-      if cookie
-        if moment(cookie.expires).diff(moment()) <= 0
-          $rootScope._logout()
-        else
-          $rootScope._login(cookie)
-
     $rootScope.$on "$stateChangeSuccess", ->
       $window.scrollTo 0, 0
-      $window.ga? "set", "page", $location.path()
-      $window.ga? "send", "pageview"
-
 
     $rootScope.logout = ->
       $http.get("/api/logout")
@@ -121,18 +95,4 @@ bitcamp = angular.module("bitcampApp", [
     "blue-darker"  : "#1a2e3c"
     "green"        : "#53a559"
     "green-light"  : "#40997c"
-
-
-  .factory "profile", ($resource) ->
-    $resource("/api/profile", {}, {
-      save:
-        method: 'PUT'
-    })
-
-  .factory "waiver", ($resource) ->
-    $resource("/api/profile", {}, {
-      save:
-        method: 'POST'
-    })
-
 
