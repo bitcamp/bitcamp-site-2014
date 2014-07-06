@@ -26,6 +26,7 @@
       position: absolute
       @include square(0.2em)
       &.twinkle
+        will-change: opacity
         opacity: 0
         animation: twinkle 4.0s infinite ease-in
       @for $i from 0 through 1000
