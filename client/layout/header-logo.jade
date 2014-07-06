@@ -1,30 +1,4 @@
 .btc-background-wrapper
-
-  #login-logout-wrapper(ng-show="cookie")
-    #login-logout-inner
-      a(ui-sref="register.two")
-        button#edit-btn.btn(
-          ng-class="{'btn-info': editHover, 'btn-wait': !editHover}"
-          ng-mouseover="editHover = true"
-          ng-mouseleave="editHover = false"
-          )
-          | revise
-      a(ui-sref="waiver")
-        button#logout-btn.btn.btn-wait(
-          ng-class="{'btn-success': waiverHover, 'btn-wait': !waiverHover}"
-          ng-mouseover="waiverHover = true"
-          ng-mouseleave="waiverHover = false"
-          )
-            | waiver
-      a(ui-sref="main")
-        button#logout-btn.btn.btn-wait(
-          ng-click="logout()"
-          ng-class="{'btn-danger': logoutHover, 'btn-wait': !logoutHover}"
-          ng-mouseover="logoutHover = true"
-          ng-mouseleave="logoutHover = false"
-          )
-            | logout
-
   .btc-background(ng-if="!twinkle")
     .star(
       ng-repeat="star in stars1"

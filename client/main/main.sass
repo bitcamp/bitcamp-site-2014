@@ -17,15 +17,16 @@
   .btc-background
     position: absolute
     &.ng-enter, &.ng-leave.ng-leave-active
-      animation: fadeOutUp $btcbgtime
+      animation: fadeOutLeft $btcbgtime
     &.ng-leave, &.ng-enter.ng-enter-active
-      animation: fadeInUp $btcbgtime
+      animation: fadeInRight $btcbgtime
     .star
       z-index: -4
       background-color: $color_white
       position: absolute
       @include square(0.2em)
       &.twinkle
+        will-change: opacity
         opacity: 0
         animation: twinkle 4.0s infinite ease-in
       @for $i from 0 through 1000
@@ -43,12 +44,12 @@
     padding: 0 2em
     min-height: 97vh
     @for $i from 1 through 5
-      > *:nth-child(#{$i*2}) > *
+      .flexbox > .flex:nth-child(#{$i*2}) > *
         &.ng-enter, &.ng-leave.ng-leave-active
           animation: fadeOutLeft $btcbgtime
         &.ng-leave, &.ng-enter.ng-enter-active
           animation: fadeInLeft $btcbgtime
-      > *:nth-child(#{$i*2-1}) > *
+      .flexbox > .flex:nth-child(#{$i*2-1}) > *
         &.ng-enter, &.ng-leave.ng-leave-active
           animation: fadeOutRight $btcbgtime
         &.ng-leave, &.ng-enter.ng-enter-active
@@ -82,7 +83,6 @@
     display: flex
     flex-direction: column
     justify-content: center
-    padding: 3rem 0
     #updates-input
       flex: 1
       display: flex
@@ -152,6 +152,10 @@
 
 // @zfogg - just ask me to explain this bug to you lol
 #main #updates #updates-input
-  margin-bottom: -0.5*$footer-height
+  margin-bottom:  -0.5*$footer-height
+  padding-bottom:  0.5*$footer-height
+  padding-top:     0.5*$footer-height
   @media screen and (-webkit-min-device-pixel-ratio: 0)
+    padding: 0
+    margin:  0
     margin-bottom: 0.5*$footer-height

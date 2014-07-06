@@ -31,9 +31,8 @@ body
   margin-bottom: -1*$footer-height
 
 #wrapper
-  &.ng-enter
-    opacity: 0
-    animation: fadeInDown 1.0s 0.2s forwards
+  opacity: 0
+  animation: fadeInDown 1.0s 0.2s forwards
 
 #wrapper:after
   content: ""
@@ -109,10 +108,9 @@ fieldset
         z-index: 10
         cursor: pointer
         transition: transform 0.2s ease-out
-        perspective: 40rem
         transform-origin: 50% 100%
         &:hover
-          transform: translateX(0.4em) scale(1.05)
+          transform: translateX(0.1em) scale(1.0125)
 
 #logo
   z-index: 3
@@ -149,17 +147,8 @@ body
   display: table
   width: 100%
 
-.bitcamp-view-wrapper
-  .bitcamp-view
-    display: block
-    $leaveTime: 0.2s
-    &.ng-enter
-      animation: fadeInUp $leaveTime
-
-body > .bitcamp-view
-  $leaveTime: 0.2s
-  &.ng-enter
-    animation: fadeInDown $leaveTime
+.bitcamp-view-wrapper .bitcamp-view
+  animation: fadeInUp 3s
 
 
 .text-center
