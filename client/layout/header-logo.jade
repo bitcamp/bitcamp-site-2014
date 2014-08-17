@@ -1,4 +1,16 @@
-.btc-background-wrapper
+.btc-background-wrapper(starfield-mouse)
+  .btc-background(ng-if="!twinkle")
+    canvas#starfield(starfield=""
+      min-distance="22"
+      sample-frequency="10"
+      blink-rate="2"
+    )
+  .btc-background(ng-if="twinkle")
+    canvas#starfield(starfield=""
+      min-distance="1.5"
+      sample-frequency="16"
+      blink-rate="4"
+    )
   #treetent
     #treetent-img
       img(
@@ -6,12 +18,6 @@
         src="/images/treetent.svg"
         width="100", height="100"
         ng-click="treetentClick()")
-  .btc-background(ng-if="!twinkle")
-    .star(
-      ng-repeat="star in stars1"
-      ng-style="{'left': star.x+'%', 'top': star.y+'%'}")
-  .btc-background(ng-if="twinkle")
-    canvas#canvas
 
 #logo.col-xs-12.noselect
   a.noselect(ui-sref="main")

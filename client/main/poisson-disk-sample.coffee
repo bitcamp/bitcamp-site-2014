@@ -4,12 +4,13 @@
 
 
 window.PoissonDiskSampler = class PoissonDiskSampler
-  constructor: (width, height, minDistance, sampleFrequency) ->
+  constructor: (width, height, minDistance, sampleFrequency, start) ->
     @width           = width
     @height          = height
     @minDistance     = minDistance
     @sampleFrequency = sampleFrequency
     @reset()
+    @queueToAll start if start
 
   reset: ->
     @grid            = new Grid @width, @height, @minDistance
