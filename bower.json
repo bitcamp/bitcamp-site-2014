@@ -9,6 +9,8 @@
     "angular-animate": "~1.2.12",
     "animate.css": "~3.0.0",
     "angular-ui-router": "0.2.8-bowratic-tedium",
-    "bowser": "~0.7.1"
+    "bowser": "~0.7.1",
+    "angulartics": "~0.15.20",
+    "pixi.js": "~1.6.0"
   }
 }

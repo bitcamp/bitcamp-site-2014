@@ -6,14 +6,15 @@
   },
   "repository": "http://github.com/bitcamp/bitca.mp",
   "dependencies": {
+    "coffee-script": "^1.7.1",
     "emailjs": "~0.3.6",
-    "express": "~3.4.3",
-    "jade": "~1.1.5",
-    "mysql-promise": "~0.1.0",
-    "socket.io": "~0.9.16",
-    "validator": "~2.0.0",
-    "q": "~0.9.7",
-    "supermarked": "~1.1.0"
+    "express": "^3.4.8",
+    "jade": "^1.1.5",
+    "mysql-promise": "^0.1.0",
+    "q": "^0.9.7",
+    "socket.io": "^0.9.17",
+    "supermarked": "~1.1.0",
+    "validator": "^2.0.0"
   },
   "devDependencies": {
     "grunt-contrib-clean": "~0.5.0",

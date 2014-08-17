@@ -79,20 +79,3 @@ bitcamp = angular.module("bitcampApp", [
     $rootScope.treetentClick = ->
       $rootScope.$emit "treetent:click"
 
-  .factory "colors", ->
-    "white"        : "#ffffff"
-    "black"        : "#000000"
-    "grey-light"   : "#e5d8cf"
-    "grey"         : "#a58c7c"
-    "grey-dark"    : "#7f6c60"
-    "orange"       : "#ff6d40"
-    "orange-dark"  : "#dd773d"
-    "yellow"       : "#ffec40"
-    "orangeyellow" : "#ffad40"
-    "red"          : "#ff404a"
-    "blue-light"   : "#ccf3ff"
-    "blue-dark"    : "#1A2D33"
-    "blue-darker"  : "#1a2e3c"
-    "green"        : "#53a559"
-    "green-light"  : "#40997c"
-

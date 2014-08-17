@@ -18,7 +18,7 @@ html, body
 
 body
   opacity: 0
-  animation: fadeIn 1.5s 0.2s forwards
+  animation: fadeInUp 2.0s 0.2s forwards
   transition: background-color 0.4s ease-in
   z-index: -99
   overflow-x: hidden
@@ -31,8 +31,8 @@ body
   margin-bottom: -1*$footer-height
 
 #wrapper
-  opacity: 0
-  animation: fadeInDown 1.0s 0.2s forwards
+  //opacity: 0
+  //animation: fadeIn 1.0s 0.2s forwards
 
 #wrapper:after
   content: ""
@@ -94,10 +94,11 @@ fieldset
   max-height: 120px
 
 
-.btc-background
-  height: 100%
-  #treetent
+.btc-background-wrapper
+  .btc-background, #treetent
+    position: absolute
     @include square(100%)
+  #treetent
     display: flex
     align-items: flex-end
     justify-content: center
@@ -129,9 +130,13 @@ footer#footer
       display: table-cell
       vertical-align: middle
       text-align: center
+  cursor: default
   a
+    display: inline-block
     &:hover
-      color: $color_orangeyellow
+      text-decoration: underline
+      color: $color_white
+      transform: scale(1.045)
     color: $color_white
 
 
@@ -139,16 +144,13 @@ footer#footer
   display: none !important
 
 
-body
-  &.ng-enter
-    animation: fadeIn 0.4s
-
 #wrapper
   display: table
   width: 100%
 
-.bitcamp-view-wrapper .bitcamp-view
-  animation: fadeInUp 3s
+.bitcamp-view
+  &.ng-enter
+    animation: fadeInDown 0.8s 0s forwards
 
 
 .text-center

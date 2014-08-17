@@ -1,6 +1,5 @@
 angular.module('bitcampApp')
-  .controller 'MainCtrl', ($scope, $rootScope, colors, $timeout, $http) ->
-    $rootScope.bodyCSS["background-color"] = colors["blue-dark"]
+  .controller 'MainCtrl', ($scope, $rootScope, $timeout, $http) ->
 
     $scope.poisson = true
 

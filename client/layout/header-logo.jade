@@ -1,27 +1,17 @@
 .btc-background-wrapper
+  #treetent
+    #treetent-img
+      img(
+        scroll-to="#wrapper"
+        src="/images/treetent.svg"
+        width="100", height="100"
+        ng-click="treetentClick()")
   .btc-background(ng-if="!twinkle")
     .star(
       ng-repeat="star in stars1"
       ng-style="{'left': star.x+'%', 'top': star.y+'%'}")
-    #treetent
-      #treetent-img
-        img(
-          scroll-to="#wrapper"
-          src="/images/treetent.svg"
-          width="100", height="100"
-          ng-click="treetentClick()")
   .btc-background(ng-if="twinkle")
-    .star.twinkle(
-      ng-repeat="star in stars2"
-      id="star-{{$index}}"
-      ng-style="{'left': star.x+'%', 'top': star.y+'%'}")
-    #treetent
-      #treetent-img
-        img(
-          scroll-to="#wrapper"
-          src="/images/treetent.svg",
-          width="100", height="100"
-          ng-click="treetentClick()")
+    canvas#canvas
 
 #logo.col-xs-12.noselect
   a.noselect(ui-sref="main")
