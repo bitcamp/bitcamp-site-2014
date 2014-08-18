@@ -61,7 +61,7 @@
       border: 2px solid $color_orange
       border-radius: 12px
       padding: 1.8rem 0.4rem
-      transition: color 0.1s ease-in, background-color 0.1s ease-in, transform 0.1s ease-in
+      transition: color 0.08s ease-out, background-color 0.08s ease-out, transform 0.08s ease-out
       &:hover
         background-color: $color_orange
         color: $color_white
@@ -84,6 +84,9 @@
     flex-direction: column
     justify-content: center
     #updates-input
+      h2
+        cursor: default
+        user-select: none
       flex: 1
       display: flex
       flex-direction: column
@@ -150,6 +153,11 @@
       visibility: hidden
 
 
+[starfield]
+  width: 100%
+  height: 100%
+
+
 // @zfogg - just ask me to explain this bug to you lol
 #main #updates #updates-input
   margin-bottom:  -0.5*$footer-height
@@ -159,3 +167,4 @@
     padding: 0
     margin:  0
     margin-bottom: 0.5*$footer-height
+

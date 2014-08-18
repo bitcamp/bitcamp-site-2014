@@ -6,11 +6,11 @@
 
     .flexbox
       .flex
-        .h1#title(ng-if="!twinkle") Lights Out
+        .h1#title(ng-hide="twinkle") Lights Out
       .flex
-        .p#subtitle(ng-if="!twinkle") Ready for s'more hacks? Bitcamp 2015 coming soon.
+        .p#subtitle(ng-hide="twinkle") Ready for s'more hacks? Bitcamp 2015 coming soon.
       .flex
-        .h3#old-site(ng-if="!twinkle")
+        .h3#old-site(ng-hide="twinkle")
           a(href="http://2014.bitca.mp/" target="_blank")
             button 2014 website
 
