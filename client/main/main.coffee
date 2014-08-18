@@ -76,7 +76,7 @@ angular.module('bitcampApp')
 
     stage = new PIXI.Stage()
 
-    newSampler = (start = null) ->
+    newSampler = (start = null, reverse = null) ->
       stage.children.length = 0
       sampler = makeSampler attrs.minDistance, attrs.sampleFrequency, start
       while sampler.sample()
@@ -89,6 +89,7 @@ angular.module('bitcampApp')
           5, 5)
         g.endFill()
         stage.addChild(g)
+      stage.children.reverse() if reverse
 
     init = ->
       sampler = newSampler()
@@ -97,31 +98,36 @@ angular.module('bitcampApp')
         element.height()
       )
 
-    f = (x) ->
+    f1 = (x) ->
       # A sine wave between zero and one.
+      (1/2)*(Math.sin(x) + 1)
+    f2 = (x) ->
+      # Derp.
       (1.5)*(Math.sin(x) - 0.618)
+
+    f = if attrs.f2 then f2 else f1
 
     render = (dt) ->
       for s,i in stage.children
-        visibility = 1 / stage.children.length
-        s.alpha = f((i * 0.01) + dt)
+        s.alpha = Math.max f((i * 0.01) + dt), 0
       renderer.render stage
 
     dt = 0
     renderLoop = ->
       dt += 0.01 * attrs.blinkRate
-      stage.alpha += 0.0001 * dt
       render(dt)
       requestAnimFrame renderLoop
     requestAnimFrame renderLoop
 
-    scope.$on 'starfieldMouse:click', ->
+    scope.$on 'starfieldMouse:click', (ev, click) ->
+      dt = 0
       newSampler {
         x: 100 * starfieldMouse.x
         y: 100 * starfieldMouse.y
-      }
-      stage.alpha = 0
+      }, true
 
+    scope.$on 'window:resize:start', ->
+      stage.children.length = 0
     scope.$on 'window:resize:end', init
     init()
 
@@ -130,12 +136,13 @@ angular.module('bitcampApp')
   { x: -1, y: -1 }
 
 
-.directive 'starfieldMouse', (starfieldMouse) ->
+.directive 'starfieldMouse', ($window, starfieldMouse) ->
   restrict: 'A'
   link: (scope, element, attrs) ->
     $(element).on 'mousemove', (event) ->
-      starfieldMouse.x = event.clientX / element.width()
-      starfieldMouse.y = event.clientY / element.height()
-    $(element).on 'click', (event) ->
-      scope.$broadcast 'starfieldMouse:click'
+      starfieldMouse.x = (event.clientX) / element.width()
+      yOffset = element.offset().top - $(window).scrollTop()
+      starfieldMouse.y = (event.clientY - yOffset) / element.height()
+    $(element).on 'click', (ev) ->
+      scope.$broadcast 'starfieldMouse:click', ev
 
