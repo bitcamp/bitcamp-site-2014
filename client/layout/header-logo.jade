@@ -1,16 +1,15 @@
-.btc-background-wrapper(starfield-mouse)
+.btc-background-wrapper.noselect(starfield-mouse)
   .btc-background(ng-if="!twinkle")
     canvas#starfield(starfield=""
-      min-distance="22"
-      sample-frequency="10"
-      blink-rate="2"
+      min-distance="15"
+      sample-frequency="20"
+      blink-rate="8"
     )
   .btc-background(ng-if="twinkle")
     canvas#starfield(starfield=""
-      min-distance="1.5"
-      sample-frequency="16"
-      blink-rate="4"
-      f2="true"
+      min-distance="1.25"
+      sample-frequency="20"
+      blink-rate="10"
     )
   #treetent
     #treetent-img
@@ -21,5 +20,6 @@
         ng-click="treetentClick()")
 
 #logo.col-xs-12.noselect
-  a.noselect(ui-sref="main")
+  //-a.noselect(ui-sref="main")
+  a.noselect(ng-click="treetentClick()")
     <img src="/images/logo.svg" height="150">

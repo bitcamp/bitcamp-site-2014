@@ -29,7 +29,6 @@ bitcamp = angular.module("bitcampApp", [
       templateUrl: "layout/404/index.html"
       controller: "404Ctrl"
 
-
 .directive "scrollTo", ->
   (scope, element, attrs) ->
     element.bind "click", (event) ->

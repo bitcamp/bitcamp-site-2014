@@ -1,20 +1,20 @@
 #main(ng-show="isLoaded", ng-class="{'fullscreen': twinkle}")
-  header#header.btc-row
+  header#header.btc-row.noselect
     .header-logo(
       ng-include="" src="'layout/header-logo.html'"
       onload="isLoaded = true")
 
     .flexbox
-      .flex
-        .h1#title(ng-hide="twinkle") Lights Out
-      .flex
-        .p#subtitle(ng-hide="twinkle") Ready for s'more hacks? Bitcamp 2015 coming soon.
-      .flex
-        .h3#old-site(ng-hide="twinkle")
+      .flex.fade-left(ng-if="!twinkle")
+        .h1#title Lights Out
+      .flex.fade-right(ng-if="!twinkle")
+        .p#subtitle Ready for s'more hacks? Bitcamp 2015 coming soon.
+      .flex.fade-left(ng-if="!twinkle")
+        .h3#old-site
           a(href="http://2014.bitca.mp/" target="_blank")
             button 2014 website
 
-  #updates.btc-row
+  #updates.btc-row.noselect
     #updates-input
       h2 {{successText || 'get email updates'}}
       h3

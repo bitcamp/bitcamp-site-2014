@@ -44,12 +44,16 @@
     padding: 0 2em
     min-height: 97vh
     @for $i from 1 through 5
-      .flexbox > .flex:nth-child(#{$i*2}) > *
+      .flexbox > .flex
+        width: 100%
+        min-height: 1%
+        display: block
+      .flexbox .flex.fade-left
         &.ng-enter, &.ng-leave.ng-leave-active
           animation: fadeOutLeft $btcbgtime
         &.ng-leave, &.ng-enter.ng-enter-active
           animation: fadeInLeft $btcbgtime
-      .flexbox > .flex:nth-child(#{$i*2-1}) > *
+      .flexbox .flex.fade-right
         &.ng-enter, &.ng-leave.ng-leave-active
           animation: fadeOutRight $btcbgtime
         &.ng-leave, &.ng-enter.ng-enter-active
@@ -75,7 +79,7 @@
       padding: 0.5em 1em
       margin: 0 auto
       &:hover button
-        transform: translateZ(2.2rem) translateY(1.0rem)
+        transform: translateZ(1.8rem) translateY(0.4rem)
 
   #updates
     min-height: 40vh

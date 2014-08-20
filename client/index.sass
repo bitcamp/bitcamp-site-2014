@@ -18,8 +18,8 @@ html, body
 
 body
   opacity: 0
-  animation: fadeInUp 2.0s 0.2s forwards
-  transition: background-color 0.4s ease-in
+  animation: fadeInUp 2.0s 0.4s forwards
+  transition: background-color 0.5s ease-in
   z-index: -99
   overflow-x: hidden
 
@@ -29,10 +29,6 @@ body
   min-height: 100%
   width: 100%
   margin-bottom: -1*$footer-height
-
-#wrapper
-  //opacity: 0
-  //animation: fadeIn 1.0s 0.2s forwards
 
 #wrapper:after
   content: ""
@@ -119,6 +115,11 @@ fieldset
 #logo
   z-index: 3
   padding: 2em 0 0 0
+  img
+    transition: transform 0.2s ease-out
+    transform-origin: 50% 100%
+    &:hover
+      transform: scale(1.0125)
 
 
 footer#footer
@@ -147,13 +148,21 @@ footer#footer
   display: none !important
 
 
+a
+  cursor: pointer
+
+
+.noselect
+  user-select: none
+
+
 #wrapper
   display: table
   width: 100%
 
 .bitcamp-view
   &.ng-enter
-    animation: fadeInDown 0.8s 0s forwards
+    animation: fadeInDown 0.8s 0.2s forwards
 
 
 .text-center
