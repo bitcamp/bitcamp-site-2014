@@ -1,5 +1,5 @@
 #main(ng-show="isLoaded", ng-class="{'fullscreen': twinkle}")
-  header#header.btc-row.noselect
+  header#header.btc-row
     .header-logo(
       ng-include="" src="'layout/header-logo.html'"
       onload="isLoaded = true")
@@ -14,7 +14,7 @@
           a(href="http://2014.bitca.mp/" target="_blank")
             button 2014 website
 
-  #updates.btc-row.noselect
+  #updates.btc-row
     #updates-input
       h2 {{successText || 'get email updates'}}
       h3

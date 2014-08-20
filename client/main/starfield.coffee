@@ -96,22 +96,27 @@ angular.module('bitcampApp')
 
     zfilter = new ZFilter(element, blinkRate)
 
-    squares = new PIXI.Graphics()
-    squares.beginFill()
-    squares.drawRect(0, 0,
-      element.width(),
-      element.height()
-    )
-    squares.endFill()
-    squares.filters = [zfilter]
-    stage.addChild(squares)
+    makeUniforms = (randoms = true, resolution = true) ->
+      if randoms
+        zfilter.randoms = (randomBetween(0.1, 1) for _ in [0...4])
+      if resolution
+        zfilter.resolution = new Float32Array(
+          [element.width(), element.height()])
 
-    newSampler = (start = null) ->
-      zfilter.randoms = (randomBetween(0.1, 1) for _ in [0...4])
-      zfilter.resolution = new Float32Array([element.width(), element.height()])
-      sampler = makeSampler scope.minDistance, scope.sampleFrequency, start
+    makeSquares = ->
+      stage.children.length = 0
+      squares = new PIXI.Graphics()
+      squares.beginFill()
+      squares.drawRect(0, 0, element.width(), element.height())
+      squares.endFill()
+      squares.filters = [zfilter]
+      stage.addChild(squares)
+      squares
+
+    makeMask = ->
       mask = new PIXI.Graphics()
       mask.beginFill()
+      sampler = makeSampler scope.minDistance, scope.sampleFrequency
       while sampler.sample()
         s = sampler.outputList[sampler.outputList.length - 1]
         mask.drawRect(
@@ -119,7 +124,12 @@ angular.module('bitcampApp')
           -(size/2) + (s.y / 100) * element.height(),
           size, size)
       mask.endFill()
-      squares.mask = mask
+      mask
+
+    make = (randoms = true, resolution = true) ->
+      makeUniforms(randoms, resolution)
+      squares = makeSquares()
+      squares.mask = makeMask()
 
     render = () ->
       renderer.render stage
@@ -131,18 +141,18 @@ angular.module('bitcampApp')
 
     scope.$on 'starfieldMouse:click', (ev, click) ->
       dt = 0
-      newSampler()
+      make()
 
     scope.$on 'window:resize:start', ->
-      stage.children.length = 0
+      stage.alpha = 0
+    scope.$on 'window:resize:end', ->
+      renderer.resize(element.width(), element.height())
+      stage.alpha = 1
+      make(false, true)
 
     init = ->
-      renderer.resize(
-        element.width()
-        element.height()
-      )
-      newSampler()
-    scope.$on 'window:resize:end', init
+      renderer.resize(element.width(), element.height())
+      make()
     init()
 
 
