@@ -5,29 +5,59 @@ angular.module('bitcampApp')
   class ZFilter extends PIXI.AbstractFilter
     prototype: PIXI.AbstractFilter.prototype
 
-    constructor: (@canvas, @blinkRate) ->
+    constructor: (@canvas, @blinkRate, @hasColor) ->
       @passes = [@]
 
       @fragmentSrc = ("""
         precision mediump float;
 
-        uniform float time;
+        varying vec2 vTextureCoord;
+
+        uniform sampler2D uSampler;
         uniform vec2 resolution;
+        uniform vec2 center;
         uniform vec4 randoms;
+        uniform float time;
+
+        bool hasColor = #{@hasColor};
+
+        float t = 10.0 * time;
 
         void main(void) {
-          vec2 xy = gl_FragCoord.xy - (resolution / 2.0);
+          gl_FragColor = vec4(1);
 
-          xy *= randoms.z * 0.05;
+          t += 0.5 * (0.5 + 0.5*sin(t));
 
-          float root = sqrt(pow(xy.x, 2.0) + pow(xy.y, 2.0));
-          float a = sin(root) / root;
+          vec2 mid = #{if hasColor then 'center' else 'resolution / 2.0'};
+          vec2 xy = gl_FragCoord.xy - mid;
 
-          gl_FragColor = vec4(1, 1, 1, 1);
-          gl_FragColor *= sin(
-              (randoms.x * 20.0 * a)
-            + (randoms.y * 10.0 * #{@blinkRate.toFixed 1} * time));
+          if (hasColor) {
+
+            // Circular motion if no mouse movement.
+            if (hasColor && resolution != 2.0*center) {
+              xy = vec2(
+                xy.x + 50.0*cos(time * 5.0),
+                xy.y + 50.0*sin(time * 5.0));
+            }
+
+            // Spiral function.
+            float a = degrees(atan(xy.y, xy.x));
+            float amod = mod(a + 0.5 * t - 120.0 * log(length(xy)), 30.0) ;
+            if (amod < 15.0){
+              // Rotating color gradient.
+              vec2 uv = gl_FragCoord.xy / resolution.xy;
+              gl_FragColor *= vec4(uv, 0.5 + 0.5*sin(0.1 * t * randoms.x), 1);
+            }
+          }
+
+          // Sombrero function for opacity.
+          float xySqrt = sqrt(
+              (1.0 + 0.6*sin(0.3*t))*pow(0.04 * xy.x, 2.0)
+            + (1.0 + 0.6*sin(0.3*t))*pow(0.04 * xy.y, 2.0));
+          float alpha = sin(0.5 * t + xySqrt) / xySqrt;
+          gl_FragColor *= 13.0*(1.0 - 0.25*(sin(0.2*t))) * sin(0.0002 * alpha * t);
         }
+
       """).split('\n')
 
       @uniforms =
@@ -36,9 +66,13 @@ angular.module('bitcampApp')
           type: '2fv'
           value: [0, 0]
 
+        center:
+          type: '2fv'
+          value: [0, 0]
+
         time:
           type: '1f'
-          value: 0
+          value: 1024
 
         randoms:
           type: '4fv'
@@ -51,6 +85,12 @@ angular.module('bitcampApp')
       set: (value) ->
         @dirty = true
         @uniforms.resolution.value = value
+
+    Object.defineProperties @prototype, center:
+      get: -> @uniforms.center.value
+      set: (value) ->
+        @dirty = true
+        @uniforms.center.value = value
 
     Object.defineProperties @prototype, time:
       get: -> @uniforms.time.value
@@ -71,9 +111,12 @@ angular.module('bitcampApp')
     minDistance: '='
     sampleFrequency: '='
     blinkRate: '='
+    hasColor: '='
   link: (scope, element, attrs) ->
 
     blinkRate = scope.blinkRate / 100
+
+    hasColor = if scope.hasColor then true else false
 
     size = 5
 
@@ -94,7 +137,7 @@ angular.module('bitcampApp')
 
     stage = new PIXI.Stage()
 
-    zfilter = new ZFilter(element, blinkRate)
+    zfilter = new ZFilter(element, blinkRate, hasColor)
 
     makeUniforms = (randoms = true, resolution = true) ->
       if randoms
@@ -102,6 +145,22 @@ angular.module('bitcampApp')
       if resolution
         zfilter.resolution = new Float32Array(
           [element.width(), element.height()])
+      zfilter.center = new Float32Array [
+        element.width()  / 2
+        element.height() / 2
+      ]
+
+    scope.$on 'starfieldMouse:out', ->
+      zfilter.center = new Float32Array [
+        element.width()  / 2
+        element.height() / 2
+      ]
+
+    scope.$on 'starfieldMouse:move', ->
+      zfilter.center = new Float32Array [
+        element.width()  * +1 * starfieldMouse.x
+        element.height() * -1 * starfieldMouse.y + element.height()
+      ]
 
     makeSquares = ->
       stage.children.length = 0
@@ -133,14 +192,14 @@ angular.module('bitcampApp')
 
     render = () ->
       renderer.render stage
+
     renderLoop = ->
-      zfilter.time = zfilter.time + blinkRate
+      zfilter.time = zfilter.time + 0.1*blinkRate
       render()
       requestAnimFrame renderLoop
     requestAnimFrame renderLoop
 
     scope.$on 'starfieldMouse:click', (ev, click) ->
-      dt = 0
       make()
 
     scope.$on 'window:resize:start', ->
@@ -168,6 +227,10 @@ angular.module('bitcampApp')
       starfieldMouse.x = (event.clientX) / element.width()
       yOffset = element.offset().top - $(window).scrollTop()
       starfieldMouse.y = (event.clientY - yOffset) / element.height()
+      scope.$broadcast 'starfieldMouse:move'
+
+    $(element).on 'mouseout', (event) ->
+      scope.$broadcast 'starfieldMouse:out'
 
     $(element).on 'click', (ev) ->
       scope.$broadcast 'starfieldMouse:click', ev

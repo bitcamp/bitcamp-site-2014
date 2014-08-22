@@ -7,12 +7,12 @@ angular.module('bitcampApp')
   $timeout
   $http
   $stateParams
+  $state
 ) ->
+  $rootScope.twinkle = false
 
-  $scope.twinkle = $stateParams.hh?
-
-  $rootScope.$on 'treetent:click', ->
-    $scope.twinkle = not $scope.twinkle
+  $scope.$on 'treetent:click', ->
+    $state.go 'main.hh'
 
   makeSignup = ->
     $scope.signup =
@@ -54,4 +54,10 @@ angular.module('bitcampApp')
       , 500
       scope.$apply()
 
+
+.controller 'hhCtrl', ($scope, $rootScope, $state) ->
+  $rootScope.twinkle = true
+
+  $scope.$on 'treetent:click', ->
+    $state.go 'main.main'
 

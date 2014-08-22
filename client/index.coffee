@@ -21,13 +21,20 @@ bitcamp = angular.module("bitcampApp", [
 
   $stateProvider
     .state "main",
-      url: "/?hh"
+      abstract: true
+      url: "/"
       templateUrl: "main/index.html"
+    .state "main.main",
+      url: ""
       controller: "MainCtrl"
+    .state "main.hh",
+      url: "hh"
+      controller: "hhCtrl"
     .state "404",
       url: "/404"
       templateUrl: "layout/404/index.html"
       controller: "404Ctrl"
+
 
 .directive "scrollTo", ->
   (scope, element, attrs) ->
@@ -77,5 +84,5 @@ bitcamp = angular.module("bitcampApp", [
         $rootScope._logout()
 
   $rootScope.treetentClick = ->
-    $rootScope.$emit "treetent:click"
+    $rootScope.$broadcast "treetent:click"
 

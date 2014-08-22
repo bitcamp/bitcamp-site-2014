@@ -3,6 +3,7 @@
     .header-logo(
       ng-include="" src="'layout/header-logo.html'"
       onload="isLoaded = true")
+    ui-view(style="display:none;")
 
     .flexbox
       .flex.fade-left(ng-if="!twinkle")
@@ -28,5 +29,3 @@
             type="text", autocapitalize="off", autocorrect="off", spellcheck="false",
             ng-model="signup.university" placeholder="school", ng-disabled="successText")
           input(type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px; visibility: hidden;")
-
-
