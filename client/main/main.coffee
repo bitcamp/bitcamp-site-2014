@@ -1,7 +1,15 @@
 angular.module('bitcampApp')
 
 
-.controller 'MainCtrl', (
+.controller 'main', (
+  $rootScope
+  starfieldShader
+) ->
+  $rootScope.starfieldShader = starfieldShader
+  $rootScope.twinkle = false
+
+
+.controller 'main.main', (
   $scope
   $rootScope
   $timeout
@@ -11,15 +19,18 @@ angular.module('bitcampApp')
 ) ->
   $rootScope.twinkle = false
 
-  $scope.$on 'treetent:click', ->
+  $scope.$on 'treetent:click', (ev, $event) ->
     $state.go 'main.hh'
+    $event.originalEvent.cancelBubble = true
 
   makeSignup = ->
     $scope.signup =
-      name:       ''
-      email:      ''
-      university: ''
+      name       : ''
+      email      : ''
+      university : ''
+
   makeSignup()
+
   $scope.submit = ->
     $scope.successText = '. . .'
     $timeout ->
@@ -43,9 +54,8 @@ angular.module('bitcampApp')
 .directive 'resize', ($window, $timeout) ->
   restrict: 'A'
   link: (scope, element, attrs) ->
-    w = angular.element($window)
     resizeTo = null
-    w.bind 'resize', ->
+    angular.element($window).bind 'resize', ->
       scope.$broadcast 'window:resize:start' unless resizeTo
       $timeout.cancel resizeTo if resizeTo
       resizeTo = $timeout ->
@@ -55,9 +65,13 @@ angular.module('bitcampApp')
       scope.$apply()
 
 
-.controller 'hhCtrl', ($scope, $rootScope, $state) ->
+.controller 'main.hh', ($scope, $rootScope, $state, browserFocus) ->
   $rootScope.twinkle = true
 
   $scope.$on 'treetent:click', ->
     $state.go 'main.main'
+
+  $scope.$on 'starfieldMouse:click', (ev) ->
+    if browserFocus.focus
+      $rootScope.$broadcast 'starfield:mask:toggle'
 

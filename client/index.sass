@@ -18,8 +18,7 @@ html, body
 
 body
   opacity: 0
-  animation: fadeInUp 2.0s 0.4s forwards
-  transition: background-color 0.5s ease-in
+  animation: zfade 2.2s 0.35s forwards ease-out
   z-index: -99
   overflow-x: hidden
 
@@ -95,6 +94,7 @@ fieldset
     position: absolute
     @include square(100%)
   #treetent
+    z-index: 6
     position: absolute
     bottom: 0
     width: 100%
@@ -113,6 +113,7 @@ fieldset
           transform: translateX(0.1em) scale(1.0125)
 
 #logo
+  user-select: none
   z-index: 3
   padding: 2em 0 0 0
   img
@@ -158,7 +159,7 @@ a
 
 .bitcamp-view
   &.ng-enter
-    animation: fadeInDown 0.8s 0.2s forwards
+    animation: yfade 1.95s 0.0s forwards ease-out
 
 
 .text-center
@@ -232,4 +233,23 @@ a
     text-align: right
   .text-center-lg
     text-align: center
+
+
+@keyframes zfade
+  0%
+    opacity: 0
+    transform: perspective(100) translate3d(0, 70px, 30px)
+  70%
+    transform: none
+  100%
+    opacity: 1
+
+@keyframes yfade
+  0%
+    opacity: 0
+    transform: perspective(200) translate3d(0, -150px, -50px)
+  90%
+    transform: none
+  100%
+    opacity: 1
 

@@ -4,8 +4,11 @@ html(ng-app="bitcampApp")
   head
     meta(http-equiv="X-UA-Compatible", content="IE=10,chrome=1")
     meta(charset="utf-8")
+
     base(href="/")
+
     title Bitcamp 2015
+
     meta(name="description", content="36-hour hackathon at the University of Maryland. Spring 2015.")
     meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
 
@@ -20,11 +23,11 @@ html(ng-app="bitcampApp")
 
     link(rel="shortcut icon", href="favicon.ico", type="image/x-icon")
 
-    <!-- build:css(./) styles/vendor.css -->
-    link(rel="stylesheet" href="components/animate.css/animate.css")
-    <!-- endbuild -->
+    // cdnify:css
+    link(rel="stylesheet" href="bower_components/animate.css/animate.css")
+    // endcdnify
 
-    <!-- build:css(.tmp) styles/main.css -->
+    // build:css(.tmp) styles/bitcamp.css
     link(rel="stylesheet" href="layout/colors.css")
 
     link(rel="stylesheet" href="index.css")
@@ -33,56 +36,53 @@ html(ng-app="bitcampApp")
     link(rel="stylesheet" href="layout/typo.css")
 
     link(rel="stylesheet" href="main/main.css")
-    <!-- endbuild -->
+    // endbuild
 
 
-  body.custom-scollbar(
-    resize=""
-    ng-controller="BodyCtrl"
-    ng-cloak ng-style="bodyCSS")
-
+  body.custom-scollbar(resize ng-cloak ng-controller="BodyCtrl")
     .btc-background-wrapper.ng-cloak
       .btc-background
 
-    .wrapper.bitcamp-view#wrapper(ui-view)
+    .wrapper.bitcamp-view#wrapper(ui-view="")
 
     .wrapper#wrapper-footer(ng-include="" src=" 'layout/footer.html' ")
 
 
-    <!-- build:js({./,client}) scripts/plugins.js -->
-    script(src="components/jquery/dist/jquery.js")
+    // cdnify:js
+    script(src="bower_components/underscore/underscore.js")
 
-    script(src="components/angular/angular.js")
+    script(src="bower_components/jquery/dist/jquery.js")
 
-    script(src="components/flowtype/flowtype.js")
+    script(src="bower_components/angular/angular.js")
 
-    script(src="components/bowser/bowser.js")
+    script(src="bower_components/angular-animate/angular-animate.js")
 
-    script(src="components/pixi.js/bin/pixi.js")
+    script(src="bower_components/angular-ui-router/release/angular-ui-router.js")
+
+    script(src="bower_components/pixi.js/bin/pixi.js")
+    // endcdnify
+
+
+    // build:js(client) scripts/vendor.js
+    script(src="bower_components/flowtype/flowtype.js")
 
     script(src="lib/ui-bootstrap-custom-0.10.0.js")
     script(src="lib/ui-bootstrap-custom-tpls-0.10.0.js")
-    <!-- endbuild -->
 
-    <!-- build:js(./) scripts/modules.js -->
-    script(src="components/angular-ui-router/release/angular-ui-router.js")
+    script(src="bower_components/angulartics/src/angulartics.js")
+    script(src="bower_components/angulartics/src/angulartics-ga.js")
+    // endbuild
 
-    script(src="components/angular-animate/angular-animate.js")
-    //script(src="components/angular-resource/angular-resource.js")
-    //script(src="components/angular-cookies/angular-cookies.js")
-    //script(src="components/angular-sanitize/angular-sanitize.js")
 
-    script(src="components/angulartics/dist/angulartics.min.js")
-    script(src="components/angulartics/dist/angulartics-ga.min.js")
-    <!-- endbuild -->
-
-    <!-- build:js(.tmp) scripts/main.js -->
+    // build:js(.tmp) scripts/bitcamp.js
     script(src="index.js")
     script(src="layout/404/404.js")
     script(src="main/poisson-disk-sample.js")
     script(src="main/starfield.js")
     script(src="main/main.js")
-    <!-- endbuild -->
+    // endbuild
+
 
     <!-- Google Analytics: gs.js -->
     <!-- inject -->
+

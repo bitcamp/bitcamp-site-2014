@@ -8,11 +8,12 @@ bitcamp = angular.module("bitcampApp", [
 ])
 
 
-.config (
-  $stateProvider,
-  $urlRouterProvider,
-  $locationProvider,
+bitcamp.config (
+  $stateProvider
+  $urlRouterProvider
+  $locationProvider
   $httpProvider
+  ngInject
 ) ->
 
   $locationProvider.html5Mode(true)
@@ -24,12 +25,20 @@ bitcamp = angular.module("bitcampApp", [
       abstract: true
       url: "/"
       templateUrl: "main/index.html"
+      controller: "main"
+      resolve:
+        starfieldShader: ngInject ($http) ->
+          $http({
+            method: "GET"
+            url: "main/starfield.glsl"
+          }).then ({data}) ->
+            data
     .state "main.main",
       url: ""
-      controller: "MainCtrl"
+      controller: "main.main"
     .state "main.hh",
       url: "hh"
-      controller: "hhCtrl"
+      controller: "main.hh"
     .state "404",
       url: "/404"
       templateUrl: "layout/404/index.html"
@@ -43,46 +52,103 @@ bitcamp = angular.module("bitcampApp", [
 
 
 .controller "BodyCtrl", (
-  $http,
-  $scope,
-  $rootScope,
-  $window,
-  $location,
-  $timeout,
-  $state) ->
+  $http
+  $scope
+  $rootScope
+  $window
+  $location
+  $timeout
+  $state
+) ->
 
-  $rootScope.isLoaded = true
+  window.$window = $window
 
-  $rootScope.bowser = $window.bowser
-
-  $rootScope.bodyCSS = {
-    "transition": "background-color 0.4s ease-out"
-  }
+  window.$state = $state
 
   $rootScope.ready = false
-  $http.get("/api/bitcamp")
-    .success ->
-      console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
-      $rootScope.ready = true
-      $("body").flowtype
-        minFont   : 14
-        maxFont   : 24
-        fontRatio : 38
-    .error (data) ->
-      null
+
+  $("body").flowtype
+    minFont   : 14
+    maxFont   : 24
+    fontRatio : 38
+
+  $scope.$on '$viewContentLoaded', ->
+    $http.get("/api/bitcamp")
+      .success ->
+        $rootScope.ready = true
+      .error (data) ->
+        null
 
   $rootScope.$on "$stateChangeSuccess", ->
     $window.scrollTo 0, 0
 
-  $rootScope.logout = ->
-    $http.get("/api/logout")
-      .success (data) ->
-        null
-      .error (err) ->
-        console.log err
-      .finally ->
-        $rootScope._logout()
+  $rootScope.treetentClick = ($event) ->
+    $rootScope.$broadcast "treetent:click", $event
 
-  $rootScope.treetentClick = ->
-    $rootScope.$broadcast "treetent:click"
+
+bitcamp.constant("ngInject", angular.identity)
+
+
+# Window and tab visibility.
+.factory 'browserFocus', do ->
+  vis = (->
+    stateKey = undefined
+    eventKey = undefined
+    keys =
+      hidden: "visibilitychange"
+      webkitHidden: "webkitvisibilitychange"
+      mozHidden: "mozvisibilitychange"
+      msHidden: "msvisibilitychange"
+
+    for stateKey of keys
+      if stateKey of document
+        eventKey = keys[stateKey]
+        break
+    (c) ->
+      document.addEventListener eventKey, c if c
+      not document[stateKey]
+  )()
+
+  focus = focus: null
+  onFocus = ->
+    focus.focus = true
+    focus.blur  = false
+  onBlur = ->
+    focus.focus = false
+    focus.blur  = true
+
+  # check if current tab is active or not
+  visCB = ->
+    if vis() and document.hasFocus()
+      setTimeout onFocus, 300
+    else
+      onBlur()
+  vis visCB
+  visCB()
+
+  # check if browser window has focus
+  notIE      = document.documentMode is undefined
+  isChromium = window.chrome
+
+  if notIE and not isChromium
+    $(window)
+      .on "focusin", ->
+        setTimeout onFocus, 300
+      .on "focusout", blur
+
+  else
+    # Is IE or Chromium.
+    if window.addEventListener
+      window.addEventListener "focus", ((event) ->
+        setTimeout onFocus, 300
+      ), false
+      window.addEventListener "blur", onBlur, false
+
+    else
+      # bind focus event
+      window.attachEvent "focus", (event) ->
+        setTimeout onFocus, 300
+      window.attachEvent "blur", onBlur
+
+  -> focus
 

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="bitcampApp">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+    <meta charset="utf-8">
+    <base href="/">
+    <title>Bitcamp 2015</title>
+    <meta name="description" content="36-hour hackathon at the University of Maryland. Spring 2015.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta property="og:site_name" content="Bitcamp 2015">
+    <meta property="og:title" content="Bitcamp 2015">
+    <meta property="og:url" content="http://bitca.mp">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="36-hour hackathon at the University of Maryland. Spring 2015.">
+    <meta property="og:image" content="http://bitca.mp/images/opengraph.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- cdnify:css-->
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css">
+    <!-- endcdnify-->
+    <!-- build:css(.tmp) styles/bitcamp.css-->
+    <link rel="stylesheet" href="layout/colors.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="layout/fonts.css">
+    <link rel="stylesheet" href="layout/typo.css">
+    <link rel="stylesheet" href="main/main.css">
+    <!-- endbuild-->
+  </head>
+  <body resize ng-cloak ng-controller="BodyCtrl" class="custom-scollbar">
+    <div class="btc-background-wrapper ng-cloak">
+      <div class="btc-background"></div>
+    </div>
+    <div id="wrapper" ui-view="" class="wrapper bitcamp-view"></div>
+    <div id="wrapper-footer" ng-include="" src=" 'layout/footer.html' " class="wrapper"></div>
+    <!-- cdnify:js-->
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/pixi.js/bin/pixi.js"></script>
+    <!-- endcdnify-->
+    <!-- build:js(client) scripts/vendor.js-->
+    <script src="bower_components/flowtype/flowtype.js"></script>
+    <script src="lib/ui-bootstrap-custom-0.10.0.js"></script>
+    <script src="lib/ui-bootstrap-custom-tpls-0.10.0.js"></script>
+    <script src="bower_components/angulartics/src/angulartics.js"></script>
+    <script src="bower_components/angulartics/src/angulartics-ga.js"></script>
+    <!-- endbuild-->
+    <!-- build:js(.tmp) scripts/bitcamp.js-->
+    <script src="index.js"></script>
+    <script src="layout/404/404.js"></script>
+    <script src="main/poisson-disk-sample.js"></script>
+    <script src="main/starfield.js"></script>
+    <script src="main/main.js"></script>
+    <!-- endbuild-->
+    <!-- Google Analytics: gs.js -->
+    <!-- inject -->
+  </body>
+</html>

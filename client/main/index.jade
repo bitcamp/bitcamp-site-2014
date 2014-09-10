@@ -1,5 +1,5 @@
-#main(ng-show="isLoaded", ng-class="{'fullscreen': twinkle}")
-  header#header.btc-row
+#main
+  header#header.btc-row(starfield-mouse)
     .header-logo(
       ng-include="" src="'layout/header-logo.html'"
       onload="isLoaded = true")
@@ -15,7 +15,7 @@
           a(href="http://2014.bitca.mp/" target="_blank")
             button 2014 website
 
-  #updates.btc-row
+  #updates.btc-row(ng-if="!twinkle")
     #updates-input
       h2 {{successText || 'get email updates'}}
       h3

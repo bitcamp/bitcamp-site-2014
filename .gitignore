@@ -7,6 +7,8 @@ public/*
 node_modules/*
 components/*
 
+client/bower_components
+
 sass/*
 sass-bootstrap
 .sass-cache/*

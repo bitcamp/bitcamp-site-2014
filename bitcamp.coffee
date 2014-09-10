@@ -14,12 +14,13 @@ ready.then ->
 
   # Angular Routes
   app.get "/",             indexRoute
+  app.get "/hh",           indexRoute
 
   app.get "/login",        indexRoute
   app.get "/conduct",      indexRoute
   app.get "/hackumentary", indexRoute
 
-  
+
   app.get "/colorwar",     indexRoute
   app.get "/fireside",     indexRoute
   app.get "/faq",          indexRoute

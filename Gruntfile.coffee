@@ -5,14 +5,24 @@ module.exports = (grunt) ->
   require("time-grunt") grunt
 
 
+  _ = require('underscore')
+
+  deps = require('./bower.json').dependencies
+
+  cdnData = _.extend require('cdnjs-cdn-data'), require('google-cdn-data')
+  cdnData = _.extend cdnData,
+    underscore: cdnData['underscore.js']
+  cdnData['animate.css'].versions.push deps['animate.css']
+  cdnData['pixi.js'    ].versions.push deps['pixi.js']
+
+
   grunt.initConfig
     bitcamp:
+      app  : "client"
+      srv  : "server"
 
-      app:   "client"
-      srv:   "server"
-
-      tmp:   ".tmp"
-      dist:  "public"
+      tmp  : ".tmp"
+      dist : "public"
 
 
     express:
@@ -29,14 +39,17 @@ module.exports = (grunt) ->
         options:
           script: "bitcamp.coffee"
           node_env: "production"
-          port: process.env.PORT or 80
+          port: process.env.PORT or 8000
 
 
     prettify:
       dist:
         expand: true
-        cwd:  "<%= bitcamp.dist %>"
-        src:  "**/*.html"
+        cwd: "<%= bitcamp.dist %>"
+        src: [
+          "**/*.html"
+          "!bower_components/**"
+        ]
         dest: "<%= bitcamp.dist %>"
 
     watch:
@@ -68,6 +81,7 @@ module.exports = (grunt) ->
           "<%= bitcamp.dist %>/index.html"
           "<%= bitcamp.tmp %>/**/*.html"
           "<%= bitcamp.tmp %>/**/*.js"
+          "<%= bitcamp.app %>/**/*.glsl"
         ]
 
       express:
@@ -79,7 +93,7 @@ module.exports = (grunt) ->
 
       css:
         files: ["<%= bitcamp.app %>/**/*.css"]
-        tasks: [ "newer:copy:styles_tmp", "autoprefixer" ]
+        tasks: [ "autoprefixer" ]
 
       gruntfile: files: ["Gruntfile.{js,coffee}"]
 
@@ -91,6 +105,7 @@ module.exports = (grunt) ->
           src: [
             "<%= bitcamp.tmp %>/*"
             "<%= bitcamp.dist %>/*"
+            "!<%= bitcamp.dist %>/bower_components"
           ]
         ]
 
@@ -143,7 +158,7 @@ module.exports = (grunt) ->
         imagesDir:               "<%= bitcamp.app %>"
         javascriptsDir:          "<%= bitcamp.app %>"
         fontsDir:                "<%= bitcamp.app %>"
-        importPath:              "components"
+        importPath:              "<%= bitcamp.app %>/bower_components"
         httpImagesPath:          "/images"
         httpFontsPath:           "/fonts"
         relativeAssets:          false
@@ -156,25 +171,33 @@ module.exports = (grunt) ->
         watch:     true
 
 
-    rev:
-      dist:
-        src: [
-          "<%= bitcamp.dist %>/**/*.js"
-          "<%= bitcamp.dist %>/**/*.css"
-          "<%= bitcamp.dist %>/**/*.{png,jpg,jpeg,gif,webp,svg}"
-          "!<%= bitcamp.dist %>/**/opengraph.png"
-        ]
-
-
     useminPrepare:
       options: dest: "public"
       html: "<%= bitcamp.dist %>/index.html"
 
 
     usemin:
-      options: assetsDirs: "<%= bitcamp.dist %>"
-      html: [ "<%= bitcamp.dist %>/**/*.html" ]
-      css:  [ "<%= bitcamp.dist %>/**/*.css" ]
+      options:
+        assetsDirs: [
+          "<%= bitcamp.dist %>"
+          "!<%= bitcamp.dist %>/bower_components"
+        ]
+      html:
+        expand: true
+        cwd: "<%= bitcamp.dist %>"
+        src: [
+          "**/*.html"
+          "!bower_components/**"
+        ]
+        dest: "<%= bitcamp.dist %>"
+      css:
+        expand: true
+        cwd: "<%= bitcamp.dist %>"
+        src: [
+          "**/*.css"
+          "!bower_components/**"
+        ]
+        dest: "<%= bitcamp.dist %>"
 
 
     usebanner:
@@ -184,7 +207,7 @@ module.exports = (grunt) ->
       files:  [ "<%= bitcamp.dist %>/index.html" ]
 
 
-    ngmin:
+    ngAnnotate:
       dist:
         expand: true
         cwd:  "<%= bitcamp.tmp %>"
@@ -193,14 +216,10 @@ module.exports = (grunt) ->
 
 
     copy:
-      styles_tmp:
-        expand: true
-        cwd:  "<%= bitcamp.app %>"
-        src:  "**/*.css"
-        dest: "<%= bitcamp.tmp %>"
       components_dist:
         expand: true
-        src:  [ "components/**" ]
+        cwd: "<%= bitcamp.app %>"
+        src:  [ "bower_components/**" ]
         dest: "<%= bitcamp.dist %>"
       app_dist:
         expand: true
@@ -210,6 +229,7 @@ module.exports = (grunt) ->
           "*.{ico,txt}"
           "images/**/*"
           "fonts/**/*"
+          "main/**/*.glsl"
         ]
 
 
@@ -224,21 +244,18 @@ module.exports = (grunt) ->
       dist1_dev: [
         "compass:dev"
         "coffee:dev"
-        "copy:styles_tmp"
       ]
       dist1: [
         "jade"
         "compass:prod"
         "coffee:dist"
-        "copy:styles_tmp"
       ]
       dist2: [
-        "ngmin"
+        "ngAnnotate"
         "autoprefixer"
       ]
       dist3: [
         "copy:app_dist"
-        "copy:components_dist"
         "inject:googleAnalytics"
       ]
       watch:
@@ -255,26 +272,47 @@ module.exports = (grunt) ->
         src:  [ "**/*.html", "!index.html" ]
         dest: "<%= bitcamp.dist %>/scripts/templates.js"
         options:
-          usemin: "scripts/main.js"
+          usemin: "scripts/bitcamp.js"
+
+
+    cdnify:
+      options:
+        cdn: cdnData
+      dist:
+        html: ['<%= bitcamp.dist %>/*.html']
+
+
+    filerev:
+      server:
+        expand: true
+        cwd: "<%= bitcamp.dist %>"
+        src: [
+          "**/*.css"
+          "**/*.js"
+          "!bower_components/**"
+        ]
+        dest: "<%= bitcamp.dist %>"
 
 
 
   grunt.registerTask "build", [
     "clean"
 
-    "jade"
     "concurrent:dist1"
 
     "prettify"
     "useminPrepare"
 
     "concurrent:dist2"
+    "cdnify"
 
     "ngtemplates"
     "concat:generated"
 
     "cssmin:generated"
     "uglify:generated"
+
+    "filerev"
 
     "usemin"
 
