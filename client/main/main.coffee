@@ -2,11 +2,40 @@ angular.module('bitcampApp')
 
 
 .controller 'main', (
+  $scope
   $rootScope
+  $timeout
+  $http
   starfieldShader
 ) ->
   $rootScope.starfieldShader = starfieldShader
   $rootScope.twinkle = false
+
+  makeUser = ->
+    $scope.user =
+      name       : ''
+      email      : ''
+      university : ''
+  makeUser()
+
+  $scope.submit = (user) ->
+    $scope.successText = '. . .'
+    $timeout ->
+      $http.post('/api/signup', $scope.user)
+        .success ->
+          $scope.signupSuccess = true
+          $scope.successText = 'success! :)'
+          $timeout ->
+            makeUser()
+            $scope.successText = null
+            $scope.signupSuccess = false
+          , 3000
+        .error ->
+          $scope.signupError = true
+          $scope.successText = 'error :('
+          $timeout (-> $scope.successText = null), 3000
+    , 1200
+  null
 
 
 .controller 'main.main', (
@@ -22,33 +51,6 @@ angular.module('bitcampApp')
   $scope.$on 'treetent:click', (ev, $event) ->
     $state.go 'main.hh'
     $event.originalEvent.cancelBubble = true
-
-  makeSignup = ->
-    $scope.signup =
-      name       : ''
-      email      : ''
-      university : ''
-
-  makeSignup()
-
-  $scope.submit = ->
-    $scope.successText = '. . .'
-    $timeout ->
-      $http.post('/api/signup', $scope.signup)
-        .success ->
-          $scope.signupSuccess = true
-          $scope.successText = 'success! :)'
-          $timeout ->
-            makeSignup()
-            $scope.successText = null
-            $scope.signupSuccess = false
-          , 3000
-        .error ->
-          $scope.signupError = true
-          $scope.successText = 'error :('
-          $timeout (-> $scope.successText = null), 3000
-    , 1200
-  null
 
 
 .directive 'resize', ($window, $timeout) ->

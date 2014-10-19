@@ -2,6 +2,7 @@ bitcamp = angular.module("bitcampApp", [
   "ngAnimate"
 
   "ui.router"
+  "ui.utils"
 
   "angulartics"
   "angulartics.google.analytics"
@@ -28,11 +29,10 @@ bitcamp.config (
       controller: "main"
       resolve:
         starfieldShader: ngInject ($http) ->
-          $http({
+          $http
             method: "GET"
             url: "main/starfield.glsl"
-          }).then ({data}) ->
-            data
+          .then ({data}) -> data
     .state "main.main",
       url: ""
       controller: "main.main"
