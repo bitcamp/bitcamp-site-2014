@@ -70,6 +70,7 @@ angular.module('bitcampApp')
     hasColor        : '='
     shader          : '@'
   link: (scope, element, attrs) ->
+    return unless bowser.chrome or bowser.firefox
     blinkRate = scope.blinkRate / 100
 
     hasColor = if scope.hasColor then true else false

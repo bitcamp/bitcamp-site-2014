@@ -49,6 +49,7 @@ angular.module('bitcampApp')
   $rootScope.twinkle = false
 
   $scope.$on 'treetent:click', (ev, $event) ->
+    return unless bowser.chrome or bowser.firefox
     $state.go 'main.hh'
     $event.originalEvent.cancelBubble = true
 
@@ -68,6 +69,8 @@ angular.module('bitcampApp')
 
 
 .controller 'main.hh', ($scope, $rootScope, $state, browserFocus) ->
+  $state.go 'main.main' unless bowser.chrome or bowser.firefox
+
   $rootScope.twinkle = true
 
   $scope.$on 'treetent:click', ->
