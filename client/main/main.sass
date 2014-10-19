@@ -58,17 +58,6 @@
         &.ng-leave, &.ng-enter.ng-enter-active
           animation: fadeInRight $btcbgtime
 
-    button
-      color: $color_orange
-      background: transparent
-      border: 2px solid $color_orange
-      border-radius: 12px
-      padding: 1.8rem 0.4rem
-      transition: color 0.08s ease-out, background-color 0.08s ease-out, transform 0.08s ease-out
-      &:hover
-        background-color: $color_orange
-        color: $color_white
-
     #old-site
       display: inline-block
       perspective: 40rem
@@ -77,8 +66,18 @@
       width: 100%
       padding: 0.5em 1em
       margin: 0 auto
+      button
+        color: $color_orange
+        background: transparent
+        border: 2px solid $color_orange
+        border-radius: 12px
+        padding: 1.8rem 0.4rem
+        transition: color 0.08s ease-out, background-color 0.08s ease-out, transform 0.02s ease-in
+        &:hover
+          background-color: $color_orange
+          color: $color_white
       &:hover button
-        transform: translateZ(1.8rem) translateY(0.4rem)
+        transform: translateZ(1.3rem) translateY(0.2rem)
 
   #updates
     min-height: 40vh
