@@ -19,7 +19,7 @@
   "devDependencies": {
     "cdnjs-cdn-data": "^0.1.1",
     "connect-livereload": "~0.3.0",
-    "google-cdn-data": "^0.1.7",
+    "google-cdn-data": "^0.1.11",
     "grunt-angular-templates": "~0.5.1",
     "grunt-autoprefixer": "~0.4.2",
     "grunt-banner": "~0.2.0",
