@@ -13,7 +13,7 @@ exports.permissionSlip = (name) ->
   </p>
 
   <p>
-    Please email kunal@bitca.mp if you have any questions.
+    Please email kunal@bit.camp if you have any questions.
   </p>
 
   <hr>

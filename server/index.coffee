@@ -17,7 +17,7 @@ exports.email_server    = require("emailjs").server.connect
   host     : "smtp.webfaction.com"
   ssl      : true
   timeout  : 5000
-  domain   : "bitca.mp"
+  domain   : "2014.bit.camp"
 
 
 cacheTime = 86400000

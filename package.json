@@ -4,7 +4,7 @@
   "engines": {
     "node": ">=0.10.25"
   },
-  "repository": "http://github.com/bitcamp/bitca.mp",
+  "repository": "http://github.com/bitcamp/2014.bit.camp",
   "dependencies": {
     "emailjs": "~0.3.6",
     "express": "~3.4.3",

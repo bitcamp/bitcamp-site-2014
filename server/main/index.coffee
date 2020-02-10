@@ -32,7 +32,7 @@ exports.signup = (req, res) ->
   .then ->
     d = q.defer()
     email_server.send
-      from:           "Bitcamp <bitcamp@bitca.mp>"
+      from:           "Bitcamp <bitcamp@bit.camp>"
       to:             email
       subject:        "Permission Slip Received!"
       text:           permissionSlip(name)

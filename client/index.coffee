@@ -55,7 +55,7 @@ bitcamp = angular.module("bitcampApp", [
     $rootScope.ready = false
     $http.get("/api/bitcamp")
       .success ->
-        console.log "Looking for this? http://github.com/bitcamp/bitca.mp"
+        console.log "Looking for this? http://github.com/bitcamp/2014.bit.camp"
         $rootScope.ready = true
         $("body").flowtype
           minFont   : 14
