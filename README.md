@@ -8,13 +8,16 @@ The website hosted at http://2014.bit.camp/.
 
 1. Fork this repo.
 2. Clone it to your machine
-   `git clone git@github.com:$USER/2014.bit.camp.git`
 3. Install dependencies:
-   `cd 2014.bit.camp; npm i && bower i`
-   `npm install -g grunt-cli`
+   `npm install`
 4. Start her up in development mode:
-   `grunt serve`
+   `npm run dev`
 5. Head to http://localhost:8000/
+
+## Produce a production build:
+
+1. `npm build`
+1. serve the `./public` folder somehow!
 
 ### P.S.
 
