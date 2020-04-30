@@ -1,0 +1,94 @@
+<!--[if IE]><!DOCTYPE html><!--><!--
+
+                              -. .- `-` .. `-` -. .-                             
+                        .``-`                        `-``.                       
+                    `-```                                ```-`                   
+                `-`                                          `-`                
+              -.                                                .-              
+            `-                                                      -`           
+          `.`                                                        `.`         
+          -`                          ///                             `.         
+        -`                         .--///                               `-       
+      ..                           /oo`                                   ..     
+    ``                         -++ooo`    `++/                            ``    
+    `-                       .--/oo+++`    `:::--.                          -`   
+  `.                        -ooooo+++.``   ``-oo:                           .`  
+  .                         -++++++++///  `///++-                            .  
+  -`                         -++/////////---///++/::.                         `- 
+`.                          -++/:::-------::::///++-                          . 
+..                          -++/::-........:::::/++-                          ..
+-                           -++/::-..`  ...---::/++-                           -
+.                           .:::::-..   ```..-:::::.                           .
+:                              .::-..      ..-::.                              :
+.                               ``............``                               .
+:                  .---..``       ````````````      ``..-:::.`                 :
+.                `/+++++++///:--.```        ``.-::/++oossssss+.                .
+.                :+++++++++++++++++///:::/++oossssssssssssssss/               `.
+  :               ./+++++++++++oooooossssssssssssssssssssssssso-               : 
+  ``               `:/++oooosssssssssssssssssssssssssssssssso/.               `. 
+  :              `:/++++ossssssssssssssssssssssssooooooosssso/`              :  
+    -             :+++++++ossssssssssssoooooooo++++++++osssssss/             .   
+    .`            -+++++++osssoooo+/:-..```..-::///++++osssssss:            `.   
+    ..            -///////:--.``                ```.--:/oooo+-            ..    
+      .             ```                                  ```             .`     
+      ``                                                                ``      
+````           `                                                                
+////.         ://`   `.`                                                        
+  -++.         .:-`   /+.                                                        
+  .++-.-::-` `----  -:++:--`  .-:::-.  `.-:::-`   ----`-::-``-:::-`  .---`.-::-` 
+  .++/-.-/+/``./++  .:++:--``/+/-.-+/  -/-..:+/.  .-++/-.-+//:.-/+/  .-++/:..:++.
+  .++.   `++:  :++   -++.   /+/`   ..     ``.++:   `++-   /+/   -++`  `++:    /+/
+  .++.   `++:  :++   -++.   /+/        -//:::++:   `++-   /+/   -++`  `++:    /+/
+  .++-  `:+/.  :++`  .++-`` -++-` `.. -++`  .++:   .++:   /+/`  -++.  `++/` `-++-
+  .///////:` ./////:  :////` .://///- `:////-:/// ://///` :///- -//// `++/////:. 
+                                                                    `.++:.      
+                                                                    -/////`     
+<![endif]-->
+<!DOCTYPE html>
+<html ng-app="bitcampApp">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+    <meta charset="utf-8">
+    <base href="/">
+    <title>Bitcamp 2015</title>
+    <meta name="description" content="36-hour hackathon at the University of Maryland. Spring 2015.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta property="og:site_name" content="Bitcamp 2015">
+    <meta property="og:title" content="Bitcamp 2015">
+    <meta property="og:url" content="http://2014.bit.camp">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="36-hour hackathon at the University of Maryland. Spring 2015.">
+    <meta property="og:image" content="http://2014.bit.camp/images/opengraph.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles/vendor.css"/>
+    <link rel="stylesheet" href="styles/main.css"/>
+  </head>
+  <body ng-controller="BodyCtrl" ng-cloak ng-style="bodyCSS" class="custom-scollbar">
+    <div class="btc-background-wrapper ng-cloak">
+      <div class="btc-background"></div>
+    </div>
+    <div id="wrapper" ui-view class="wrapper bitcamp-view"></div>
+    <div id="wrapper-footer" ng-include="" src=" 'layout/footer.html' " class="wrapper"></div>
+    <script src="scripts/plugins.js"></script>
+    <script src="scripts/modules.js"></script>
+    <script src="scripts/main.js"></script>
+    <!-- Google Analytics: gs.js -->
+    <script type="text/javascript">(function(i, s, o, g, r, a, m) {
+  i["GoogleAnalyticsObject"] = r;
+  (i[r] =
+    i[r] ||
+    function() {
+      (i[r].q = i[r].q || []).push(arguments);
+    }),
+    (i[r].l = 1 * new Date());
+  (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+  a.async = 1;
+  a.src = g;
+  m.parentNode.insertBefore(a, m);
+})(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
+
+ga("create", "UA-51545620-1", "2014.bit.camp");
+</script>
+  </body>
+</html>

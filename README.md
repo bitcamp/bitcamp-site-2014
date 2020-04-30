@@ -16,8 +16,8 @@ The website hosted at http://2014.bit.camp/.
 
 ## Produce a production build:
 
-1. `npm build`
-1. serve the `./public` folder somehow!
+1. `npm run build`
+2. serve the `./docs` folder somehow!
 
 ### P.S.
 
