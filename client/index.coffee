@@ -55,14 +55,16 @@ bitcamp = angular.module("bitcampApp", [
     $rootScope.ready = false
     $http.get("/api/bitcamp")
       .success ->
-        console.log "Looking for this? http://github.com/bitcamp/2014.bit.camp"
         $rootScope.ready = true
+      .error (data) ->
+        null
+      .finally ->
+        console.log "Looking for this? http://github.com/bitcamp/2014.bit.camp"
         $("body").flowtype
           minFont   : 14
           maxFont   : 24
           fontRatio : 38
-      .error (data) ->
-        null
+
 
     $rootScope.$on "$stateChangeSuccess", ->
       $window.scrollTo 0, 0
