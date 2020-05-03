@@ -12,4 +12,4 @@
   m.parentNode.insertBefore(a, m);
 })(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
 
-ga("create", "UA-51545620-1", "2014.bit.camp");
+ga("create", "UA-51545620-2", "2014.bit.camp");
