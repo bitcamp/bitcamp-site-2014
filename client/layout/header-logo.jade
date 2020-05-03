@@ -6,6 +6,9 @@
     #treetent
       #treetent-img
         img(
+          analyics-on="click"
+          analytics-category="easter-egg"
+          analytics-label="twinkle"
           scroll-to="#wrapper"
           src="/images/treetent.svg"
           width="100", height="100"
@@ -16,7 +19,7 @@
       id="star-{{$index}}"
       ng-style="{'left': star.x+'%', 'top': star.y+'%'}")
     #treetent
-      #treetent-img
+      #treetent-img()
         img(
           scroll-to="#wrapper"
           src="/images/treetent.svg",
