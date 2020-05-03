@@ -53,7 +53,7 @@ bitcamp = angular.module("bitcampApp", [
     }
 
     $rootScope.ready = false
-    $http.get("/api/bitcamp")
+    $http.get("/")
       .success ->
         $rootScope.ready = true
       .error (data) ->
