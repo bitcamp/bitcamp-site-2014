@@ -8,6 +8,8 @@ sass/*
 sass-bootstrap
 .sass-cache/*
 
-.build/*
+build/*
 
 dist/*
+
+docs/components
