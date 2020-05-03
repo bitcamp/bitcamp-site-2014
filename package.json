@@ -17,7 +17,7 @@
   },
   "scripts": {
     "postinstall": "bower install && bundle install",
-    "build": "grunt build --force && mv public docs",
+    "build": "grunt build --production && rsync -aqr public/ docs/",
     "dev": "grunt serve"
   },
   "devDependencies": {
