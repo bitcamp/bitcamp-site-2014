@@ -23,7 +23,7 @@
   "devDependencies": {
     "bower": "^1.8.8",
     "connect-livereload": "~0.3.0",
-    "grunt": "~0.4.0",
+    "grunt": "~1.5.3",
     "grunt-angular-templates": "~0.5.1",
     "grunt-autoprefixer": "~0.4.2",
     "grunt-banner": "~0.2.0",
