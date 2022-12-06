@@ -7,7 +7,7 @@
   "repository": "http://github.com/bitcamp/2014.bit.camp",
   "dependencies": {
     "emailjs": "~0.3.6",
-    "express": "~3.4.3",
+    "express": "~4.17.3",
     "jade": "~1.1.5",
     "mysql-promise": "~0.1.0",
     "socket.io": "~0.9.16",
